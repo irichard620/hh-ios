@@ -7,6 +7,10 @@
 //
 
 #import "AppDelegate.h"
+#import "ChatViewController.h"
+#import "MenuViewController.h"
+#import "SWRevealViewController.h"
+#import "UserHomeViewController.h"
 
 @interface AppDelegate ()
 
@@ -17,6 +21,15 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
+    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+    
+    UserHomeViewController *userHomeVC = [[UserHomeViewController alloc]initWithNibName:@"UserHomeViewController" bundle:nil];
+    UINavigationController *navVC = [[UINavigationController alloc]initWithRootViewController:userHomeVC];
+    
+    // Set as root
+    self.window.rootViewController = navVC;
+    [self.window makeKeyAndVisible];
+    
     return YES;
 }
 

@@ -7,6 +7,17 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		06898846A761F16B809959AD /* libPods-hh-iosTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 139AAEBD44054690B663E3CB /* libPods-hh-iosTests.a */; };
+		42DCD2447853CBCBDE14ACB4 /* libPods-hh-ios.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 24E467ECA15237464F192AE2 /* libPods-hh-ios.a */; };
+		75C17BFE24053648F9631729 /* libPods-hh-iosUITests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6EA14996A84657ADA6390E82 /* libPods-hh-iosUITests.a */; };
+		8073C8351FC946CC007223CD /* ChatTimeTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8073C8331FC946CC007223CD /* ChatTimeTableViewCell.m */; };
+		8073C8361FC946CC007223CD /* ChatTimeTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8073C8341FC946CC007223CD /* ChatTimeTableViewCell.xib */; };
+		8073C8381FC95291007223CD /* ian_profile.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 8073C8371FC95291007223CD /* ian_profile.jpg */; };
+		8073C83A1FC9537E007223CD /* ian_profile2.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 8073C8391FC9537E007223CD /* ian_profile2.jpg */; };
+		8073C83E1FC95491007223CD /* ChatActionTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8073C83C1FC95491007223CD /* ChatActionTableViewCell.m */; };
+		8073C83F1FC95491007223CD /* ChatActionTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8073C83D1FC95491007223CD /* ChatActionTableViewCell.xib */; };
+		8073C8411FC9556D007223CD /* check_black.png in Resources */ = {isa = PBXBuildFile; fileRef = 8073C8401FC9556D007223CD /* check_black.png */; };
+		8073C8431FC957C0007223CD /* tag_black.png in Resources */ = {isa = PBXBuildFile; fileRef = 8073C8421FC957C0007223CD /* tag_black.png */; };
 		80F558371FBAA541001601B3 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 80F558351FBAA541001601B3 /* LaunchScreen.storyboard */; };
 		80F558421FBAA541001601B3 /* hh_iosTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 80F558411FBAA541001601B3 /* hh_iosTests.m */; };
 		80F5584D1FBAA541001601B3 /* hh_iosUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 80F5584C1FBAA541001601B3 /* hh_iosUITests.m */; };
@@ -40,6 +51,8 @@
 		80F558BE1FC7F7AF001601B3 /* home_black.png in Resources */ = {isa = PBXBuildFile; fileRef = 80F558BD1FC7F7AF001601B3 /* home_black.png */; };
 		80F558C01FC7FA86001601B3 /* HH_user_placeholder.png in Resources */ = {isa = PBXBuildFile; fileRef = 80F558BF1FC7FA86001601B3 /* HH_user_placeholder.png */; };
 		80F558C21FC7FA8F001601B3 /* HH_group_placeholder.png in Resources */ = {isa = PBXBuildFile; fileRef = 80F558C11FC7FA8F001601B3 /* HH_group_placeholder.png */; };
+		80F558C61FC91FBD001601B3 /* ChatMessageTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 80F558C41FC91FBD001601B3 /* ChatMessageTableViewCell.m */; };
+		80F558C71FC91FBD001601B3 /* ChatMessageTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 80F558C51FC91FBD001601B3 /* ChatMessageTableViewCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -60,6 +73,24 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		139AAEBD44054690B663E3CB /* libPods-hh-iosTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-hh-iosTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		24E467ECA15237464F192AE2 /* libPods-hh-ios.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-hh-ios.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		314A07B775FD367DA8E1E2F4 /* Pods-hh-iosTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-hh-iosTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-hh-iosTests/Pods-hh-iosTests.release.xcconfig"; sourceTree = "<group>"; };
+		44DE0D06726054104C322CDE /* Pods-hh-ios.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-hh-ios.release.xcconfig"; path = "Pods/Target Support Files/Pods-hh-ios/Pods-hh-ios.release.xcconfig"; sourceTree = "<group>"; };
+		5BF680A03BCCA0C24E844526 /* Pods-hh-ios.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-hh-ios.debug.xcconfig"; path = "Pods/Target Support Files/Pods-hh-ios/Pods-hh-ios.debug.xcconfig"; sourceTree = "<group>"; };
+		69C2C3083AE0391BE8FA734C /* Pods-hh-iosUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-hh-iosUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-hh-iosUITests/Pods-hh-iosUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		6EA14996A84657ADA6390E82 /* libPods-hh-iosUITests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-hh-iosUITests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		771F444D5E9D6D17DEF9C797 /* Pods-hh-iosUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-hh-iosUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-hh-iosUITests/Pods-hh-iosUITests.release.xcconfig"; sourceTree = "<group>"; };
+		8073C8321FC946CC007223CD /* ChatTimeTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatTimeTableViewCell.h; sourceTree = "<group>"; };
+		8073C8331FC946CC007223CD /* ChatTimeTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatTimeTableViewCell.m; sourceTree = "<group>"; };
+		8073C8341FC946CC007223CD /* ChatTimeTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ChatTimeTableViewCell.xib; sourceTree = "<group>"; };
+		8073C8371FC95291007223CD /* ian_profile.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = ian_profile.jpg; sourceTree = "<group>"; };
+		8073C8391FC9537E007223CD /* ian_profile2.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = ian_profile2.jpg; sourceTree = "<group>"; };
+		8073C83B1FC95491007223CD /* ChatActionTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatActionTableViewCell.h; sourceTree = "<group>"; };
+		8073C83C1FC95491007223CD /* ChatActionTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatActionTableViewCell.m; sourceTree = "<group>"; };
+		8073C83D1FC95491007223CD /* ChatActionTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ChatActionTableViewCell.xib; sourceTree = "<group>"; };
+		8073C8401FC9556D007223CD /* check_black.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = check_black.png; sourceTree = "<group>"; };
+		8073C8421FC957C0007223CD /* tag_black.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tag_black.png; sourceTree = "<group>"; };
 		80F558241FBAA541001601B3 /* hh-ios.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "hh-ios.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		80F558361FBAA541001601B3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		80F5583D1FBAA541001601B3 /* hh-iosTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "hh-iosTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -108,6 +139,10 @@
 		80F558BD1FC7F7AF001601B3 /* home_black.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = home_black.png; sourceTree = "<group>"; };
 		80F558BF1FC7FA86001601B3 /* HH_user_placeholder.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = HH_user_placeholder.png; sourceTree = "<group>"; };
 		80F558C11FC7FA8F001601B3 /* HH_group_placeholder.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = HH_group_placeholder.png; sourceTree = "<group>"; };
+		80F558C31FC91FBD001601B3 /* ChatMessageTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatMessageTableViewCell.h; sourceTree = "<group>"; };
+		80F558C41FC91FBD001601B3 /* ChatMessageTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatMessageTableViewCell.m; sourceTree = "<group>"; };
+		80F558C51FC91FBD001601B3 /* ChatMessageTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ChatMessageTableViewCell.xib; sourceTree = "<group>"; };
+		FF5F23B57924B62725B957EE /* Pods-hh-iosTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-hh-iosTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-hh-iosTests/Pods-hh-iosTests.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -115,6 +150,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				42DCD2447853CBCBDE14ACB4 /* libPods-hh-ios.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -122,6 +158,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				06898846A761F16B809959AD /* libPods-hh-iosTests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -129,12 +166,36 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				75C17BFE24053648F9631729 /* libPods-hh-iosUITests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		7894388FC438F9B35FA09D86 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				24E467ECA15237464F192AE2 /* libPods-hh-ios.a */,
+				139AAEBD44054690B663E3CB /* libPods-hh-iosTests.a */,
+				6EA14996A84657ADA6390E82 /* libPods-hh-iosUITests.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		7C867B9F6FE8DF1159BCAAD7 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				5BF680A03BCCA0C24E844526 /* Pods-hh-ios.debug.xcconfig */,
+				44DE0D06726054104C322CDE /* Pods-hh-ios.release.xcconfig */,
+				FF5F23B57924B62725B957EE /* Pods-hh-iosTests.debug.xcconfig */,
+				314A07B775FD367DA8E1E2F4 /* Pods-hh-iosTests.release.xcconfig */,
+				69C2C3083AE0391BE8FA734C /* Pods-hh-iosUITests.debug.xcconfig */,
+				771F444D5E9D6D17DEF9C797 /* Pods-hh-iosUITests.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		80F5581B1FBAA541001601B3 = {
 			isa = PBXGroup;
 			children = (
@@ -142,6 +203,8 @@
 				80F558401FBAA541001601B3 /* hh-iosTests */,
 				80F5584B1FBAA541001601B3 /* hh-iosUITests */,
 				80F558251FBAA541001601B3 /* Products */,
+				7C867B9F6FE8DF1159BCAAD7 /* Pods */,
+				7894388FC438F9B35FA09D86 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -265,6 +328,10 @@
 		80F558831FBACADE001601B3 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				8073C8421FC957C0007223CD /* tag_black.png */,
+				8073C8401FC9556D007223CD /* check_black.png */,
+				8073C8391FC9537E007223CD /* ian_profile2.jpg */,
+				8073C8371FC95291007223CD /* ian_profile.jpg */,
 				80F558C11FC7FA8F001601B3 /* HH_group_placeholder.png */,
 				80F558BF1FC7FA86001601B3 /* HH_user_placeholder.png */,
 				80F558BD1FC7F7AF001601B3 /* home_black.png */,
@@ -295,6 +362,15 @@
 				80F558B61FC7F395001601B3 /* UserHomeTableViewCell.h */,
 				80F558B71FC7F395001601B3 /* UserHomeTableViewCell.m */,
 				80F558B81FC7F395001601B3 /* UserHomeTableViewCell.xib */,
+				80F558C31FC91FBD001601B3 /* ChatMessageTableViewCell.h */,
+				80F558C41FC91FBD001601B3 /* ChatMessageTableViewCell.m */,
+				80F558C51FC91FBD001601B3 /* ChatMessageTableViewCell.xib */,
+				8073C8321FC946CC007223CD /* ChatTimeTableViewCell.h */,
+				8073C8331FC946CC007223CD /* ChatTimeTableViewCell.m */,
+				8073C8341FC946CC007223CD /* ChatTimeTableViewCell.xib */,
+				8073C83B1FC95491007223CD /* ChatActionTableViewCell.h */,
+				8073C83C1FC95491007223CD /* ChatActionTableViewCell.m */,
+				8073C83D1FC95491007223CD /* ChatActionTableViewCell.xib */,
 			);
 			path = "Table Cells";
 			sourceTree = "<group>";
@@ -316,9 +392,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 80F558511FBAA541001601B3 /* Build configuration list for PBXNativeTarget "hh-ios" */;
 			buildPhases = (
+				5FA9D992BE7EB76502356DBA /* [CP] Check Pods Manifest.lock */,
 				80F558201FBAA541001601B3 /* Sources */,
 				80F558211FBAA541001601B3 /* Frameworks */,
 				80F558221FBAA541001601B3 /* Resources */,
+				80C92C50CAB5BE039208AB01 /* [CP] Embed Pods Frameworks */,
+				3919DEC3021698EA252F08AF /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -333,9 +412,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 80F558541FBAA541001601B3 /* Build configuration list for PBXNativeTarget "hh-iosTests" */;
 			buildPhases = (
+				EC487F41019C4419F368B55E /* [CP] Check Pods Manifest.lock */,
 				80F558391FBAA541001601B3 /* Sources */,
 				80F5583A1FBAA541001601B3 /* Frameworks */,
 				80F5583B1FBAA541001601B3 /* Resources */,
+				659D476E94D42E841EE64F6F /* [CP] Embed Pods Frameworks */,
+				CCEDF15BCA66D6B0CFB5AB40 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -351,9 +433,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 80F558571FBAA541001601B3 /* Build configuration list for PBXNativeTarget "hh-iosUITests" */;
 			buildPhases = (
+				40C6C9801859B03D0C3556F2 /* [CP] Check Pods Manifest.lock */,
 				80F558441FBAA541001601B3 /* Sources */,
 				80F558451FBAA541001601B3 /* Frameworks */,
 				80F558461FBAA541001601B3 /* Resources */,
+				2B6C905E283E998E770F892B /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -418,9 +502,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8073C8431FC957C0007223CD /* tag_black.png in Resources */,
 				80F5589C1FBAD852001601B3 /* TopMenuTableViewCell.xib in Resources */,
+				8073C83F1FC95491007223CD /* ChatActionTableViewCell.xib in Resources */,
 				80F558891FBACB41001601B3 /* tag.png in Resources */,
 				80F558861FBACADE001601B3 /* home.png in Resources */,
+				8073C8411FC9556D007223CD /* check_black.png in Resources */,
 				80F5588B1FBACB66001601B3 /* check.png in Resources */,
 				80F558791FBAB5FA001601B3 /* MenuViewController.xib in Resources */,
 				80F558BC1FC7F748001601B3 /* grid.png in Resources */,
@@ -432,6 +519,9 @@
 				80F558B31FC631FD001601B3 /* add.png in Resources */,
 				80F558B51FC63258001601B3 /* close.png in Resources */,
 				80F558C21FC7FA8F001601B3 /* HH_group_placeholder.png in Resources */,
+				8073C83A1FC9537E007223CD /* ian_profile2.jpg in Resources */,
+				8073C8381FC95291007223CD /* ian_profile.jpg in Resources */,
+				8073C8361FC946CC007223CD /* ChatTimeTableViewCell.xib in Resources */,
 				80F5588F1FBACBDA001601B3 /* settings.png in Resources */,
 				80F558911FBACC12001601B3 /* share.png in Resources */,
 				80F558971FBAD142001601B3 /* MenuTableViewCell.xib in Resources */,
@@ -439,6 +529,7 @@
 				80F558371FBAA541001601B3 /* LaunchScreen.storyboard in Resources */,
 				80F558BA1FC7F395001601B3 /* UserHomeTableViewCell.xib in Resources */,
 				80F558AB1FC54228001601B3 /* exithouse.png in Resources */,
+				80F558C71FC91FBD001601B3 /* ChatMessageTableViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -458,21 +549,147 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		2B6C905E283E998E770F892B /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-hh-iosUITests/Pods-hh-iosUITests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		3919DEC3021698EA252F08AF /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-hh-ios/Pods-hh-ios-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		40C6C9801859B03D0C3556F2 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		5FA9D992BE7EB76502356DBA /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		659D476E94D42E841EE64F6F /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-hh-iosTests/Pods-hh-iosTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		80C92C50CAB5BE039208AB01 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-hh-ios/Pods-hh-ios-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		CCEDF15BCA66D6B0CFB5AB40 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-hh-iosTests/Pods-hh-iosTests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		EC487F41019C4419F368B55E /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		80F558201FBAA541001601B3 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				80F5589B1FBAD852001601B3 /* TopMenuTableViewCell.m in Sources */,
+				80F558C61FC91FBD001601B3 /* ChatMessageTableViewCell.m in Sources */,
 				80F558711FBAB280001601B3 /* AppDelegate.m in Sources */,
 				80F558731FBAB280001601B3 /* main.m in Sources */,
 				80F558B01FC544CB001601B3 /* UserHomeViewController.m in Sources */,
 				80F5587D1FBABACF001601B3 /* ChatViewController.m in Sources */,
 				80F558661FBAB1C1001601B3 /* SWRevealViewController.m in Sources */,
 				80F558961FBAD142001601B3 /* MenuTableViewCell.m in Sources */,
+				8073C8351FC946CC007223CD /* ChatTimeTableViewCell.m in Sources */,
 				80F558A11FBB938B001601B3 /* ViewHelpers.m in Sources */,
 				80F558781FBAB5FA001601B3 /* MenuViewController.m in Sources */,
 				80F558B91FC7F395001601B3 /* UserHomeTableViewCell.m in Sources */,
+				8073C83E1FC95491007223CD /* ChatActionTableViewCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -610,6 +827,7 @@
 		};
 		80F558521FBAA541001601B3 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 5BF680A03BCCA0C24E844526 /* Pods-hh-ios.debug.xcconfig */;
 			buildSettings = {
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = K78F8G9J87;
@@ -622,6 +840,7 @@
 		};
 		80F558531FBAA541001601B3 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 44DE0D06726054104C322CDE /* Pods-hh-ios.release.xcconfig */;
 			buildSettings = {
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = K78F8G9J87;
@@ -634,6 +853,7 @@
 		};
 		80F558551FBAA541001601B3 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = FF5F23B57924B62725B957EE /* Pods-hh-iosTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				DEVELOPMENT_TEAM = K78F8G9J87;
@@ -647,6 +867,7 @@
 		};
 		80F558561FBAA541001601B3 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 314A07B775FD367DA8E1E2F4 /* Pods-hh-iosTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				DEVELOPMENT_TEAM = K78F8G9J87;
@@ -660,6 +881,7 @@
 		};
 		80F558581FBAA541001601B3 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 69C2C3083AE0391BE8FA734C /* Pods-hh-iosUITests.debug.xcconfig */;
 			buildSettings = {
 				DEVELOPMENT_TEAM = K78F8G9J87;
 				INFOPLIST_FILE = "hh-iosUITests/Info.plist";
@@ -672,6 +894,7 @@
 		};
 		80F558591FBAA541001601B3 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 771F444D5E9D6D17DEF9C797 /* Pods-hh-iosUITests.release.xcconfig */;
 			buildSettings = {
 				DEVELOPMENT_TEAM = K78F8G9J87;
 				INFOPLIST_FILE = "hh-iosUITests/Info.plist";

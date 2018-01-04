@@ -28,9 +28,13 @@
     [super viewDidLoad];
     // Set bar color
     self.navigationController.navigationBar.barTintColor = [UIColor colorWithRed:0.00 green:0.59 blue:0.53 alpha:1.0];
+    self.navigationItem.title = @"Home";
+    self.navigationController.navigationBar.titleTextAttributes = @{NSForegroundColorAttributeName:[UIColor whiteColor]};
+    self.navigationController.navigationBar.largeTitleTextAttributes = @{NSForegroundColorAttributeName:[UIColor whiteColor]};
+    self.navigationController.navigationBar.prefersLargeTitles = YES;
     
     // Set color of text bar
-    self.textInputbar.barTintColor = [UIColor colorWithRed:0.812 green:0.847 blue:0.863 alpha:1.0];
+    self.textInputbar.backgroundColor = [UIColor whiteColor];
     
     // Setup SLK Controller
     self.inverted = NO;
@@ -39,8 +43,6 @@
     
     // Setup table view
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-    self.tableView.estimatedRowHeight = 44.0;
-    self.tableView.rowHeight = UITableViewAutomaticDimension;
     
     // Add gesture recognizer for reveal controller
     [self.view addGestureRecognizer:self.revealViewController.panGestureRecognizer];
@@ -48,16 +50,21 @@
     
     // Create menu button
     UIImage* menuImage = [UIImage imageNamed:@"menu.png"];
-    UIButton *menuButton = [[UIButton alloc] initWithFrame:CGRectMake(15,5, 25,25)];
+    UIButton *menuButton = [[UIButton alloc] init];
     [menuButton setBackgroundImage:menuImage forState:UIControlStateNormal];
+    NSDictionary *views = @{@"menuButton":menuButton};
+    [menuButton setFrame:CGRectMake(15,5, 25,25)];
+    NSArray *heightConstraint = [NSLayoutConstraint constraintsWithVisualFormat:@"V:[menuButton(25)]" options:0 metrics:nil views:views];
+    NSArray *widthConstraint = [NSLayoutConstraint constraintsWithVisualFormat:@"H:[menuButton(25)]" options:0 metrics:nil views:views];
+    [menuButton addConstraints:heightConstraint];
+    [menuButton addConstraints:widthConstraint];
     [menuButton addTarget:self.revealViewController action:@selector(revealToggle:)
          forControlEvents:UIControlEventTouchUpInside];
     UIBarButtonItem *menuBarButton =[[UIBarButtonItem alloc] initWithCustomView:menuButton];
     self.navigationItem.leftBarButtonItem =menuBarButton;
     
     // Titlel abel
-    [ViewHelpers createNavTitleLabelWithText:@"Home" andNavItem:self.navigationItem];
-    
+//    [ViewHelpers createNavTitleLabelWithText:@"Home" andNavItem:self.navigationItem];
 }
 
 #pragma mark Table View

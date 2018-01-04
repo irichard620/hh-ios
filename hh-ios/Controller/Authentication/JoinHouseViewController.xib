@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="JoinHouseViewController">
+            <connections>
+                <outlet property="houseCodeField" destination="MoK-82-wlx" id="jwT-wy-N8X"/>
+                <outlet property="joinHouseButton" destination="dZo-YC-rWM" id="tc2-fG-KvV"/>
+                <outlet property="messageContainer" destination="z3V-mn-949" id="ZyX-gO-t6g"/>
+                <outlet property="scrollView" destination="iZc-2f-O5Q" id="VUO-Ig-0wg"/>
+                <outlet property="view" destination="5mc-Qj-gIS" id="mDo-Bs-pPn"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="5mc-Qj-gIS">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iZc-2f-O5Q">
+                    <rect key="frame" x="0.0" y="20" width="375" height="647"/>
+                    <subviews>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kNc-I9-l1u">
+                            <rect key="frame" x="0.0" y="0.0" width="375" height="647"/>
+                            <subviews>
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="z3V-mn-949">
+                                    <rect key="frame" x="8" y="8" width="359" height="43.5"/>
+                                    <subviews>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="home.png" translatesAutoresizingMaskIntoConstraints="NO" id="RcA-d8-KU0">
+                                            <rect key="frame" x="18" y="12" width="26" height="26"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="26" id="TIJ-bE-7gU"/>
+                                                <constraint firstAttribute="height" constant="26" id="dfR-di-PLC"/>
+                                            </constraints>
+                                        </imageView>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="To join a house, enter the house's unique code that you received in your email" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wqQ-1X-gzH">
+                                            <rect key="frame" x="52" y="10" width="299" height="19.5"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <color key="backgroundColor" red="0.23921568630000001" green="0.30980392159999998" blue="0.36078431370000003" alpha="1" colorSpace="calibratedRGB"/>
+                                    <constraints>
+                                        <constraint firstItem="RcA-d8-KU0" firstAttribute="leading" secondItem="z3V-mn-949" secondAttribute="leading" constant="18" id="FLO-O5-HRh"/>
+                                        <constraint firstItem="wqQ-1X-gzH" firstAttribute="leading" secondItem="RcA-d8-KU0" secondAttribute="trailing" constant="8" id="NNb-ap-ZMX"/>
+                                        <constraint firstAttribute="trailing" secondItem="wqQ-1X-gzH" secondAttribute="trailing" constant="8" id="OGg-hi-kYe"/>
+                                        <constraint firstItem="wqQ-1X-gzH" firstAttribute="top" secondItem="z3V-mn-949" secondAttribute="top" constant="10" id="ff1-GS-Wfm"/>
+                                        <constraint firstItem="RcA-d8-KU0" firstAttribute="top" secondItem="z3V-mn-949" secondAttribute="top" constant="12" id="ghR-Gf-7yc"/>
+                                        <constraint firstAttribute="bottom" secondItem="wqQ-1X-gzH" secondAttribute="bottom" constant="14" id="sPy-vZ-sUz"/>
+                                    </constraints>
+                                </view>
+                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="House Code" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="MoK-82-wlx">
+                                    <rect key="frame" x="16" y="81.5" width="343" height="35"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="35" id="P1Q-NI-XYi"/>
+                                    </constraints>
+                                    <nil key="textColor"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                    <textInputTraits key="textInputTraits"/>
+                                </textField>
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DFN-aN-WXV">
+                                    <rect key="frame" x="0.0" y="81.5" width="7" height="35"/>
+                                    <color key="backgroundColor" red="0.0" green="0.58823529409999997" blue="0.53333333329999999" alpha="1" colorSpace="calibratedRGB"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" constant="7" id="66f-Gw-HMs"/>
+                                        <constraint firstAttribute="height" constant="35" id="eoG-Jr-D2f"/>
+                                    </constraints>
+                                </view>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dZo-YC-rWM">
+                                    <rect key="frame" x="50" y="146.5" width="275" height="43"/>
+                                    <color key="backgroundColor" red="0.0" green="0.58823529409999997" blue="0.53333333329999999" alpha="1" colorSpace="calibratedRGB"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="43" id="q31-lg-KtI"/>
+                                    </constraints>
+                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                    <state key="normal" title="Join House">
+                                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    </state>
+                                </button>
+                            </subviews>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <constraints>
+                                <constraint firstItem="MoK-82-wlx" firstAttribute="leading" secondItem="kNc-I9-l1u" secondAttribute="leading" constant="16" id="3Lu-K2-e7g"/>
+                                <constraint firstItem="MoK-82-wlx" firstAttribute="top" secondItem="z3V-mn-949" secondAttribute="bottom" constant="30" id="4gk-vu-04C"/>
+                                <constraint firstAttribute="trailing" secondItem="MoK-82-wlx" secondAttribute="trailing" constant="16" id="5pI-zZ-6SJ"/>
+                                <constraint firstItem="z3V-mn-949" firstAttribute="leading" secondItem="kNc-I9-l1u" secondAttribute="leading" constant="8" id="9xj-vo-iw0"/>
+                                <constraint firstItem="dZo-YC-rWM" firstAttribute="top" secondItem="MoK-82-wlx" secondAttribute="bottom" constant="30" id="Z9W-wn-gvP"/>
+                                <constraint firstAttribute="trailing" secondItem="dZo-YC-rWM" secondAttribute="trailing" constant="50" id="dko-cV-lQg"/>
+                                <constraint firstItem="DFN-aN-WXV" firstAttribute="leading" secondItem="kNc-I9-l1u" secondAttribute="leading" id="h0U-oq-qT3"/>
+                                <constraint firstItem="z3V-mn-949" firstAttribute="top" secondItem="kNc-I9-l1u" secondAttribute="top" constant="8" id="q0N-7n-qbQ"/>
+                                <constraint firstItem="MoK-82-wlx" firstAttribute="centerY" secondItem="DFN-aN-WXV" secondAttribute="centerY" id="qe1-gF-MJU"/>
+                                <constraint firstItem="dZo-YC-rWM" firstAttribute="leading" secondItem="kNc-I9-l1u" secondAttribute="leading" constant="50" id="tfU-3r-cHJ"/>
+                                <constraint firstAttribute="trailing" secondItem="z3V-mn-949" secondAttribute="trailing" constant="8" id="uaz-XR-D0X"/>
+                            </constraints>
+                        </view>
+                    </subviews>
+                    <constraints>
+                        <constraint firstItem="kNc-I9-l1u" firstAttribute="height" secondItem="iZc-2f-O5Q" secondAttribute="height" id="JcV-Ld-Lpf"/>
+                        <constraint firstAttribute="bottom" secondItem="kNc-I9-l1u" secondAttribute="bottom" id="LQF-RD-wFb"/>
+                        <constraint firstItem="kNc-I9-l1u" firstAttribute="top" secondItem="iZc-2f-O5Q" secondAttribute="top" id="eGw-jn-DT1"/>
+                        <constraint firstAttribute="trailing" secondItem="kNc-I9-l1u" secondAttribute="trailing" id="rpI-hd-y2F"/>
+                        <constraint firstItem="kNc-I9-l1u" firstAttribute="leading" secondItem="iZc-2f-O5Q" secondAttribute="leading" id="sbB-PC-teU"/>
+                        <constraint firstItem="kNc-I9-l1u" firstAttribute="width" secondItem="iZc-2f-O5Q" secondAttribute="width" id="ywR-Iu-a8N"/>
+                    </constraints>
+                </scrollView>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="iZc-2f-O5Q" firstAttribute="bottom" secondItem="kBH-kz-BBs" secondAttribute="bottom" id="1UN-af-rMv"/>
+                <constraint firstItem="iZc-2f-O5Q" firstAttribute="top" secondItem="kBH-kz-BBs" secondAttribute="top" id="3B0-5c-BxG"/>
+                <constraint firstItem="iZc-2f-O5Q" firstAttribute="leading" secondItem="kBH-kz-BBs" secondAttribute="leading" id="ANc-Jd-oI6"/>
+                <constraint firstItem="iZc-2f-O5Q" firstAttribute="trailing" secondItem="kBH-kz-BBs" secondAttribute="trailing" id="Suz-jg-Ucj"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="kBH-kz-BBs"/>
+            <point key="canvasLocation" x="39.5" y="53.5"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="home.png" width="128" height="128"/>
+    </resources>
+</document>

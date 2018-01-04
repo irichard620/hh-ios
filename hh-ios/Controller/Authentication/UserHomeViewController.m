@@ -13,12 +13,25 @@
 #import "ViewHelpers.h"
 #import "UserHomeTableViewCell.h"
 #import "MenuTableViewCell.h"
+#import "JoinHouseViewController.h"
 
 @interface UserHomeViewController ()
+
+@property (nonatomic) BOOL navBarShouldDissapear;
 
 @end
 
 @implementation UserHomeViewController
+
+#pragma mark Initialization
+
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
+    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+    if (self) {
+        _navBarShouldDissapear = NO;
+    }
+    return self;
+}
 
 #pragma mark View methods
 
@@ -27,8 +40,12 @@
     
     // Customize nav bar
     self.navigationController.navigationBarHidden = NO;
+    self.navigationItem.hidesBackButton = YES;
     self.navigationController.navigationBar.barTintColor = [UIColor colorWithRed:0.00 green:0.59 blue:0.53 alpha:1.0];
-    [ViewHelpers createNavTitleLabelWithText:@"Choose House" andNavItem:self.navigationItem];
+    self.navigationItem.title = @"Choose House";
+    self.navigationController.navigationBar.titleTextAttributes = @{NSForegroundColorAttributeName:[UIColor whiteColor]};
+    self.navigationController.navigationBar.largeTitleTextAttributes = @{NSForegroundColorAttributeName:[UIColor whiteColor]};
+    self.navigationController.navigationBar.prefersLargeTitles = YES;
     
     // Table view background - 207, 216, 220
     self.tableView.dataSource = self;
@@ -40,7 +57,9 @@
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
-    [self.navigationController setNavigationBarHidden:YES animated:animated];
+    if (self.navBarShouldDissapear) {
+        [self.navigationController setNavigationBarHidden:YES animated:animated];
+    }
     [super viewWillDisappear:animated];
 }
 
@@ -147,7 +166,21 @@
         revealVC.rearViewRevealOverdraw = 0;
         [revealVC revealToggleAnimated:NO];
         
+        self.navBarShouldDissapear = YES;
         [self.navigationController pushViewController:revealVC animated:YES];
+    } else if (indexPath.section == 1) {
+        if (indexPath.row == 0) {
+            // Create
+        } else {
+            // Join
+            JoinHouseViewController *joinHouseVC = [[JoinHouseViewController alloc]initWithNibName:@"JoinHouseViewController" bundle:nil];
+            self.navBarShouldDissapear = NO;
+            [self.navigationController pushViewController:joinHouseVC animated:YES];
+        }
+    } else if (indexPath.section == 2) {
+        // Logout
+        
+        [self.navigationController popViewControllerAnimated:YES];
     }
 }
 

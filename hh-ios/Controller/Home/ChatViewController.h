@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import <SLKTextViewController.h>
+#import "SLKTextViewController.h"
 
 @interface ChatViewController : SLKTextViewController
 

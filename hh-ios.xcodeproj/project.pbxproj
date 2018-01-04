@@ -10,6 +10,36 @@
 		06898846A761F16B809959AD /* libPods-hh-iosTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 139AAEBD44054690B663E3CB /* libPods-hh-iosTests.a */; };
 		42DCD2447853CBCBDE14ACB4 /* libPods-hh-ios.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 24E467ECA15237464F192AE2 /* libPods-hh-ios.a */; };
 		75C17BFE24053648F9631729 /* libPods-hh-iosUITests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6EA14996A84657ADA6390E82 /* libPods-hh-iosUITests.a */; };
+		802F3FA81FC9FE110006CA8B /* SLKTextInputbar.m in Sources */ = {isa = PBXBuildFile; fileRef = 802F3F931FC9FE0D0006CA8B /* SLKTextInputbar.m */; };
+		802F3FA91FC9FE110006CA8B /* UIScrollView+SLKAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 802F3F951FC9FE0E0006CA8B /* UIScrollView+SLKAdditions.m */; };
+		802F3FAA1FC9FE110006CA8B /* UIView+SLKAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 802F3F971FC9FE0E0006CA8B /* UIView+SLKAdditions.m */; };
+		802F3FAB1FC9FE110006CA8B /* SLKTextView+SLKAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 802F3F981FC9FE0E0006CA8B /* SLKTextView+SLKAdditions.m */; };
+		802F3FAC1FC9FE110006CA8B /* SLKTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 802F3F9E1FC9FE0F0006CA8B /* SLKTextView.m */; };
+		802F3FAD1FC9FE110006CA8B /* SLKInputAccessoryView.m in Sources */ = {isa = PBXBuildFile; fileRef = 802F3FA01FC9FE0F0006CA8B /* SLKInputAccessoryView.m */; };
+		802F3FAE1FC9FE110006CA8B /* UIResponder+SLKAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 802F3FA31FC9FE100006CA8B /* UIResponder+SLKAdditions.m */; };
+		802F3FAF1FC9FE110006CA8B /* SLKTypingIndicatorView.m in Sources */ = {isa = PBXBuildFile; fileRef = 802F3FA41FC9FE100006CA8B /* SLKTypingIndicatorView.m */; };
+		802F3FB01FC9FE110006CA8B /* SLKTextInput+Implementation.m in Sources */ = {isa = PBXBuildFile; fileRef = 802F3FA51FC9FE100006CA8B /* SLKTextInput+Implementation.m */; };
+		802F3FB11FC9FE110006CA8B /* SLKTextViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 802F3FA71FC9FE100006CA8B /* SLKTextViewController.m */; };
+		802F3FB51FCA3BA10006CA8B /* PaymentsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 802F3FB31FCA3BA10006CA8B /* PaymentsViewController.m */; };
+		802F3FB61FCA3BA10006CA8B /* PaymentsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 802F3FB41FCA3BA10006CA8B /* PaymentsViewController.xib */; };
+		802F3FBA1FF565CF0006CA8B /* RequestedPaymentTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 802F3FB81FF565CF0006CA8B /* RequestedPaymentTableViewCell.m */; };
+		802F3FBB1FF565CF0006CA8B /* RequestedPaymentTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 802F3FB91FF565CF0006CA8B /* RequestedPaymentTableViewCell.xib */; };
+		802F3FBF1FF582970006CA8B /* IncompletedPaymentTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 802F3FBD1FF582970006CA8B /* IncompletedPaymentTableViewCell.m */; };
+		802F3FC01FF582970006CA8B /* IncompletedPaymentTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 802F3FBE1FF582970006CA8B /* IncompletedPaymentTableViewCell.xib */; };
+		802F3FC31FF82F7E0006CA8B /* Payment.m in Sources */ = {isa = PBXBuildFile; fileRef = 802F3FC21FF82F7E0006CA8B /* Payment.m */; };
+		802F3FC61FF830E30006CA8B /* UserReference.m in Sources */ = {isa = PBXBuildFile; fileRef = 802F3FC51FF830E30006CA8B /* UserReference.m */; };
+		802F3FC91FF9951A0006CA8B /* House.m in Sources */ = {isa = PBXBuildFile; fileRef = 802F3FC81FF9951A0006CA8B /* House.m */; };
+		802F3FCC1FF997550006CA8B /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 802F3FCB1FF997550006CA8B /* User.m */; };
+		802F3FCF1FF99E160006CA8B /* AuthenticationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 802F3FCE1FF99E160006CA8B /* AuthenticationManager.m */; };
+		802F3FD31FFAF0D50006CA8B /* SignupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 802F3FD11FFAF0D50006CA8B /* SignupViewController.m */; };
+		802F3FD41FFAF0D50006CA8B /* SignupViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 802F3FD21FFAF0D50006CA8B /* SignupViewController.xib */; };
+		802F3FD81FFD90730006CA8B /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 802F3FD61FFD90730006CA8B /* LoginViewController.m */; };
+		802F3FD91FFD90730006CA8B /* LoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 802F3FD71FFD90730006CA8B /* LoginViewController.xib */; };
+		802F3FDD1FFD9EF70006CA8B /* JoinHouseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 802F3FDB1FFD9EF70006CA8B /* JoinHouseViewController.m */; };
+		802F3FDE1FFD9EF70006CA8B /* JoinHouseViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 802F3FDC1FFD9EF70006CA8B /* JoinHouseViewController.xib */; };
+		802F3FE01FFDA15A0006CA8B /* left-arrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 802F3FDF1FFDA15A0006CA8B /* left-arrow.png */; };
+		802F3FE41FFDA9F10006CA8B /* CreateHouseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 802F3FE21FFDA9F10006CA8B /* CreateHouseViewController.m */; };
+		802F3FE51FFDA9F10006CA8B /* CreateHouseViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 802F3FE31FFDA9F10006CA8B /* CreateHouseViewController.xib */; };
 		8073C8351FC946CC007223CD /* ChatTimeTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8073C8331FC946CC007223CD /* ChatTimeTableViewCell.m */; };
 		8073C8361FC946CC007223CD /* ChatTimeTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8073C8341FC946CC007223CD /* ChatTimeTableViewCell.xib */; };
 		8073C8381FC95291007223CD /* ian_profile.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 8073C8371FC95291007223CD /* ian_profile.jpg */; };
@@ -81,6 +111,60 @@
 		69C2C3083AE0391BE8FA734C /* Pods-hh-iosUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-hh-iosUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-hh-iosUITests/Pods-hh-iosUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		6EA14996A84657ADA6390E82 /* libPods-hh-iosUITests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-hh-iosUITests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		771F444D5E9D6D17DEF9C797 /* Pods-hh-iosUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-hh-iosUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-hh-iosUITests/Pods-hh-iosUITests.release.xcconfig"; sourceTree = "<group>"; };
+		802F3F921FC9FE0D0006CA8B /* SLKTextInputbar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SLKTextInputbar.h; sourceTree = "<group>"; };
+		802F3F931FC9FE0D0006CA8B /* SLKTextInputbar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SLKTextInputbar.m; sourceTree = "<group>"; };
+		802F3F941FC9FE0E0006CA8B /* SLKUIConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SLKUIConstants.h; sourceTree = "<group>"; };
+		802F3F951FC9FE0E0006CA8B /* UIScrollView+SLKAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIScrollView+SLKAdditions.m"; sourceTree = "<group>"; };
+		802F3F961FC9FE0E0006CA8B /* UIView+SLKAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+SLKAdditions.h"; sourceTree = "<group>"; };
+		802F3F971FC9FE0E0006CA8B /* UIView+SLKAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+SLKAdditions.m"; sourceTree = "<group>"; };
+		802F3F981FC9FE0E0006CA8B /* SLKTextView+SLKAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "SLKTextView+SLKAdditions.m"; sourceTree = "<group>"; };
+		802F3F991FC9FE0E0006CA8B /* UIScrollView+SLKAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIScrollView+SLKAdditions.h"; sourceTree = "<group>"; };
+		802F3F9A1FC9FE0E0006CA8B /* SLKInputAccessoryView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SLKInputAccessoryView.h; sourceTree = "<group>"; };
+		802F3F9B1FC9FE0E0006CA8B /* SLKTypingIndicatorProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SLKTypingIndicatorProtocol.h; sourceTree = "<group>"; };
+		802F3F9C1FC9FE0E0006CA8B /* SLKTextViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SLKTextViewController.h; sourceTree = "<group>"; };
+		802F3F9D1FC9FE0F0006CA8B /* SLKTypingIndicatorView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SLKTypingIndicatorView.h; sourceTree = "<group>"; };
+		802F3F9E1FC9FE0F0006CA8B /* SLKTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SLKTextView.m; sourceTree = "<group>"; };
+		802F3F9F1FC9FE0F0006CA8B /* UIResponder+SLKAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIResponder+SLKAdditions.h"; sourceTree = "<group>"; };
+		802F3FA01FC9FE0F0006CA8B /* SLKInputAccessoryView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SLKInputAccessoryView.m; sourceTree = "<group>"; };
+		802F3FA11FC9FE0F0006CA8B /* SLKTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SLKTextView.h; sourceTree = "<group>"; };
+		802F3FA21FC9FE0F0006CA8B /* SLKTextView+SLKAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SLKTextView+SLKAdditions.h"; sourceTree = "<group>"; };
+		802F3FA31FC9FE100006CA8B /* UIResponder+SLKAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIResponder+SLKAdditions.m"; sourceTree = "<group>"; };
+		802F3FA41FC9FE100006CA8B /* SLKTypingIndicatorView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SLKTypingIndicatorView.m; sourceTree = "<group>"; };
+		802F3FA51FC9FE100006CA8B /* SLKTextInput+Implementation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "SLKTextInput+Implementation.m"; sourceTree = "<group>"; };
+		802F3FA61FC9FE100006CA8B /* SLKTextInput.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SLKTextInput.h; sourceTree = "<group>"; };
+		802F3FA71FC9FE100006CA8B /* SLKTextViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SLKTextViewController.m; sourceTree = "<group>"; };
+		802F3FB21FCA3BA10006CA8B /* PaymentsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PaymentsViewController.h; sourceTree = "<group>"; };
+		802F3FB31FCA3BA10006CA8B /* PaymentsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PaymentsViewController.m; sourceTree = "<group>"; };
+		802F3FB41FCA3BA10006CA8B /* PaymentsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PaymentsViewController.xib; sourceTree = "<group>"; };
+		802F3FB71FF565CF0006CA8B /* RequestedPaymentTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RequestedPaymentTableViewCell.h; sourceTree = "<group>"; };
+		802F3FB81FF565CF0006CA8B /* RequestedPaymentTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RequestedPaymentTableViewCell.m; sourceTree = "<group>"; };
+		802F3FB91FF565CF0006CA8B /* RequestedPaymentTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RequestedPaymentTableViewCell.xib; sourceTree = "<group>"; };
+		802F3FBC1FF582970006CA8B /* IncompletedPaymentTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IncompletedPaymentTableViewCell.h; sourceTree = "<group>"; };
+		802F3FBD1FF582970006CA8B /* IncompletedPaymentTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IncompletedPaymentTableViewCell.m; sourceTree = "<group>"; };
+		802F3FBE1FF582970006CA8B /* IncompletedPaymentTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = IncompletedPaymentTableViewCell.xib; sourceTree = "<group>"; };
+		802F3FC11FF82F7E0006CA8B /* Payment.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Payment.h; sourceTree = "<group>"; };
+		802F3FC21FF82F7E0006CA8B /* Payment.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Payment.m; sourceTree = "<group>"; };
+		802F3FC41FF830E30006CA8B /* UserReference.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UserReference.h; sourceTree = "<group>"; };
+		802F3FC51FF830E30006CA8B /* UserReference.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UserReference.m; sourceTree = "<group>"; };
+		802F3FC71FF9951A0006CA8B /* House.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = House.h; sourceTree = "<group>"; };
+		802F3FC81FF9951A0006CA8B /* House.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = House.m; sourceTree = "<group>"; };
+		802F3FCA1FF997550006CA8B /* User.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
+		802F3FCB1FF997550006CA8B /* User.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
+		802F3FCD1FF99E160006CA8B /* AuthenticationManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AuthenticationManager.h; sourceTree = "<group>"; };
+		802F3FCE1FF99E160006CA8B /* AuthenticationManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AuthenticationManager.m; sourceTree = "<group>"; };
+		802F3FD01FFAF0D50006CA8B /* SignupViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SignupViewController.h; sourceTree = "<group>"; };
+		802F3FD11FFAF0D50006CA8B /* SignupViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SignupViewController.m; sourceTree = "<group>"; };
+		802F3FD21FFAF0D50006CA8B /* SignupViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SignupViewController.xib; sourceTree = "<group>"; };
+		802F3FD51FFD90730006CA8B /* LoginViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
+		802F3FD61FFD90730006CA8B /* LoginViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
+		802F3FD71FFD90730006CA8B /* LoginViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LoginViewController.xib; sourceTree = "<group>"; };
+		802F3FDA1FFD9EF70006CA8B /* JoinHouseViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JoinHouseViewController.h; sourceTree = "<group>"; };
+		802F3FDB1FFD9EF70006CA8B /* JoinHouseViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JoinHouseViewController.m; sourceTree = "<group>"; };
+		802F3FDC1FFD9EF70006CA8B /* JoinHouseViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = JoinHouseViewController.xib; sourceTree = "<group>"; };
+		802F3FDF1FFDA15A0006CA8B /* left-arrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "left-arrow.png"; sourceTree = "<group>"; };
+		802F3FE11FFDA9F10006CA8B /* CreateHouseViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CreateHouseViewController.h; sourceTree = "<group>"; };
+		802F3FE21FFDA9F10006CA8B /* CreateHouseViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CreateHouseViewController.m; sourceTree = "<group>"; };
+		802F3FE31FFDA9F10006CA8B /* CreateHouseViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CreateHouseViewController.xib; sourceTree = "<group>"; };
 		8073C8321FC946CC007223CD /* ChatTimeTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatTimeTableViewCell.h; sourceTree = "<group>"; };
 		8073C8331FC946CC007223CD /* ChatTimeTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatTimeTableViewCell.m; sourceTree = "<group>"; };
 		8073C8341FC946CC007223CD /* ChatTimeTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ChatTimeTableViewCell.xib; sourceTree = "<group>"; };
@@ -196,6 +280,44 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		802F3F901FC9FD9A0006CA8B /* SWRevealViewController */ = {
+			isa = PBXGroup;
+			children = (
+				80F558641FBAB1C1001601B3 /* SWRevealViewController.h */,
+				80F558651FBAB1C1001601B3 /* SWRevealViewController.m */,
+			);
+			path = SWRevealViewController;
+			sourceTree = "<group>";
+		};
+		802F3F911FC9FDAA0006CA8B /* SlackTextViewController */ = {
+			isa = PBXGroup;
+			children = (
+				802F3F9A1FC9FE0E0006CA8B /* SLKInputAccessoryView.h */,
+				802F3FA01FC9FE0F0006CA8B /* SLKInputAccessoryView.m */,
+				802F3FA61FC9FE100006CA8B /* SLKTextInput.h */,
+				802F3FA51FC9FE100006CA8B /* SLKTextInput+Implementation.m */,
+				802F3F921FC9FE0D0006CA8B /* SLKTextInputbar.h */,
+				802F3F931FC9FE0D0006CA8B /* SLKTextInputbar.m */,
+				802F3FA11FC9FE0F0006CA8B /* SLKTextView.h */,
+				802F3F9E1FC9FE0F0006CA8B /* SLKTextView.m */,
+				802F3FA21FC9FE0F0006CA8B /* SLKTextView+SLKAdditions.h */,
+				802F3F981FC9FE0E0006CA8B /* SLKTextView+SLKAdditions.m */,
+				802F3F9C1FC9FE0E0006CA8B /* SLKTextViewController.h */,
+				802F3FA71FC9FE100006CA8B /* SLKTextViewController.m */,
+				802F3F9B1FC9FE0E0006CA8B /* SLKTypingIndicatorProtocol.h */,
+				802F3F9D1FC9FE0F0006CA8B /* SLKTypingIndicatorView.h */,
+				802F3FA41FC9FE100006CA8B /* SLKTypingIndicatorView.m */,
+				802F3F941FC9FE0E0006CA8B /* SLKUIConstants.h */,
+				802F3F9F1FC9FE0F0006CA8B /* UIResponder+SLKAdditions.h */,
+				802F3FA31FC9FE100006CA8B /* UIResponder+SLKAdditions.m */,
+				802F3F991FC9FE0E0006CA8B /* UIScrollView+SLKAdditions.h */,
+				802F3F951FC9FE0E0006CA8B /* UIScrollView+SLKAdditions.m */,
+				802F3F961FC9FE0E0006CA8B /* UIView+SLKAdditions.h */,
+				802F3F971FC9FE0E0006CA8B /* UIView+SLKAdditions.m */,
+			);
+			path = SlackTextViewController;
+			sourceTree = "<group>";
+		};
 		80F5581B1FBAA541001601B3 = {
 			isa = PBXGroup;
 			children = (
@@ -253,8 +375,8 @@
 		80F558631FBAB1C1001601B3 /* Library */ = {
 			isa = PBXGroup;
 			children = (
-				80F558641FBAB1C1001601B3 /* SWRevealViewController.h */,
-				80F558651FBAB1C1001601B3 /* SWRevealViewController.m */,
+				802F3F911FC9FDAA0006CA8B /* SlackTextViewController */,
+				802F3F901FC9FD9A0006CA8B /* SWRevealViewController */,
 			);
 			path = Library;
 			sourceTree = "<group>";
@@ -262,6 +384,14 @@
 		80F558671FBAB1E7001601B3 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				802F3FC11FF82F7E0006CA8B /* Payment.h */,
+				802F3FC21FF82F7E0006CA8B /* Payment.m */,
+				802F3FC41FF830E30006CA8B /* UserReference.h */,
+				802F3FC51FF830E30006CA8B /* UserReference.m */,
+				802F3FC71FF9951A0006CA8B /* House.h */,
+				802F3FC81FF9951A0006CA8B /* House.m */,
+				802F3FCA1FF997550006CA8B /* User.h */,
+				802F3FCB1FF997550006CA8B /* User.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -278,6 +408,8 @@
 		80F558691FBAB1E7001601B3 /* Store */ = {
 			isa = PBXGroup;
 			children = (
+				802F3FCD1FF99E160006CA8B /* AuthenticationManager.h */,
+				802F3FCE1FF99E160006CA8B /* AuthenticationManager.m */,
 			);
 			path = Store;
 			sourceTree = "<group>";
@@ -321,6 +453,9 @@
 				80F5587A1FBABACF001601B3 /* ChatViewController.h */,
 				80F5587B1FBABACF001601B3 /* ChatViewController.m */,
 				80F5587C1FBABACF001601B3 /* ChatViewController.xib */,
+				802F3FB21FCA3BA10006CA8B /* PaymentsViewController.h */,
+				802F3FB31FCA3BA10006CA8B /* PaymentsViewController.m */,
+				802F3FB41FCA3BA10006CA8B /* PaymentsViewController.xib */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -328,6 +463,7 @@
 		80F558831FBACADE001601B3 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				802F3FDF1FFDA15A0006CA8B /* left-arrow.png */,
 				8073C8421FC957C0007223CD /* tag_black.png */,
 				8073C8401FC9556D007223CD /* check_black.png */,
 				8073C8391FC9537E007223CD /* ian_profile2.jpg */,
@@ -371,6 +507,12 @@
 				8073C83B1FC95491007223CD /* ChatActionTableViewCell.h */,
 				8073C83C1FC95491007223CD /* ChatActionTableViewCell.m */,
 				8073C83D1FC95491007223CD /* ChatActionTableViewCell.xib */,
+				802F3FB71FF565CF0006CA8B /* RequestedPaymentTableViewCell.h */,
+				802F3FB81FF565CF0006CA8B /* RequestedPaymentTableViewCell.m */,
+				802F3FB91FF565CF0006CA8B /* RequestedPaymentTableViewCell.xib */,
+				802F3FBC1FF582970006CA8B /* IncompletedPaymentTableViewCell.h */,
+				802F3FBD1FF582970006CA8B /* IncompletedPaymentTableViewCell.m */,
+				802F3FBE1FF582970006CA8B /* IncompletedPaymentTableViewCell.xib */,
 			);
 			path = "Table Cells";
 			sourceTree = "<group>";
@@ -381,6 +523,18 @@
 				80F558AD1FC544CB001601B3 /* UserHomeViewController.h */,
 				80F558AE1FC544CB001601B3 /* UserHomeViewController.m */,
 				80F558AF1FC544CB001601B3 /* UserHomeViewController.xib */,
+				802F3FD01FFAF0D50006CA8B /* SignupViewController.h */,
+				802F3FD11FFAF0D50006CA8B /* SignupViewController.m */,
+				802F3FD21FFAF0D50006CA8B /* SignupViewController.xib */,
+				802F3FD51FFD90730006CA8B /* LoginViewController.h */,
+				802F3FD61FFD90730006CA8B /* LoginViewController.m */,
+				802F3FD71FFD90730006CA8B /* LoginViewController.xib */,
+				802F3FDA1FFD9EF70006CA8B /* JoinHouseViewController.h */,
+				802F3FDB1FFD9EF70006CA8B /* JoinHouseViewController.m */,
+				802F3FDC1FFD9EF70006CA8B /* JoinHouseViewController.xib */,
+				802F3FE11FFDA9F10006CA8B /* CreateHouseViewController.h */,
+				802F3FE21FFDA9F10006CA8B /* CreateHouseViewController.m */,
+				802F3FE31FFDA9F10006CA8B /* CreateHouseViewController.xib */,
 			);
 			path = Authentication;
 			sourceTree = "<group>";
@@ -455,13 +609,13 @@
 		80F5581C1FBAA541001601B3 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0820;
+				LastUpgradeCheck = 0910;
 				ORGANIZATIONNAME = "Ian Richard";
 				TargetAttributes = {
 					80F558231FBAA541001601B3 = {
 						CreatedOnToolsVersion = 8.2.1;
 						DevelopmentTeam = K78F8G9J87;
-						ProvisioningStyle = Manual;
+						ProvisioningStyle = Automatic;
 					};
 					80F5583C1FBAA541001601B3 = {
 						CreatedOnToolsVersion = 8.2.1;
@@ -503,7 +657,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				8073C8431FC957C0007223CD /* tag_black.png in Resources */,
+				802F3FE51FFDA9F10006CA8B /* CreateHouseViewController.xib in Resources */,
 				80F5589C1FBAD852001601B3 /* TopMenuTableViewCell.xib in Resources */,
+				802F3FD91FFD90730006CA8B /* LoginViewController.xib in Resources */,
 				8073C83F1FC95491007223CD /* ChatActionTableViewCell.xib in Resources */,
 				80F558891FBACB41001601B3 /* tag.png in Resources */,
 				80F558861FBACADE001601B3 /* home.png in Resources */,
@@ -514,21 +670,27 @@
 				80F558C01FC7FA86001601B3 /* HH_user_placeholder.png in Resources */,
 				80F558BE1FC7F7AF001601B3 /* home_black.png in Resources */,
 				80F5588D1FBACBAC001601B3 /* bar-chart.png in Resources */,
+				802F3FDE1FFD9EF70006CA8B /* JoinHouseViewController.xib in Resources */,
 				80F558871FBACADE001601B3 /* menu.png in Resources */,
 				80F558B11FC544CB001601B3 /* UserHomeViewController.xib in Resources */,
 				80F558B31FC631FD001601B3 /* add.png in Resources */,
 				80F558B51FC63258001601B3 /* close.png in Resources */,
 				80F558C21FC7FA8F001601B3 /* HH_group_placeholder.png in Resources */,
+				802F3FC01FF582970006CA8B /* IncompletedPaymentTableViewCell.xib in Resources */,
 				8073C83A1FC9537E007223CD /* ian_profile2.jpg in Resources */,
 				8073C8381FC95291007223CD /* ian_profile.jpg in Resources */,
 				8073C8361FC946CC007223CD /* ChatTimeTableViewCell.xib in Resources */,
 				80F5588F1FBACBDA001601B3 /* settings.png in Resources */,
+				802F3FBB1FF565CF0006CA8B /* RequestedPaymentTableViewCell.xib in Resources */,
 				80F558911FBACC12001601B3 /* share.png in Resources */,
 				80F558971FBAD142001601B3 /* MenuTableViewCell.xib in Resources */,
 				80F5587E1FBABACF001601B3 /* ChatViewController.xib in Resources */,
 				80F558371FBAA541001601B3 /* LaunchScreen.storyboard in Resources */,
+				802F3FE01FFDA15A0006CA8B /* left-arrow.png in Resources */,
+				802F3FB61FCA3BA10006CA8B /* PaymentsViewController.xib in Resources */,
 				80F558BA1FC7F395001601B3 /* UserHomeTableViewCell.xib in Resources */,
 				80F558AB1FC54228001601B3 /* exithouse.png in Resources */,
+				802F3FD41FFAF0D50006CA8B /* SignupViewController.xib in Resources */,
 				80F558C71FC91FBD001601B3 /* ChatMessageTableViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -679,17 +841,39 @@
 			files = (
 				80F5589B1FBAD852001601B3 /* TopMenuTableViewCell.m in Sources */,
 				80F558C61FC91FBD001601B3 /* ChatMessageTableViewCell.m in Sources */,
+				802F3FB01FC9FE110006CA8B /* SLKTextInput+Implementation.m in Sources */,
 				80F558711FBAB280001601B3 /* AppDelegate.m in Sources */,
+				802F3FAB1FC9FE110006CA8B /* SLKTextView+SLKAdditions.m in Sources */,
 				80F558731FBAB280001601B3 /* main.m in Sources */,
+				802F3FD31FFAF0D50006CA8B /* SignupViewController.m in Sources */,
+				802F3FCF1FF99E160006CA8B /* AuthenticationManager.m in Sources */,
+				802F3FAE1FC9FE110006CA8B /* UIResponder+SLKAdditions.m in Sources */,
 				80F558B01FC544CB001601B3 /* UserHomeViewController.m in Sources */,
 				80F5587D1FBABACF001601B3 /* ChatViewController.m in Sources */,
 				80F558661FBAB1C1001601B3 /* SWRevealViewController.m in Sources */,
 				80F558961FBAD142001601B3 /* MenuTableViewCell.m in Sources */,
 				8073C8351FC946CC007223CD /* ChatTimeTableViewCell.m in Sources */,
+				802F3FC31FF82F7E0006CA8B /* Payment.m in Sources */,
+				802F3FA91FC9FE110006CA8B /* UIScrollView+SLKAdditions.m in Sources */,
+				802F3FBA1FF565CF0006CA8B /* RequestedPaymentTableViewCell.m in Sources */,
 				80F558A11FBB938B001601B3 /* ViewHelpers.m in Sources */,
+				802F3FA81FC9FE110006CA8B /* SLKTextInputbar.m in Sources */,
+				802F3FAF1FC9FE110006CA8B /* SLKTypingIndicatorView.m in Sources */,
+				802F3FD81FFD90730006CA8B /* LoginViewController.m in Sources */,
 				80F558781FBAB5FA001601B3 /* MenuViewController.m in Sources */,
+				802F3FAC1FC9FE110006CA8B /* SLKTextView.m in Sources */,
+				802F3FDD1FFD9EF70006CA8B /* JoinHouseViewController.m in Sources */,
+				802F3FCC1FF997550006CA8B /* User.m in Sources */,
+				802F3FC61FF830E30006CA8B /* UserReference.m in Sources */,
+				802F3FC91FF9951A0006CA8B /* House.m in Sources */,
+				802F3FE41FFDA9F10006CA8B /* CreateHouseViewController.m in Sources */,
+				802F3FAA1FC9FE110006CA8B /* UIView+SLKAdditions.m in Sources */,
+				802F3FB51FCA3BA10006CA8B /* PaymentsViewController.m in Sources */,
 				80F558B91FC7F395001601B3 /* UserHomeTableViewCell.m in Sources */,
+				802F3FB11FC9FE110006CA8B /* SLKTextViewController.m in Sources */,
 				8073C83E1FC95491007223CD /* ChatActionTableViewCell.m in Sources */,
+				802F3FAD1FC9FE110006CA8B /* SLKInputAccessoryView.m in Sources */,
+				802F3FBF1FF582970006CA8B /* IncompletedPaymentTableViewCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -746,7 +930,9 @@
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
@@ -754,7 +940,11 @@
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -793,7 +983,9 @@
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
@@ -801,7 +993,11 @@
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -830,11 +1026,14 @@
 			baseConfigurationReference = 5BF680A03BCCA0C24E844526 /* Pods-hh-ios.debug.xcconfig */;
 			buildSettings = {
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = K78F8G9J87;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = "$(SRCROOT)/hh-ios/Supporting Files/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "IanRichard.hh-ios";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 			};
 			name = Debug;
 		};
@@ -843,11 +1042,14 @@
 			baseConfigurationReference = 44DE0D06726054104C322CDE /* Pods-hh-ios.release.xcconfig */;
 			buildSettings = {
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = K78F8G9J87;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = "$(SRCROOT)/hh-ios/Supporting Files/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "IanRichard.hh-ios";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 			};
 			name = Release;
 		};

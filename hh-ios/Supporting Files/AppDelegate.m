@@ -11,6 +11,7 @@
 #import "MenuViewController.h"
 #import "SWRevealViewController.h"
 #import "UserHomeViewController.h"
+#import "SignupViewController.h"
 
 @interface AppDelegate ()
 
@@ -21,10 +22,15 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
+    
+    // Need to check tokens at this step
+    
+    
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     
-    UserHomeViewController *userHomeVC = [[UserHomeViewController alloc]initWithNibName:@"UserHomeViewController" bundle:nil];
-    UINavigationController *navVC = [[UINavigationController alloc]initWithRootViewController:userHomeVC];
+    
+    SignupViewController *signupVC = [[SignupViewController alloc]initWithNibName:@"SignupViewController" bundle:nil];
+    UINavigationController *navVC = [[UINavigationController alloc]initWithRootViewController:signupVC];
     
     // Set as root
     self.window.rootViewController = navVC;

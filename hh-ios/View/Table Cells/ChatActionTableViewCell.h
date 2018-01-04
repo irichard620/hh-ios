@@ -11,6 +11,7 @@
 @interface ChatActionTableViewCell : UITableViewCell
 @property (weak, nonatomic) IBOutlet UIImageView *actionImage;
 @property (weak, nonatomic) IBOutlet UILabel *actionLabel;
+@property (weak, nonatomic) IBOutlet UIView *containerView;
 
 - (void)setHouseAction:(NSString *)action;
 - (void)setPaymentAction:(NSString *)action;

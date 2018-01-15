@@ -13,6 +13,6 @@
 @property (weak, nonatomic) IBOutlet UIImageView *iconImage;
 @property (weak, nonatomic) IBOutlet UILabel *iconLabel;
 
-- (void)setTitle:(NSString *)title andImage:(UIImage *)image;
+- (void)setTitle:(NSString *)title andImage:(UIImage *)image shouldCurve:(BOOL)shouldCurve;
 
 @end

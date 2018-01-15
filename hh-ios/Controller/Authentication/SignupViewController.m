@@ -9,6 +9,7 @@
 #import "SignupViewController.h"
 #import "LoginViewController.h"
 #import "UserHomeViewController.h"
+#import "ViewHelpers.h"
 
 @interface SignupViewController ()
 
@@ -45,15 +46,10 @@
 //    self.navigationController.navigationBar.prefersLargeTitles = YES;
     
     // Round corners
-    self.messageContainer.layer.cornerRadius = 13;
-    self.messageContainer.clipsToBounds = YES;
-    self.createAccountButton.layer.cornerRadius = 13;
-    self.createAccountButton.clipsToBounds = YES;
+    [ViewHelpers roundCorners:self.messageContainer];
+    [ViewHelpers roundCorners:self.createAccountButton];
     
-    UITapGestureRecognizer *singleTapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(singleTap:)];
-    singleTapGestureRecognizer.numberOfTapsRequired = 1;
-    singleTapGestureRecognizer.enabled = YES;
-    singleTapGestureRecognizer.cancelsTouchesInView = NO;
+    UITapGestureRecognizer *singleTapGestureRecognizer = [ViewHelpers createTapGestureRecognizerWithTarget:self andSelectorName:@"singleTap:"];
     [self.scrollView addGestureRecognizer:singleTapGestureRecognizer];
     
     [self.loginButton addTarget:self action:@selector(loginButtonClicked:) forControlEvents:UIControlEventTouchUpInside];

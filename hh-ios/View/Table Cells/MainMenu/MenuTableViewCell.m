@@ -13,6 +13,8 @@
 - (void)awakeFromNib {
     [super awakeFromNib];
     // Initialization code
+    self.backgroundColor = [UIColor clearColor];
+    self.contentView.backgroundColor = [UIColor clearColor];
 }
 
 - (void)setTitle:(NSString *)title andImage:(UIImage *)image changeColor:(BOOL)shouldChangeColor{

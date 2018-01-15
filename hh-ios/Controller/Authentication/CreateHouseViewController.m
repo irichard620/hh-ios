@@ -7,6 +7,8 @@
 //
 
 #import "CreateHouseViewController.h"
+#import "CreateHouseViewController2.h"
+#import "ViewHelpers.h"
 
 @interface CreateHouseViewController ()
 
@@ -14,24 +16,41 @@
 
 @implementation CreateHouseViewController
 
+#pragma mark View Methods
+
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view from its nib.
+    
+    self.navigationItem.title = @"Create House";
+    self.navigationItem.hidesBackButton = YES;
+    
+    // Button
+    UIBarButtonItem *backBarButton = [ViewHelpers createBackButtonWithTarget:self andSelectorName:@"backButtonClicked:"];    
+    self.navigationItem.leftBarButtonItem = backBarButton;
+    
+    [ViewHelpers roundCorners:self.messageContainer];
+    [ViewHelpers roundCorners:self.continueButton];
+    
+    // Tap recognizer to dismiss keyboard
+    UITapGestureRecognizer *singleTapGestureRecognizer = [ViewHelpers createTapGestureRecognizerWithTarget:self andSelectorName:@"singleTap:"];
+    [self.scrollView addGestureRecognizer:singleTapGestureRecognizer];
+    
+    [self.continueButton addTarget:self action:@selector(continueButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+#pragma mark Interaction
+
+- (void)backButtonClicked:(id)sender {
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+- (void)continueButtonClicked:(id)sender {
+    CreateHouseViewController2 *createHouse2VC = [[CreateHouseViewController2 alloc]initWithNibName:@"CreateHouseViewController2" bundle:nil];
+    [self.navigationController pushViewController:createHouse2VC animated:YES];
 }
-*/
+
+-(void)singleTap:(UITapGestureRecognizer *)tapGestureRecognizer {
+    [self.houseNicknameField endEditing:YES];
+}
 
 @end

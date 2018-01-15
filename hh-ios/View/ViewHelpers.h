@@ -8,9 +8,14 @@
 
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
+#import "SWRevealViewController.h"
 
 @interface ViewHelpers : NSObject
 
 + (void)createNavTitleLabelWithText:(NSString *)text andNavItem:(UINavigationItem *)navigationItem;
++ (UITapGestureRecognizer *)createTapGestureRecognizerWithTarget:(UIViewController *)target andSelectorName:(NSString *)selectorString;
++ (void)roundCorners:(UIView *)view;
++ (UIBarButtonItem *)createBackButtonWithTarget:(UIViewController *)target andSelectorName:(NSString *)selectorString;
++ (UIBarButtonItem *)createMenuButtonWithTarget:(SWRevealViewController *)target;
 
 @end

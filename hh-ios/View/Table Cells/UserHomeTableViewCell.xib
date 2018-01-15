@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -16,11 +15,11 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="54"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="320" height="53"/>
+                <rect key="frame" x="0.0" y="0.0" width="320" height="53.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CdM-g0-bS1">
-                        <rect key="frame" x="53" y="16.5" width="259" height="21"/>
+                        <rect key="frame" x="61" y="16.5" width="243" height="21"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="21" id="aVG-hE-BaL"/>
                         </constraints>
@@ -29,7 +28,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Ri0-Po-ghQ">
-                        <rect key="frame" x="16" y="15" width="24" height="24"/>
+                        <rect key="frame" x="24" y="15" width="24" height="24"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="24" id="0Yn-lc-Hwh"/>
                             <constraint firstAttribute="height" constant="24" id="fW6-tt-uyK"/>
@@ -39,10 +38,10 @@
                 <constraints>
                     <constraint firstItem="CdM-g0-bS1" firstAttribute="leading" secondItem="Ri0-Po-ghQ" secondAttribute="trailing" constant="13" id="1YV-Y7-fzx"/>
                     <constraint firstItem="Ri0-Po-ghQ" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="8" id="5UE-CN-EBf"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="CdM-g0-bS1" secondAttribute="bottom" constant="5.5" id="78w-jR-Clr"/>
+                    <constraint firstItem="CdM-g0-bS1" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="5.5" id="BLu-ft-Uc1"/>
                     <constraint firstItem="CdM-g0-bS1" firstAttribute="trailing" secondItem="H2p-sc-9uM" secondAttribute="trailingMargin" id="ILb-yZ-gNL"/>
-                    <constraint firstAttribute="bottomMargin" secondItem="Ri0-Po-ghQ" secondAttribute="bottom" constant="6" id="gPE-w0-7OD"/>
-                    <constraint firstItem="Ri0-Po-ghQ" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="7" id="hQu-U5-Scp"/>
-                    <constraint firstItem="CdM-g0-bS1" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="u8Q-Xv-STW"/>
+                    <constraint firstItem="Ri0-Po-ghQ" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="4" id="hQu-U5-Scp"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>

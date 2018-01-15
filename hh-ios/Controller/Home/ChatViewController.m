@@ -49,19 +49,7 @@
     [self.view addGestureRecognizer:self.revealViewController.tapGestureRecognizer];
     
     // Create menu button
-    UIImage* menuImage = [UIImage imageNamed:@"menu.png"];
-    UIButton *menuButton = [[UIButton alloc] init];
-    [menuButton setBackgroundImage:menuImage forState:UIControlStateNormal];
-    NSDictionary *views = @{@"menuButton":menuButton};
-    [menuButton setFrame:CGRectMake(15,5, 25,25)];
-    NSArray *heightConstraint = [NSLayoutConstraint constraintsWithVisualFormat:@"V:[menuButton(25)]" options:0 metrics:nil views:views];
-    NSArray *widthConstraint = [NSLayoutConstraint constraintsWithVisualFormat:@"H:[menuButton(25)]" options:0 metrics:nil views:views];
-    [menuButton addConstraints:heightConstraint];
-    [menuButton addConstraints:widthConstraint];
-    [menuButton addTarget:self.revealViewController action:@selector(revealToggle:)
-         forControlEvents:UIControlEventTouchUpInside];
-    UIBarButtonItem *menuBarButton =[[UIBarButtonItem alloc] initWithCustomView:menuButton];
-    self.navigationItem.leftBarButtonItem =menuBarButton;
+    self.navigationItem.leftBarButtonItem = [ViewHelpers createMenuButtonWithTarget:self.revealViewController];
     
     // Titlel abel
 //    [ViewHelpers createNavTitleLabelWithText:@"Home" andNavItem:self.navigationItem];
@@ -123,17 +111,17 @@
         if (indexPath.row == 2) {
             [cell setName:@"Ian Richard" andMessage:@"Hey, we need to clean the bathroom today." andProfileImage:[UIImage imageNamed:@"ian_profile.jpg"] showMarker:YES];
         } else if (indexPath.row == 3) {
-            [cell setName:@"Brian Cox" andMessage:@"Ok, sounds good. 2pm?" andProfileImage:[UIImage imageNamed:@"ian_profile2.jpg"] showMarker:NO];
+            [cell setName:@"Brian Cox" andMessage:@"Ok, sounds good. 2pm?" andProfileImage:[UIImage imageNamed:@"user-icon-grey.png"] showMarker:NO];
         } else if (indexPath.row == 5) {
-            [cell setName:@"Brian Cox" andMessage:@"Hey, Trader Joe's today?" andProfileImage:[UIImage imageNamed:@"ian_profile2.jpg"] showMarker:NO];
+            [cell setName:@"Brian Cox" andMessage:@"Hey, Trader Joe's today?" andProfileImage:[UIImage imageNamed:@"user-icon-grey.png"] showMarker:NO];
         } else if (indexPath.row == 6) {
             [cell setName:@"Ian Richard" andMessage:@"Yeah. I'm in class till 5. Would 5:30 work?" andProfileImage:[UIImage imageNamed:@"ian_profile.jpg"] showMarker:YES];
         } else if (indexPath.row == 7) {
-            [cell setName:@"Brian Cox" andMessage:@"Yeah, i'll meet you at the house" andProfileImage:[UIImage imageNamed:@"ian_profile2.jpg"] showMarker:NO];
+            [cell setName:@"Brian Cox" andMessage:@"Yeah, i'll meet you at the house" andProfileImage:[UIImage imageNamed:@"user-icon-grey.png"] showMarker:NO];
         } else if (indexPath.row == 9) {
             [cell setName:@"Ian Richard" andMessage:@"Let's get a new front door mat" andProfileImage:[UIImage imageNamed:@"ian_profile.jpg"] showMarker:YES];
         } else if (indexPath.row == 10) {
-            [cell setName:@"Brian Cox" andMessage:@"Sure, as long as it's not more than 20 dollars" andProfileImage:[UIImage imageNamed:@"ian_profile2.jpg"] showMarker:NO];
+            [cell setName:@"Brian Cox" andMessage:@"Sure, as long as it's not more than 20 dollars" andProfileImage:[UIImage imageNamed:@"user-icon-grey.png"] showMarker:NO];
         } else if (indexPath.row == 11) {
             [cell setName:@"Ian Richard" andMessage:@"Ok I found one, charging you 10 dollars" andProfileImage:[UIImage imageNamed:@"ian_profile.jpg"] showMarker:YES];
         }

@@ -28,9 +28,10 @@
     
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     
-    
     SignupViewController *signupVC = [[SignupViewController alloc]initWithNibName:@"SignupViewController" bundle:nil];
     UINavigationController *navVC = [[UINavigationController alloc]initWithRootViewController:signupVC];
+    
+    
     
     // Set as root
     self.window.rootViewController = navVC;

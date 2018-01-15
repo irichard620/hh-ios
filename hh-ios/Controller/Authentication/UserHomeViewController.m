@@ -14,6 +14,7 @@
 #import "UserHomeTableViewCell.h"
 #import "MenuTableViewCell.h"
 #import "JoinHouseViewController.h"
+#import "CreateHouseViewController.h"
 
 @interface UserHomeViewController ()
 
@@ -54,6 +55,7 @@
     self.tableView.estimatedRowHeight = 44.0;
     self.tableView.estimatedSectionHeaderHeight = 30;
     self.tableView.rowHeight = UITableViewAutomaticDimension;
+    self.tableView.tableFooterView = [[UIView alloc]initWithFrame:CGRectZero];
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
@@ -95,16 +97,16 @@
     
     if (indexPath.section == 0) {
         // Choose house
-        [cell setTitle:@"Scu House" andImage:[UIImage imageNamed:@"HH_group_placeholder.png"]];
+        [cell setTitle:@"Scu House" andImage:[UIImage imageNamed:@"group-icon-black-background.png"] shouldCurve:YES];
     } else if (indexPath.section == 1) {
         if (indexPath.row == 0) {
-            [cell setTitle:@"Create new house" andImage:[UIImage imageNamed:@"home_black.png"]];
+            [cell setTitle:@"Create new house" andImage:[UIImage imageNamed:@"home_black.png"] shouldCurve:NO];
         } else {
-            [cell setTitle:@"Join a house" andImage:[UIImage imageNamed:@"grid.png"]];
+            [cell setTitle:@"Join a house" andImage:[UIImage imageNamed:@"grid.png"] shouldCurve:NO];
         }
     } else {
         // Logout
-        [cell setTitle:@"Logout" andImage:[UIImage imageNamed:@"close.png"]];
+        [cell setTitle:@"Logout" andImage:[UIImage imageNamed:@"close.png"] shouldCurve:NO];
     }
     return cell;
 }
@@ -171,6 +173,9 @@
     } else if (indexPath.section == 1) {
         if (indexPath.row == 0) {
             // Create
+            CreateHouseViewController *createHouseVC = [[CreateHouseViewController alloc]initWithNibName:@"CreateHouseViewController" bundle:nil];
+            self.navBarShouldDissapear = NO;
+            [self.navigationController pushViewController:createHouseVC animated:YES];
         } else {
             // Join
             JoinHouseViewController *joinHouseVC = [[JoinHouseViewController alloc]initWithNibName:@"JoinHouseViewController" bundle:nil];
@@ -179,7 +184,7 @@
         }
     } else if (indexPath.section == 2) {
         // Logout
-        
+        self.navBarShouldDissapear = YES;
         [self.navigationController popViewControllerAnimated:YES];
     }
 }

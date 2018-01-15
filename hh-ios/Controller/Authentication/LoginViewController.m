@@ -8,6 +8,7 @@
 
 #import "LoginViewController.h"
 #import "UserHomeViewController.h"
+#import "ViewHelpers.h"
 
 @interface LoginViewController ()
 
@@ -34,17 +35,18 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.loginButton.layer.cornerRadius = 13;
-    self.loginButton.clipsToBounds = YES;
+    [ViewHelpers roundCorners:self.loginButton];
         
-    UITapGestureRecognizer *singleTapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(singleTap:)];
-    singleTapGestureRecognizer.numberOfTapsRequired = 1;
-    singleTapGestureRecognizer.enabled = YES;
-    singleTapGestureRecognizer.cancelsTouchesInView = NO;
+    UITapGestureRecognizer *singleTapGestureRecognizer = [ViewHelpers createTapGestureRecognizerWithTarget:self andSelectorName:@"singleTap:"];
     [self.scrollView addGestureRecognizer:singleTapGestureRecognizer];
     
     [self.signupButton addTarget:self action:@selector(signupButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
     [self.loginButton addTarget:self action:@selector(loginButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
+    
+    [ViewHelpers roundCorners:self.forgotButton];
+    
+    self.forgotButton.layer.borderColor = [[UIColor colorWithRed:61/255.0 green:79/255.0 blue:92/255.0 alpha:1.0]CGColor];
+    self.forgotButton.layer.borderWidth = 1;
 }
 
 #pragma mark Interaction

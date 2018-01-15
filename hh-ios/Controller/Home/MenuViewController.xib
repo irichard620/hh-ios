@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -21,18 +20,37 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="ssZ-cX-Wr8">
-                    <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                    <color key="backgroundColor" red="0.23921568627450979" green="0.30980392156862746" blue="0.36078431372549019" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="619"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                 </tableView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="A Santa Clara University Product" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bzR-7n-jx4">
+                    <rect key="frame" x="54" y="637" width="171.5" height="13.5"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="HHlogostandalonegrey.png" translatesAutoresizingMaskIntoConstraints="NO" id="Rcr-jW-bWi">
+                    <rect key="frame" x="24" y="632" width="22" height="22"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="22" id="C5G-37-iXO"/>
+                        <constraint firstAttribute="width" constant="22" id="Nc3-pO-NTb"/>
+                    </constraints>
+                </imageView>
             </subviews>
-            <color key="backgroundColor" red="0.23921568627450979" green="0.30980392156862746" blue="0.36078431372549019" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
                 <constraint firstAttribute="trailing" secondItem="ssZ-cX-Wr8" secondAttribute="trailing" id="HQV-8J-kLa"/>
+                <constraint firstAttribute="bottom" secondItem="Rcr-jW-bWi" secondAttribute="bottom" constant="13" id="KCl-he-0cJ"/>
+                <constraint firstItem="Rcr-jW-bWi" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="24" id="LIU-qm-OK3"/>
+                <constraint firstItem="bzR-7n-jx4" firstAttribute="centerY" secondItem="Rcr-jW-bWi" secondAttribute="centerY" id="PfQ-AB-xPP"/>
+                <constraint firstItem="bzR-7n-jx4" firstAttribute="leading" secondItem="Rcr-jW-bWi" secondAttribute="trailing" constant="8" id="l39-gg-wku"/>
                 <constraint firstItem="ssZ-cX-Wr8" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="pid-59-JJi"/>
                 <constraint firstItem="ssZ-cX-Wr8" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="q4L-u7-lxc"/>
-                <constraint firstAttribute="bottom" secondItem="ssZ-cX-Wr8" secondAttribute="bottom" id="rTo-wL-7WR"/>
+                <constraint firstAttribute="bottom" secondItem="ssZ-cX-Wr8" secondAttribute="bottom" constant="48" id="rTo-wL-7WR"/>
             </constraints>
             <point key="canvasLocation" x="34.5" y="54.5"/>
         </view>
     </objects>
+    <resources>
+        <image name="HHlogostandalonegrey.png" width="256" height="256"/>
+    </resources>
 </document>

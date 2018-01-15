@@ -13,6 +13,7 @@
             <connections>
                 <outlet property="contentView" destination="7yD-gm-ufz" id="sDb-2L-gTB"/>
                 <outlet property="emailField" destination="FDm-34-bsz" id="5Cr-yy-Otc"/>
+                <outlet property="forgotButton" destination="rzz-IG-wWx" id="gMw-5T-eo7"/>
                 <outlet property="loginButton" destination="H2L-dR-Vgh" id="2lS-5h-Ezt"/>
                 <outlet property="passwordField" destination="D9L-eK-CqT" id="YFa-Yc-19V"/>
                 <outlet property="scrollToContentHeight" destination="mnC-xM-BRP" id="9W0-NM-Pel"/>
@@ -91,6 +92,16 @@
                                     <color key="textColor" red="0.23921568630000001" green="0.30980392159999998" blue="0.36078431370000003" alpha="1" colorSpace="calibratedRGB"/>
                                     <nil key="highlightedColor"/>
                                 </label>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rzz-IG-wWx">
+                                    <rect key="frame" x="50" y="213" width="275" height="43"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="43" id="SAm-c1-0y4"/>
+                                    </constraints>
+                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                    <state key="normal" title="Forgot Password?">
+                                        <color key="titleColor" red="0.23921568630000001" green="0.30980392159999998" blue="0.36078431370000003" alpha="1" colorSpace="calibratedRGB"/>
+                                    </state>
+                                </button>
                             </subviews>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <constraints>
@@ -101,6 +112,8 @@
                                 <constraint firstItem="H2L-dR-Vgh" firstAttribute="leading" secondItem="7yD-gm-ufz" secondAttribute="leading" constant="50" id="BvE-W2-mNZ"/>
                                 <constraint firstItem="H2L-dR-Vgh" firstAttribute="top" secondItem="D9L-eK-CqT" secondAttribute="bottom" constant="30" id="ERR-uw-CJk"/>
                                 <constraint firstAttribute="bottom" secondItem="3fJ-ST-Kqy" secondAttribute="bottom" constant="20" id="HIY-tl-F8d"/>
+                                <constraint firstItem="rzz-IG-wWx" firstAttribute="top" secondItem="H2L-dR-Vgh" secondAttribute="bottom" constant="20" id="SkP-3C-kxv"/>
+                                <constraint firstItem="rzz-IG-wWx" firstAttribute="leading" secondItem="7yD-gm-ufz" secondAttribute="leading" constant="50" id="T65-1x-ffa"/>
                                 <constraint firstAttribute="trailing" secondItem="D9L-eK-CqT" secondAttribute="trailing" constant="16" id="UNQ-uf-MOe"/>
                                 <constraint firstItem="FDm-34-bsz" firstAttribute="top" secondItem="7yD-gm-ufz" secondAttribute="top" constant="30" id="Ucp-Dk-mDp"/>
                                 <constraint firstItem="D9L-eK-CqT" firstAttribute="centerY" secondItem="rPb-8P-tGo" secondAttribute="centerY" id="V7H-My-yAl"/>
@@ -108,6 +121,7 @@
                                 <constraint firstAttribute="trailing" secondItem="WLA-yd-ng5" secondAttribute="trailing" constant="8" id="cva-V1-PjZ"/>
                                 <constraint firstAttribute="trailing" secondItem="H2L-dR-Vgh" secondAttribute="trailing" constant="50" id="fqh-Gq-WVI"/>
                                 <constraint firstAttribute="trailing" secondItem="3fJ-ST-Kqy" secondAttribute="trailing" constant="50" id="n0E-2f-XXh"/>
+                                <constraint firstAttribute="trailing" secondItem="rzz-IG-wWx" secondAttribute="trailing" constant="50" id="pT3-7j-yBc"/>
                                 <constraint firstItem="JVq-cR-aAB" firstAttribute="leading" secondItem="7yD-gm-ufz" secondAttribute="leading" id="qf3-EA-h14"/>
                                 <constraint firstItem="FDm-34-bsz" firstAttribute="centerY" secondItem="JVq-cR-aAB" secondAttribute="centerY" id="rZN-qk-7Hq"/>
                                 <constraint firstItem="3fJ-ST-Kqy" firstAttribute="leading" secondItem="7yD-gm-ufz" secondAttribute="leading" constant="50" id="rgS-1q-hd9"/>
@@ -127,23 +141,36 @@
                     </constraints>
                 </scrollView>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Honest Housemate" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WMP-Yh-do3">
-                    <rect key="frame" x="16" y="72" width="269" height="36"/>
+                    <rect key="frame" x="68" y="72" width="307" height="36"/>
                     <fontDescription key="fontDescription" type="boldSystem" pointSize="30"/>
                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <nil key="highlightedColor"/>
                 </label>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="HHlogostandalonewhite.png" translatesAutoresizingMaskIntoConstraints="NO" id="SoO-0Y-97b">
+                    <rect key="frame" x="16" y="70" width="40" height="40"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="40" id="Dcm-TE-blg"/>
+                        <constraint firstAttribute="width" constant="40" id="XMh-Bx-X8a"/>
+                    </constraints>
+                </imageView>
             </subviews>
             <color key="backgroundColor" red="0.0" green="0.58823529411764708" blue="0.53333333333333333" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
-                <constraint firstItem="WMP-Yh-do3" firstAttribute="leading" secondItem="hyJ-XD-mNb" secondAttribute="leading" constant="16" id="Drz-ko-rTY"/>
+                <constraint firstItem="TTy-Va-ELT" firstAttribute="top" secondItem="SoO-0Y-97b" secondAttribute="bottom" constant="6" id="69Y-PA-bLf"/>
+                <constraint firstItem="WMP-Yh-do3" firstAttribute="trailing" secondItem="hyJ-XD-mNb" secondAttribute="trailing" id="ROd-30-L8e"/>
                 <constraint firstItem="TTy-Va-ELT" firstAttribute="leading" secondItem="hyJ-XD-mNb" secondAttribute="leading" id="Vl2-FK-FMW"/>
+                <constraint firstItem="SoO-0Y-97b" firstAttribute="leading" secondItem="hyJ-XD-mNb" secondAttribute="leading" constant="16" id="Y4o-Mp-mmC"/>
                 <constraint firstItem="TTy-Va-ELT" firstAttribute="top" secondItem="WMP-Yh-do3" secondAttribute="bottom" constant="8" id="d5U-Qh-hnv"/>
+                <constraint firstItem="WMP-Yh-do3" firstAttribute="leading" secondItem="SoO-0Y-97b" secondAttribute="trailing" constant="12" id="hSF-Ll-7c9"/>
                 <constraint firstItem="TTy-Va-ELT" firstAttribute="trailing" secondItem="hyJ-XD-mNb" secondAttribute="trailing" id="lmc-oC-GrB"/>
+                <constraint firstItem="TTy-Va-ELT" firstAttribute="top" secondItem="hyJ-XD-mNb" secondAttribute="top" constant="96" id="pn9-T7-tpZ"/>
                 <constraint firstItem="TTy-Va-ELT" firstAttribute="bottom" secondItem="hyJ-XD-mNb" secondAttribute="bottom" id="puo-DV-Hq9"/>
-                <constraint firstItem="TTy-Va-ELT" firstAttribute="top" secondItem="QXY-kh-zUr" secondAttribute="top" constant="116" id="qd0-RA-75U"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="hyJ-XD-mNb"/>
             <point key="canvasLocation" x="39.5" y="53.5"/>
         </view>
     </objects>
+    <resources>
+        <image name="HHlogostandalonewhite.png" width="256" height="256"/>
+    </resources>
 </document>

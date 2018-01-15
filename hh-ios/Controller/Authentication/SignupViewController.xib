@@ -189,26 +189,37 @@
                     </constraints>
                 </scrollView>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Honest Housemate" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WWC-Zt-Ijf">
-                    <rect key="frame" x="16" y="72" width="269" height="36"/>
+                    <rect key="frame" x="68" y="72" width="307" height="36"/>
                     <fontDescription key="fontDescription" type="boldSystem" pointSize="30"/>
                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <nil key="highlightedColor"/>
                 </label>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="HHlogostandalonewhite.png" translatesAutoresizingMaskIntoConstraints="NO" id="GWN-8h-zgF">
+                    <rect key="frame" x="16" y="70" width="40" height="40"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="40" id="32v-kf-IWv"/>
+                        <constraint firstAttribute="height" constant="40" id="bhU-Co-n8V"/>
+                    </constraints>
+                </imageView>
             </subviews>
             <color key="backgroundColor" red="0.0" green="0.58823529411764708" blue="0.53333333333333333" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
-                <constraint firstItem="WWC-Zt-Ijf" firstAttribute="leading" secondItem="Q5M-cg-NOt" secondAttribute="leading" constant="16" id="7gd-An-LcI"/>
+                <constraint firstItem="yLO-yM-sr4" firstAttribute="top" secondItem="Q5M-cg-NOt" secondAttribute="top" constant="96" id="8GV-25-kVe"/>
                 <constraint firstItem="yLO-yM-sr4" firstAttribute="leading" secondItem="Q5M-cg-NOt" secondAttribute="leading" id="Cko-gP-ILh"/>
                 <constraint firstItem="yLO-yM-sr4" firstAttribute="trailing" secondItem="Q5M-cg-NOt" secondAttribute="trailing" id="Foh-o8-SIJ"/>
                 <constraint firstItem="yLO-yM-sr4" firstAttribute="top" secondItem="WWC-Zt-Ijf" secondAttribute="bottom" constant="8" id="HL7-NS-Zlj"/>
                 <constraint firstItem="yLO-yM-sr4" firstAttribute="bottom" secondItem="Q5M-cg-NOt" secondAttribute="bottom" id="HNU-Oy-UZe"/>
-                <constraint firstItem="yLO-yM-sr4" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="116" id="eLc-em-pwU"/>
+                <constraint firstItem="WWC-Zt-Ijf" firstAttribute="trailing" secondItem="Q5M-cg-NOt" secondAttribute="trailing" id="Sus-AI-vLG"/>
+                <constraint firstItem="WWC-Zt-Ijf" firstAttribute="leading" secondItem="GWN-8h-zgF" secondAttribute="trailing" constant="12" id="m6q-BR-gjH"/>
+                <constraint firstItem="yLO-yM-sr4" firstAttribute="top" secondItem="GWN-8h-zgF" secondAttribute="bottom" constant="6" id="wVo-mZ-HWF"/>
+                <constraint firstItem="GWN-8h-zgF" firstAttribute="leading" secondItem="Q5M-cg-NOt" secondAttribute="leading" constant="16" id="yM7-KU-HYf"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="Q5M-cg-NOt"/>
             <point key="canvasLocation" x="39.5" y="53.5"/>
         </view>
     </objects>
     <resources>
+        <image name="HHlogostandalonewhite.png" width="256" height="256"/>
         <image name="home.png" width="128" height="128"/>
     </resources>
 </document>

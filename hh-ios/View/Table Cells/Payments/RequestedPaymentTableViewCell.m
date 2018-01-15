@@ -26,12 +26,12 @@
     self.cancelButton.layer.borderColor = [[UIColor colorWithRed:0.239 green:0.310 blue:0.361 alpha:1]CGColor];
 }
 
-- (void)setName:(NSString *)name andMessage:(NSString *)message andProfileImage:(UIImage *)image andTime:(NSString *)time andAmount:(NSString *)amount {
+- (void)setName:(NSString *)name andMessage:(NSString *)message andProfileImage:(UIImage *)image andTime:(NSString *)time andAmount:(float)amount {
     self.nameLabel.text = [NSString stringWithFormat:@"Request to %@", name];
     self.messageLabel.text = message;
     self.profileImage.image = image;
     self.timeLabel.text = time;
-    self.moneyLabel.text = amount;
+    self.moneyLabel.text = [NSString stringWithFormat:@"$%.02f", amount];
 }
 
 @end

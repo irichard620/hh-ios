@@ -1,40 +1,39 @@
 //
-//  JoinHouseViewController.m
+//  CreateHouseViewController2.m
 //  hh-ios
 //
-//  Created by Ian Richard on 1/3/18.
+//  Created by Ian Richard on 1/4/18.
 //  Copyright © 2018 Ian Richard. All rights reserved.
 //
 
-#import "JoinHouseViewController.h"
+#import "CreateHouseViewController2.h"
 #import "ViewHelpers.h"
 
-@interface JoinHouseViewController ()
+@interface CreateHouseViewController2 ()
 
 @end
 
-@implementation JoinHouseViewController
+@implementation CreateHouseViewController2
 
 #pragma mark View Methods
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Nav customization
-    self.navigationItem.title = @"Join House";
+    self.navigationItem.title = @"Create House";
     self.navigationItem.hidesBackButton = YES;
     
     // Button
     UIBarButtonItem *backBarButton = [ViewHelpers createBackButtonWithTarget:self andSelectorName:@"backButtonClicked:"];
     self.navigationItem.leftBarButtonItem = backBarButton;
-
+    
     [ViewHelpers roundCorners:self.messageContainer];
-    [ViewHelpers roundCorners:self.joinHouseButton];
+    [ViewHelpers roundCorners:self.createButton];
     
     // Tap recognizer to dismiss keyboard
     UITapGestureRecognizer *singleTapGestureRecognizer = [ViewHelpers createTapGestureRecognizerWithTarget:self andSelectorName:@"singleTap:"];
     [self.scrollView addGestureRecognizer:singleTapGestureRecognizer];
     
-    [self.joinHouseButton addTarget:self action:@selector(joinButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
+    [self.createButton addTarget:self action:@selector(createButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
 }
 
 #pragma mark Interaction
@@ -43,12 +42,13 @@
     [self.navigationController popViewControllerAnimated:YES];
 }
 
-- (void)joinButtonClicked:(id)sender {
-    [self.navigationController popViewControllerAnimated:YES];
+- (void)createButtonClicked:(id)sender {
+    UIViewController *View = [self.navigationController.viewControllers objectAtIndex:self.navigationController.viewControllers.count-3];
+    [self.navigationController popToViewController:View animated:YES];
 }
 
 -(void)singleTap:(UITapGestureRecognizer *)tapGestureRecognizer {
-    [self.houseCodeField endEditing:YES];
+    [self.houseIdField endEditing:YES];
 }
 
 @end

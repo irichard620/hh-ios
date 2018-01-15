@@ -12,6 +12,8 @@
 #import "TopMenuTableViewCell.h"
 #import "ChatViewController.h"
 #import "PaymentsViewController.h"
+#import "AlexaViewController.h"
+#import "ToDosViewController.h"
 
 @interface MenuViewController ()
 
@@ -40,6 +42,13 @@
     self.menuTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     self.menuTableView.estimatedRowHeight = 44;
     self.menuTableView.rowHeight = UITableViewAutomaticDimension;
+    
+    CAGradientLayer *gradient = [CAGradientLayer layer];
+    
+    gradient.frame = self.view.bounds;
+    gradient.colors = @[(id)[UIColor colorWithRed:61/255.0 green:79/255.0 blue:92/255.0 alpha:1.0].CGColor, (id)[UIColor blackColor].CGColor];
+    
+    [self.view.layer insertSublayer:gradient atIndex:0];
 }
 
 #pragma mark Table View
@@ -50,7 +59,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     // 7 rows - house page, home (chat), payments, to-dos, stats, Alexa, settings
-    return 7;
+    return 6;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -63,7 +72,7 @@
         }
         cell.selectedBackgroundView = [self getSelectedView:cell.frame];
 
-        [cell setTitle:@"Scu House" andSubtitle:@"@scu-house" andImage:[UIImage imageNamed:@"HH_group_placeholder.png"]];
+        [cell setTitle:@"Scu House" andSubtitle:@"@scu-house" andImage:[UIImage imageNamed:@"group-icon-white-background.png"]];
         [cell.exitButton removeTarget:self action:@selector(exitButtonAction) forControlEvents:UIControlEventTouchUpInside];
         [cell.exitButton addTarget:self action:@selector(exitButtonAction) forControlEvents:UIControlEventTouchUpInside];
         return cell;
@@ -87,10 +96,8 @@
         } else if (indexPath.row == 3) {
             [cell setTitle:@"To-Dos" andImage:[UIImage imageNamed:@"check.png"] changeColor:NO];
         } else if (indexPath.row == 4) {
-            [cell setTitle:@"Statistics" andImage:[UIImage imageNamed:@"bar-chart.png"] changeColor:NO];
-        } else if (indexPath.row == 5) {
             [cell setTitle:@"Connect to Alexa" andImage:[UIImage imageNamed:@"share.png"] changeColor:NO];
-        } else if (indexPath.row == 6) {
+        } else if (indexPath.row == 5) {
             [cell setTitle:@"Settings" andImage:[UIImage imageNamed:@"settings.png"] changeColor:NO];
         }
         return cell;
@@ -108,7 +115,7 @@
 
 - (UIView *)getSelectedView:(CGRect)frame {
     UIView *myBackView = [[UIView alloc] initWithFrame:frame];
-    myBackView.backgroundColor = [UIColor colorWithRed:0.314 green:0.384 blue:0.435 alpha:1];
+    myBackView.backgroundColor = [UIColor colorWithRed:0.314 green:0.384 blue:0.435 alpha:0.4];
     return myBackView;
 }
 
@@ -138,13 +145,18 @@
     } else if (indexPath.row == 3 && !(self.currentIndex == 3)) {
         // To-dos
         [[self.menuTableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:1 inSection:0]]setSelected:NO];
+        ToDosViewController *todoVC = [[ToDosViewController alloc]initWithNibName:@"ToDosViewController" bundle:nil];
+        UINavigationController *navVC = [[UINavigationController alloc]initWithRootViewController:todoVC];
+        [self.revealViewController pushFrontViewController:navVC animated:YES];
+        self.currentIndex = 3;
     } else if (indexPath.row == 4 && !(self.currentIndex == 4)) {
-        // Stats
-        [[self.menuTableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:1 inSection:0]]setSelected:NO];
-    } else if (indexPath.row == 5 && !(self.currentIndex == 5)) {
         // Alexa
         [[self.menuTableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:1 inSection:0]]setSelected:NO];
-    } else if (indexPath.row == 6 && !(self.currentIndex == 6)) {
+        AlexaViewController *alexaVC = [[AlexaViewController alloc]initWithNibName:@"AlexaViewController" bundle:nil];
+        UINavigationController *navVC = [[UINavigationController alloc]initWithRootViewController:alexaVC];
+        [self.revealViewController pushFrontViewController:navVC animated:YES];
+        self.currentIndex = 4;
+    } else if (indexPath.row == 5 && !(self.currentIndex == 5)) {
         // Settings
         [[self.menuTableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:1 inSection:0]]setSelected:NO];
     }

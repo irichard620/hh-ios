@@ -10,12 +10,17 @@
 #import "SWRevealViewController.h"
 #import "RequestedPaymentTableViewCell.h"
 #import "IncompletedPaymentTableViewCell.h"
+#import "CompletedPaymentTableViewCell.h"
+#import "ViewHelpers.h"
 
 @interface PaymentsViewController ()
 
 @property(nonatomic) NSMutableArray *requestedArray;
 @property(nonatomic) NSMutableArray *incompleteArray;
 @property(nonatomic) NSMutableArray *pastArray;
+@property(nonatomic) UIView *oldHeaderView;
+
+@property(nonatomic) BOOL needsReloadHeader;
 
 @property(strong,nonatomic) UISegmentedControl *segment;
 
@@ -29,6 +34,7 @@
         _requestedArray = [[NSMutableArray alloc]init];
         _incompleteArray = [[NSMutableArray alloc]init];
         _pastArray = [[NSMutableArray alloc]init];
+        _needsReloadHeader = YES;
     }
     return self;
 }
@@ -47,25 +53,15 @@
     [self.view addGestureRecognizer:self.revealViewController.tapGestureRecognizer];
     
     // Create menu button
-    UIImage* menuImage = [UIImage imageNamed:@"menu.png"];
-    UIButton *menuButton = [[UIButton alloc] init];
-    [menuButton setBackgroundImage:menuImage forState:UIControlStateNormal];
-    NSDictionary *views = @{@"menuButton":menuButton};
-    [menuButton setFrame:CGRectMake(15,5, 25,25)];
-    NSArray *heightConstraint = [NSLayoutConstraint constraintsWithVisualFormat:@"V:[menuButton(25)]" options:0 metrics:nil views:views];
-    NSArray *widthConstraint = [NSLayoutConstraint constraintsWithVisualFormat:@"H:[menuButton(25)]" options:0 metrics:nil views:views];
-    [menuButton addConstraints:heightConstraint];
-    [menuButton addConstraints:widthConstraint];
-    [menuButton addTarget:self.revealViewController action:@selector(revealToggle:)
-         forControlEvents:UIControlEventTouchUpInside];
-    UIBarButtonItem *menuBarButton =[[UIBarButtonItem alloc] initWithCustomView:menuButton];
-    self.navigationItem.leftBarButtonItem =menuBarButton;
+    self.navigationItem.leftBarButtonItem = [ViewHelpers createMenuButtonWithTarget:self.revealViewController];
     
     // Setup table
     self.paymentTableView.dataSource = self;
     self.paymentTableView.delegate = self;
-    self.paymentTableView.estimatedSectionHeaderHeight = 30;
+    self.paymentTableView.estimatedSectionHeaderHeight = 60;
     self.paymentTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    
+    // Add fake cells
 }
 
 #pragma mark Table View
@@ -79,11 +75,14 @@
         return 0;
     } else {
         if (self.segment.selectedSegmentIndex == 0) {
-            return self.requestedArray.count;
+//            return self.requestedArray.count;
+            return 2;
         } else if (self.segment.selectedSegmentIndex == 1) {
-            return self.incompleteArray.count;
+//            return self.incompleteArray.count;
+            return 2;
         } else {
-            return self.pastArray.count;
+//            return self.pastArray.count;
+            return 2;
         }
     }
 }
@@ -98,11 +97,33 @@
             cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
         }
         
+        [cell setName:@"Brian Cox" andMessage:@"Door handle" andProfileImage:[UIImage imageNamed:@"ian_profile.jpg"] andTime:@"2h" andAmount:6.00];
+        
         return cell;
     } else if (self.segment.selectedSegmentIndex == 1) {
-        return nil;
+        static NSString *CellIdentifier = @"incompleteCell";
+        IncompletedPaymentTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+        
+        if (cell == nil) {
+            [self.paymentTableView registerNib:[UINib nibWithNibName:@"IncompletedPaymentTableViewCell" bundle:nil] forCellReuseIdentifier:CellIdentifier];
+            cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+        }
+        
+        [cell setName:@"Brian Cox" andMessage:@"US Flag" andProfileImage:[UIImage imageNamed:@"ian_profile.jpg"] andTime:@"1d" andAmount:10.00];
+        
+        return cell;
     } else {
-        return nil;
+        static NSString *CellIdentifier = @"completeCell";
+        CompletedPaymentTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+        
+        if (cell == nil) {
+            [self.paymentTableView registerNib:[UINib nibWithNibName:@"CompletedPaymentTableViewCell" bundle:nil] forCellReuseIdentifier:CellIdentifier];
+            cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+        }
+        
+        [cell setName:@"Brian Cox" andMessage:@"Drinks" andProfileImage:[UIImage imageNamed:@"ian_profile.jpg"] andTime:@"5d" andAmount:20.00 andIsNegative:YES];
+        
+        return cell;
     }
 }
 
@@ -111,23 +132,30 @@
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
-    UIView *header = [[UIView alloc]initWithFrame:CGRectMake(0, 0, self.paymentTableView.frame.size.width, 60)];
-    header.backgroundColor = [UIColor whiteColor];
-    
-    // Set up segment w appearance
-    self.segment = [[UISegmentedControl alloc]initWithItems:@[@"Requested", @"Incomplete", @"Past"]];
-    self.segment.frame = CGRectMake(8, 8, self.paymentTableView.frame.size.width - 16, 44);
-    self.segment.selectedSegmentIndex = 0;
-    self.segment.tintColor = [UIColor colorWithRed:0.239 green:0.310 blue:0.361 alpha:1];
-    
-    // Set data
-    [self.paymentTableView reloadData];
-    
-    // monitor for value of segment changing
-    [self.segment addTarget:self action:@selector(segmentOptionChanged:) forControlEvents:UIControlEventValueChanged];
-    
-    [header addSubview:self.segment];
-    return header;
+    if (self.needsReloadHeader) {
+        self.needsReloadHeader = NO;
+        self.oldHeaderView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, self.paymentTableView.frame.size.width, 60)];
+        self.oldHeaderView.backgroundColor = [UIColor whiteColor];
+        
+        // Set up segment w appearance
+        self.segment = [[UISegmentedControl alloc]initWithItems:@[@"Requested", @"Incomplete", @"Past"]];
+        self.segment.frame = CGRectMake(8, 8, self.paymentTableView.frame.size.width - 16, 44);
+        self.segment.selectedSegmentIndex = 0;
+        self.segment.tintColor = [UIColor colorWithRed:0.239 green:0.310 blue:0.361 alpha:1];
+        self.segment.userInteractionEnabled = YES;
+        
+        // Set data
+        [self.paymentTableView reloadData];
+        
+        // monitor for value of segment changing
+        [self.segment addTarget:self action:@selector(segmentOptionChanged:) forControlEvents:UIControlEventValueChanged];
+        
+        [self.oldHeaderView addSubview:self.segment];
+        return self.oldHeaderView;
+
+    } else {
+        return self.oldHeaderView;
+    }
 }
 
 - (void)segmentOptionChanged:(id)sender {

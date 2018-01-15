@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -16,18 +15,18 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="175"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="320" height="174"/>
+                <rect key="frame" x="0.0" y="0.0" width="320" height="174.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="zit-43-4yA">
-                        <rect key="frame" x="125" y="30" width="70" height="70"/>
+                        <rect key="frame" x="125" y="33" width="70" height="70"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="70" id="dwj-xu-EEu"/>
                             <constraint firstAttribute="width" constant="70" id="gV5-gY-iWn"/>
                         </constraints>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="House Name" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4pt-8R-h0N">
-                        <rect key="frame" x="8" y="108" width="304" height="21"/>
+                        <rect key="frame" x="16" y="111" width="288" height="21"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="21" id="lQg-TJ-izi"/>
                         </constraints>
@@ -36,7 +35,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="@House-id" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4un-ug-kwF">
-                        <rect key="frame" x="8" y="131" width="304" height="21"/>
+                        <rect key="frame" x="8" y="134" width="304" height="18"/>
                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <nil key="highlightedColor"/>
@@ -49,7 +48,7 @@
                         </constraints>
                     </view>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Q6t-3Q-5zG">
-                        <rect key="frame" x="8" y="51" width="28" height="28"/>
+                        <rect key="frame" x="16" y="54" width="28" height="28"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="28" id="AOd-7R-5hl"/>
                             <constraint firstAttribute="height" constant="28" id="QUZ-tw-I1P"/>
@@ -57,7 +56,7 @@
                         <state key="normal" image="exithouse.png"/>
                     </button>
                 </subviews>
-                <color key="backgroundColor" red="0.23921568627450979" green="0.30980392156862746" blue="0.36078431372549019" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                 <constraints>
                     <constraint firstAttribute="trailing" secondItem="4un-ug-kwF" secondAttribute="trailing" constant="8" id="2fm-Z5-h4X"/>
                     <constraint firstItem="4pt-8R-h0N" firstAttribute="top" secondItem="zit-43-4yA" secondAttribute="bottom" constant="8" id="4Wl-t4-wip"/>

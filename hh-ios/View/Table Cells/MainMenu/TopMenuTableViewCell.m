@@ -20,8 +20,10 @@
 //    self.backgroundColor = [UIColor colorWithRed:0.24 green:0.31 blue:0.36 alpha:1.0];
     
     // Round image
-    self.cellImage.layer.cornerRadius = 35.0;
+    self.cellImage.layer.cornerRadius = 16.0;
     self.cellImage.clipsToBounds = YES;
+    self.backgroundColor = [UIColor clearColor];
+    self.contentView.backgroundColor = [UIColor clearColor];
 }
 
 - (void)setTitle:(NSString *)title andSubtitle:(NSString *)subTitle andImage:(UIImage *)image {

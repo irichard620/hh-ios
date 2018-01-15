@@ -40,6 +40,28 @@
 		802F3FE01FFDA15A0006CA8B /* left-arrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 802F3FDF1FFDA15A0006CA8B /* left-arrow.png */; };
 		802F3FE41FFDA9F10006CA8B /* CreateHouseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 802F3FE21FFDA9F10006CA8B /* CreateHouseViewController.m */; };
 		802F3FE51FFDA9F10006CA8B /* CreateHouseViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 802F3FE31FFDA9F10006CA8B /* CreateHouseViewController.xib */; };
+		802F3FE91FFEAE9A0006CA8B /* CreateHouseViewController2.m in Sources */ = {isa = PBXBuildFile; fileRef = 802F3FE71FFEAE9A0006CA8B /* CreateHouseViewController2.m */; };
+		802F3FEA1FFEAE9A0006CA8B /* CreateHouseViewController2.xib in Resources */ = {isa = PBXBuildFile; fileRef = 802F3FE81FFEAE9A0006CA8B /* CreateHouseViewController2.xib */; };
+		802F3FEE2001D3A80006CA8B /* CompletedPaymentTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 802F3FEC2001D3A80006CA8B /* CompletedPaymentTableViewCell.m */; };
+		802F3FEF2001D3A80006CA8B /* CompletedPaymentTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 802F3FED2001D3A80006CA8B /* CompletedPaymentTableViewCell.xib */; };
+		802F3FF32002A5E20006CA8B /* ToDosViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 802F3FF12002A5E20006CA8B /* ToDosViewController.m */; };
+		802F3FF42002A5E20006CA8B /* ToDosViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 802F3FF22002A5E20006CA8B /* ToDosViewController.xib */; };
+		802F3FF62002A77E0006CA8B /* alexalogo.png in Resources */ = {isa = PBXBuildFile; fileRef = 802F3FF52002A77E0006CA8B /* alexalogo.png */; };
+		802F3FFA2002A78D0006CA8B /* AlexaViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 802F3FF82002A78D0006CA8B /* AlexaViewController.m */; };
+		802F3FFB2002A78D0006CA8B /* AlexaViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 802F3FF92002A78D0006CA8B /* AlexaViewController.xib */; };
+		802F40022007E7400006CA8B /* IncompleteToDoTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 802F40002007E7400006CA8B /* IncompleteToDoTableViewCell.m */; };
+		802F40032007E7400006CA8B /* IncompleteToDoTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 802F40012007E7400006CA8B /* IncompleteToDoTableViewCell.xib */; };
+		802F400C2007E76B0006CA8B /* CompletedToDoTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 802F400A2007E76B0006CA8B /* CompletedToDoTableViewCell.m */; };
+		802F400D2007E76B0006CA8B /* CompletedToDoTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 802F400B2007E76B0006CA8B /* CompletedToDoTableViewCell.xib */; };
+		802F4010200992B50006CA8B /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 802F400F200992B50006CA8B /* Images.xcassets */; };
+		802F4014200997D10006CA8B /* HHlogo120x120.png in Resources */ = {isa = PBXBuildFile; fileRef = 802F4013200997D10006CA8B /* HHlogo120x120.png */; };
+		802F4016200BE1DF0006CA8B /* HHlogostandalonewhite.png in Resources */ = {isa = PBXBuildFile; fileRef = 802F4015200BE1DE0006CA8B /* HHlogostandalonewhite.png */; };
+		802F4018200BE54E0006CA8B /* HHlogostandalonegrey.png in Resources */ = {isa = PBXBuildFile; fileRef = 802F4017200BE54D0006CA8B /* HHlogostandalonegrey.png */; };
+		802F401A200BEBC70006CA8B /* user-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 802F4019200BEBC60006CA8B /* user-icon.png */; };
+		802F401E200BF00B0006CA8B /* group-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 802F401D200BF00B0006CA8B /* group-icon.png */; };
+		802F4020200BF2E00006CA8B /* user-icon-grey.png in Resources */ = {isa = PBXBuildFile; fileRef = 802F401F200BF2E00006CA8B /* user-icon-grey.png */; };
+		802F4022200C16860006CA8B /* group-icon-white-background.png in Resources */ = {isa = PBXBuildFile; fileRef = 802F4021200C16860006CA8B /* group-icon-white-background.png */; };
+		802F4024200C1BB70006CA8B /* group-icon-black-background.png in Resources */ = {isa = PBXBuildFile; fileRef = 802F4023200C1BB70006CA8B /* group-icon-black-background.png */; };
 		8073C8351FC946CC007223CD /* ChatTimeTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8073C8331FC946CC007223CD /* ChatTimeTableViewCell.m */; };
 		8073C8361FC946CC007223CD /* ChatTimeTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8073C8341FC946CC007223CD /* ChatTimeTableViewCell.xib */; };
 		8073C8381FC95291007223CD /* ian_profile.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 8073C8371FC95291007223CD /* ian_profile.jpg */; };
@@ -165,6 +187,34 @@
 		802F3FE11FFDA9F10006CA8B /* CreateHouseViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CreateHouseViewController.h; sourceTree = "<group>"; };
 		802F3FE21FFDA9F10006CA8B /* CreateHouseViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CreateHouseViewController.m; sourceTree = "<group>"; };
 		802F3FE31FFDA9F10006CA8B /* CreateHouseViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CreateHouseViewController.xib; sourceTree = "<group>"; };
+		802F3FE61FFEAE9A0006CA8B /* CreateHouseViewController2.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CreateHouseViewController2.h; sourceTree = "<group>"; };
+		802F3FE71FFEAE9A0006CA8B /* CreateHouseViewController2.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CreateHouseViewController2.m; sourceTree = "<group>"; };
+		802F3FE81FFEAE9A0006CA8B /* CreateHouseViewController2.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CreateHouseViewController2.xib; sourceTree = "<group>"; };
+		802F3FEB2001D3A80006CA8B /* CompletedPaymentTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CompletedPaymentTableViewCell.h; sourceTree = "<group>"; };
+		802F3FEC2001D3A80006CA8B /* CompletedPaymentTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CompletedPaymentTableViewCell.m; sourceTree = "<group>"; };
+		802F3FED2001D3A80006CA8B /* CompletedPaymentTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CompletedPaymentTableViewCell.xib; sourceTree = "<group>"; };
+		802F3FF02002A5E20006CA8B /* ToDosViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ToDosViewController.h; sourceTree = "<group>"; };
+		802F3FF12002A5E20006CA8B /* ToDosViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ToDosViewController.m; sourceTree = "<group>"; };
+		802F3FF22002A5E20006CA8B /* ToDosViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ToDosViewController.xib; sourceTree = "<group>"; };
+		802F3FF52002A77E0006CA8B /* alexalogo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = alexalogo.png; sourceTree = "<group>"; };
+		802F3FF72002A78D0006CA8B /* AlexaViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AlexaViewController.h; sourceTree = "<group>"; };
+		802F3FF82002A78D0006CA8B /* AlexaViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AlexaViewController.m; sourceTree = "<group>"; };
+		802F3FF92002A78D0006CA8B /* AlexaViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AlexaViewController.xib; sourceTree = "<group>"; };
+		802F3FFF2007E7400006CA8B /* IncompleteToDoTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IncompleteToDoTableViewCell.h; sourceTree = "<group>"; };
+		802F40002007E7400006CA8B /* IncompleteToDoTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IncompleteToDoTableViewCell.m; sourceTree = "<group>"; };
+		802F40012007E7400006CA8B /* IncompleteToDoTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = IncompleteToDoTableViewCell.xib; sourceTree = "<group>"; };
+		802F40092007E76B0006CA8B /* CompletedToDoTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CompletedToDoTableViewCell.h; sourceTree = "<group>"; };
+		802F400A2007E76B0006CA8B /* CompletedToDoTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CompletedToDoTableViewCell.m; sourceTree = "<group>"; };
+		802F400B2007E76B0006CA8B /* CompletedToDoTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CompletedToDoTableViewCell.xib; sourceTree = "<group>"; };
+		802F400F200992B50006CA8B /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		802F4013200997D10006CA8B /* HHlogo120x120.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = HHlogo120x120.png; sourceTree = "<group>"; };
+		802F4015200BE1DE0006CA8B /* HHlogostandalonewhite.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = HHlogostandalonewhite.png; sourceTree = "<group>"; };
+		802F4017200BE54D0006CA8B /* HHlogostandalonegrey.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = HHlogostandalonegrey.png; sourceTree = "<group>"; };
+		802F4019200BEBC60006CA8B /* user-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "user-icon.png"; sourceTree = "<group>"; };
+		802F401D200BF00B0006CA8B /* group-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "group-icon.png"; sourceTree = "<group>"; };
+		802F401F200BF2E00006CA8B /* user-icon-grey.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "user-icon-grey.png"; sourceTree = "<group>"; };
+		802F4021200C16860006CA8B /* group-icon-white-background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "group-icon-white-background.png"; sourceTree = "<group>"; };
+		802F4023200C1BB70006CA8B /* group-icon-black-background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "group-icon-black-background.png"; sourceTree = "<group>"; };
 		8073C8321FC946CC007223CD /* ChatTimeTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatTimeTableViewCell.h; sourceTree = "<group>"; };
 		8073C8331FC946CC007223CD /* ChatTimeTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatTimeTableViewCell.m; sourceTree = "<group>"; };
 		8073C8341FC946CC007223CD /* ChatTimeTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ChatTimeTableViewCell.xib; sourceTree = "<group>"; };
@@ -318,6 +368,64 @@
 			path = SlackTextViewController;
 			sourceTree = "<group>";
 		};
+		802F3FFC20054CD50006CA8B /* Chat */ = {
+			isa = PBXGroup;
+			children = (
+				80F558C31FC91FBD001601B3 /* ChatMessageTableViewCell.h */,
+				80F558C41FC91FBD001601B3 /* ChatMessageTableViewCell.m */,
+				80F558C51FC91FBD001601B3 /* ChatMessageTableViewCell.xib */,
+				8073C8321FC946CC007223CD /* ChatTimeTableViewCell.h */,
+				8073C8331FC946CC007223CD /* ChatTimeTableViewCell.m */,
+				8073C8341FC946CC007223CD /* ChatTimeTableViewCell.xib */,
+				8073C83B1FC95491007223CD /* ChatActionTableViewCell.h */,
+				8073C83C1FC95491007223CD /* ChatActionTableViewCell.m */,
+				8073C83D1FC95491007223CD /* ChatActionTableViewCell.xib */,
+			);
+			path = Chat;
+			sourceTree = "<group>";
+		};
+		802F3FFD20054CDD0006CA8B /* Payments */ = {
+			isa = PBXGroup;
+			children = (
+				802F3FB71FF565CF0006CA8B /* RequestedPaymentTableViewCell.h */,
+				802F3FB81FF565CF0006CA8B /* RequestedPaymentTableViewCell.m */,
+				802F3FB91FF565CF0006CA8B /* RequestedPaymentTableViewCell.xib */,
+				802F3FBC1FF582970006CA8B /* IncompletedPaymentTableViewCell.h */,
+				802F3FBD1FF582970006CA8B /* IncompletedPaymentTableViewCell.m */,
+				802F3FBE1FF582970006CA8B /* IncompletedPaymentTableViewCell.xib */,
+				802F3FEB2001D3A80006CA8B /* CompletedPaymentTableViewCell.h */,
+				802F3FEC2001D3A80006CA8B /* CompletedPaymentTableViewCell.m */,
+				802F3FED2001D3A80006CA8B /* CompletedPaymentTableViewCell.xib */,
+			);
+			path = Payments;
+			sourceTree = "<group>";
+		};
+		802F3FFE20054CF00006CA8B /* Todos */ = {
+			isa = PBXGroup;
+			children = (
+				802F3FFF2007E7400006CA8B /* IncompleteToDoTableViewCell.h */,
+				802F40002007E7400006CA8B /* IncompleteToDoTableViewCell.m */,
+				802F40012007E7400006CA8B /* IncompleteToDoTableViewCell.xib */,
+				802F40092007E76B0006CA8B /* CompletedToDoTableViewCell.h */,
+				802F400A2007E76B0006CA8B /* CompletedToDoTableViewCell.m */,
+				802F400B2007E76B0006CA8B /* CompletedToDoTableViewCell.xib */,
+			);
+			path = Todos;
+			sourceTree = "<group>";
+		};
+		802F400E2007E9E00006CA8B /* MainMenu */ = {
+			isa = PBXGroup;
+			children = (
+				80F558931FBAD142001601B3 /* MenuTableViewCell.h */,
+				80F558941FBAD142001601B3 /* MenuTableViewCell.m */,
+				80F558951FBAD142001601B3 /* MenuTableViewCell.xib */,
+				80F558981FBAD852001601B3 /* TopMenuTableViewCell.h */,
+				80F558991FBAD852001601B3 /* TopMenuTableViewCell.m */,
+				80F5589A1FBAD852001601B3 /* TopMenuTableViewCell.xib */,
+			);
+			path = MainMenu;
+			sourceTree = "<group>";
+		};
 		80F5581B1FBAA541001601B3 = {
 			isa = PBXGroup;
 			children = (
@@ -350,6 +458,7 @@
 				80F5586A1FBAB1E7001601B3 /* Assets */,
 				80F5586B1FBAB1E7001601B3 /* View */,
 				80F558631FBAB1C1001601B3 /* Library */,
+				802F400F200992B50006CA8B /* Images.xcassets */,
 			);
 			path = "hh-ios";
 			sourceTree = "<group>";
@@ -456,6 +565,12 @@
 				802F3FB21FCA3BA10006CA8B /* PaymentsViewController.h */,
 				802F3FB31FCA3BA10006CA8B /* PaymentsViewController.m */,
 				802F3FB41FCA3BA10006CA8B /* PaymentsViewController.xib */,
+				802F3FF02002A5E20006CA8B /* ToDosViewController.h */,
+				802F3FF12002A5E20006CA8B /* ToDosViewController.m */,
+				802F3FF22002A5E20006CA8B /* ToDosViewController.xib */,
+				802F3FF72002A78D0006CA8B /* AlexaViewController.h */,
+				802F3FF82002A78D0006CA8B /* AlexaViewController.m */,
+				802F3FF92002A78D0006CA8B /* AlexaViewController.xib */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -463,6 +578,15 @@
 		80F558831FBACADE001601B3 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				802F4023200C1BB70006CA8B /* group-icon-black-background.png */,
+				802F4021200C16860006CA8B /* group-icon-white-background.png */,
+				802F401F200BF2E00006CA8B /* user-icon-grey.png */,
+				802F401D200BF00B0006CA8B /* group-icon.png */,
+				802F4019200BEBC60006CA8B /* user-icon.png */,
+				802F4017200BE54D0006CA8B /* HHlogostandalonegrey.png */,
+				802F4015200BE1DE0006CA8B /* HHlogostandalonewhite.png */,
+				802F4013200997D10006CA8B /* HHlogo120x120.png */,
+				802F3FF52002A77E0006CA8B /* alexalogo.png */,
 				802F3FDF1FFDA15A0006CA8B /* left-arrow.png */,
 				8073C8421FC957C0007223CD /* tag_black.png */,
 				8073C8401FC9556D007223CD /* check_black.png */,
@@ -489,30 +613,13 @@
 		80F558921FBAD12B001601B3 /* Table Cells */ = {
 			isa = PBXGroup;
 			children = (
-				80F558931FBAD142001601B3 /* MenuTableViewCell.h */,
-				80F558941FBAD142001601B3 /* MenuTableViewCell.m */,
-				80F558951FBAD142001601B3 /* MenuTableViewCell.xib */,
-				80F558981FBAD852001601B3 /* TopMenuTableViewCell.h */,
-				80F558991FBAD852001601B3 /* TopMenuTableViewCell.m */,
-				80F5589A1FBAD852001601B3 /* TopMenuTableViewCell.xib */,
+				802F400E2007E9E00006CA8B /* MainMenu */,
+				802F3FFE20054CF00006CA8B /* Todos */,
+				802F3FFD20054CDD0006CA8B /* Payments */,
+				802F3FFC20054CD50006CA8B /* Chat */,
 				80F558B61FC7F395001601B3 /* UserHomeTableViewCell.h */,
 				80F558B71FC7F395001601B3 /* UserHomeTableViewCell.m */,
 				80F558B81FC7F395001601B3 /* UserHomeTableViewCell.xib */,
-				80F558C31FC91FBD001601B3 /* ChatMessageTableViewCell.h */,
-				80F558C41FC91FBD001601B3 /* ChatMessageTableViewCell.m */,
-				80F558C51FC91FBD001601B3 /* ChatMessageTableViewCell.xib */,
-				8073C8321FC946CC007223CD /* ChatTimeTableViewCell.h */,
-				8073C8331FC946CC007223CD /* ChatTimeTableViewCell.m */,
-				8073C8341FC946CC007223CD /* ChatTimeTableViewCell.xib */,
-				8073C83B1FC95491007223CD /* ChatActionTableViewCell.h */,
-				8073C83C1FC95491007223CD /* ChatActionTableViewCell.m */,
-				8073C83D1FC95491007223CD /* ChatActionTableViewCell.xib */,
-				802F3FB71FF565CF0006CA8B /* RequestedPaymentTableViewCell.h */,
-				802F3FB81FF565CF0006CA8B /* RequestedPaymentTableViewCell.m */,
-				802F3FB91FF565CF0006CA8B /* RequestedPaymentTableViewCell.xib */,
-				802F3FBC1FF582970006CA8B /* IncompletedPaymentTableViewCell.h */,
-				802F3FBD1FF582970006CA8B /* IncompletedPaymentTableViewCell.m */,
-				802F3FBE1FF582970006CA8B /* IncompletedPaymentTableViewCell.xib */,
 			);
 			path = "Table Cells";
 			sourceTree = "<group>";
@@ -535,6 +642,9 @@
 				802F3FE11FFDA9F10006CA8B /* CreateHouseViewController.h */,
 				802F3FE21FFDA9F10006CA8B /* CreateHouseViewController.m */,
 				802F3FE31FFDA9F10006CA8B /* CreateHouseViewController.xib */,
+				802F3FE61FFEAE9A0006CA8B /* CreateHouseViewController2.h */,
+				802F3FE71FFEAE9A0006CA8B /* CreateHouseViewController2.m */,
+				802F3FE81FFEAE9A0006CA8B /* CreateHouseViewController2.xib */,
 			);
 			path = Authentication;
 			sourceTree = "<group>";
@@ -658,9 +768,11 @@
 			files = (
 				8073C8431FC957C0007223CD /* tag_black.png in Resources */,
 				802F3FE51FFDA9F10006CA8B /* CreateHouseViewController.xib in Resources */,
+				802F401E200BF00B0006CA8B /* group-icon.png in Resources */,
 				80F5589C1FBAD852001601B3 /* TopMenuTableViewCell.xib in Resources */,
 				802F3FD91FFD90730006CA8B /* LoginViewController.xib in Resources */,
 				8073C83F1FC95491007223CD /* ChatActionTableViewCell.xib in Resources */,
+				802F401A200BEBC70006CA8B /* user-icon.png in Resources */,
 				80F558891FBACB41001601B3 /* tag.png in Resources */,
 				80F558861FBACADE001601B3 /* home.png in Resources */,
 				8073C8411FC9556D007223CD /* check_black.png in Resources */,
@@ -668,9 +780,13 @@
 				80F558791FBAB5FA001601B3 /* MenuViewController.xib in Resources */,
 				80F558BC1FC7F748001601B3 /* grid.png in Resources */,
 				80F558C01FC7FA86001601B3 /* HH_user_placeholder.png in Resources */,
+				802F3FF62002A77E0006CA8B /* alexalogo.png in Resources */,
+				802F3FEA1FFEAE9A0006CA8B /* CreateHouseViewController2.xib in Resources */,
+				802F4020200BF2E00006CA8B /* user-icon-grey.png in Resources */,
 				80F558BE1FC7F7AF001601B3 /* home_black.png in Resources */,
 				80F5588D1FBACBAC001601B3 /* bar-chart.png in Resources */,
 				802F3FDE1FFD9EF70006CA8B /* JoinHouseViewController.xib in Resources */,
+				802F4022200C16860006CA8B /* group-icon-white-background.png in Resources */,
 				80F558871FBACADE001601B3 /* menu.png in Resources */,
 				80F558B11FC544CB001601B3 /* UserHomeViewController.xib in Resources */,
 				80F558B31FC631FD001601B3 /* add.png in Resources */,
@@ -679,6 +795,10 @@
 				802F3FC01FF582970006CA8B /* IncompletedPaymentTableViewCell.xib in Resources */,
 				8073C83A1FC9537E007223CD /* ian_profile2.jpg in Resources */,
 				8073C8381FC95291007223CD /* ian_profile.jpg in Resources */,
+				802F4016200BE1DF0006CA8B /* HHlogostandalonewhite.png in Resources */,
+				802F3FFB2002A78D0006CA8B /* AlexaViewController.xib in Resources */,
+				802F4014200997D10006CA8B /* HHlogo120x120.png in Resources */,
+				802F3FF42002A5E20006CA8B /* ToDosViewController.xib in Resources */,
 				8073C8361FC946CC007223CD /* ChatTimeTableViewCell.xib in Resources */,
 				80F5588F1FBACBDA001601B3 /* settings.png in Resources */,
 				802F3FBB1FF565CF0006CA8B /* RequestedPaymentTableViewCell.xib in Resources */,
@@ -686,11 +806,17 @@
 				80F558971FBAD142001601B3 /* MenuTableViewCell.xib in Resources */,
 				80F5587E1FBABACF001601B3 /* ChatViewController.xib in Resources */,
 				80F558371FBAA541001601B3 /* LaunchScreen.storyboard in Resources */,
+				802F4024200C1BB70006CA8B /* group-icon-black-background.png in Resources */,
 				802F3FE01FFDA15A0006CA8B /* left-arrow.png in Resources */,
 				802F3FB61FCA3BA10006CA8B /* PaymentsViewController.xib in Resources */,
 				80F558BA1FC7F395001601B3 /* UserHomeTableViewCell.xib in Resources */,
+				802F4010200992B50006CA8B /* Images.xcassets in Resources */,
+				802F4018200BE54E0006CA8B /* HHlogostandalonegrey.png in Resources */,
 				80F558AB1FC54228001601B3 /* exithouse.png in Resources */,
 				802F3FD41FFAF0D50006CA8B /* SignupViewController.xib in Resources */,
+				802F40032007E7400006CA8B /* IncompleteToDoTableViewCell.xib in Resources */,
+				802F400D2007E76B0006CA8B /* CompletedToDoTableViewCell.xib in Resources */,
+				802F3FEF2001D3A80006CA8B /* CompletedPaymentTableViewCell.xib in Resources */,
 				80F558C71FC91FBD001601B3 /* ChatMessageTableViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -843,10 +969,12 @@
 				80F558C61FC91FBD001601B3 /* ChatMessageTableViewCell.m in Sources */,
 				802F3FB01FC9FE110006CA8B /* SLKTextInput+Implementation.m in Sources */,
 				80F558711FBAB280001601B3 /* AppDelegate.m in Sources */,
+				802F3FF32002A5E20006CA8B /* ToDosViewController.m in Sources */,
 				802F3FAB1FC9FE110006CA8B /* SLKTextView+SLKAdditions.m in Sources */,
 				80F558731FBAB280001601B3 /* main.m in Sources */,
 				802F3FD31FFAF0D50006CA8B /* SignupViewController.m in Sources */,
 				802F3FCF1FF99E160006CA8B /* AuthenticationManager.m in Sources */,
+				802F3FE91FFEAE9A0006CA8B /* CreateHouseViewController2.m in Sources */,
 				802F3FAE1FC9FE110006CA8B /* UIResponder+SLKAdditions.m in Sources */,
 				80F558B01FC544CB001601B3 /* UserHomeViewController.m in Sources */,
 				80F5587D1FBABACF001601B3 /* ChatViewController.m in Sources */,
@@ -858,8 +986,12 @@
 				802F3FBA1FF565CF0006CA8B /* RequestedPaymentTableViewCell.m in Sources */,
 				80F558A11FBB938B001601B3 /* ViewHelpers.m in Sources */,
 				802F3FA81FC9FE110006CA8B /* SLKTextInputbar.m in Sources */,
+				802F3FFA2002A78D0006CA8B /* AlexaViewController.m in Sources */,
 				802F3FAF1FC9FE110006CA8B /* SLKTypingIndicatorView.m in Sources */,
+				802F400C2007E76B0006CA8B /* CompletedToDoTableViewCell.m in Sources */,
+				802F3FEE2001D3A80006CA8B /* CompletedPaymentTableViewCell.m in Sources */,
 				802F3FD81FFD90730006CA8B /* LoginViewController.m in Sources */,
+				802F40022007E7400006CA8B /* IncompleteToDoTableViewCell.m in Sources */,
 				80F558781FBAB5FA001601B3 /* MenuViewController.m in Sources */,
 				802F3FAC1FC9FE110006CA8B /* SLKTextView.m in Sources */,
 				802F3FDD1FFD9EF70006CA8B /* JoinHouseViewController.m in Sources */,
@@ -1025,6 +1157,8 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 5BF680A03BCCA0C24E844526 /* Pods-hh-ios.debug.xcconfig */;
 			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = "";
@@ -1041,6 +1175,8 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 44DE0D06726054104C322CDE /* Pods-hh-ios.release.xcconfig */;
 			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = "";

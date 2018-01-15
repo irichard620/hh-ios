@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="AlexaViewController">
+            <connections>
+                <outlet property="setupButton" destination="jKa-RW-xE9" id="H5t-ow-xyl"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="alexalogo.png" translatesAutoresizingMaskIntoConstraints="NO" id="BE6-dz-6kV">
+                    <rect key="frame" x="50" y="-10" width="275" height="275"/>
+                    <constraints>
+                        <constraint firstAttribute="width" secondItem="BE6-dz-6kV" secondAttribute="height" multiplier="1:1" id="mCJ-F0-PRN"/>
+                    </constraints>
+                </imageView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Alexa is a smart personal assistant that is compatible with Honest Housemate. Click the button below to get set up!" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jNp-jN-v2z">
+                    <rect key="frame" x="16" y="273" width="343" height="68.5"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="19"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jKa-RW-xE9">
+                    <rect key="frame" x="50" y="604" width="275" height="43"/>
+                    <color key="backgroundColor" red="0.0" green="0.58823529411764708" blue="0.53333333333333333" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="43" id="zJe-Dq-f3V"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                    <state key="normal" title="Set up Alexa">
+                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                </button>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="Q5M-cg-NOt" firstAttribute="bottom" secondItem="jKa-RW-xE9" secondAttribute="bottom" constant="20" id="0GB-jF-j9m"/>
+                <constraint firstItem="Q5M-cg-NOt" firstAttribute="trailing" secondItem="jKa-RW-xE9" secondAttribute="trailing" constant="50" id="5KI-If-3RL"/>
+                <constraint firstItem="Q5M-cg-NOt" firstAttribute="trailing" secondItem="BE6-dz-6kV" secondAttribute="trailing" constant="50" id="DXQ-zi-65o"/>
+                <constraint firstItem="BE6-dz-6kV" firstAttribute="top" secondItem="Q5M-cg-NOt" secondAttribute="top" constant="-30" id="H3I-Zt-OT4"/>
+                <constraint firstItem="jNp-jN-v2z" firstAttribute="leading" secondItem="Q5M-cg-NOt" secondAttribute="leading" constant="16" id="NND-Jh-IQh"/>
+                <constraint firstItem="Q5M-cg-NOt" firstAttribute="trailing" secondItem="jNp-jN-v2z" secondAttribute="trailing" constant="16" id="brL-b2-60i"/>
+                <constraint firstItem="BE6-dz-6kV" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="cUu-i6-gls"/>
+                <constraint firstItem="BE6-dz-6kV" firstAttribute="leading" secondItem="Q5M-cg-NOt" secondAttribute="leading" constant="50" id="cYt-sg-YgC"/>
+                <constraint firstItem="jNp-jN-v2z" firstAttribute="top" secondItem="BE6-dz-6kV" secondAttribute="bottom" constant="8" id="ek3-bj-uOF"/>
+                <constraint firstItem="jKa-RW-xE9" firstAttribute="leading" secondItem="Q5M-cg-NOt" secondAttribute="leading" constant="50" id="pDf-jv-bxC"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="Q5M-cg-NOt"/>
+            <point key="canvasLocation" x="39.5" y="104.5"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="alexalogo.png" width="265" height="265"/>
+    </resources>
+</document>

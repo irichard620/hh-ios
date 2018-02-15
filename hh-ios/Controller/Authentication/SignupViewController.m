@@ -10,6 +10,11 @@
 #import "LoginViewController.h"
 #import "UserHomeViewController.h"
 #import "ViewHelpers.h"
+#import "AuthenticationManager.h"
+#import "NSString+Security.h"
+
+#define TRIM(string) [string stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]]
+
 
 @interface SignupViewController ()
 
@@ -93,8 +98,30 @@
 }
 
 - (void)createAccountButtonClicked:(id)sender {
-    UserHomeViewController *userHomeVC = [[UserHomeViewController alloc]initWithNibName:@"UserHomeViewController" bundle:nil];
-    [self.navigationController pushViewController:userHomeVC animated:YES];
+    // Get fields and trim
+    NSString *name = TRIM(self.nameField.text);
+    NSString *email = TRIM(self.emailField.text);
+    NSString *password = TRIM(self.passwordField.text);
+
+    if ([name isEqualToString:@""]) {
+        [self presentViewController:[ViewHelpers createErrorAlertWithTitle:@"Missing Name" andDescription:@"Please enter a full name for your user."] animated:YES completion:nil];
+    } else if (![email isValidEmail]) {
+        [self presentViewController:[ViewHelpers createErrorAlertWithTitle:@"Email Invalid" andDescription:@"Please enter a valid email."] animated:YES completion:nil];
+    } else if (password.length < 6) {
+        [self presentViewController:[ViewHelpers createErrorAlertWithTitle:@"Password Invalid" andDescription:@"The password must be 6 or more characters."] animated:YES completion:nil];
+    } else {
+        [AuthenticationManager createNewUserWithEmail:email andPassword:password andFullName:name withCompletion:^(User *user, NSString *error) {
+            if (!error) {
+                UserHomeViewController *userHomeVC = [[UserHomeViewController alloc]initWithNibName:@"UserHomeViewController" bundle:nil];
+                userHomeVC.user = user;
+                [self.navigationController pushViewController:userHomeVC animated:YES];
+            } else {
+                UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Error" message:error preferredStyle:UIAlertControllerStyleAlert];
+                [alert addAction:[UIAlertAction actionWithTitle:@"Ok" style:UIAlertActionStyleCancel handler:nil]];
+                [self presentViewController:alert animated:YES completion:nil];
+            }
+        }];
+    }
 }
 
 @end

@@ -13,6 +13,7 @@
 @property (weak, nonatomic) IBOutlet UIImageView *iconImage;
 @property (weak, nonatomic) IBOutlet UILabel *iconLabel;
 
+- (void)setNoImageCellWithText:(NSString *)title;
 - (void)setTitle:(NSString *)title andImage:(UIImage *)image shouldCurve:(BOOL)shouldCurve;
 
 @end

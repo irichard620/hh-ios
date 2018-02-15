@@ -13,6 +13,9 @@
 // unique ID of the user
 @property (strong, nonatomic) NSString *_id;
 
+// Pic
+@property (nonatomic) NSString *avatarLink;
+
 // Access token
 @property (strong, nonatomic) NSString *accessToken;
 @property (strong, nonatomic) NSString *refreshToken;
@@ -23,6 +26,6 @@
 // Display name
 @property (strong, nonatomic) NSString *fullName;
 
-
++ (User *) deserializeUser: (NSDictionary *)userJson;
 
 @end

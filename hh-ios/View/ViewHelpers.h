@@ -17,5 +17,7 @@
 + (void)roundCorners:(UIView *)view;
 + (UIBarButtonItem *)createBackButtonWithTarget:(UIViewController *)target andSelectorName:(NSString *)selectorString;
 + (UIBarButtonItem *)createMenuButtonWithTarget:(SWRevealViewController *)target;
++ (UIBarButtonItem *)createRightButtonWithTarget:(UIViewController *)target andSelectorName:(NSString *)selectorString;
++ (UIAlertController *)createErrorAlertWithTitle:(NSString *)title andDescription:(NSString *)description;
 
 @end

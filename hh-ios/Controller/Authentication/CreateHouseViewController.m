@@ -10,6 +10,8 @@
 #import "CreateHouseViewController2.h"
 #import "ViewHelpers.h"
 
+#define TRIM(string) [string stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]]
+
 @interface CreateHouseViewController ()
 
 @end
@@ -45,8 +47,16 @@
 }
 
 - (void)continueButtonClicked:(id)sender {
-    CreateHouseViewController2 *createHouse2VC = [[CreateHouseViewController2 alloc]initWithNibName:@"CreateHouseViewController2" bundle:nil];
-    [self.navigationController pushViewController:createHouse2VC animated:YES];
+    NSString *displayName = TRIM(self.houseNicknameField.text);
+    
+    if ([displayName isEqualToString:@""]) {
+        [self presentViewController:[ViewHelpers createErrorAlertWithTitle:@"Missing Display Name" andDescription:@"Please enter a display name for your new house."] animated:YES completion:nil];
+    } else {
+        CreateHouseViewController2 *createHouse2VC = [[CreateHouseViewController2 alloc]initWithNibName:@"CreateHouseViewController2" bundle:nil];
+        createHouse2VC.displayName = displayName;
+        createHouse2VC.user = self.user;
+        [self.navigationController pushViewController:createHouse2VC animated:YES];
+    }
 }
 
 -(void)singleTap:(UITapGestureRecognizer *)tapGestureRecognizer {

@@ -111,17 +111,17 @@
         if (indexPath.row == 2) {
             [cell setName:@"Ian Richard" andMessage:@"Hey, we need to clean the bathroom today." andProfileImage:[UIImage imageNamed:@"ian_profile.jpg"] showMarker:YES];
         } else if (indexPath.row == 3) {
-            [cell setName:@"Brian Cox" andMessage:@"Ok, sounds good. 2pm?" andProfileImage:[UIImage imageNamed:@"user-icon-grey.png"] showMarker:NO];
+            [cell setName:@"Brian Cox" andMessage:@"Ok, sounds good. 2pm?" andProfileImage:[UIImage imageNamed:@"ian_profile2.jpg"] showMarker:NO];
         } else if (indexPath.row == 5) {
-            [cell setName:@"Brian Cox" andMessage:@"Hey, Trader Joe's today?" andProfileImage:[UIImage imageNamed:@"user-icon-grey.png"] showMarker:NO];
+            [cell setName:@"Brian Cox" andMessage:@"Hey, Trader Joe's today?" andProfileImage:[UIImage imageNamed:@"ian_profile2.jpg"] showMarker:NO];
         } else if (indexPath.row == 6) {
             [cell setName:@"Ian Richard" andMessage:@"Yeah. I'm in class till 5. Would 5:30 work?" andProfileImage:[UIImage imageNamed:@"ian_profile.jpg"] showMarker:YES];
         } else if (indexPath.row == 7) {
-            [cell setName:@"Brian Cox" andMessage:@"Yeah, i'll meet you at the house" andProfileImage:[UIImage imageNamed:@"user-icon-grey.png"] showMarker:NO];
+            [cell setName:@"Brian Cox" andMessage:@"Yeah, i'll meet you at the house" andProfileImage:[UIImage imageNamed:@"ian_profile2.jpg"] showMarker:NO];
         } else if (indexPath.row == 9) {
             [cell setName:@"Ian Richard" andMessage:@"Let's get a new front door mat" andProfileImage:[UIImage imageNamed:@"ian_profile.jpg"] showMarker:YES];
         } else if (indexPath.row == 10) {
-            [cell setName:@"Brian Cox" andMessage:@"Sure, as long as it's not more than 20 dollars" andProfileImage:[UIImage imageNamed:@"user-icon-grey.png"] showMarker:NO];
+            [cell setName:@"Brian Cox" andMessage:@"Sure, as long as it's not more than 20 dollars" andProfileImage:[UIImage imageNamed:@"ian_profile2.jpg"] showMarker:NO];
         } else if (indexPath.row == 11) {
             [cell setName:@"Ian Richard" andMessage:@"Ok I found one, charging you 10 dollars" andProfileImage:[UIImage imageNamed:@"ian_profile.jpg"] showMarker:YES];
         }

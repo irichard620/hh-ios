@@ -175,6 +175,7 @@
             // Create
             CreateHouseViewController *createHouseVC = [[CreateHouseViewController alloc]initWithNibName:@"CreateHouseViewController" bundle:nil];
             self.navBarShouldDissapear = NO;
+            createHouseVC.user = self.user;
             [self.navigationController pushViewController:createHouseVC animated:YES];
         } else {
             // Join

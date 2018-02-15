@@ -8,7 +8,7 @@ target 'hh-ios' do
   # use_frameworks!
 
   # Pods for hh-ios
-  
+  pod 'Unirest', '~> 1.1.4'
 
   target 'hh-iosTests' do
     inherit! :search_paths

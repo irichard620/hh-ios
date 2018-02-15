@@ -7,8 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "User.h"
 
 @interface UserHomeViewController : UIViewController <UITableViewDelegate, UITableViewDataSource>
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
+
+@property(nonatomic) User *user;
+
 @end

@@ -10,4 +10,15 @@
 
 @implementation User
 
++ (User *)deserializeUser:(NSDictionary *)userJson {
+    User *user = [[User alloc]init];
+    user._id = userJson[@"id"];
+    user.avatarLink = userJson[@"avatarLink"];
+    user.email = userJson[@"email"];
+    user.fullName = userJson[@"fullName"];
+    user.accessToken = userJson[@"access_token"];
+    
+    return user;
+}
+
 @end

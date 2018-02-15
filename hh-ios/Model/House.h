@@ -22,12 +22,6 @@
 // Name for house that must be entered to join
 @property (strong, nonatomic) NSString *uniqueName;
 
-// Invited
-@property (strong, nonatomic) NSArray *invited;
-
-// Members
-@property (strong, nonatomic) NSArray *members;
-
 + (House *) deserializeHouse: (NSDictionary *)houseJson;
 
 @end

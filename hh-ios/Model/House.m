@@ -13,9 +13,9 @@
 + (House *)deserializeHouse:(NSDictionary *)houseJson {
     House *house = [[House alloc]init];
     house._id = houseJson[@"_id"];
-    house.avatarLink = houseJson[@"avatarLink"];
-    house.displayName = houseJson[@"displayName"];
-    house.uniqueName = houseJson[@"uniqueName"];
+    house.avatarLink = houseJson[@"avatar_link"];
+    house.displayName = houseJson[@"display_name"];
+    house.uniqueName = houseJson[@"unique_name"];
     
     return house;
 }

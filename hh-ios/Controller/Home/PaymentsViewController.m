@@ -54,6 +54,7 @@
     
     // Create menu button
     self.navigationItem.leftBarButtonItem = [ViewHelpers createMenuButtonWithTarget:self.revealViewController];
+    self.navigationItem.rightBarButtonItem = [ViewHelpers createRightButtonWithTarget:self andSelectorName:@"addButtonClicked:"];
     
     // Setup table
     self.paymentTableView.dataSource = self;
@@ -79,10 +80,10 @@
             return 2;
         } else if (self.segment.selectedSegmentIndex == 1) {
 //            return self.incompleteArray.count;
-            return 2;
+            return 1;
         } else {
 //            return self.pastArray.count;
-            return 2;
+            return 5;
         }
     }
 }
@@ -97,7 +98,12 @@
             cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
         }
         
-        [cell setName:@"Brian Cox" andMessage:@"Door handle" andProfileImage:[UIImage imageNamed:@"ian_profile.jpg"] andTime:@"2h" andAmount:6.00];
+        if (indexPath.row == 0) {
+            [cell setName:@"Brian Cox" andMessage:@"Door handle" andProfileImage:[UIImage imageNamed:@"ian_profile2.jpg"] andTime:@"2h" andAmount:6.00];
+        } else {
+            [cell setName:@"Brian Cox" andMessage:@"Nicole's bday decorations" andProfileImage:[UIImage imageNamed:@"ian_profile2.jpg"] andTime:@"1d" andAmount:20.00];
+        }
+
         
         return cell;
     } else if (self.segment.selectedSegmentIndex == 1) {
@@ -109,7 +115,7 @@
             cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
         }
         
-        [cell setName:@"Brian Cox" andMessage:@"US Flag" andProfileImage:[UIImage imageNamed:@"ian_profile.jpg"] andTime:@"1d" andAmount:10.00];
+        [cell setName:@"Brian Cox" andMessage:@"US Flag" andProfileImage:[UIImage imageNamed:@"ian_profile2.jpg"] andTime:@"1d" andAmount:10.00];
         
         return cell;
     } else {
@@ -121,7 +127,17 @@
             cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
         }
         
-        [cell setName:@"Brian Cox" andMessage:@"Drinks" andProfileImage:[UIImage imageNamed:@"ian_profile.jpg"] andTime:@"5d" andAmount:20.00 andIsNegative:YES];
+        if (indexPath.row == 0) {
+            [cell setName:@"Brian Cox" andMessage:@"Saturday night" andProfileImage:[UIImage imageNamed:@"ian_profile2.jpg"] andTime:@"1h" andAmount:20.00 andIsNegative:YES];
+        } else if (indexPath.row == 1) {
+            [cell setName:@"Brian Cox" andMessage:@"Front door mat" andProfileImage:[UIImage imageNamed:@"ian_profile.jpg"] andTime:@"2h" andAmount:10.00 andIsNegative:NO];
+        } else if (indexPath.row == 2) {
+            [cell setName:@"Brian Cox" andMessage:@"Speaker repair" andProfileImage:[UIImage imageNamed:@"ian_profile2.jpg"] andTime:@"3d" andAmount:40.00 andIsNegative:YES];
+        } else if (indexPath.row == 3) {
+            [cell setName:@"Brian Cox" andMessage:@"Electricity for Jan." andProfileImage:[UIImage imageNamed:@"ian_profile.jpg"] andTime:@"6d" andAmount:25.00 andIsNegative:NO];
+        } else {
+            [cell setName:@"Brian Cox" andMessage:@"Paper Towels" andProfileImage:[UIImage imageNamed:@"ian_profile2.jpg"] andTime:@"8d" andAmount:8.00 andIsNegative:YES];
+        }
         
         return cell;
     }
@@ -160,6 +176,9 @@
 
 - (void)segmentOptionChanged:(id)sender {
     [self.paymentTableView reloadData];
+}
+
+- (void)addButtonClicked:(id)sender {
 }
 
 @end

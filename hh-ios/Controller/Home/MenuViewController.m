@@ -14,6 +14,8 @@
 #import "PaymentsViewController.h"
 #import "AlexaViewController.h"
 #import "ToDosViewController.h"
+#import "ResidentsViewController.h"
+#import "HouseEditViewController.h"
 
 @interface MenuViewController ()
 
@@ -59,7 +61,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     // 7 rows - house page, home (chat), payments, to-dos, stats, Alexa, settings
-    return 6;
+    return 7;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -96,8 +98,10 @@
         } else if (indexPath.row == 3) {
             [cell setTitle:@"To-Dos" andImage:[UIImage imageNamed:@"check.png"] changeColor:NO];
         } else if (indexPath.row == 4) {
-            [cell setTitle:@"Connect to Alexa" andImage:[UIImage imageNamed:@"share.png"] changeColor:NO];
+            [cell setTitle:@"Residents" andImage:[UIImage imageNamed:@"manage_residents.png"] changeColor:NO];
         } else if (indexPath.row == 5) {
+            [cell setTitle:@"Connect to Alexa" andImage:[UIImage imageNamed:@"share.png"] changeColor:NO];
+        } else if (indexPath.row == 6) {
             [cell setTitle:@"Settings" andImage:[UIImage imageNamed:@"settings.png"] changeColor:NO];
         }
         return cell;
@@ -129,6 +133,10 @@
     if (indexPath.row == 0 && !(self.currentIndex == 0)) {
         // House page
         [[self.menuTableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:1 inSection:0]]setSelected:NO];
+        HouseEditViewController *editVC = [[HouseEditViewController alloc]initWithNibName:@"HouseEditViewController" bundle:nil];
+        UINavigationController *navVC = [[UINavigationController alloc]initWithRootViewController:editVC];
+        [self.revealViewController pushFrontViewController:navVC animated:YES];
+        self.currentIndex = 0;
     } else if (indexPath.row == 1 && !(self.currentIndex == 1)) {
         // Home - chat
         ChatViewController *chatVC = [[ChatViewController alloc]initWithNibName:@"ChatViewController" bundle:nil];
@@ -152,11 +160,18 @@
     } else if (indexPath.row == 4 && !(self.currentIndex == 4)) {
         // Alexa
         [[self.menuTableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:1 inSection:0]]setSelected:NO];
+        ResidentsViewController *residentVC = [[ResidentsViewController alloc]initWithNibName:@"ResidentsViewController" bundle:nil];
+        UINavigationController *navVC = [[UINavigationController alloc]initWithRootViewController:residentVC];
+        [self.revealViewController pushFrontViewController:navVC animated:YES];
+        self.currentIndex = 4;
+    }else if (indexPath.row == 5 && !(self.currentIndex == 5)) {
+        // Alexa
+        [[self.menuTableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:1 inSection:0]]setSelected:NO];
         AlexaViewController *alexaVC = [[AlexaViewController alloc]initWithNibName:@"AlexaViewController" bundle:nil];
         UINavigationController *navVC = [[UINavigationController alloc]initWithRootViewController:alexaVC];
         [self.revealViewController pushFrontViewController:navVC animated:YES];
-        self.currentIndex = 4;
-    } else if (indexPath.row == 5 && !(self.currentIndex == 5)) {
+        self.currentIndex = 5;
+    } else if (indexPath.row == 6 && !(self.currentIndex == 6)) {
         // Settings
         [[self.menuTableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:1 inSection:0]]setSelected:NO];
     }

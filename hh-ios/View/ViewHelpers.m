@@ -70,4 +70,26 @@
     return menuBarButton;
 }
 
++ (UIBarButtonItem *)createRightButtonWithTarget:(UIViewController *)target andSelectorName:(NSString *)selectorString {
+    UIImage* buttonImage = [UIImage imageNamed:@"add_white.png"];
+    UIButton *button = [[UIButton alloc] init];
+    [button setBackgroundImage:buttonImage forState:UIControlStateNormal];
+    NSDictionary *views = @{@"button":button};
+    [button setFrame:CGRectMake(15,5, 25,25)];
+    NSArray *heightConstraint = [NSLayoutConstraint constraintsWithVisualFormat:@"V:[button(25)]" options:0 metrics:nil views:views];
+    NSArray *widthConstraint = [NSLayoutConstraint constraintsWithVisualFormat:@"H:[button(25)]" options:0 metrics:nil views:views];
+    [button addConstraints:heightConstraint];
+    [button addConstraints:widthConstraint];
+    SEL selector = NSSelectorFromString(selectorString);
+    [button addTarget:target action:selector forControlEvents:UIControlEventTouchUpInside];
+    UIBarButtonItem *menuBarButton =[[UIBarButtonItem alloc] initWithCustomView:button];
+    return menuBarButton;
+}
+
++ (UIAlertController *)createErrorAlertWithTitle:(NSString *)title andDescription:(NSString *)description {
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:title message:description preferredStyle:UIAlertControllerStyleAlert];
+    [alert addAction:[UIAlertAction actionWithTitle:@"Ok" style:UIAlertActionStyleCancel handler:nil]];
+    return alert;
+}
+
 @end

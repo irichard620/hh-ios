@@ -15,7 +15,6 @@
 @interface ToDosViewController ()
 
 @property(nonatomic) NSMutableArray *incompleteArray;
-@property(nonatomic) NSMutableArray *assignedToMeArray;
 @property(nonatomic) NSMutableArray *pastArray;
 @property(nonatomic) UIView *oldHeaderView;
 
@@ -30,7 +29,6 @@
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        _assignedToMeArray = [[NSMutableArray alloc]init];
         _incompleteArray = [[NSMutableArray alloc]init];
         _pastArray = [[NSMutableArray alloc]init];
         _needsReloadHeader = YES;
@@ -53,6 +51,7 @@
     
     // Create menu button
     self.navigationItem.leftBarButtonItem = [ViewHelpers createMenuButtonWithTarget:self.revealViewController];
+    self.navigationItem.rightBarButtonItem = [ViewHelpers createRightButtonWithTarget:self andSelectorName:@"addButtonClicked:"];
     
     // Setup table
     self.todosTableView.dataSource = self;
@@ -72,22 +71,51 @@
         return 0;
     } else {
         if (self.segment.selectedSegmentIndex == 0) {
-            return self.incompleteArray.count;
-        } else if (self.segment.selectedSegmentIndex == 1) {
-            return self.assignedToMeArray.count;
+            return 2;
         } else {
-            return self.pastArray.count;
+            return 5;
         }
     }
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     if (self.segment.selectedSegmentIndex == 0) {
-        return nil;
-    } else if (self.segment.selectedSegmentIndex == 1) {
-        return nil;
+        static NSString *CellIdentifier = @"incompleteCell";
+        IncompleteToDoTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+        
+        if (cell == nil) {
+            [self.todosTableView registerNib:[UINib nibWithNibName:@"IncompleteToDoTableViewCell" bundle:nil] forCellReuseIdentifier:CellIdentifier];
+            cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+        }
+        if (indexPath.row == 0) {
+            [cell setName:@"Brian Cox" andMessage:@"Clean the bathroom" andImage:[UIImage imageNamed:@"ian_profile2.jpg"] andTime:@"2h" andIsCreatedByMe:YES andIsAssignedToMe:NO];
+        } else {
+            [cell setName:@"Ian Richard" andMessage:@"Call utility company" andImage:[UIImage imageNamed:@"ian_profile.jpg"] andTime:@"5h" andIsCreatedByMe:NO andIsAssignedToMe:YES];
+        }
+        
+        return cell;
     } else {
-        return nil;
+        static NSString *CellIdentifier = @"completeCell";
+        CompletedToDoTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+        
+        if (cell == nil) {
+            [self.todosTableView registerNib:[UINib nibWithNibName:@"CompletedToDoTableViewCell" bundle:nil] forCellReuseIdentifier:CellIdentifier];
+            cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+        }
+        
+        if (indexPath.row == 0) {
+            [cell setName:@"Ian Richard" andMessage:@"Mop kitchen" andProfileImage:[UIImage imageNamed:@"ian_profile.jpg"] andTime:@"1d" andTimeTaken:30];
+        } else if (indexPath.row == 1) {
+            [cell setName:@"Brian Cox" andMessage:@"Fix TV stand" andProfileImage:[UIImage imageNamed:@"ian_profile2.jpg"] andTime:@"4d" andTimeTaken:45];
+        } else if (indexPath.row == 2) {
+            [cell setName:@"Ian Richard" andMessage:@"Vacuum living room" andProfileImage:[UIImage imageNamed:@"ian_profile.jpg"] andTime:@"4d" andTimeTaken:20];
+        } else if (indexPath.row == 3) {
+            [cell setName:@"Brian Cox" andMessage:@"Take out garbage" andProfileImage:[UIImage imageNamed:@"ian_profile2.jpg"] andTime:@"6d" andTimeTaken:10];
+        } else {
+            [cell setName:@"Brian Cox" andMessage:@"Talk to city about landscaping" andProfileImage:[UIImage imageNamed:@"ian_profile2.jpg"] andTime:@"8d" andTimeTaken:15];
+        }
+        
+        return cell;
     }
 }
 
@@ -124,6 +152,9 @@
 
 - (void)segmentOptionChanged:(id)sender {
     [self.todosTableView reloadData];
+}
+
+- (void)addButtonClicked:(id)sender {
 }
 
 @end

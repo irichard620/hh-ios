@@ -11,7 +11,7 @@
 
 @interface AuthenticationManager : NSObject
 
-+ (User *) createNewUserWithEmail: (NSString *)email andPassword:(NSString *)password andFullName:(NSString *)fullName;
-+ (User *) loginUserWithEmail: (NSString *)email andPassword:(NSString *)password;
++ (void) createNewUserWithEmail: (NSString *)email andPassword:(NSString *)password andFullName:(NSString *)fullName withCompletion:(void(^)(User *user, NSString *error))completion;
++ (void)loginUserWithEmail:(NSString *)email andPassword:(NSString *)password withCompletion:(void (^)(User *user, NSString *error))completion;
 
 @end

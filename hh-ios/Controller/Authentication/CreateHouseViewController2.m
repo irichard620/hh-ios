@@ -8,6 +8,9 @@
 
 #import "CreateHouseViewController2.h"
 #import "ViewHelpers.h"
+#import "HouseManager.h"
+
+#define TRIM(string) [string stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]]
 
 @interface CreateHouseViewController2 ()
 
@@ -43,8 +46,20 @@
 }
 
 - (void)createButtonClicked:(id)sender {
-    UIViewController *View = [self.navigationController.viewControllers objectAtIndex:self.navigationController.viewControllers.count-3];
-    [self.navigationController popToViewController:View animated:YES];
+    NSString *uniqueId = TRIM(self.houseIdField.text);
+    if (uniqueId.length < 6) {
+        [self presentViewController:[ViewHelpers createErrorAlertWithTitle:@"House Identifier Invalid" andDescription:@"You must enter a house identifier that is 6 or more letters."] animated:YES completion:nil];
+    } else {
+        [HouseManager createHouseWithDisplay:self.displayName andUnique:uniqueId andCreator:self.user withCompletion:^(House *house, NSString *error) {
+            if (!error) {
+                [self presentViewController:[ViewHelpers createErrorAlertWithTitle:@"Error Occurred" andDescription:error] animated:YES completion:nil];
+            } else {
+                // Go back to userHome screen
+                UIViewController *View = [self.navigationController.viewControllers objectAtIndex:self.navigationController.viewControllers.count-3];
+                [self.navigationController popToViewController:View animated:YES];
+            }
+        }];
+    }
 }
 
 -(void)singleTap:(UITapGestureRecognizer *)tapGestureRecognizer {

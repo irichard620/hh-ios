@@ -19,7 +19,7 @@
     
     // Borders
     self.rightButton.layer.cornerRadius = 6;
-    self.rightButton.layer.cornerRadius = 6;
+    self.leftButton.layer.cornerRadius = 6;
     self.rightButton.clipsToBounds = YES;
     self.leftButton.clipsToBounds = YES;
     self.leftButton.layer.borderWidth = 1;

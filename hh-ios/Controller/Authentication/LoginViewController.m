@@ -9,6 +9,10 @@
 #import "LoginViewController.h"
 #import "UserHomeViewController.h"
 #import "ViewHelpers.h"
+#import "NSString+Security.h"
+#import "AuthenticationManager.h"
+
+#define TRIM(string) [string stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]]
 
 @interface LoginViewController ()
 
@@ -85,8 +89,27 @@
 }
 
 - (void)loginButtonClicked:(id)sender {
-    UserHomeViewController *userHomeVC = [[UserHomeViewController alloc]initWithNibName:@"UserHomeViewController" bundle:nil];
-    [self.navigationController pushViewController:userHomeVC animated:YES];
+    // Get fields and trim
+    NSString *email = TRIM(self.emailField.text);
+    NSString *password = TRIM(self.passwordField.text);
+    
+    if (![email isValidEmail]) {
+        [self presentViewController:[ViewHelpers createErrorAlertWithTitle:@"Email Invalid" andDescription:@"Please enter a valid email."] animated:YES completion:nil];
+    } else if ([password isEqualToString:@""]) {
+        [self presentViewController:[ViewHelpers createErrorAlertWithTitle:@"Password Invalid" andDescription:@"Please enter a valid password."] animated:YES completion:nil];
+    } else {
+        [AuthenticationManager loginUserWithEmail:email andPassword:password withCompletion:^(User *user, NSString *error) {
+            if (!error) {
+                UserHomeViewController *userHomeVC = [[UserHomeViewController alloc]initWithNibName:@"UserHomeViewController" bundle:nil];
+                userHomeVC.user = user;
+                [self.navigationController pushViewController:userHomeVC animated:YES];
+            } else {
+                UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Error" message:error preferredStyle:UIAlertControllerStyleAlert];
+                [alert addAction:[UIAlertAction actionWithTitle:@"Ok" style:UIAlertActionStyleCancel handler:nil]];
+                [self presentViewController:alert animated:YES completion:nil];
+            }
+        }];
+    }
 }
 
 @end

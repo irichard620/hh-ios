@@ -21,6 +21,6 @@
  * Return:
  * Array of house objects
  */
-+ (NSArray *)getHouseListForUser:(User *)user;
++ (void)getHouseListForUser:(User *)user withCompletion:(void (^)(NSArray *houses, NSString *error))completion;
 
 @end

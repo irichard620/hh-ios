@@ -10,4 +10,16 @@
 
 @implementation ToDo
 
++ (ToDo *)deserializeTodo:(NSDictionary *)todoDict {
+    ToDo *todo = [[ToDo alloc]init];
+    todo.owner = [UserReference deserializeUserRef:todoDict[@"owner"]];
+    todo.assignee = [UserReference deserializeUserRef:todoDict[@"assignee"]];
+    todo.houseId = todoDict[@"house"];
+    todo.title = todoDict[@"title"];
+    todo.todoDescription = todoDict[@"description"];
+    todo.complete = [[NSNumber numberWithBool:todoDict[@"complete"]]boolValue];
+    todo.timeTaken = [NSNumber numberWithInteger:[todoDict[@"time_taken"]integerValue]];
+    return todo;
+}
+
 @end

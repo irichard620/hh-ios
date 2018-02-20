@@ -76,6 +76,7 @@
 		802F4052202E59390006CA8B /* EditPropertyTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 802F4050202E59390006CA8B /* EditPropertyTableViewCell.m */; };
 		802F4053202E59390006CA8B /* EditPropertyTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 802F4051202E59390006CA8B /* EditPropertyTableViewCell.xib */; };
 		802F405620338F5A0006CA8B /* ToDo.m in Sources */ = {isa = PBXBuildFile; fileRef = 802F405520338F5A0006CA8B /* ToDo.m */; };
+		802F4059203BEFED0006CA8B /* TodoManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 802F4058203BEFED0006CA8B /* TodoManager.m */; };
 		8073C8351FC946CC007223CD /* ChatTimeTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8073C8331FC946CC007223CD /* ChatTimeTableViewCell.m */; };
 		8073C8361FC946CC007223CD /* ChatTimeTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8073C8341FC946CC007223CD /* ChatTimeTableViewCell.xib */; };
 		8073C8381FC95291007223CD /* ian_profile.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 8073C8371FC95291007223CD /* ian_profile.jpg */; };
@@ -251,6 +252,8 @@
 		802F4051202E59390006CA8B /* EditPropertyTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EditPropertyTableViewCell.xib; sourceTree = "<group>"; };
 		802F405420338F5A0006CA8B /* ToDo.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ToDo.h; sourceTree = "<group>"; };
 		802F405520338F5A0006CA8B /* ToDo.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ToDo.m; sourceTree = "<group>"; };
+		802F4057203BEFED0006CA8B /* TodoManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TodoManager.h; sourceTree = "<group>"; };
+		802F4058203BEFED0006CA8B /* TodoManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TodoManager.m; sourceTree = "<group>"; };
 		8073C8321FC946CC007223CD /* ChatTimeTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatTimeTableViewCell.h; sourceTree = "<group>"; };
 		8073C8331FC946CC007223CD /* ChatTimeTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatTimeTableViewCell.m; sourceTree = "<group>"; };
 		8073C8341FC946CC007223CD /* ChatTimeTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ChatTimeTableViewCell.xib; sourceTree = "<group>"; };
@@ -573,6 +576,8 @@
 				802F402A2020EF2B0006CA8B /* HouseManager.m */,
 				802F402C2020F4A30006CA8B /* UserManager.h */,
 				802F402D2020F4A30006CA8B /* UserManager.m */,
+				802F4057203BEFED0006CA8B /* TodoManager.h */,
+				802F4058203BEFED0006CA8B /* TodoManager.m */,
 			);
 			path = Store;
 			sourceTree = "<group>";
@@ -1078,6 +1083,7 @@
 				802F3FCC1FF997550006CA8B /* User.m in Sources */,
 				802F3FC61FF830E30006CA8B /* UserReference.m in Sources */,
 				802F3FC91FF9951A0006CA8B /* House.m in Sources */,
+				802F4059203BEFED0006CA8B /* TodoManager.m in Sources */,
 				802F3FE41FFDA9F10006CA8B /* CreateHouseViewController.m in Sources */,
 				802F3FAA1FC9FE110006CA8B /* UIView+SLKAdditions.m in Sources */,
 				802F3FB51FCA3BA10006CA8B /* PaymentsViewController.m in Sources */,

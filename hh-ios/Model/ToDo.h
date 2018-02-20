@@ -21,7 +21,7 @@
 @property(nonatomic) UserReference *assignee;
 
 // ID of house
-@property(nonatomic) NSString *house_id;
+@property(nonatomic) NSString *houseId;
 
 // Title, description of todo
 @property(nonatomic) NSString *title;
@@ -29,5 +29,10 @@
 
 // Time taken - minutes
 @property(nonatomic) NSNumber *timeTaken;
+
+// Is it complete
+@property(nonatomic) BOOL complete;
+
++ (ToDo *)deserializeTodo:(NSDictionary *)todoDict;
 
 @end

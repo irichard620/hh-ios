@@ -10,6 +10,12 @@
 
 @implementation UserReference
 
-
++ (UserReference *)deserializeUserRef:(NSDictionary *)userRefDict {
+    UserReference *userRef = [[UserReference alloc]init];
+    userRef._id = userRefDict[@"id"];
+    userRef.avatarLink = userRefDict[@"avatarLink"];
+    userRef.name = userRefDict[@"fullName"];
+    return userRef;
+}
 
 @end

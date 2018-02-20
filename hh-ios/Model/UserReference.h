@@ -21,4 +21,6 @@
 // Link to this user's profile picture
 @property (nonatomic) NSString *avatarLink;
 
++ (UserReference *)deserializeUserRef:(NSDictionary *)userRefDict;
+
 @end

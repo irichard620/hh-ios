@@ -10,14 +10,19 @@
 #import <UNIRest.h>
 #import "House.h"
 
+NSString * const UNKNOWN_ERROR = @"unknown";
+NSString * const NOT_FOUND_ERROR = @"not_found";
+NSString * const CONNECTION_ERROR = @"connection";
+NSString * const MISSING_INFO_ERROR = @"missing_info";
+
 @implementation UserManager
 
 + (void)getHouseListForUser:(User *)user withCompletion:(void (^)(NSArray *, NSString *))completion; {
     // Accepts JSON and pass access token
     NSDictionary* headers = @{@"accept": @"application/json", @"Authorization": [NSString stringWithFormat:@"Bearer %@", user.accessToken]};
     
-    // Create post request to /api/user/houses
-    [[UNIRest post:^(UNISimpleRequest *request) {
+    // Create get request to /api/user/houses
+    [[UNIRest get:^(UNISimpleRequest *request) {
         [request setUrl:@"https://honesthousemate.herokuapp.com/api/user/houses"];
         [request setHeaders:headers];
     }] asJsonAsync:^(UNIHTTPJsonResponse *jsonResponse, NSError *error) {
@@ -32,10 +37,12 @@
                 }
                 completion(resultArray, nil);
             } else {
-                completion(nil, @"Unknown");
+                completion(nil, UNKNOWN_ERROR);
             }
         } else {
-            completion(nil, error.localizedDescription);
+            NSLog(@"%@", error.localizedDescription);
+            completion(nil, UNKNOWN_ERROR);
+            
         }
     }];
 }

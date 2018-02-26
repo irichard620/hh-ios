@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "SLKTextViewController.h"
+#import "SWRevealViewController+SWRevealViewController_Data.h"
 
 @interface ChatViewController : SLKTextViewController
 

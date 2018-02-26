@@ -77,6 +77,14 @@
 		802F4053202E59390006CA8B /* EditPropertyTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 802F4051202E59390006CA8B /* EditPropertyTableViewCell.xib */; };
 		802F405620338F5A0006CA8B /* ToDo.m in Sources */ = {isa = PBXBuildFile; fileRef = 802F405520338F5A0006CA8B /* ToDo.m */; };
 		802F4059203BEFED0006CA8B /* TodoManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 802F4058203BEFED0006CA8B /* TodoManager.m */; };
+		802F4066203C9C570006CA8B /* TodoDetailsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 802F4064203C9C570006CA8B /* TodoDetailsTableViewCell.m */; };
+		802F4067203C9C570006CA8B /* TodoDetailsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 802F4065203C9C570006CA8B /* TodoDetailsTableViewCell.xib */; };
+		802F406B203CA47C0006CA8B /* TodoDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 802F4069203CA47C0006CA8B /* TodoDetailsViewController.m */; };
+		802F406C203CA47C0006CA8B /* TodoDetailsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 802F406A203CA47C0006CA8B /* TodoDetailsViewController.xib */; };
+		802F4071203CAD180006CA8B /* UserTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 802F406F203CAD170006CA8B /* UserTableViewCell.m */; };
+		802F4072203CAD180006CA8B /* UserTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 802F4070203CAD170006CA8B /* UserTableViewCell.xib */; };
+		802F4075203F3D310006CA8B /* SWRevealViewController+SWRevealViewController_Data.m in Sources */ = {isa = PBXBuildFile; fileRef = 802F4074203F3D310006CA8B /* SWRevealViewController+SWRevealViewController_Data.m */; };
+		802F40772043A2DC0006CA8B /* awsconfiguration.json in Resources */ = {isa = PBXBuildFile; fileRef = 802F40762043A2DC0006CA8B /* awsconfiguration.json */; };
 		8073C8351FC946CC007223CD /* ChatTimeTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8073C8331FC946CC007223CD /* ChatTimeTableViewCell.m */; };
 		8073C8361FC946CC007223CD /* ChatTimeTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8073C8341FC946CC007223CD /* ChatTimeTableViewCell.xib */; };
 		8073C8381FC95291007223CD /* ian_profile.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 8073C8371FC95291007223CD /* ian_profile.jpg */; };
@@ -254,6 +262,18 @@
 		802F405520338F5A0006CA8B /* ToDo.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ToDo.m; sourceTree = "<group>"; };
 		802F4057203BEFED0006CA8B /* TodoManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TodoManager.h; sourceTree = "<group>"; };
 		802F4058203BEFED0006CA8B /* TodoManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TodoManager.m; sourceTree = "<group>"; };
+		802F4063203C9C570006CA8B /* TodoDetailsTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TodoDetailsTableViewCell.h; sourceTree = "<group>"; };
+		802F4064203C9C570006CA8B /* TodoDetailsTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TodoDetailsTableViewCell.m; sourceTree = "<group>"; };
+		802F4065203C9C570006CA8B /* TodoDetailsTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TodoDetailsTableViewCell.xib; sourceTree = "<group>"; };
+		802F4068203CA47C0006CA8B /* TodoDetailsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TodoDetailsViewController.h; sourceTree = "<group>"; };
+		802F4069203CA47C0006CA8B /* TodoDetailsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TodoDetailsViewController.m; sourceTree = "<group>"; };
+		802F406A203CA47C0006CA8B /* TodoDetailsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TodoDetailsViewController.xib; sourceTree = "<group>"; };
+		802F406E203CAD170006CA8B /* UserTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UserTableViewCell.h; sourceTree = "<group>"; };
+		802F406F203CAD170006CA8B /* UserTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UserTableViewCell.m; sourceTree = "<group>"; };
+		802F4070203CAD170006CA8B /* UserTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UserTableViewCell.xib; sourceTree = "<group>"; };
+		802F4073203F3D310006CA8B /* SWRevealViewController+SWRevealViewController_Data.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SWRevealViewController+SWRevealViewController_Data.h"; sourceTree = "<group>"; };
+		802F4074203F3D310006CA8B /* SWRevealViewController+SWRevealViewController_Data.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "SWRevealViewController+SWRevealViewController_Data.m"; sourceTree = "<group>"; };
+		802F40762043A2DC0006CA8B /* awsconfiguration.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = awsconfiguration.json; sourceTree = "<group>"; };
 		8073C8321FC946CC007223CD /* ChatTimeTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatTimeTableViewCell.h; sourceTree = "<group>"; };
 		8073C8331FC946CC007223CD /* ChatTimeTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatTimeTableViewCell.m; sourceTree = "<group>"; };
 		8073C8341FC946CC007223CD /* ChatTimeTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ChatTimeTableViewCell.xib; sourceTree = "<group>"; };
@@ -448,6 +468,9 @@
 				802F40092007E76B0006CA8B /* CompletedToDoTableViewCell.h */,
 				802F400A2007E76B0006CA8B /* CompletedToDoTableViewCell.m */,
 				802F400B2007E76B0006CA8B /* CompletedToDoTableViewCell.xib */,
+				802F4063203C9C570006CA8B /* TodoDetailsTableViewCell.h */,
+				802F4064203C9C570006CA8B /* TodoDetailsTableViewCell.m */,
+				802F4065203C9C570006CA8B /* TodoDetailsTableViewCell.xib */,
 			);
 			path = Todos;
 			sourceTree = "<group>";
@@ -473,6 +496,115 @@
 				802F4051202E59390006CA8B /* EditPropertyTableViewCell.xib */,
 			);
 			path = Edit;
+			sourceTree = "<group>";
+		};
+		802F405A203C9A280006CA8B /* Todo */ = {
+			isa = PBXGroup;
+			children = (
+				802F3FF02002A5E20006CA8B /* ToDosViewController.h */,
+				802F3FF12002A5E20006CA8B /* ToDosViewController.m */,
+				802F3FF22002A5E20006CA8B /* ToDosViewController.xib */,
+				802F4068203CA47C0006CA8B /* TodoDetailsViewController.h */,
+				802F4069203CA47C0006CA8B /* TodoDetailsViewController.m */,
+				802F406A203CA47C0006CA8B /* TodoDetailsViewController.xib */,
+			);
+			path = Todo;
+			sourceTree = "<group>";
+		};
+		802F405B203C9A410006CA8B /* Menu */ = {
+			isa = PBXGroup;
+			children = (
+				80F558751FBAB5FA001601B3 /* MenuViewController.h */,
+				80F558761FBAB5FA001601B3 /* MenuViewController.m */,
+				80F558771FBAB5FA001601B3 /* MenuViewController.xib */,
+			);
+			path = Menu;
+			sourceTree = "<group>";
+		};
+		802F405C203C9A4C0006CA8B /* Chat */ = {
+			isa = PBXGroup;
+			children = (
+				80F5587A1FBABACF001601B3 /* ChatViewController.h */,
+				80F5587B1FBABACF001601B3 /* ChatViewController.m */,
+				80F5587C1FBABACF001601B3 /* ChatViewController.xib */,
+			);
+			path = Chat;
+			sourceTree = "<group>";
+		};
+		802F405D203C9A5E0006CA8B /* Payments */ = {
+			isa = PBXGroup;
+			children = (
+				802F3FB21FCA3BA10006CA8B /* PaymentsViewController.h */,
+				802F3FB31FCA3BA10006CA8B /* PaymentsViewController.m */,
+				802F3FB41FCA3BA10006CA8B /* PaymentsViewController.xib */,
+			);
+			path = Payments;
+			sourceTree = "<group>";
+		};
+		802F405E203C9A770006CA8B /* HouseInfo */ = {
+			isa = PBXGroup;
+			children = (
+				802F4035202A1D3E0006CA8B /* ResidentsViewController.h */,
+				802F4036202A1D3E0006CA8B /* ResidentsViewController.m */,
+				802F4037202A1D3E0006CA8B /* ResidentsViewController.xib */,
+				802F403F202E2A6F0006CA8B /* HouseEditViewController.h */,
+				802F4040202E2A6F0006CA8B /* HouseEditViewController.m */,
+				802F4041202E2A6F0006CA8B /* HouseEditViewController.xib */,
+			);
+			path = HouseInfo;
+			sourceTree = "<group>";
+		};
+		802F405F203C9A850006CA8B /* Alexa */ = {
+			isa = PBXGroup;
+			children = (
+				802F3FF72002A78D0006CA8B /* AlexaViewController.h */,
+				802F3FF82002A78D0006CA8B /* AlexaViewController.m */,
+				802F3FF92002A78D0006CA8B /* AlexaViewController.xib */,
+			);
+			path = Alexa;
+			sourceTree = "<group>";
+		};
+		802F4060203C9A920006CA8B /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				802F4044202E2A7A0006CA8B /* SettingsViewController.h */,
+				802F4045202E2A7A0006CA8B /* SettingsViewController.m */,
+				802F4046202E2A7A0006CA8B /* SettingsViewController.xib */,
+			);
+			path = Settings;
+			sourceTree = "<group>";
+		};
+		802F4061203C9BAC0006CA8B /* Authentication */ = {
+			isa = PBXGroup;
+			children = (
+				80F558B61FC7F395001601B3 /* UserHomeTableViewCell.h */,
+				80F558B71FC7F395001601B3 /* UserHomeTableViewCell.m */,
+				80F558B81FC7F395001601B3 /* UserHomeTableViewCell.xib */,
+			);
+			path = Authentication;
+			sourceTree = "<group>";
+		};
+		802F4062203C9BBE0006CA8B /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				802F406D203CAD090006CA8B /* User */,
+				802F404E202E59210006CA8B /* Edit */,
+				802F3FFC20054CD50006CA8B /* Chat */,
+				802F3FFD20054CDD0006CA8B /* Payments */,
+				802F3FFE20054CF00006CA8B /* Todos */,
+				802F400E2007E9E00006CA8B /* MainMenu */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
+		802F406D203CAD090006CA8B /* User */ = {
+			isa = PBXGroup;
+			children = (
+				802F406E203CAD170006CA8B /* UserTableViewCell.h */,
+				802F406F203CAD170006CA8B /* UserTableViewCell.m */,
+				802F4070203CAD170006CA8B /* UserTableViewCell.xib */,
+			);
+			path = User;
 			sourceTree = "<group>";
 		};
 		80F5581B1FBAA541001601B3 = {
@@ -554,6 +686,8 @@
 				802F40332020FB4A0006CA8B /* NSString+Security.m */,
 				802F405420338F5A0006CA8B /* ToDo.h */,
 				802F405520338F5A0006CA8B /* ToDo.m */,
+				802F4073203F3D310006CA8B /* SWRevealViewController+SWRevealViewController_Data.h */,
+				802F4074203F3D310006CA8B /* SWRevealViewController+SWRevealViewController_Data.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -608,6 +742,7 @@
 				80F5586E1FBAB280001601B3 /* AppDelegate.m */,
 				80F5586F1FBAB280001601B3 /* Info.plist */,
 				80F558701FBAB280001601B3 /* main.m */,
+				802F40762043A2DC0006CA8B /* awsconfiguration.json */,
 			);
 			path = "Supporting Files";
 			sourceTree = "<group>";
@@ -615,30 +750,13 @@
 		80F558741FBAB5E3001601B3 /* Home */ = {
 			isa = PBXGroup;
 			children = (
-				80F558751FBAB5FA001601B3 /* MenuViewController.h */,
-				80F558761FBAB5FA001601B3 /* MenuViewController.m */,
-				80F558771FBAB5FA001601B3 /* MenuViewController.xib */,
-				80F5587A1FBABACF001601B3 /* ChatViewController.h */,
-				80F5587B1FBABACF001601B3 /* ChatViewController.m */,
-				80F5587C1FBABACF001601B3 /* ChatViewController.xib */,
-				802F3FB21FCA3BA10006CA8B /* PaymentsViewController.h */,
-				802F3FB31FCA3BA10006CA8B /* PaymentsViewController.m */,
-				802F3FB41FCA3BA10006CA8B /* PaymentsViewController.xib */,
-				802F3FF02002A5E20006CA8B /* ToDosViewController.h */,
-				802F3FF12002A5E20006CA8B /* ToDosViewController.m */,
-				802F3FF22002A5E20006CA8B /* ToDosViewController.xib */,
-				802F3FF72002A78D0006CA8B /* AlexaViewController.h */,
-				802F3FF82002A78D0006CA8B /* AlexaViewController.m */,
-				802F3FF92002A78D0006CA8B /* AlexaViewController.xib */,
-				802F4035202A1D3E0006CA8B /* ResidentsViewController.h */,
-				802F4036202A1D3E0006CA8B /* ResidentsViewController.m */,
-				802F4037202A1D3E0006CA8B /* ResidentsViewController.xib */,
-				802F403F202E2A6F0006CA8B /* HouseEditViewController.h */,
-				802F4040202E2A6F0006CA8B /* HouseEditViewController.m */,
-				802F4041202E2A6F0006CA8B /* HouseEditViewController.xib */,
-				802F4044202E2A7A0006CA8B /* SettingsViewController.h */,
-				802F4045202E2A7A0006CA8B /* SettingsViewController.m */,
-				802F4046202E2A7A0006CA8B /* SettingsViewController.xib */,
+				802F4060203C9A920006CA8B /* Settings */,
+				802F405F203C9A850006CA8B /* Alexa */,
+				802F405E203C9A770006CA8B /* HouseInfo */,
+				802F405D203C9A5E0006CA8B /* Payments */,
+				802F405C203C9A4C0006CA8B /* Chat */,
+				802F405B203C9A410006CA8B /* Menu */,
+				802F405A203C9A280006CA8B /* Todo */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -683,14 +801,8 @@
 		80F558921FBAD12B001601B3 /* Table Cells */ = {
 			isa = PBXGroup;
 			children = (
-				802F404E202E59210006CA8B /* Edit */,
-				802F400E2007E9E00006CA8B /* MainMenu */,
-				802F3FFE20054CF00006CA8B /* Todos */,
-				802F3FFD20054CDD0006CA8B /* Payments */,
-				802F3FFC20054CD50006CA8B /* Chat */,
-				80F558B61FC7F395001601B3 /* UserHomeTableViewCell.h */,
-				80F558B71FC7F395001601B3 /* UserHomeTableViewCell.m */,
-				80F558B81FC7F395001601B3 /* UserHomeTableViewCell.xib */,
+				802F4062203C9BBE0006CA8B /* Home */,
+				802F4061203C9BAC0006CA8B /* Authentication */,
 			);
 			path = "Table Cells";
 			sourceTree = "<group>";
@@ -859,8 +971,10 @@
 				80F558BE1FC7F7AF001601B3 /* home_black.png in Resources */,
 				802F4053202E59390006CA8B /* EditPropertyTableViewCell.xib in Resources */,
 				80F5588D1FBACBAC001601B3 /* bar-chart.png in Resources */,
+				802F4067203C9C570006CA8B /* TodoDetailsTableViewCell.xib in Resources */,
 				802F3FDE1FFD9EF70006CA8B /* JoinHouseViewController.xib in Resources */,
 				802F4022200C16860006CA8B /* group-icon-white-background.png in Resources */,
+				802F406C203CA47C0006CA8B /* TodoDetailsViewController.xib in Resources */,
 				80F558871FBACADE001601B3 /* menu.png in Resources */,
 				80F558B11FC544CB001601B3 /* UserHomeViewController.xib in Resources */,
 				80F558B31FC631FD001601B3 /* add.png in Resources */,
@@ -871,6 +985,7 @@
 				8073C83A1FC9537E007223CD /* ian_profile2.jpg in Resources */,
 				802F4028201037880006CA8B /* add_white.png in Resources */,
 				8073C8381FC95291007223CD /* ian_profile.jpg in Resources */,
+				802F4072203CAD180006CA8B /* UserTableViewCell.xib in Resources */,
 				802F4016200BE1DF0006CA8B /* HHlogostandalonewhite.png in Resources */,
 				802F3FFB2002A78D0006CA8B /* AlexaViewController.xib in Resources */,
 				802F4014200997D10006CA8B /* HHlogo120x120.png in Resources */,
@@ -884,6 +999,7 @@
 				80F558371FBAA541001601B3 /* LaunchScreen.storyboard in Resources */,
 				802F4024200C1BB70006CA8B /* group-icon-black-background.png in Resources */,
 				802F3FE01FFDA15A0006CA8B /* left-arrow.png in Resources */,
+				802F40772043A2DC0006CA8B /* awsconfiguration.json in Resources */,
 				802F4043202E2A6F0006CA8B /* HouseEditViewController.xib in Resources */,
 				802F3FB61FCA3BA10006CA8B /* PaymentsViewController.xib in Resources */,
 				80F558BA1FC7F395001601B3 /* UserHomeTableViewCell.xib in Resources */,
@@ -1049,11 +1165,13 @@
 				802F4052202E59390006CA8B /* EditPropertyTableViewCell.m in Sources */,
 				802F3FF32002A5E20006CA8B /* ToDosViewController.m in Sources */,
 				802F3FAB1FC9FE110006CA8B /* SLKTextView+SLKAdditions.m in Sources */,
+				802F4066203C9C570006CA8B /* TodoDetailsTableViewCell.m in Sources */,
 				80F558731FBAB280001601B3 /* main.m in Sources */,
 				802F3FD31FFAF0D50006CA8B /* SignupViewController.m in Sources */,
 				802F3FCF1FF99E160006CA8B /* AuthenticationManager.m in Sources */,
 				802F3FE91FFEAE9A0006CA8B /* CreateHouseViewController2.m in Sources */,
 				802F3FAE1FC9FE110006CA8B /* UIResponder+SLKAdditions.m in Sources */,
+				802F406B203CA47C0006CA8B /* TodoDetailsViewController.m in Sources */,
 				80F558B01FC544CB001601B3 /* UserHomeViewController.m in Sources */,
 				80F5587D1FBABACF001601B3 /* ChatViewController.m in Sources */,
 				802F4038202A1D3E0006CA8B /* ResidentsViewController.m in Sources */,
@@ -1061,6 +1179,7 @@
 				80F558961FBAD142001601B3 /* MenuTableViewCell.m in Sources */,
 				8073C8351FC946CC007223CD /* ChatTimeTableViewCell.m in Sources */,
 				802F3FC31FF82F7E0006CA8B /* Payment.m in Sources */,
+				802F4075203F3D310006CA8B /* SWRevealViewController+SWRevealViewController_Data.m in Sources */,
 				802F4047202E2A7A0006CA8B /* SettingsViewController.m in Sources */,
 				802F3FA91FC9FE110006CA8B /* UIScrollView+SLKAdditions.m in Sources */,
 				802F4042202E2A6F0006CA8B /* HouseEditViewController.m in Sources */,
@@ -1068,6 +1187,7 @@
 				802F402E2020F4A30006CA8B /* UserManager.m in Sources */,
 				80F558A11FBB938B001601B3 /* ViewHelpers.m in Sources */,
 				802F3FA81FC9FE110006CA8B /* SLKTextInputbar.m in Sources */,
+				802F4071203CAD180006CA8B /* UserTableViewCell.m in Sources */,
 				802F3FFA2002A78D0006CA8B /* AlexaViewController.m in Sources */,
 				802F40342020FB4A0006CA8B /* NSString+Security.m in Sources */,
 				802F405620338F5A0006CA8B /* ToDo.m in Sources */,

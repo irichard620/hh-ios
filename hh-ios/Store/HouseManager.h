@@ -35,7 +35,7 @@
  * Return:
  * None
  */
-+ (void)inviteUser:(NSString *)email toHouse:(NSString *)houseId fromUser:(User *)fromUser withCompletion:(void (^)(NSString *error))completion;
++ (void)inviteUser:(NSString *)email toHouse:(House *)house fromUser:(User *)fromUser withCompletion:(void (^)(NSString *error))completion;
 
 /*
  * Join a house
@@ -48,5 +48,16 @@
  * None
  */
 + (void)joinHouseWithUnique:(NSString *)uniqueName andJoiningUser:(User *)user withCompletion:(void (^)(NSString *error))completion;
+
+/*
+ * Get list of members in house
+ *
+ * Arguments:
+ * uniqueName - username of house to join
+ *
+ * REturn:
+ * Array of user objects
+ */
++ (void)getListOfResidents:(User *)user withUniqueName:(NSString *)uniqueName withCompletion:(void (^)(NSArray *residents, NSString *error))completion;
 
 @end

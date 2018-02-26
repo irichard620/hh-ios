@@ -16,6 +16,7 @@
 #import "ToDosViewController.h"
 #import "ResidentsViewController.h"
 #import "HouseEditViewController.h"
+#import "SWRevealViewController+SWRevealViewController_Data.h"
 
 @interface MenuViewController ()
 

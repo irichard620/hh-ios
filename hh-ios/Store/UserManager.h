@@ -10,6 +10,11 @@
 #import "House.h"
 #import "User.h"
 
+extern NSString * const UNKNOWN_ERROR;
+extern NSString * const NOT_FOUND_ERROR;
+extern NSString * const CONNECTION_ERROR;
+extern NSString * const MISSING_INFO_ERROR;
+
 @interface UserManager : NSObject
 
 /*

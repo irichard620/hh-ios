@@ -10,6 +10,12 @@
 #import <UNIRest.h>
 #import "NSString+Security.h"
 
+NSString * const UNKNOWN_ERROR = @"unknown";
+NSString * const NOT_FOUND_ERROR = @"not_found";
+NSString * const CONNECTION_ERROR = @"connection";
+NSString * const MISSING_INFO_ERROR = @"missing_info";
+
+
 @implementation AuthenticationManager
 
 + (void)createNewUserWithEmail:(NSString *)email andPassword:(NSString *)password andFullName:(NSString *)fullName withCompletion:(void (^)(User *, NSString *))completion {
@@ -37,18 +43,24 @@
                             NSDictionary *responseDict = jsonResponse.body.JSONObject;
                             User *user = [User deserializeUser:responseDict];
                             completion(user, nil);
+                        } else if (jsonResponse.code == 422) {
+                            completion(nil, MISSING_INFO_ERROR);
+                        } else if (jsonResponse.code == 500) {
+                            completion(nil, CONNECTION_ERROR);
                         } else {
-                            completion(nil, @"Unknown");
+                            completion(nil, UNKNOWN_ERROR);
                         }
                     } else {
-                        completion(nil, error.localizedDescription);
+                        NSLog(@"%@", (NSString *)error.localizedDescription);
+                        completion(nil, UNKNOWN_ERROR);
                     }
                 }];
             } else {
-                completion(nil, @"Unknown");
+                completion(nil, UNKNOWN_ERROR);
             }
         } else {
-            completion(nil, error.localizedDescription);
+            NSLog(@"%@", error.localizedDescription);
+            completion(nil, UNKNOWN_ERROR);
         }
     }];
 }
@@ -68,11 +80,18 @@
                 NSDictionary *responseDict = jsonResponse.body.JSONObject;
                 User *user = [User deserializeUser:responseDict];
                 completion(user, nil);
+            } else if (jsonResponse.code == 422) {
+                completion(nil, MISSING_INFO_ERROR);
+            } else if (jsonResponse.code == 499) {
+                completion(nil, NOT_FOUND_ERROR);
+            } else if (jsonResponse.code == 500) {
+                completion(nil, CONNECTION_ERROR);
             } else {
-                completion(nil, @"Unknown");
+                completion(nil, UNKNOWN_ERROR);
             }
         } else {
-            completion(nil, error.localizedDescription);
+            NSLog(@"%@", error.localizedDescription);
+            completion(nil, UNKNOWN_ERROR);
         }
     }];
 }

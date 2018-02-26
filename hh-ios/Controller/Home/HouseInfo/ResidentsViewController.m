@@ -10,6 +10,11 @@
 #import "SWRevealViewController.h"
 #import "ViewHelpers.h"
 #import "UserHomeTableViewCell.h"
+#import "SWRevealViewController+SWRevealViewController_Data.h"
+#import "HouseManager.h"
+#import "NSString+Security.h"
+
+#define TRIM(string) [string stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]]
 
 @interface ResidentsViewController ()
 
@@ -48,7 +53,7 @@
     // Create menu button
     self.navigationItem.leftBarButtonItem = [ViewHelpers createMenuButtonWithTarget:self.revealViewController];
     self.navigationItem.rightBarButtonItem = [ViewHelpers createRightButtonWithTarget:self andSelectorName:@"addButtonClicked:"];
-    
+        
     // Setup table
     self.residentTableView.dataSource = self;
     self.residentTableView.delegate = self;
@@ -144,7 +149,20 @@
     }];
     [alert addAction:[UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:nil]];
     [alert addAction:[UIAlertAction actionWithTitle:@"Invite" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-        // Send network request
+        // Get email
+        NSString *email = TRIM([[alert.textFields objectAtIndex:0]text]);
+        if ([email isEqualToString:@""] || email == nil || ![email isValidEmail]) {
+            [self presentViewController:[ViewHelpers createErrorAlertWithTitle:@"Invalid Email" andDescription:@"Please enter a valid email"] animated:YES completion:nil];
+        } else {
+            // Send network request
+            [HouseManager inviteUser:email toHouse:self.revealViewController.house fromUser:self.revealViewController.user withCompletion:^(NSString *error) {
+                if (error) {
+                    [self presentViewController:[ViewHelpers createErrorAlertWithTitle:@"Error" andDescription:error] animated:YES completion:nil];
+                } else {
+                    [self presentViewController:[ViewHelpers createErrorAlertWithTitle:@"Success" andDescription:[NSString stringWithFormat:@"An email has been sent to %@", email]] animated:YES completion:nil];
+                }
+            }];
+        }
     }]];
     [self presentViewController:alert animated:YES completion:nil];
 }

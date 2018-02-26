@@ -67,12 +67,12 @@
     }];
 }
 
-+ (void)completeToDoWithUser:(User *)completingUser andToDo:(NSString *)todoId withCompletion:(void (^)(ToDo *, NSString *))completion {
++ (void)completeToDoWithUser:(User *)completingUser andToDo:(NSString *)todoId andTimeTaken:(NSNumber *)timeTaken withCompletion:(void (^)(ToDo *, NSString *))completion {
     // Accepts JSON and pass access token
     NSDictionary* headers = @{@"accept": @"application/json", @"Authorization": [NSString stringWithFormat:@"Bearer %@", completingUser.accessToken]};
     
     // Pass assignee, todo id
-    NSDictionary* parameters = @{@"id": todoId, @"time_taken": };
+    NSDictionary* parameters = @{@"id": todoId, @"time_taken": timeTaken};
     
     // Create post request to /api/todos/complete
     [[UNIRest post:^(UNISimpleRequest *request) {
@@ -86,6 +86,35 @@
                 NSDictionary *responseDict = jsonResponse.body.JSONObject;
                 ToDo *todo = [ToDo deserializeTodo:responseDict];
                 completion(todo, nil);
+            } else {
+                completion(nil, @"Unknown");
+            }
+        } else {
+            completion(nil, error.localizedDescription);
+        }
+    }];
+}
+
++ (void)getTodosAssignedToMe:(User *)user withCompletion:(void (^)(NSArray *, NSString *))completion {
+    // Accepts JSON and pass access token
+    NSDictionary* headers = @{@"accept": @"application/json", @"Authorization": [NSString stringWithFormat:@"Bearer %@", user.accessToken]};
+    
+    
+    // Create get request to /api/todos/assigned
+    [[UNIRest get:^(UNISimpleRequest *request) {
+        [request setUrl:@"https://honesthousemate.herokuapp.com/api/todos/assigned"];
+        [request setHeaders:headers];
+    }] asJsonAsync:^(UNIHTTPJsonResponse *jsonResponse, NSError *error) {
+        if (!error) {
+            if (jsonResponse.code == 200) {
+                // If no error, get json response and deserialize to todo object
+                NSDictionary *responseDict = jsonResponse.body.JSONObject;
+                NSArray *responseArray = responseDict[@"todos"];
+                NSMutableArray *todosArray = [[NSMutableArray alloc]init];
+                for (int i = 0; i < responseArray.count; i++) {
+                    [todosArray addObject:[ToDo deserializeTodo:responseArray[i]]];
+                }
+                completion(todosArray, nil);
             } else {
                 completion(nil, @"Unknown");
             }

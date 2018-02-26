@@ -1,0 +1,22 @@
+{
+    "Version": "1.0",
+    "CredentialsProvider": {
+        "CognitoIdentity": {
+            "Default": {
+                "PoolId": "us-east-1:0b0707db-343b-4cef-9371-f5121f2df098",
+                "Region": "Regions.US_EAST_1"
+            }
+        }
+    },
+    "IdentityManager" : {
+        "Default" : {
+            
+        }
+    },
+    "S3TransferUtility": {
+        "Default": {
+            "Bucket": "honest-housemate",
+            "Region": "US West (N. California)"
+        }
+    }
+}

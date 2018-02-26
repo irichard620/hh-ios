@@ -50,5 +50,17 @@
  * Return:
  * todo
  */
-+ (void)completeToDoWithUser:(User *)completingUser andToDo:(NSString *)todoId withCompletion:(void(^)(ToDo *todo, NSString *error))completion;
++ (void)completeToDoWithUser:(User *)completingUser andToDo:(NSString *)todoId andTimeTaken:(NSNumber *)timeTaken withCompletion:(void(^)(ToDo *todo, NSString *error))completion;
+
+/*
+ * Get todos assigned to user
+ *
+ * Arguments:
+ * user
+ *
+ * Return:
+ * Array of todo objects
+ */
++ (void)getTodosAssignedToMe:(User *)user withCompletion:(void(^)(NSArray *todos, NSString *error))completion;
+
 @end

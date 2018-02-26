@@ -1,0 +1,19 @@
+//
+//  UserTableViewCell.h
+//  hh-ios
+//
+//  Created by Ian Richard on 2/20/18.
+//  Copyright © 2018 Ian Richard. All rights reserved.
+//
+
+#import <UIKit/UIKit.h>
+
+@interface UserTableViewCell : UITableViewCell
+
+@property (weak, nonatomic) IBOutlet UILabel *nameLabel;
+@property (weak, nonatomic) IBOutlet UIImageView *avatarImageView;
+
+- (void)setName:(NSString *)name andImage:(UIImage *)image;
+- (void)setNoImageCellWithText:(NSString *)title;
+
+@end

@@ -15,10 +15,13 @@
 #import "MenuTableViewCell.h"
 #import "JoinHouseViewController.h"
 #import "CreateHouseViewController.h"
+#import "UserManager.h"
+
 
 @interface UserHomeViewController ()
 
 @property (nonatomic) BOOL navBarShouldDissapear;
+@property (nonatomic) NSArray *houseArray;
 
 @end
 
@@ -56,6 +59,8 @@
     self.tableView.estimatedSectionHeaderHeight = 30;
     self.tableView.rowHeight = UITableViewAutomaticDimension;
     self.tableView.tableFooterView = [[UIView alloc]initWithFrame:CGRectZero];
+    
+    [self getHouses];
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
@@ -70,6 +75,18 @@
     [super viewWillAppear:animated];
 }
 
+#pragma mark Data
+
+- (void)getHouses {
+    [UserManager getHouseListForUser:self.user withCompletion:^(NSArray *houses, NSString *error) {
+        if (!error) {
+            self.houseArray = houses;
+        } else {
+            
+        }
+    }];
+}
+
 #pragma mark Table view
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
@@ -78,7 +95,8 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     if (section == 0) {
-        return 1;
+        if (self.houseArray.count == 0) return 1;
+        else return self.houseArray.count;
     } else if (section == 1) {
         return 2;
     } else {

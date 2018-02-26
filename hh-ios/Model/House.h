@@ -22,6 +22,9 @@
 // Name for house that must be entered to join
 @property (strong, nonatomic) NSString *uniqueName;
 
+// ID of house owner
+@property (strong, nonatomic) NSString *ownerId;
+
 + (House *) deserializeHouse: (NSDictionary *)houseJson;
 
 @end

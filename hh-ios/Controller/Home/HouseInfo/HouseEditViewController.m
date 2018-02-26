@@ -11,6 +11,7 @@
 #import "SWRevealViewController.h"
 #import "ViewHelpers.h"
 #import "EditPropertyTableViewCell.h"
+#import "SWRevealViewController+SWRevealViewController_Data.h"
 
 @interface HouseEditViewController ()
 

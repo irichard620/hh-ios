@@ -72,6 +72,20 @@
  * Error completion block
  *
  */
-+ (void)uploadHousePic:(UIImage *)image withUniqueName:(NSString *)uniqueName withCompletion:(void(^)(NSString *error))completion;
++ (void)uploadHousePic:(UIImage *)image withUniqueName:(NSString *)uniqueName withCompletion:(void(^)(NSString *resourceURL, NSString *error))completion;
+
+/*
+ * Edit House
+ *
+ * Arguments
+ * display_name = optional String
+ * avatar_link = optional String
+ * unique_name = required String
+ *
+ * Return
+ * Updated house object
+ *
+ */
++ (void)editHouseWithUniqueName:(NSString *)uniqueName withDisplayName:(NSString *)displayName andAvatarLink:(NSString *)avatarLink withCompletion:(void(^)(House *house, NSString *error))completion;
 
 @end

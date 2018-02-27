@@ -16,16 +16,12 @@
 // Pic
 @property (nonatomic) NSString *avatarLink;
 
-// Access token
-@property (strong, nonatomic) NSString *accessToken;
-@property (strong, nonatomic) NSString *refreshToken;
-
 // Email
 @property (strong, nonatomic) NSString *email;
 
 // Display name
 @property (strong, nonatomic) NSString *fullName;
 
-+ (User *) deserializeUser: (NSDictionary *)userJson;
++ (User *) deserializeUser: (NSDictionary *)userJson isLogin:(BOOL)isLogin;
 
 @end

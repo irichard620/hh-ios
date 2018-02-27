@@ -26,7 +26,7 @@
  * Return:
  * Todo that was created
  */
-+ (void)createToDoWithAssignee:(NSString *)assigneeId andHouseId:(NSString *)houseId andTitle:(NSString *)title andDescription:(NSString *)todoDescription andCreator:(User *)creator withCompletion:(void (^)(ToDo *todo, NSString *error))completion;
++ (void)createToDoWithAssignee:(NSString *)assigneeId andHouseId:(NSString *)houseId andTitle:(NSString *)title andDescription:(NSString *)todoDescription withCompletion:(void (^)(ToDo *todo, NSString *error))completion;
 
 /*
  * Re-assign To-do
@@ -39,7 +39,7 @@
  * Return:
  * todo
  */
-+ (void)reassignToDoWithAssignee:(NSString *)assigneeId andToDo:(NSString *)todoId andEditingUser:(User *)editingUser withCompletion:(void(^)(ToDo *todo, NSString *error))completion;
++ (void)reassignToDoWithAssignee:(NSString *)assigneeId andToDo:(NSString *)todoId withCompletion:(void(^)(ToDo *todo, NSString *error))completion;
 
 /*
  * Complete To-do
@@ -51,7 +51,7 @@
  * Return:
  * todo
  */
-+ (void)completeToDoWithUser:(User *)completingUser andToDo:(NSString *)todoId andTimeTaken:(NSNumber *)timeTaken withCompletion:(void(^)(ToDo *todo, NSString *error))completion;
++ (void)completeToDo:(NSString *)todoId andTimeTaken:(NSNumber *)timeTaken withCompletion:(void(^)(ToDo *todo, NSString *error))completion;
 
 /*
  * Get todos assigned to user
@@ -62,6 +62,6 @@
  * Return:
  * Array of todo objects
  */
-+ (void)getTodosAssignedToMe:(User *)user withCompletion:(void(^)(NSArray *todos, NSString *error))completion;
++ (void)getTodosAssignedToMeWithCompletion:(void(^)(NSArray *todos, NSString *error))completion;
 
 @end

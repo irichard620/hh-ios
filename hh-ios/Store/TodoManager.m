@@ -8,12 +8,13 @@
 
 #import "TodoManager.h"
 #import <UNIRest.h>
+#import "AuthenticationManager.h"
 
 @implementation TodoManager
 
-+ (void)createToDoWithAssignee:(NSString *)assigneeId andHouseId:(NSString *)houseId andTitle:(NSString *)title andDescription:(NSString *)todoDescription andCreator:(User *)creator withCompletion:(void (^)(ToDo *, NSString *))completion {
++ (void)createToDoWithAssignee:(NSString *)assigneeId andHouseId:(NSString *)houseId andTitle:(NSString *)title andDescription:(NSString *)todoDescription withCompletion:(void (^)(ToDo *, NSString *))completion {
     // Accepts JSON and pass access token
-    NSDictionary* headers = @{@"accept": @"application/json", @"Authorization": [NSString stringWithFormat:@"Bearer %@", creator.accessToken]};
+    NSDictionary* headers = @{@"accept": @"application/json", @"Authorization": [NSString stringWithFormat:@"Bearer %@", [AuthenticationManager getCurrentAccessToken]]};
     
     // Pass assignee, house id, title, description
     NSDictionary* parameters = @{@"assignee": assigneeId, @"house": houseId, @"title": title, @"description": todoDescription};
@@ -40,9 +41,9 @@
     }];
 }
 
-+ (void)reassignToDoWithAssignee:(NSString *)assigneeId andToDo:(NSString *)todoId andEditingUser:(User *)editingUser withCompletion:(void (^)(ToDo *, NSString *))completion  {
++ (void)reassignToDoWithAssignee:(NSString *)assigneeId andToDo:(NSString *)todoId withCompletion:(void (^)(ToDo *, NSString *))completion  {
     // Accepts JSON and pass access token
-    NSDictionary* headers = @{@"accept": @"application/json", @"Authorization": [NSString stringWithFormat:@"Bearer %@", editingUser.accessToken]};
+    NSDictionary* headers = @{@"accept": @"application/json", @"Authorization": [NSString stringWithFormat:@"Bearer %@", [AuthenticationManager getCurrentAccessToken]]};
     
     // Pass assignee, todo id
     NSDictionary* parameters = @{@"id": todoId, @"assignee": assigneeId};
@@ -69,9 +70,9 @@
     }];
 }
 
-+ (void)completeToDoWithUser:(User *)completingUser andToDo:(NSString *)todoId andTimeTaken:(NSNumber *)timeTaken withCompletion:(void (^)(ToDo *, NSString *))completion {
++ (void)completeToDo:(NSString *)todoId andTimeTaken:(NSNumber *)timeTaken withCompletion:(void (^)(ToDo *, NSString *))completion {
     // Accepts JSON and pass access token
-    NSDictionary* headers = @{@"accept": @"application/json", @"Authorization": [NSString stringWithFormat:@"Bearer %@", completingUser.accessToken]};
+    NSDictionary* headers = @{@"accept": @"application/json", @"Authorization": [NSString stringWithFormat:@"Bearer %@", [AuthenticationManager getCurrentAccessToken]]};
     
     // Pass assignee, todo id
     NSDictionary* parameters = @{@"id": todoId, @"time_taken": timeTaken};
@@ -98,9 +99,9 @@
     }];
 }
 
-+ (void)getTodosAssignedToMe:(User *)user withCompletion:(void (^)(NSArray *, NSString *))completion {
++ (void)getTodosAssignedToMeWithCompletion:(void (^)(NSArray *, NSString *))completion {
     // Accepts JSON and pass access token
-    NSDictionary* headers = @{@"accept": @"application/json", @"Authorization": [NSString stringWithFormat:@"Bearer %@", user.accessToken]};
+    NSDictionary* headers = @{@"accept": @"application/json", @"Authorization": [NSString stringWithFormat:@"Bearer %@", [AuthenticationManager getCurrentAccessToken]]};
     
     
     // Create get request to /api/todos/assigned

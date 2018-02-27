@@ -35,6 +35,20 @@
  * Error completion block
  *
  */
-+ (void)uploadProfilePic:(UIImage *)image withCompletion:(void(^)(NSString *error))completion;
++ (void)uploadProfilePic:(UIImage *)image withCompletion:(void(^)(NSString *resourceURL, NSString *error))completion;
+
+/*
+ * Edit user
+ *
+ * Arguments
+ * full_name = optional String
+ * avatar_link = optional String
+ * one or the other must be provided
+ *
+ * Return
+ * Updated user object
+ *
+ */
++ (void)editUserWithName:(NSString *)name andAvatarLink:(NSString *)avatarLink withCompletion:(void(^)(User *user, NSString *error))completion;
 
 @end

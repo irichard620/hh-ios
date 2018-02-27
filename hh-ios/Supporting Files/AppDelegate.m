@@ -66,23 +66,6 @@
 }
 
 #pragma mark Helpers
-- (BOOL)tokenNeedsRefresh {
-    NSDate *now = [NSDate date];
-    NSDate *expirationDate = (NSDate *)[[NSUserDefaults standardUserDefaults] objectForKey:@"auth0-token-expiration"];
-    if ([now compare:expirationDate] == NSOrderedAscending) {
-        // expiration in the past - must logout
-        return YES;
-    } else {
-        NSTimeInterval secondsBetween = [expirationDate timeIntervalSinceDate:now];
-        int numberOfHours = secondsBetween / 60;
-        if (numberOfHours < 12) {
-            // If less than half a day to expiration - reset
-            return YES;
-        } else {
-            return NO;
-        }
-    }
-}
 
 - (BOOL)goToSignup {
     SignupViewController *signupVC = [[SignupViewController alloc]initWithNibName:@"SignupViewController" bundle:nil];

@@ -36,7 +36,7 @@
                         if (jsonResponse.code == 200) {
                             // If no error, get json response and deserialize to user object
                             NSDictionary *responseDict = jsonResponse.body.JSONObject[@"response"];
-                            User *user = [User deserializeUser:responseDict];
+                            User *user = [User deserializeUser:responseDict isLogin:YES];
                             completion(user, nil);
                         } else if (jsonResponse.code == 422) {
                             completion(nil, MISSING_INFO_ERROR);
@@ -73,7 +73,7 @@
             if (jsonResponse.code == 200) {
                 // If no error, get json response and deserialize to user object
                 NSDictionary *responseDict = jsonResponse.body.JSONObject[@"response"];
-                User *user = [User deserializeUser:responseDict];
+                User *user = [User deserializeUser:responseDict isLogin:YES];
                 completion(user, nil);
             } else if (jsonResponse.code == 422) {
                 completion(nil, MISSING_INFO_ERROR);

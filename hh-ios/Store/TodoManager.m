@@ -27,14 +27,15 @@
         if (!error) {
             if (jsonResponse.code == 201) {
                 // If no error, get json response and deserialize to todo object
-                NSDictionary *responseDict = jsonResponse.body.JSONObject;
+                NSDictionary *responseDict = jsonResponse.body.JSONObject[@"response"];
                 ToDo *todo = [ToDo deserializeTodo:responseDict];
                 completion(todo, nil);
             } else {
-                completion(nil, @"Unknown");
+                completion(nil, UNKNOWN_ERROR);
             }
         } else {
-            completion(nil, error.localizedDescription);
+            NSLog(@"%@", error.localizedDescription);
+            completion(nil, UNKNOWN_ERROR);
         }
     }];
 }
@@ -55,14 +56,15 @@
         if (!error) {
             if (jsonResponse.code == 201) {
                 // If no error, get json response and deserialize to todo object
-                NSDictionary *responseDict = jsonResponse.body.JSONObject;
+                NSDictionary *responseDict = jsonResponse.body.JSONObject[@"response"];
                 ToDo *todo = [ToDo deserializeTodo:responseDict];
                 completion(todo, nil);
             } else {
-                completion(nil, @"Unknown");
+                completion(nil, UNKNOWN_ERROR);
             }
         } else {
-            completion(nil, error.localizedDescription);
+            NSLog(@"%@", error.localizedDescription);
+            completion(nil, UNKNOWN_ERROR);
         }
     }];
 }
@@ -83,14 +85,15 @@
         if (!error) {
             if (jsonResponse.code == 201) {
                 // If no error, get json response and deserialize to todo object
-                NSDictionary *responseDict = jsonResponse.body.JSONObject;
+                NSDictionary *responseDict = jsonResponse.body.JSONObject[@"response"];
                 ToDo *todo = [ToDo deserializeTodo:responseDict];
                 completion(todo, nil);
             } else {
-                completion(nil, @"Unknown");
+                completion(nil, UNKNOWN_ERROR);
             }
         } else {
-            completion(nil, error.localizedDescription);
+            NSLog(@"%@", error.localizedDescription);
+            completion(nil, UNKNOWN_ERROR);
         }
     }];
 }
@@ -116,10 +119,11 @@
                 }
                 completion(todosArray, nil);
             } else {
-                completion(nil, @"Unknown");
+                completion(nil, UNKNOWN_ERROR);
             }
         } else {
-            completion(nil, error.localizedDescription);
+            NSLog(@"%@", error.localizedDescription);
+            completion(nil, UNKNOWN_ERROR);
         }
     }];
 }

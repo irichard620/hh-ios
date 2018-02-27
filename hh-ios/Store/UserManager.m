@@ -9,17 +9,13 @@
 #import "UserManager.h"
 #import <UNIRest.h>
 #import "House.h"
-
-NSString * const UNKNOWN_ERROR = @"unknown";
-NSString * const NOT_FOUND_ERROR = @"not_found";
-NSString * const CONNECTION_ERROR = @"connection";
-NSString * const MISSING_INFO_ERROR = @"missing_info";
+#import "AuthenticationManager.h"
 
 @implementation UserManager
 
-+ (void)getHouseListForUser:(User *)user withCompletion:(void (^)(NSArray *, NSString *))completion; {
++ (void)getHouseListForUserWithCompletion:(void (^)(NSArray *, NSString *))completion; {
     // Accepts JSON and pass access token
-    NSDictionary* headers = @{@"accept": @"application/json", @"Authorization": [NSString stringWithFormat:@"Bearer %@", user.accessToken]};
+    NSDictionary* headers = @{@"accept": @"application/json", @"Authorization": [NSString stringWithFormat:@"Bearer %@", [AuthenticationManager getCurrentAccessToken]]};
     
     // Create get request to /api/user/houses
     [[UNIRest get:^(UNISimpleRequest *request) {
@@ -43,6 +39,42 @@ NSString * const MISSING_INFO_ERROR = @"missing_info";
             NSLog(@"%@", error.localizedDescription);
             completion(nil, UNKNOWN_ERROR);
             
+        }
+    }];
+}
+
++ (void)uploadProfilePic:(UIImage *)image withCompletion:(void (^)(NSString *))completion {
+    // Accepts JSON and pass access token
+    NSDictionary* headers = @{@"accept": @"application/json", @"Authorization": [NSString stringWithFormat:@"Bearer %@", [AuthenticationManager getCurrentAccessToken]]};
+    
+    // Create get request to /api/user/createUploadLink
+    [[UNIRest post:^(UNISimpleRequest *request) {
+        [request setUrl:@"https://honesthousemate.herokuapp.com/api/user/createUploadLink"];
+        [request setHeaders:headers];
+    }] asJsonAsync:^(UNIHTTPJsonResponse *jsonResponse, NSError *error) {
+        if (!error) {
+            if (jsonResponse.code == 201) {
+                NSString *presignedURL = jsonResponse.body.JSONObject[@"url"];
+                NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:presignedURL]];
+                request.cachePolicy = NSURLRequestReloadIgnoringLocalCacheData;
+                [request setHTTPMethod:@"PUT"];
+                [request setValue:@"image/png" forHTTPHeaderField:@"Content-Type"];
+                
+                // Create upload
+                NSURLSessionUploadTask *uploadTask = [[[NSURLSession alloc]init]uploadTaskWithRequest:request fromFile:[StoreHelpers saveImageToFile:image] completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+                    if (error) {
+                        completion(UNKNOWN_ERROR);
+                    } else {
+                        completion(nil);
+                    }
+                }];
+                [uploadTask resume];
+            } else {
+                completion(UNKNOWN_ERROR);
+            }
+        } else {
+            NSLog(@"%@", error.localizedDescription);
+            completion(UNKNOWN_ERROR);
         }
     }];
 }

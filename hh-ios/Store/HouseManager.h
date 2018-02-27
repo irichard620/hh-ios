@@ -9,6 +9,8 @@
 #import <Foundation/Foundation.h>
 #import "House.h"
 #import "User.h"
+#import <UIKit/UIKit.h>
+#import "StoreHelpers.h"
 
 @interface HouseManager : NSObject
 
@@ -23,7 +25,7 @@
  * Return:
  * House object that was created
 */
-+ (void)createHouseWithDisplay:(NSString *)displayName andUnique:(NSString *)uniqueName andCreator:(User *)creator withCompletion:(void (^)(House *house, NSString *error))completion;
++ (void)createHouseWithDisplay:(NSString *)displayName andUnique:(NSString *)uniqueName withCompletion:(void (^)(House *house, NSString *error))completion;
 
 /*
  * Invite an email to a house
@@ -35,7 +37,7 @@
  * Return:
  * None
  */
-+ (void)inviteUser:(NSString *)email toHouse:(House *)house fromUser:(User *)fromUser withCompletion:(void (^)(NSString *error))completion;
++ (void)inviteUser:(NSString *)email toHouseName:(NSString *)uniqueName withCompletion:(void (^)(NSString *error))completion;
 
 /*
  * Join a house
@@ -58,6 +60,18 @@
  * REturn:
  * Array of user objects
  */
-+ (void)getListOfResidents:(User *)user withUniqueName:(NSString *)uniqueName withCompletion:(void (^)(NSArray *residents, NSString *error))completion;
++ (void)getListOfResidentsWithUniqueName:(NSString *)uniqueName withCompletion:(void (^)(NSArray *residents, NSString *error))completion;
+
+/*
+ * Upload profile picture for house
+ *
+ * Arguments
+ * UIImage object and uniqueName of house
+ *
+ * Return
+ * Error completion block
+ *
+ */
++ (void)uploadHousePic:(UIImage *)image withUniqueName:(NSString *)uniqueName withCompletion:(void(^)(NSString *error))completion;
 
 @end

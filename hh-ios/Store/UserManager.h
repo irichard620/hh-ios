@@ -9,11 +9,8 @@
 #import <Foundation/Foundation.h>
 #import "House.h"
 #import "User.h"
-
-extern NSString * const UNKNOWN_ERROR;
-extern NSString * const NOT_FOUND_ERROR;
-extern NSString * const CONNECTION_ERROR;
-extern NSString * const MISSING_INFO_ERROR;
+#import <UIKit/UIKit.h>
+#import "StoreHelpers.h"
 
 @interface UserManager : NSObject
 
@@ -21,11 +18,23 @@ extern NSString * const MISSING_INFO_ERROR;
  * Get all the houses that this user is part of
  *
  * Arguments:
- * user - user that we are getting list for
+ * none
  *
  * Return:
  * Array of house objects
  */
-+ (void)getHouseListForUser:(User *)user withCompletion:(void (^)(NSArray *houses, NSString *error))completion;
++ (void)getHouseListForUserWithCompletion:(void (^)(NSArray *houses, NSString *error))completion;
+
+/*
+ * Upload profile picture for user
+ *
+ * Arguments
+ * UIImage object and assetURL of image
+ *
+ * Return
+ * Error completion block
+ *
+ */
++ (void)uploadProfilePic:(UIImage *)image withCompletion:(void(^)(NSString *error))completion;
 
 @end

@@ -84,7 +84,7 @@
 		802F4071203CAD180006CA8B /* UserTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 802F406F203CAD170006CA8B /* UserTableViewCell.m */; };
 		802F4072203CAD180006CA8B /* UserTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 802F4070203CAD170006CA8B /* UserTableViewCell.xib */; };
 		802F4075203F3D310006CA8B /* SWRevealViewController+SWRevealViewController_Data.m in Sources */ = {isa = PBXBuildFile; fileRef = 802F4074203F3D310006CA8B /* SWRevealViewController+SWRevealViewController_Data.m */; };
-		802F40772043A2DC0006CA8B /* awsconfiguration.json in Resources */ = {isa = PBXBuildFile; fileRef = 802F40762043A2DC0006CA8B /* awsconfiguration.json */; };
+		802F407D2044F0380006CA8B /* StoreHelpers.m in Sources */ = {isa = PBXBuildFile; fileRef = 802F407C2044F0380006CA8B /* StoreHelpers.m */; };
 		8073C8351FC946CC007223CD /* ChatTimeTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8073C8331FC946CC007223CD /* ChatTimeTableViewCell.m */; };
 		8073C8361FC946CC007223CD /* ChatTimeTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8073C8341FC946CC007223CD /* ChatTimeTableViewCell.xib */; };
 		8073C8381FC95291007223CD /* ian_profile.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 8073C8371FC95291007223CD /* ian_profile.jpg */; };
@@ -273,7 +273,8 @@
 		802F4070203CAD170006CA8B /* UserTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UserTableViewCell.xib; sourceTree = "<group>"; };
 		802F4073203F3D310006CA8B /* SWRevealViewController+SWRevealViewController_Data.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SWRevealViewController+SWRevealViewController_Data.h"; sourceTree = "<group>"; };
 		802F4074203F3D310006CA8B /* SWRevealViewController+SWRevealViewController_Data.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "SWRevealViewController+SWRevealViewController_Data.m"; sourceTree = "<group>"; };
-		802F40762043A2DC0006CA8B /* awsconfiguration.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = awsconfiguration.json; sourceTree = "<group>"; };
+		802F407B2044F0380006CA8B /* StoreHelpers.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = StoreHelpers.h; sourceTree = "<group>"; };
+		802F407C2044F0380006CA8B /* StoreHelpers.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = StoreHelpers.m; sourceTree = "<group>"; };
 		8073C8321FC946CC007223CD /* ChatTimeTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatTimeTableViewCell.h; sourceTree = "<group>"; };
 		8073C8331FC946CC007223CD /* ChatTimeTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatTimeTableViewCell.m; sourceTree = "<group>"; };
 		8073C8341FC946CC007223CD /* ChatTimeTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ChatTimeTableViewCell.xib; sourceTree = "<group>"; };
@@ -712,6 +713,8 @@
 				802F402D2020F4A30006CA8B /* UserManager.m */,
 				802F4057203BEFED0006CA8B /* TodoManager.h */,
 				802F4058203BEFED0006CA8B /* TodoManager.m */,
+				802F407B2044F0380006CA8B /* StoreHelpers.h */,
+				802F407C2044F0380006CA8B /* StoreHelpers.m */,
 			);
 			path = Store;
 			sourceTree = "<group>";
@@ -742,7 +745,6 @@
 				80F5586E1FBAB280001601B3 /* AppDelegate.m */,
 				80F5586F1FBAB280001601B3 /* Info.plist */,
 				80F558701FBAB280001601B3 /* main.m */,
-				802F40762043A2DC0006CA8B /* awsconfiguration.json */,
 			);
 			path = "Supporting Files";
 			sourceTree = "<group>";
@@ -885,6 +887,7 @@
 				80F558451FBAA541001601B3 /* Frameworks */,
 				80F558461FBAA541001601B3 /* Resources */,
 				2B6C905E283E998E770F892B /* [CP] Copy Pods Resources */,
+				452087339F4D587616F37921 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -999,7 +1002,6 @@
 				80F558371FBAA541001601B3 /* LaunchScreen.storyboard in Resources */,
 				802F4024200C1BB70006CA8B /* group-icon-black-background.png in Resources */,
 				802F3FE01FFDA15A0006CA8B /* left-arrow.png in Resources */,
-				802F40772043A2DC0006CA8B /* awsconfiguration.json in Resources */,
 				802F4043202E2A6F0006CA8B /* HouseEditViewController.xib in Resources */,
 				802F3FB61FCA3BA10006CA8B /* PaymentsViewController.xib in Resources */,
 				80F558BA1FC7F395001601B3 /* UserHomeTableViewCell.xib in Resources */,
@@ -1067,13 +1069,31 @@
 			files = (
 			);
 			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
 			);
 			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-hh-iosUITests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		452087339F4D587616F37921 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-hh-iosUITests/Pods-hh-iosUITests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		5FA9D992BE7EB76502356DBA /* [CP] Check Pods Manifest.lock */ = {
@@ -1082,13 +1102,16 @@
 			files = (
 			);
 			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
 			);
 			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-hh-ios-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
 		659D476E94D42E841EE64F6F /* [CP] Embed Pods Frameworks */ = {
@@ -1142,13 +1165,16 @@
 			files = (
 			);
 			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
 			);
 			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-hh-iosTests-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -1206,6 +1232,7 @@
 				802F4059203BEFED0006CA8B /* TodoManager.m in Sources */,
 				802F3FE41FFDA9F10006CA8B /* CreateHouseViewController.m in Sources */,
 				802F3FAA1FC9FE110006CA8B /* UIView+SLKAdditions.m in Sources */,
+				802F407D2044F0380006CA8B /* StoreHelpers.m in Sources */,
 				802F3FB51FCA3BA10006CA8B /* PaymentsViewController.m in Sources */,
 				80F558B91FC7F395001601B3 /* UserHomeTableViewCell.m in Sources */,
 				802F3FB11FC9FE110006CA8B /* SLKTextViewController.m in Sources */,

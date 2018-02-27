@@ -17,7 +17,6 @@
 #import "CreateHouseViewController.h"
 #import "UserManager.h"
 
-
 @interface UserHomeViewController ()
 
 @property (nonatomic) BOOL navBarShouldDissapear;
@@ -78,7 +77,7 @@
 #pragma mark Data
 
 - (void)getHouses {
-    [UserManager getHouseListForUser:self.user withCompletion:^(NSArray *houses, NSString *error) {
+    [UserManager getHouseListForUserWithCompletion:^(NSArray *houses, NSString *error) {
         if (!error) {
             self.houseArray = houses;
         } else {

@@ -12,6 +12,8 @@
 #import "SWRevealViewController.h"
 #import "UserHomeViewController.h"
 #import "SignupViewController.h"
+#import <SimpleKeychain.h>
+#import "AuthenticationManager.h"
 
 @interface AppDelegate ()
 
@@ -21,23 +23,19 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    // Override point for customization after application launch.
     
-    // Need to check tokens at this step
-    
-    
+    // Set window
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     
-    SignupViewController *signupVC = [[SignupViewController alloc]initWithNibName:@"SignupViewController" bundle:nil];
-    UINavigationController *navVC = [[UINavigationController alloc]initWithRootViewController:signupVC];
-    
-    
-    
-    // Set as root
-    self.window.rootViewController = navVC;
-    [self.window makeKeyAndVisible];
-    
-    return YES;
+    // Check token
+    NSString *jwt = [AuthenticationManager getCurrentAccessToken];
+    if (jwt) {
+        // Go to user home
+        return [self goToUserHome];
+    } else {
+        // No token in keychain - go to sign up
+        return [self goToSignup];
+    }
 }
 
 
@@ -67,5 +65,45 @@
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
 }
 
+#pragma mark Helpers
+- (BOOL)tokenNeedsRefresh {
+    NSDate *now = [NSDate date];
+    NSDate *expirationDate = (NSDate *)[[NSUserDefaults standardUserDefaults] objectForKey:@"auth0-token-expiration"];
+    if ([now compare:expirationDate] == NSOrderedAscending) {
+        // expiration in the past - must logout
+        return YES;
+    } else {
+        NSTimeInterval secondsBetween = [expirationDate timeIntervalSinceDate:now];
+        int numberOfHours = secondsBetween / 60;
+        if (numberOfHours < 12) {
+            // If less than half a day to expiration - reset
+            return YES;
+        } else {
+            return NO;
+        }
+    }
+}
+
+- (BOOL)goToSignup {
+    SignupViewController *signupVC = [[SignupViewController alloc]initWithNibName:@"SignupViewController" bundle:nil];
+    UINavigationController *navVC = [[UINavigationController alloc]initWithRootViewController:signupVC];
+    
+    // Set as root
+    self.window.rootViewController = navVC;
+    [self.window makeKeyAndVisible];
+    
+    return YES;
+}
+
+- (BOOL)goToUserHome {
+    UserHomeViewController *userVC = [[UserHomeViewController alloc]initWithNibName:@"UserHomeViewController" bundle:nil];
+    UINavigationController *navVC = [[UINavigationController alloc]initWithRootViewController:userVC];
+    
+    // Set as root
+    self.window.rootViewController = navVC;
+    [self.window makeKeyAndVisible];
+    
+    return YES;
+}
 
 @end

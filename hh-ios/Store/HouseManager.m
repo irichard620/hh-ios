@@ -9,12 +9,13 @@
 #import "HouseManager.h"
 #import <UNIRest.h>
 #import "House.h"
+#import "AuthenticationManager.h"
 
 @implementation HouseManager
 
-+ (void)createHouseWithDisplay:(NSString *)displayName andUnique:(NSString *)uniqueName andCreator:(User *)creator withCompletion:(void (^)(House *, NSString *))completion {
++ (void)createHouseWithDisplay:(NSString *)displayName andUnique:(NSString *)uniqueName withCompletion:(void (^)(House *, NSString *))completion {
     // Accepts JSON and pass access token
-    NSDictionary* headers = @{@"accept": @"application/json", @"Authorization": [NSString stringWithFormat:@"Bearer %@", creator.accessToken]};
+    NSDictionary* headers = @{@"accept": @"application/json", @"Authorization": [NSString stringWithFormat:@"Bearer %@", [AuthenticationManager getCurrentAccessToken]]};
     
     // Pass display and unique name
     NSDictionary* parameters = @{@"displayName": displayName, @"uniqueName": uniqueName};
@@ -28,24 +29,25 @@
         if (!error) {
             if (jsonResponse.code == 201) {
                 // If no error, get json response and deserialize to house object
-                NSDictionary *responseDict = jsonResponse.body.JSONObject;
+                NSDictionary *responseDict = jsonResponse.body.JSONObject[@"response"];
                 House *house = [House deserializeHouse:responseDict];
                 completion(house, nil);
             } else {
-                completion(nil, @"Unknown");
+                completion(nil, UNKNOWN_ERROR);
             }
         } else {
-            completion(nil, error.localizedDescription);
+            NSLog(@"%@", error.localizedDescription);
+            completion(nil, UNKNOWN_ERROR);
         }
     }];
 }
 
-+ (void)inviteUser:(NSString *)email toHouse:(House *)house fromUser:(User *)fromUser withCompletion:(void (^)(NSString *))completion {
++ (void)inviteUser:(NSString *)email toHouseName:(NSString *)uniqueName withCompletion:(void (^)(NSString *))completion {
     // Accepts JSON and pass access token
-    NSDictionary* headers = @{@"accept": @"application/json", @"Authorization": [NSString stringWithFormat:@"Bearer %@", fromUser.accessToken]};
+    NSDictionary* headers = @{@"accept": @"application/json", @"Authorization": [NSString stringWithFormat:@"Bearer %@", [AuthenticationManager getCurrentAccessToken]]};
     
     // email and house unique name
-    NSDictionary* parameters = @{@"email": email, @"house_id": house.uniqueName};
+    NSDictionary* parameters = @{@"email": email, @"house_id": uniqueName};
     
     // Create post request to /api/house/invite
     [[UNIRest post:^(UNISimpleRequest *request) {
@@ -58,10 +60,11 @@
                 // If no error, return nil for error
                 completion(nil);
             } else {
-                completion(@"Unknown");
+                completion(UNKNOWN_ERROR);
             }
         } else {
-            completion(error.localizedDescription);
+            NSLog(@"%@", error.localizedDescription);
+            completion(UNKNOWN_ERROR);
         }
     }];
 }
@@ -70,11 +73,11 @@
     completion(nil);
 }
 
-+ (void)getListOfResidents:(User *)user withUniqueName:(NSString *)uniqueName withCompletion:(void (^)(NSArray *, NSString *))completion {
++ (void)getListOfResidentsWithUniqueName:(NSString *)uniqueName withCompletion:(void (^)(NSArray *, NSString *))completion {
     // Accepts JSON and pass access token
-    NSDictionary* headers = @{@"accept": @"application/json", @"Authorization": [NSString stringWithFormat:@"Bearer %@", user.accessToken]};
+    NSDictionary* headers = @{@"accept": @"application/json", @"Authorization": [NSString stringWithFormat:@"Bearer %@", [AuthenticationManager getCurrentAccessToken]]};
     
-    // Create post request to /api/house/invite
+    // Create post request to /api/house/:house_id/users
     [[UNIRest get:^(UNISimpleRequest *request) {
         [request setUrl:[NSString stringWithFormat:@"https://honesthousemate.herokuapp.com/api/house/%@/users",uniqueName]];
         [request setHeaders:headers];
@@ -90,10 +93,51 @@
                 }
                 completion(usersArray, nil);
             } else {
-                completion(nil, @"Unknown");
+                completion(nil, UNKNOWN_ERROR);
             }
         } else {
-            completion(nil, error.localizedDescription);
+            NSLog(@"%@", error.localizedDescription);
+            completion(nil, UNKNOWN_ERROR);
+        }
+    }];
+}
+
++ (void)uploadHousePic:(UIImage *)image withUniqueName:(NSString *)uniqueName withCompletion:(void (^)(NSString *))completion {
+    // Accepts JSON and pass access token
+    NSDictionary* headers = @{@"accept": @"application/json", @"Authorization": [NSString stringWithFormat:@"Bearer %@", [AuthenticationManager getCurrentAccessToken]]};
+    
+    // house unique name
+    NSDictionary* parameters = @{@"unique_name": uniqueName};
+    
+    // Create post request to /api/house/createUploadLink
+    [[UNIRest post:^(UNISimpleRequest *request) {
+        [request setUrl:@"https://honesthousemate.herokuapp.com/api/house/createUploadLink"];
+        [request setHeaders:headers];
+        [request setParameters:parameters];
+    }] asJsonAsync:^(UNIHTTPJsonResponse *jsonResponse, NSError *error) {
+        if (!error) {
+            if (jsonResponse.code == 201) {
+                NSString *presignedURL = jsonResponse.body.JSONObject[@"url"];
+                NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:presignedURL]];
+                request.cachePolicy = NSURLRequestReloadIgnoringLocalCacheData;
+                [request setHTTPMethod:@"PUT"];
+                [request setValue:@"image/png" forHTTPHeaderField:@"Content-Type"];
+                
+                // Create upload
+                NSURLSessionUploadTask *uploadTask = [[[NSURLSession alloc]init]uploadTaskWithRequest:request fromFile:[StoreHelpers saveImageToFile:image] completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+                    if (error) {
+                        completion(UNKNOWN_ERROR);
+                    } else {
+                        completion(nil);
+                    }
+                }];
+                [uploadTask resume];
+            } else {
+                completion(UNKNOWN_ERROR);
+            }
+        } else {
+            NSLog(@"%@", error.localizedDescription);
+            completion(UNKNOWN_ERROR);
         }
     }];
 }

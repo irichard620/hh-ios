@@ -101,6 +101,7 @@
         
         UserReference *user = [self.residentsArray objectAtIndex:indexPath.row - 1];
         [cell setName:user.name andImage:nil];
+        return cell;
     }
 }
 

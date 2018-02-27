@@ -1,12 +1,20 @@
 PODS:
-  - SlackTextViewController (1.9.5)
+  - SDWebImage (4.3.1):
+    - SDWebImage/Core (= 4.3.1)
+  - SDWebImage/Core (4.3.1)
+  - SimpleKeychain (0.8.0)
+  - Unirest (1.1.4)
 
 DEPENDENCIES:
-  - SlackTextViewController
+  - SDWebImage
+  - SimpleKeychain
+  - Unirest (~> 1.1.4)
 
 SPEC CHECKSUMS:
-  SlackTextViewController: fbcdadbb8090673f604484ff5b6eb8d77baed42a
+  SDWebImage: 09808bac78357b39f8db4ea360c7b5534d785ef4
+  SimpleKeychain: 84c748463eec601dfee5e7990f55cc82edc5488d
+  Unirest: 5e4d93eaf32463bf619a4ecd3bbc8c32acf21eac
 
-PODFILE CHECKSUM: 34b2bbe932d44be89790bd2f6fa46ad04a974bda
+PODFILE CHECKSUM: 185c88a7db60192adeeacc7c787befdf493207bf
 
-COCOAPODS: 1.0.1
+COCOAPODS: 1.4.0

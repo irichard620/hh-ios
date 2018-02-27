@@ -9,12 +9,7 @@
 #import "AuthenticationManager.h"
 #import <UNIRest.h>
 #import "NSString+Security.h"
-
-NSString * const UNKNOWN_ERROR = @"unknown";
-NSString * const NOT_FOUND_ERROR = @"not_found";
-NSString * const CONNECTION_ERROR = @"connection";
-NSString * const MISSING_INFO_ERROR = @"missing_info";
-
+#import <A0SimpleKeychain.h>
 
 @implementation AuthenticationManager
 
@@ -40,7 +35,7 @@ NSString * const MISSING_INFO_ERROR = @"missing_info";
                     if (!error) {
                         if (jsonResponse.code == 200) {
                             // If no error, get json response and deserialize to user object
-                            NSDictionary *responseDict = jsonResponse.body.JSONObject;
+                            NSDictionary *responseDict = jsonResponse.body.JSONObject[@"response"];
                             User *user = [User deserializeUser:responseDict];
                             completion(user, nil);
                         } else if (jsonResponse.code == 422) {
@@ -77,7 +72,7 @@ NSString * const MISSING_INFO_ERROR = @"missing_info";
         if (!error) {
             if (jsonResponse.code == 200) {
                 // If no error, get json response and deserialize to user object
-                NSDictionary *responseDict = jsonResponse.body.JSONObject;
+                NSDictionary *responseDict = jsonResponse.body.JSONObject[@"response"];
                 User *user = [User deserializeUser:responseDict];
                 completion(user, nil);
             } else if (jsonResponse.code == 422) {
@@ -94,6 +89,42 @@ NSString * const MISSING_INFO_ERROR = @"missing_info";
             completion(nil, UNKNOWN_ERROR);
         }
     }];
+}
+
++ (NSString *)getCurrentAccessToken {
+    NSString *jwt = [[A0SimpleKeychain keychain] stringForKey:@"auth0-token-jwt"];
+    if (!jwt) return nil;
+    else {
+        if ([self tokenNeedsRefresh]) {
+            [[A0SimpleKeychain keychain] deleteEntryForKey:@"auth0-token-jwt"];
+            return nil;
+        } else {
+            return jwt;
+        }
+    }
+}
+
++ (BOOL)tokenNeedsRefresh {
+    NSDate *now = [NSDate date];
+    NSDate *expirationDate = (NSDate *)[[NSUserDefaults standardUserDefaults] objectForKey:@"auth0-token-expiration"];
+    if ([now compare:expirationDate] == NSOrderedAscending) {
+        // expiration in the past - must logout
+        return YES;
+    } else {
+        NSTimeInterval secondsBetween = [expirationDate timeIntervalSinceDate:now];
+        int numberOfHours = secondsBetween / 60;
+        if (numberOfHours < 12) {
+            // If less than half a day to expiration - reset
+            return YES;
+        } else {
+            return NO;
+        }
+    }
+}
+
++ (void)logout {
+    [[A0SimpleKeychain keychain] deleteEntryForKey:@"auth0-token-jwt"];
+    [[NSUserDefaults standardUserDefaults]removeObjectForKey:@"auth0-token-expiration"];
 }
 
 @end

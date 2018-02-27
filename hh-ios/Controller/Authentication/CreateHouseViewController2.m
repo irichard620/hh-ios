@@ -50,7 +50,7 @@
     if (uniqueId.length < 6) {
         [self presentViewController:[ViewHelpers createErrorAlertWithTitle:@"House Identifier Invalid" andDescription:@"You must enter a house identifier that is 6 or more letters."] animated:YES completion:nil];
     } else {
-        [HouseManager createHouseWithDisplay:self.displayName andUnique:uniqueId andCreator:self.user withCompletion:^(House *house, NSString *error) {
+        [HouseManager createHouseWithDisplay:self.displayName andUnique:uniqueId withCompletion:^(House *house, NSString *error) {
             if (!error) {
                 [self presentViewController:[ViewHelpers createErrorAlertWithTitle:@"Error Occurred" andDescription:error] animated:YES completion:nil];
             } else {

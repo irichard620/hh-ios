@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "ToDo.h"
 #import "User.h"
+#import "StoreHelpers.h"
 
 @interface TodoManager : NSObject
 

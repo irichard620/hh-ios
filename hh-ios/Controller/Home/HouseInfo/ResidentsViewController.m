@@ -155,7 +155,7 @@
             [self presentViewController:[ViewHelpers createErrorAlertWithTitle:@"Invalid Email" andDescription:@"Please enter a valid email"] animated:YES completion:nil];
         } else {
             // Send network request
-            [HouseManager inviteUser:email toHouse:self.revealViewController.house fromUser:self.revealViewController.user withCompletion:^(NSString *error) {
+            [HouseManager inviteUser:email toHouseName:self.revealViewController.house.uniqueName withCompletion:^(NSString *error) {
                 if (error) {
                     [self presentViewController:[ViewHelpers createErrorAlertWithTitle:@"Error" andDescription:error] animated:YES completion:nil];
                 } else {

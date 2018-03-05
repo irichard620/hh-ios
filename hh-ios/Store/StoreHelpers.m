@@ -7,11 +7,15 @@
 //
 
 #import "StoreHelpers.h"
+#import "AuthenticationManager.h"
+#import <UNIRest.h>
 
 NSString * const UNKNOWN_ERROR = @"unknown";
 NSString * const NOT_FOUND_ERROR = @"not_found";
 NSString * const CONNECTION_ERROR = @"connection";
 NSString * const MISSING_INFO_ERROR = @"missing_info";
+NSString * const NOT_AUTHORIZED_ERROR = @"not_invited";
+NSString * const DUPLICATE_ERROR = @"duplicate";
 
 @implementation StoreHelpers
 
@@ -26,6 +30,77 @@ NSString * const MISSING_INFO_ERROR = @"missing_info";
     [imageData writeToFile:path atomically:YES];
     NSURL *url = [[NSURL alloc] initFileURLWithPath:path];
     return url;
+}
+
++ (NSString *)getErrorTypeToReturnFrom:(NSError *)error andCode:(NSInteger)code {
+    if (!error) {
+        if (code == 200 || code == 201) {
+            return nil;
+        } else if (code == 400) {
+            return MISSING_INFO_ERROR;
+        } else if (code == 401) {
+            return NOT_AUTHORIZED_ERROR;
+        } else if (code == 409) {
+            return NOT_FOUND_ERROR;
+        } else if (code == 409) {
+            return DUPLICATE_ERROR;
+        } else {
+            return UNKNOWN_ERROR;
+        }
+    } else {
+        NSLog(@"%@", error.localizedDescription);
+        return UNKNOWN_ERROR;
+    }
+}
+
++ (NSString *)getURLWithEndpoint:(NSString *)endpoint {
+    return [NSString stringWithFormat:@"https://honesthousemate.herokuapp.com/api%@",endpoint];
+}
+
++ (NSDictionary *)createHeadersWithAuth:(BOOL)withAuth {
+    if (withAuth) {
+        return  @{@"accept": @"application/json", @"Authorization": [NSString stringWithFormat:@"Bearer %@", [AuthenticationManager getCurrentAccessToken]]};
+    } else {
+         return @{@"accept": @"application/json"};
+    }
+}
+
++ (void)sendPostRequestWithEndpoint:(NSString *)endpoint requiresAuth:(BOOL)requiresAuth hasParameters:(NSDictionary *)parameters withCallback:(void (^)(NSDictionary *, NSString *))callback {
+    [[UNIRest post:^(UNISimpleRequest *request) {
+        [request setUrl:[StoreHelpers getURLWithEndpoint:endpoint]];
+        [request setHeaders:[StoreHelpers createHeadersWithAuth:requiresAuth]];
+        [request setParameters:parameters];
+    }] asJsonAsync:^(UNIHTTPJsonResponse *jsonResponse, NSError *error) {
+        callback(jsonResponse.body.JSONObject, [StoreHelpers getErrorTypeToReturnFrom:error andCode:jsonResponse.code]);
+    }];
+}
+
++ (void)sendPutRequestWithEndpoint:(NSString *)endpoint requiresAuth:(BOOL)requiresAuth hasParameters:(NSDictionary *)parameters withCallback:(void (^)(NSDictionary *, NSString *))callback {
+    [[UNIRest put:^(UNISimpleRequest *request) {
+        [request setUrl:[StoreHelpers getURLWithEndpoint:endpoint]];
+        [request setHeaders:[StoreHelpers createHeadersWithAuth:requiresAuth]];
+        [request setParameters:parameters];
+    }] asJsonAsync:^(UNIHTTPJsonResponse *jsonResponse, NSError *error) {
+        callback(jsonResponse.body.JSONObject, [StoreHelpers getErrorTypeToReturnFrom:error andCode:jsonResponse.code]);
+    }];
+}
+
++ (void)sendGetRequestWithEndpoint:(NSString *)endpoint requiresAuth:(BOOL)requiresAuth withCallback:(void (^)(NSDictionary *, NSString *))callback {
+    [[UNIRest get:^(UNISimpleRequest *request) {
+        [request setUrl:[StoreHelpers getURLWithEndpoint:endpoint]];
+        [request setHeaders:[StoreHelpers createHeadersWithAuth:requiresAuth]];
+    }] asJsonAsync:^(UNIHTTPJsonResponse *jsonResponse, NSError *error) {
+        callback(jsonResponse.body.JSONObject, [StoreHelpers getErrorTypeToReturnFrom:error andCode:jsonResponse.code]);
+    }];
+}
+
++ (void)sendDeleteRequestWithEndpoint:(NSString *)endpoint requiresAuth:(BOOL)requiresAuth withCallback:(void (^)(NSDictionary *, NSString *))callback {
+    [[UNIRest delete:^(UNISimpleRequest *request) {
+        [request setUrl:[StoreHelpers getURLWithEndpoint:endpoint]];
+        [request setHeaders:[StoreHelpers createHeadersWithAuth:requiresAuth]];
+    }] asJsonAsync:^(UNIHTTPJsonResponse *jsonResponse, NSError *error) {
+        callback(jsonResponse.body.JSONObject, [StoreHelpers getErrorTypeToReturnFrom:error andCode:jsonResponse.code]);
+    }];
 }
 
 @end

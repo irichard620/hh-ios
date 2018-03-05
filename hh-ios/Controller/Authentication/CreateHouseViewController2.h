@@ -8,6 +8,9 @@
 
 #import <UIKit/UIKit.h>
 #import "User.h"
+#import "House.h"
+
+@protocol HouseCreatedDelegate;
 
 @interface CreateHouseViewController2 : UIViewController
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
@@ -17,7 +20,11 @@
 
 // Pass through display name
 @property (nonatomic) NSString *displayName;
-// Pass through user
-@property (nonatomic) User *user;
+
+@property(weak,nonatomic) id<HouseCreatedDelegate> delegate;
+@end
+@protocol HouseCreatedDelegate <NSObject>
+
+- (void)houseCreated:(House *)house;
 
 @end

@@ -13,118 +13,110 @@
 @implementation TodoManager
 
 + (void)createToDoWithAssignee:(NSString *)assigneeId andHouseId:(NSString *)houseId andTitle:(NSString *)title andDescription:(NSString *)todoDescription withCompletion:(void (^)(ToDo *, NSString *))completion {
-    // Accepts JSON and pass access token
-    NSDictionary* headers = @{@"accept": @"application/json", @"Authorization": [NSString stringWithFormat:@"Bearer %@", [AuthenticationManager getCurrentAccessToken]]};
-    
     // Pass assignee, house id, title, description
-    NSDictionary* parameters = @{@"assignee": assigneeId, @"house": houseId, @"title": title, @"description": todoDescription};
+    NSDictionary* parameters = @{@"assignee": assigneeId, @"unique_name": houseId, @"title": title, @"description": todoDescription};
     
-    // Create post request to /api/todos/create
-    [[UNIRest post:^(UNISimpleRequest *request) {
-        [request setUrl:@"https://honesthousemate.herokuapp.com/api/todos/create"];
-        [request setHeaders:headers];
-        [request setParameters:parameters];
-    }] asJsonAsync:^(UNIHTTPJsonResponse *jsonResponse, NSError *error) {
-        if (!error) {
-            if (jsonResponse.code == 201) {
-                // If no error, get json response and deserialize to todo object
-                NSDictionary *responseDict = jsonResponse.body.JSONObject[@"response"];
-                ToDo *todo = [ToDo deserializeTodo:responseDict];
-                completion(todo, nil);
-            } else {
-                completion(nil, UNKNOWN_ERROR);
-            }
+    // Send request
+    [StoreHelpers sendPostRequestWithEndpoint:@"/todos/create" requiresAuth:YES hasParameters:parameters withCallback:^(NSDictionary *jsonResponse, NSString *errorType) {
+        if (!errorType) {
+            // If no error, get json response and deserialize to todo object
+            ToDo *todo = [ToDo deserializeTodo:jsonResponse[@"response"]];
+            completion(todo, nil);
         } else {
-            NSLog(@"%@", error.localizedDescription);
-            completion(nil, UNKNOWN_ERROR);
+            completion(nil, errorType);
         }
     }];
 }
 
-+ (void)reassignToDoWithAssignee:(NSString *)assigneeId andToDo:(NSString *)todoId withCompletion:(void (^)(ToDo *, NSString *))completion  {
-    // Accepts JSON and pass access token
-    NSDictionary* headers = @{@"accept": @"application/json", @"Authorization": [NSString stringWithFormat:@"Bearer %@", [AuthenticationManager getCurrentAccessToken]]};
++ (void)editToDoWithId:(NSString *)todoId withTitle:(NSString *)title andDescription:(NSString *)todoDescription withCompletion:(void (^)(ToDo *, NSString *))completion {
+    // Params
+    NSMutableDictionary *parameters = [[NSMutableDictionary alloc]init];
+    [parameters setObject:todoId forKey:@"todo_id"];
+    if (!title && !todoDescription) {
+        completion(nil, MISSING_INFO_ERROR);
+        return;
+    }
+    if (title) [parameters setObject:title forKey:@"title"];
+    if (todoDescription) [parameters setObject:todoDescription forKey:@"description"];
     
-    // Pass assignee, todo id
-    NSDictionary* parameters = @{@"id": todoId, @"assignee": assigneeId};
-    
-    // Create post request to /api/todos/reassign
-    [[UNIRest post:^(UNISimpleRequest *request) {
-        [request setUrl:@"https://honesthousemate.herokuapp.com/api/todos/reassign"];
-        [request setHeaders:headers];
-        [request setParameters:parameters];
-    }] asJsonAsync:^(UNIHTTPJsonResponse *jsonResponse, NSError *error) {
-        if (!error) {
-            if (jsonResponse.code == 201) {
-                // If no error, get json response and deserialize to todo object
-                NSDictionary *responseDict = jsonResponse.body.JSONObject[@"response"];
-                ToDo *todo = [ToDo deserializeTodo:responseDict];
-                completion(todo, nil);
-            } else {
-                completion(nil, UNKNOWN_ERROR);
-            }
+    // Send request
+    [StoreHelpers sendPutRequestWithEndpoint:@"/todos/edit" requiresAuth:YES hasParameters:parameters withCallback:^(NSDictionary *jsonResponse, NSString *errorType) {
+        if (!errorType) {
+            // If no error, get json response and deserialize to todo object
+            ToDo *todo = [ToDo deserializeTodo:jsonResponse[@"response"]];
+            completion(todo, nil);
         } else {
-            NSLog(@"%@", error.localizedDescription);
-            completion(nil, UNKNOWN_ERROR);
+            completion(nil, errorType);
+        }
+    }];
+}
+
++ (void)deleteToDoWithId:(NSString *)todoId withCompletion:(void (^)(NSString *))completion {
+    [StoreHelpers sendDeleteRequestWithEndpoint:[NSString stringWithFormat:@"/todos/%@", todoId] requiresAuth:YES withCallback:^(NSDictionary *jsonResponse, NSString *errorType) {
+        completion(errorType);
+    }];
+}
+
++ (void)reassignToDoWithAssignee:(NSString *)assigneeId andToDo:(NSString *)todoId withCompletion:(void (^)(ToDo *, NSString *))completion  {
+    // Pass assignee, todo id
+    NSDictionary* parameters = @{@"todo_id": todoId, @"assignee": assigneeId};
+    
+    [StoreHelpers sendPutRequestWithEndpoint:@"/todos/reassign" requiresAuth:YES hasParameters:parameters withCallback:^(NSDictionary *jsonResponse, NSString *errorType) {
+        if (!errorType) {
+            // If no error, get json response and deserialize to todo object
+            ToDo *todo = [ToDo deserializeTodo:jsonResponse[@"response"]];
+            completion(todo, nil);
+        } else {
+            completion(nil, errorType);
         }
     }];
 }
 
 + (void)completeToDo:(NSString *)todoId andTimeTaken:(NSNumber *)timeTaken withCompletion:(void (^)(ToDo *, NSString *))completion {
-    // Accepts JSON and pass access token
-    NSDictionary* headers = @{@"accept": @"application/json", @"Authorization": [NSString stringWithFormat:@"Bearer %@", [AuthenticationManager getCurrentAccessToken]]};
-    
     // Pass assignee, todo id
-    NSDictionary* parameters = @{@"id": todoId, @"time_taken": timeTaken};
+    NSDictionary* parameters = @{@"todo_id": todoId, @"time": timeTaken};
     
-    // Create post request to /api/todos/complete
-    [[UNIRest post:^(UNISimpleRequest *request) {
-        [request setUrl:@"https://honesthousemate.herokuapp.com/api/todos/complete"];
-        [request setHeaders:headers];
-        [request setParameters:parameters];
-    }] asJsonAsync:^(UNIHTTPJsonResponse *jsonResponse, NSError *error) {
-        if (!error) {
-            if (jsonResponse.code == 201) {
-                // If no error, get json response and deserialize to todo object
-                NSDictionary *responseDict = jsonResponse.body.JSONObject[@"response"];
-                ToDo *todo = [ToDo deserializeTodo:responseDict];
-                completion(todo, nil);
-            } else {
-                completion(nil, UNKNOWN_ERROR);
-            }
+    [StoreHelpers sendPutRequestWithEndpoint:@"/todos/complete" requiresAuth:YES hasParameters:parameters withCallback:^(NSDictionary *jsonResponse, NSString *errorType) {
+        if (!errorType) {
+            // If no error, get json response and deserialize to todo object
+            ToDo *todo = [ToDo deserializeTodo:jsonResponse[@"response"]];
+            completion(todo, nil);
         } else {
-            NSLog(@"%@", error.localizedDescription);
-            completion(nil, UNKNOWN_ERROR);
+            completion(nil, errorType);
         }
     }];
 }
 
 + (void)getTodosAssignedToMeWithCompletion:(void (^)(NSArray *, NSString *))completion {
-    // Accepts JSON and pass access token
-    NSDictionary* headers = @{@"accept": @"application/json", @"Authorization": [NSString stringWithFormat:@"Bearer %@", [AuthenticationManager getCurrentAccessToken]]};
-    
-    
-    // Create get request to /api/todos/assigned
-    [[UNIRest get:^(UNISimpleRequest *request) {
-        [request setUrl:@"https://honesthousemate.herokuapp.com/api/todos/assigned"];
-        [request setHeaders:headers];
-    }] asJsonAsync:^(UNIHTTPJsonResponse *jsonResponse, NSError *error) {
-        if (!error) {
-            if (jsonResponse.code == 200) {
-                // If no error, get json response and deserialize to todo object
-                NSDictionary *responseDict = jsonResponse.body.JSONObject;
-                NSArray *responseArray = responseDict[@"todos"];
-                NSMutableArray *todosArray = [[NSMutableArray alloc]init];
-                for (int i = 0; i < responseArray.count; i++) {
-                    [todosArray addObject:[ToDo deserializeTodo:responseArray[i]]];
-                }
-                completion(todosArray, nil);
-            } else {
-                completion(nil, UNKNOWN_ERROR);
+    // Send request
+    [StoreHelpers sendGetRequestWithEndpoint:@"/todos/assigned" requiresAuth:YES withCallback:^(NSDictionary *jsonResponse, NSString *errorType) {
+        if (!errorType) {
+            // If no error, get json response and deserialize to todo object
+            NSArray *responseArray = jsonResponse[@"todos"];
+            NSMutableArray *todosArray = [[NSMutableArray alloc]init];
+            for (int i = 0; i < responseArray.count; i++) {
+                [todosArray addObject:[ToDo deserializeTodo:responseArray[i]]];
             }
+            completion(todosArray, nil);
         } else {
-            NSLog(@"%@", error.localizedDescription);
-            completion(nil, UNKNOWN_ERROR);
+            completion(nil, errorType);
+        }
+    }];
+}
+
++ (void)getTodosForHouseWithName:(NSString *)uniqueName withCompletion:(void (^)(NSArray *, NSString *))completion {
+    // Send request
+    [StoreHelpers sendGetRequestWithEndpoint:[NSString stringWithFormat:@"/todos/%@",uniqueName] requiresAuth:YES withCallback:^(NSDictionary *jsonResponse, NSString *errorType) {
+        if (!errorType) {
+            // If no error, get json response and deserialize to todo object
+            NSArray *responseArray = jsonResponse[@"todos"];
+            NSMutableArray *todosArray = [[NSMutableArray alloc]init];
+            for (int i = 0; i < responseArray.count; i++) {
+                [todosArray addObject:[ToDo deserializeTodo:responseArray[i]]];
+            }
+            completion(todosArray, nil);
+        } else {
+            completion(nil, errorType);
         }
     }];
 }

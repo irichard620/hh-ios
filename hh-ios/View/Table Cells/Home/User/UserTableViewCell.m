@@ -7,6 +7,7 @@
 //
 
 #import "UserTableViewCell.h"
+#import <SDWebImage/UIImageView+WebCache.h>
 
 @implementation UserTableViewCell
 
@@ -22,9 +23,14 @@
     self.nameLabel.text = title;
 }
 
-- (void)setName:(NSString *)name andImage:(UIImage *)image {
+- (void)setName:(NSString *)name andAvatarLink:(NSString *)avatarLink {
+    self.imageView.hidden = NO;
     self.nameLabel.text = name;
-    self.avatarImageView.image = image;
+    if (avatarLink == nil) {
+        [self.avatarImageView setImage:[UIImage imageNamed:@"user-icon-grey.png"]];
+    } else {
+        [self.avatarImageView sd_setImageWithURL:[NSURL URLWithString:avatarLink] placeholderImage:[UIImage imageNamed:@"user-icon-grey.png"]];
+    }
 }
 
 @end

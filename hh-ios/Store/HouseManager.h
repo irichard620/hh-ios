@@ -44,12 +44,11 @@
  *
  * Arguments:
  * uniqueName - Username of the house to join
- * userId - ID of user that is requesting to join
  *
  * Return:
- * None
+ * House object
  */
-+ (void)joinHouseWithUnique:(NSString *)uniqueName andJoiningUser:(User *)user withCompletion:(void (^)(NSString *error))completion;
++ (void)joinHouseWithUnique:(NSString *)uniqueName withCompletion:(void (^)(House *house, NSString *error))completion;
 
 /*
  * Get list of members in house

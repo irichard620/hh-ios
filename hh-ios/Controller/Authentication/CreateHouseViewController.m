@@ -7,7 +7,6 @@
 //
 
 #import "CreateHouseViewController.h"
-#import "CreateHouseViewController2.h"
 #import "ViewHelpers.h"
 
 #define TRIM(string) [string stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]]
@@ -54,13 +53,19 @@
     } else {
         CreateHouseViewController2 *createHouse2VC = [[CreateHouseViewController2 alloc]initWithNibName:@"CreateHouseViewController2" bundle:nil];
         createHouse2VC.displayName = displayName;
-        createHouse2VC.user = self.user;
+        createHouse2VC.delegate = self;
         [self.navigationController pushViewController:createHouse2VC animated:YES];
     }
 }
 
 -(void)singleTap:(UITapGestureRecognizer *)tapGestureRecognizer {
     [self.houseNicknameField endEditing:YES];
+}
+
+#pragma mark Created delegate
+
+- (void)houseCreated:(House *)house {
+    [self.delegate houseCreated:house];
 }
 
 @end

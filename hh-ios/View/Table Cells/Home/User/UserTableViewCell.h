@@ -13,7 +13,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *nameLabel;
 @property (weak, nonatomic) IBOutlet UIImageView *avatarImageView;
 
-- (void)setName:(NSString *)name andImage:(UIImage *)image;
+- (void)setName:(NSString *)name andAvatarLink:(NSString *)avatarLink;
 - (void)setNoImageCellWithText:(NSString *)title;
 
 @end

@@ -8,6 +8,9 @@
 
 #import "JoinHouseViewController.h"
 #import "ViewHelpers.h"
+#import "HouseManager.h"
+
+#define TRIM(string) [string stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]]
 
 @interface JoinHouseViewController ()
 
@@ -44,7 +47,19 @@
 }
 
 - (void)joinButtonClicked:(id)sender {
-    [self.navigationController popViewControllerAnimated:YES];
+    NSString *uniqueId = TRIM(self.houseCodeField.text);
+    [HouseManager joinHouseWithUnique:uniqueId withCompletion:^(House *house, NSString *error) {
+        if (error) {
+            if ([error isEqualToString:NOT_INVITED_ERROR]) {
+                [self presentViewController:[ViewHelpers createErrorAlertWithTitle:@"Error" andDescription:@"You are not invited to join the specified house."] animated:YES completion:nil];
+            } else {
+                [self presentViewController:[ViewHelpers createErrorAlertWithTitle:@"Error" andDescription:@"An unknown error occurred. Please try again later."] animated:YES completion:nil];
+            }
+        } else {
+            [self.delegate joinedHouse:house];
+            [self.navigationController popViewControllerAnimated:YES];
+        }
+    }];
 }
 
 -(void)singleTap:(UITapGestureRecognizer *)tapGestureRecognizer {

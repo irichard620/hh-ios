@@ -8,15 +8,22 @@
 
 #import <UIKit/UIKit.h>
 #import "User.h"
+#import "House.h"
+#import "CreateHouseViewController2.h"
 
-@interface CreateHouseViewController : UIViewController
+@protocol HouseCreated2Delegate;
+
+@interface CreateHouseViewController : UIViewController <HouseCreatedDelegate>
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
 
 @property (weak, nonatomic) IBOutlet UIView *messageContainer;
 @property (weak, nonatomic) IBOutlet UITextField *houseNicknameField;
 @property (weak, nonatomic) IBOutlet UIButton *continueButton;
 
-// User object
-@property (nonatomic) User *user;
+@property(weak,nonatomic) id<HouseCreated2Delegate> delegate;
+@end
+@protocol HouseCreated2Delegate <NSObject>
+
+- (void)houseCreated:(House *)house;
 
 @end

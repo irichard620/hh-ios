@@ -29,6 +29,30 @@
 + (void)createToDoWithAssignee:(NSString *)assigneeId andHouseId:(NSString *)houseId andTitle:(NSString *)title andDescription:(NSString *)todoDescription withCompletion:(void (^)(ToDo *todo, NSString *error))completion;
 
 /*
+ * Edit To-do
+ *
+ * Arguments:
+ * todoId - id of todo to edit
+ * title - title of todo
+ * todoDescription - description of todo
+ *
+ * Return:
+ * Todo that was updated
+ */
++ (void)editToDoWithId:(NSString *)todoId withTitle:(NSString *)title andDescription:(NSString *)todoDescription withCompletion:(void (^)(ToDo *todo, NSString *error))completion;
+
+/*
+ * Delete To-do
+ *
+ * Arguments:
+ * todoId - id of todo to delete
+ *
+ * Return:
+ * Success code
+ */
++ (void)deleteToDoWithId:(NSString *)todoId withCompletion:(void (^)(NSString *error))completion;
+
+/*
  * Re-assign To-do
  *
  * Arguments:
@@ -63,5 +87,16 @@
  * Array of todo objects
  */
 + (void)getTodosAssignedToMeWithCompletion:(void(^)(NSArray *todos, NSString *error))completion;
+
+/*
+ * Get todos for a house
+ *
+ * Arguments:
+ * unique name of house
+ *
+ * Return:
+ * Array of todo objects
+ */
++ (void)getTodosForHouseWithName:(NSString *)uniqueName withCompletion:(void(^)(NSArray *todos, NSString *error))completion;
 
 @end

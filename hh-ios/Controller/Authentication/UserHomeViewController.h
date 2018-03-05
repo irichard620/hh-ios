@@ -8,8 +8,10 @@
 
 #import <UIKit/UIKit.h>
 #import "User.h"
+#import "CreateHouseViewController.h"
+#import "JoinHouseViewController.h"
 
-@interface UserHomeViewController : UIViewController <UITableViewDelegate, UITableViewDataSource>
+@interface UserHomeViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, HouseCreated2Delegate, JoinHouseDelegate>
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 

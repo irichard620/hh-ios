@@ -7,12 +7,8 @@
 //
 
 #import "AppDelegate.h"
-#import "ChatViewController.h"
-#import "MenuViewController.h"
-#import "SWRevealViewController.h"
 #import "UserHomeViewController.h"
 #import "SignupViewController.h"
-#import <SimpleKeychain.h>
 #import "AuthenticationManager.h"
 
 @interface AppDelegate ()

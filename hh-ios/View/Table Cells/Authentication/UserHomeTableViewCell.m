@@ -7,6 +7,7 @@
 //
 
 #import "UserHomeTableViewCell.h"
+#import <SDWebImage/UIImageView+WebCache.h>
 
 @implementation UserHomeTableViewCell
 
@@ -29,6 +30,18 @@
         self.iconImage.layer.cornerRadius = 6.0;
         self.iconImage.clipsToBounds = YES;
     }
+}
+
+- (void)setHouseName:(NSString *)name andAvatarLink:(NSString *)avatarLink {
+    self.iconLabel.text = name;
+    self.iconImage.hidden = NO;
+    if (avatarLink == nil) {
+        [self.iconImage setImage:[UIImage imageNamed:@"group-icon-black-background.png"]];
+    } else {
+        [self.iconImage sd_setImageWithURL:[NSURL URLWithString:avatarLink] placeholderImage:[UIImage imageNamed:@"group-icon-black-background.png"]];
+    }
+    self.iconImage.layer.cornerRadius = 6.0;
+    self.iconImage.clipsToBounds = YES;
 }
 
 @end

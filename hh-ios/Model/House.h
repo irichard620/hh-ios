@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "UserReference.h"
 
 @interface House : NSObject
 
@@ -23,7 +24,7 @@
 @property (strong, nonatomic) NSString *uniqueName;
 
 // ID of house owner
-@property (strong, nonatomic) NSString *ownerId;
+@property (strong, nonatomic) UserReference *owner;
 
 + (House *) deserializeHouse: (NSDictionary *)houseJson;
 

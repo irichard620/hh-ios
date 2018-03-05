@@ -16,7 +16,8 @@
     house.avatarLink = houseJson[@"avatar_link"];
     house.displayName = houseJson[@"display_name"];
     house.uniqueName = houseJson[@"unique_name"];
-    house.ownerId = houseJson[@"owner"];
+    house.owner = [UserReference deserializeUserRef:houseJson[@"owner"]];
+    
     return house;
 }
 

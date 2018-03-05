@@ -51,4 +51,16 @@
  */
 + (void)editUserWithName:(NSString *)name andAvatarLink:(NSString *)avatarLink withCompletion:(void(^)(User *user, NSString *error))completion;
 
+/*
+ * Get user object
+ *
+ * Arguments
+ * None
+ *
+ * Return
+ * user object
+ *
+ */
++ (void)getUserWithCompletion:(void(^)(User *user, NSString *error))completion;
+
 @end

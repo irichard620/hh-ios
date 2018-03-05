@@ -8,6 +8,7 @@
 
 #import "TopMenuTableViewCell.h"
 #import <QuartzCore/QuartzCore.h>
+#import <SDWebImage/UIImageView+WebCache.h>
 
 @implementation TopMenuTableViewCell
 
@@ -26,10 +27,14 @@
     self.contentView.backgroundColor = [UIColor clearColor];
 }
 
-- (void)setTitle:(NSString *)title andSubtitle:(NSString *)subTitle andImage:(UIImage *)image {
+- (void)setTitle:(NSString *)title andSubtitle:(NSString *)subTitle andAvatarLink:(NSString *)avatarLink {
     self.cellTitle.text = title;
     self.cellSubtitle.text = subTitle;
-    self.cellImage.image = image;
+    if (avatarLink == nil) {
+        [self.cellImage setImage:[UIImage imageNamed:@"group-icon-black-background.png"]];
+    } else {
+        [self.cellImage sd_setImageWithURL:[NSURL URLWithString:avatarLink] placeholderImage:[UIImage imageNamed:@"group-icon-black-background.png"]];
+    }
 }
 
 - (UIFont *)boldFontWithFont:(UIFont *)font {

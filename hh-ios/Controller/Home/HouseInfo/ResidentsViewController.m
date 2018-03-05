@@ -9,7 +9,7 @@
 #import "ResidentsViewController.h"
 #import "SWRevealViewController.h"
 #import "ViewHelpers.h"
-#import "UserHomeTableViewCell.h"
+#import "UserTableViewCell.h"
 #import "SWRevealViewController+SWRevealViewController_Data.h"
 #import "HouseManager.h"
 #import "NSString+Security.h"
@@ -108,9 +108,9 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     static NSString *CellIdentifier = @"userCell";
-    UserHomeTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    UserTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
-        [self.residentTableView registerNib:[UINib nibWithNibName:@"UserHomeTableViewCell" bundle:nil] forCellReuseIdentifier:CellIdentifier];
+        [self.residentTableView registerNib:[UINib nibWithNibName:@"UserTableViewCell" bundle:nil] forCellReuseIdentifier:CellIdentifier];
         cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     }
     
@@ -119,7 +119,8 @@
     } else {
         if (indexPath.section == 0) {
             // Owner
-            [cell setTitle:@"Ian Richard" andImage:[UIImage imageNamed:@"ian_profile.jpg"] shouldCurve:YES];
+            UserReference *owner = self.revealViewController.house.owner;
+            [cell setName:owner.name andAvatarLink:owner.avatarLink];
         } else if (indexPath.section == 1) {
             // Other residents
             if (self.residentsArray.count == 0) {

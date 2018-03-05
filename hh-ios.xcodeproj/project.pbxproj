@@ -275,6 +275,7 @@
 		802F4074203F3D310006CA8B /* SWRevealViewController+SWRevealViewController_Data.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "SWRevealViewController+SWRevealViewController_Data.m"; sourceTree = "<group>"; };
 		802F407B2044F0380006CA8B /* StoreHelpers.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = StoreHelpers.h; sourceTree = "<group>"; };
 		802F407C2044F0380006CA8B /* StoreHelpers.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = StoreHelpers.m; sourceTree = "<group>"; };
+		802F407E204636240006CA8B /* hh-ios.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "hh-ios.entitlements"; sourceTree = "<group>"; };
 		8073C8321FC946CC007223CD /* ChatTimeTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatTimeTableViewCell.h; sourceTree = "<group>"; };
 		8073C8331FC946CC007223CD /* ChatTimeTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatTimeTableViewCell.m; sourceTree = "<group>"; };
 		8073C8341FC946CC007223CD /* ChatTimeTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ChatTimeTableViewCell.xib; sourceTree = "<group>"; };
@@ -633,6 +634,7 @@
 		80F558261FBAA541001601B3 /* hh-ios */ = {
 			isa = PBXGroup;
 			children = (
+				802F407E204636240006CA8B /* hh-ios.entitlements */,
 				80F5586C1FBAB280001601B3 /* Supporting Files */,
 				80F558671FBAB1E7001601B3 /* Model */,
 				80F558681FBAB1E7001601B3 /* Controller */,
@@ -912,6 +914,11 @@
 						CreatedOnToolsVersion = 8.2.1;
 						DevelopmentTeam = K78F8G9J87;
 						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.Push = {
+								enabled = 1;
+							};
+						};
 					};
 					80F5583C1FBAA541001601B3 = {
 						CreatedOnToolsVersion = 8.2.1;
@@ -1392,9 +1399,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_ENTITLEMENTS = "hh-ios/hh-ios.entitlements";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = K78F8G9J87;
 				INFOPLIST_FILE = "$(SRCROOT)/hh-ios/Supporting Files/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -1410,9 +1418,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_ENTITLEMENTS = "hh-ios/hh-ios.entitlements";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = K78F8G9J87;
 				INFOPLIST_FILE = "$(SRCROOT)/hh-ios/Supporting Files/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

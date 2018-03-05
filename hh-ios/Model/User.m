@@ -14,9 +14,9 @@
 + (User *)deserializeUser:(NSDictionary *)userJson isLogin:(BOOL)isLogin {
     User *user = [[User alloc]init];
     user._id = userJson[@"id"];
-    user.avatarLink = userJson[@"avatarLink"];
+    user.avatarLink = userJson[@"avatar_link"];
     user.email = userJson[@"email"];
-    user.fullName = userJson[@"fullName"];
+    user.fullName = userJson[@"full_name"];
     
     if (isLogin) {
         NSDictionary *authDict = @{

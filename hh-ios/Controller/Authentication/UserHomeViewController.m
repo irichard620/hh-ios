@@ -13,14 +13,13 @@
 #import "ViewHelpers.h"
 #import "UserHomeTableViewCell.h"
 #import "MenuTableViewCell.h"
-#import "JoinHouseViewController.h"
-#import "CreateHouseViewController.h"
 #import "UserManager.h"
 
 @interface UserHomeViewController ()
 
 @property (nonatomic) BOOL navBarShouldDissapear;
-@property (nonatomic) NSArray *houseArray;
+@property (nonatomic) NSMutableArray *houseArray;
+@property (nonatomic) BOOL isLoading;
 
 @end
 
@@ -32,6 +31,8 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         _navBarShouldDissapear = NO;
+        _isLoading = YES;
+        _houseArray = [[NSMutableArray alloc]init];
     }
     return self;
 }
@@ -59,7 +60,11 @@
     self.tableView.rowHeight = UITableViewAutomaticDimension;
     self.tableView.tableFooterView = [[UIView alloc]initWithFrame:CGRectZero];
     
-    [self getHouses];
+    if (!self.user) {
+        [self getUser];
+    } else {
+        [self getHouses];
+    }
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
@@ -76,12 +81,27 @@
 
 #pragma mark Data
 
+- (void)getUser {
+    [UserManager getUserWithCompletion:^(User *user, NSString *error) {
+        if (!error) {
+            self.user = user;
+            [self getHouses];
+        } else {
+            self.isLoading = NO;
+            [self.tableView reloadData];
+        }
+    }];
+}
+
 - (void)getHouses {
     [UserManager getHouseListForUserWithCompletion:^(NSArray *houses, NSString *error) {
         if (!error) {
-            self.houseArray = houses;
+            [self.houseArray addObjectsFromArray:houses];
+            self.isLoading = NO;
+            [self.tableView reloadData];
         } else {
-            
+            self.isLoading = NO;
+            [self.tableView reloadData];
         }
     }];
 }
@@ -94,8 +114,12 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     if (section == 0) {
-        if (self.houseArray.count == 0) return 1;
-        else return self.houseArray.count;
+        if (self.isLoading) {
+            return 1;
+        } else {
+            if (self.houseArray.count == 0) return 1;
+            else return self.houseArray.count;
+        }
     } else if (section == 1) {
         return 2;
     } else {
@@ -114,7 +138,14 @@
     
     if (indexPath.section == 0) {
         // Choose house
-        [cell setTitle:@"Scu House" andImage:[UIImage imageNamed:@"group-icon-black-background.png"] shouldCurve:YES];
+        if (self.isLoading) {
+            [cell setNoImageCellWithText:@"Loading..."];
+        } else if (self.houseArray.count == 0) {
+            [cell setNoImageCellWithText:@"No Houses to Show"];
+        } else {
+            House *house = [self.houseArray objectAtIndex:indexPath.row];
+            [cell setHouseName:house.displayName andAvatarLink:house.avatarLink];
+        }
     } else if (indexPath.section == 1) {
         if (indexPath.row == 0) {
             [cell setTitle:@"Create new house" andImage:[UIImage imageNamed:@"home_black.png"] shouldCurve:NO];
@@ -173,6 +204,11 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.section == 0) {
+        if (self.isLoading || self.houseArray.count == 0) return;
+        
+        // Get house object
+        House *house = [self.houseArray objectAtIndex:indexPath.row];
+        
         // Create front controller
         ChatViewController *chatVC = [[ChatViewController alloc]initWithNibName:@"ChatViewController" bundle:nil];
         UINavigationController *navVC = [[UINavigationController alloc]initWithRootViewController:chatVC];
@@ -183,6 +219,8 @@
         // Create reveal controller
         SWRevealViewController *revealVC = [[SWRevealViewController alloc]initWithRearViewController:menuVC frontViewController:navVC];
         revealVC.rearViewRevealOverdraw = 0;
+        revealVC.house = house;
+        revealVC.user = self.user;
         [revealVC revealToggleAnimated:NO];
         
         self.navBarShouldDissapear = YES;
@@ -192,12 +230,13 @@
             // Create
             CreateHouseViewController *createHouseVC = [[CreateHouseViewController alloc]initWithNibName:@"CreateHouseViewController" bundle:nil];
             self.navBarShouldDissapear = NO;
-            createHouseVC.user = self.user;
+            createHouseVC.delegate = self;
             [self.navigationController pushViewController:createHouseVC animated:YES];
         } else {
             // Join
             JoinHouseViewController *joinHouseVC = [[JoinHouseViewController alloc]initWithNibName:@"JoinHouseViewController" bundle:nil];
             self.navBarShouldDissapear = NO;
+            joinHouseVC.delegate = self;
             [self.navigationController pushViewController:joinHouseVC animated:YES];
         }
     } else if (indexPath.section == 2) {
@@ -205,6 +244,22 @@
         self.navBarShouldDissapear = YES;
         [self.navigationController popViewControllerAnimated:YES];
     }
+}
+
+#pragma mark Created delegate
+
+- (void)houseCreated:(House *)house {
+    // Add it to table
+    [self.houseArray addObject:house];
+    [self.tableView reloadData];
+}
+
+#pragma mark Joined delegate
+
+- (void)joinedHouse:(House *)house {
+    // Add it to table
+    [self.houseArray addObject:house];
+    [self.tableView reloadData];
 }
 
 @end

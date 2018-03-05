@@ -51,10 +51,11 @@
         [self presentViewController:[ViewHelpers createErrorAlertWithTitle:@"House Identifier Invalid" andDescription:@"You must enter a house identifier that is 6 or more letters."] animated:YES completion:nil];
     } else {
         [HouseManager createHouseWithDisplay:self.displayName andUnique:uniqueId withCompletion:^(House *house, NSString *error) {
-            if (!error) {
+            if (error) {
                 [self presentViewController:[ViewHelpers createErrorAlertWithTitle:@"Error Occurred" andDescription:error] animated:YES completion:nil];
             } else {
                 // Go back to userHome screen
+                [self.delegate houseCreated:house];
                 UIViewController *View = [self.navigationController.viewControllers objectAtIndex:self.navigationController.viewControllers.count-3];
                 [self.navigationController popToViewController:View animated:YES];
             }

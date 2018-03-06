@@ -83,7 +83,6 @@
 		802F406C203CA47C0006CA8B /* TodoDetailsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 802F406A203CA47C0006CA8B /* TodoDetailsViewController.xib */; };
 		802F4071203CAD180006CA8B /* UserTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 802F406F203CAD170006CA8B /* UserTableViewCell.m */; };
 		802F4072203CAD180006CA8B /* UserTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 802F4070203CAD170006CA8B /* UserTableViewCell.xib */; };
-		802F4075203F3D310006CA8B /* SWRevealViewController+SWRevealViewController_Data.m in Sources */ = {isa = PBXBuildFile; fileRef = 802F4074203F3D310006CA8B /* SWRevealViewController+SWRevealViewController_Data.m */; };
 		802F407D2044F0380006CA8B /* StoreHelpers.m in Sources */ = {isa = PBXBuildFile; fileRef = 802F407C2044F0380006CA8B /* StoreHelpers.m */; };
 		8073C8351FC946CC007223CD /* ChatTimeTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8073C8331FC946CC007223CD /* ChatTimeTableViewCell.m */; };
 		8073C8361FC946CC007223CD /* ChatTimeTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8073C8341FC946CC007223CD /* ChatTimeTableViewCell.xib */; };
@@ -271,8 +270,6 @@
 		802F406E203CAD170006CA8B /* UserTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UserTableViewCell.h; sourceTree = "<group>"; };
 		802F406F203CAD170006CA8B /* UserTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UserTableViewCell.m; sourceTree = "<group>"; };
 		802F4070203CAD170006CA8B /* UserTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UserTableViewCell.xib; sourceTree = "<group>"; };
-		802F4073203F3D310006CA8B /* SWRevealViewController+SWRevealViewController_Data.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SWRevealViewController+SWRevealViewController_Data.h"; sourceTree = "<group>"; };
-		802F4074203F3D310006CA8B /* SWRevealViewController+SWRevealViewController_Data.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "SWRevealViewController+SWRevealViewController_Data.m"; sourceTree = "<group>"; };
 		802F407B2044F0380006CA8B /* StoreHelpers.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = StoreHelpers.h; sourceTree = "<group>"; };
 		802F407C2044F0380006CA8B /* StoreHelpers.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = StoreHelpers.m; sourceTree = "<group>"; };
 		802F407E204636240006CA8B /* hh-ios.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "hh-ios.entitlements"; sourceTree = "<group>"; };
@@ -689,8 +686,6 @@
 				802F40332020FB4A0006CA8B /* NSString+Security.m */,
 				802F405420338F5A0006CA8B /* ToDo.h */,
 				802F405520338F5A0006CA8B /* ToDo.m */,
-				802F4073203F3D310006CA8B /* SWRevealViewController+SWRevealViewController_Data.h */,
-				802F4074203F3D310006CA8B /* SWRevealViewController+SWRevealViewController_Data.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1142,9 +1137,14 @@
 			files = (
 			);
 			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-hh-ios/Pods-hh-ios-frameworks.sh",
+				"${PODS_ROOT}/TwilioAccessManager/TwilioAccessManager.framework",
+				"${PODS_ROOT}/TwilioChatClient/TwilioChatClient.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TwilioAccessManager.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TwilioChatClient.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -1212,7 +1212,6 @@
 				80F558961FBAD142001601B3 /* MenuTableViewCell.m in Sources */,
 				8073C8351FC946CC007223CD /* ChatTimeTableViewCell.m in Sources */,
 				802F3FC31FF82F7E0006CA8B /* Payment.m in Sources */,
-				802F4075203F3D310006CA8B /* SWRevealViewController+SWRevealViewController_Data.m in Sources */,
 				802F4047202E2A7A0006CA8B /* SettingsViewController.m in Sources */,
 				802F3FA91FC9FE110006CA8B /* UIScrollView+SLKAdditions.m in Sources */,
 				802F4042202E2A6F0006CA8B /* HouseEditViewController.m in Sources */,

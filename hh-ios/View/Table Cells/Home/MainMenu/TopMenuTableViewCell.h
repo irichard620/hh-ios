@@ -15,6 +15,6 @@
 @property (weak, nonatomic) IBOutlet UILabel *cellSubtitle;
 @property (weak, nonatomic) IBOutlet UIButton *exitButton;
 
-- (void)setTitle:(NSString *)title andSubtitle:(NSString *)subTitle andImage:(UIImage *)image;
+- (void)setTitle:(NSString *)title andSubtitle:(NSString *)subTitle andAvatarLink:(NSString *)avatarLink;
 
 @end

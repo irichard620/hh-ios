@@ -3,18 +3,24 @@ PODS:
     - SDWebImage/Core (= 4.3.1)
   - SDWebImage/Core (4.3.1)
   - SimpleKeychain (0.8.0)
+  - TwilioAccessManager (1.0.0)
+  - TwilioChatClient (2.2.0)
   - Unirest (1.1.4)
 
 DEPENDENCIES:
   - SDWebImage
   - SimpleKeychain
+  - TwilioAccessManager (~> 1.0.0)
+  - TwilioChatClient (~> 2.2.0)
   - Unirest (~> 1.1.4)
 
 SPEC CHECKSUMS:
   SDWebImage: 09808bac78357b39f8db4ea360c7b5534d785ef4
   SimpleKeychain: 84c748463eec601dfee5e7990f55cc82edc5488d
+  TwilioAccessManager: fc7fd8b86de78a795976fc3c7d37dfa0e821c461
+  TwilioChatClient: eca6db5972be042593890b55641699545d73d3af
   Unirest: 5e4d93eaf32463bf619a4ecd3bbc8c32acf21eac
 
-PODFILE CHECKSUM: 185c88a7db60192adeeacc7c787befdf493207bf
+PODFILE CHECKSUM: b0b4f167e5b40728c11ecdff579d778dd165e6e7
 
 COCOAPODS: 1.4.0

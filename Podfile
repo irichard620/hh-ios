@@ -11,6 +11,8 @@ target 'hh-ios' do
   pod 'Unirest', '~> 1.1.4'
   pod 'SimpleKeychain'
   pod 'SDWebImage'
+  pod 'TwilioChatClient', '~> 2.2.0'
+  pod 'TwilioAccessManager', '~> 1.0.0'
 
   target 'hh-iosTests' do
     inherit! :search_paths

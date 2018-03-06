@@ -121,4 +121,15 @@
     }];
 }
 
++ (void)getHouseWithUniqueName:(NSString *)uniqueName withCompletion:(void (^)(House *, NSString *))completion {
+    [StoreHelpers sendGetRequestWithEndpoint:[NSString stringWithFormat:@"/house/%@",uniqueName] requiresAuth:YES withCallback:^(NSDictionary *jsonResponse, NSString *errorType) {
+        if (!errorType) {
+            House *house = [House deserializeHouse:jsonResponse[@"response"]];
+            completion(house, nil);
+        } else {
+            completion(nil, errorType);
+        }
+    }];
+}
+
 @end

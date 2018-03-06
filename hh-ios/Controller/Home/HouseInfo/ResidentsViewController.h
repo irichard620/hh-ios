@@ -7,9 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "HouseManager.h"
 
 @interface ResidentsViewController : UIViewController <UITableViewDelegate, UITableViewDataSource>
 
 @property (weak, nonatomic) IBOutlet UITableView *residentTableView;
+
+@property (nonatomic) House *house;
+
 
 @end

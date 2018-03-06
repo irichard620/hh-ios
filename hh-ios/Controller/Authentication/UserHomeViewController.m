@@ -14,12 +14,20 @@
 #import "UserHomeTableViewCell.h"
 #import "MenuTableViewCell.h"
 #import "UserManager.h"
+#import "AuthenticationManager.h"
+#import "HouseManager.h"
+#import <TwilioAccessManager/TwilioAccessManager.h>
+#import <TwilioChatClient/TwilioChatClient.h>
 
 @interface UserHomeViewController ()
 
 @property (nonatomic) BOOL navBarShouldDissapear;
 @property (nonatomic) NSMutableArray *houseArray;
 @property (nonatomic) BOOL isLoading;
+@property (nonatomic) NSString *currentHouseUniqueName;
+
+@property(strong, nonatomic) TwilioAccessManager *twilioAccessManager;
+@property(strong, nonatomic) TwilioChatClient *chatClient;
 
 @end
 
@@ -30,6 +38,7 @@
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
+        _currentHouseUniqueName = nil;
         _navBarShouldDissapear = NO;
         _isLoading = YES;
         _houseArray = [[NSMutableArray alloc]init];
@@ -60,11 +69,7 @@
     self.tableView.rowHeight = UITableViewAutomaticDimension;
     self.tableView.tableFooterView = [[UIView alloc]initWithFrame:CGRectZero];
     
-    if (!self.user) {
-        [self getUser];
-    } else {
-        [self getHouses];
-    }
+    [self setupTwilio];
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
@@ -91,6 +96,30 @@
             [self.tableView reloadData];
         }
     }];
+}
+
+- (void)setupTwilio {
+    self.twilioAccessManager = [TwilioAccessManager accessManagerWithToken:[AuthenticationManager getCurrentTwilioAccessToken] delegate:self];
+    [TwilioChatClient chatClientWithToken:self.twilioAccessManager.currentToken properties:nil delegate:self completion:^(TCHResult * _Nonnull result, TwilioChatClient * _Nullable chatClient) {
+        if ([result isSuccessful]) {
+            self.chatClient = chatClient;
+            __weak typeof(chatClient) weakClient = chatClient;
+            [self.twilioAccessManager registerClient:chatClient forUpdates:^(NSString *updatedToken) {
+                [weakClient updateToken:updatedToken completion:^(TCHResult *result) {
+                    if (![result isSuccessful]) {
+                        // warn the user the update didn't succeed
+                    }
+                }];
+            }];
+        }
+    }];
+    
+    // Get user and house
+    if (!self.user) {
+        [self getUser];
+    } else {
+        [self getHouses];
+    }
 }
 
 - (void)getHouses {
@@ -215,15 +244,17 @@
         
         // Create rear controller
         MenuViewController *menuVC = [[MenuViewController alloc]initWithNibName:@"MenuViewController" bundle:nil];
+        self.delegate = menuVC;
+        menuVC.user = self.user;
+        menuVC.house = house;
         
         // Create reveal controller
         SWRevealViewController *revealVC = [[SWRevealViewController alloc]initWithRearViewController:menuVC frontViewController:navVC];
         revealVC.rearViewRevealOverdraw = 0;
-        revealVC.house = house;
-        revealVC.user = self.user;
         [revealVC revealToggleAnimated:NO];
         
         self.navBarShouldDissapear = YES;
+        self.currentHouseUniqueName = house.uniqueName;
         [self.navigationController pushViewController:revealVC animated:YES];
     } else if (indexPath.section == 1) {
         if (indexPath.row == 0) {
@@ -260,6 +291,43 @@
     // Add it to table
     [self.houseArray addObject:house];
     [self.tableView reloadData];
+}
+
+#pragma mark Access manager delegate
+
+- (void)accessManagerTokenWillExpire:(TwilioAccessManager *)accessManager {
+    // Notification if access manager expires
+    
+}
+
+#pragma mark Chat Delegate
+
+- (void)chatClient:(TwilioChatClient *)client channel:(TCHChannel *)channel messageAdded:(TCHMessage *)message {
+    // If edit house message - adjust this screen
+    if ([message.attributes[@"type"] isEqualToString:@"edit"]) {
+        // Refresh house
+        [HouseManager getHouseWithUniqueName:channel.uniqueName withCompletion:^(House *house, NSString *error) {
+            // Find house in array and update
+            for (int i = 0; i < self.houseArray.count; i++) {
+                if ([[(House *)[self.houseArray objectAtIndex:i] uniqueName] isEqualToString:house.uniqueName]) {
+                    [self.houseArray replaceObjectAtIndex:i withObject:house];
+                    break;
+                }
+            }
+            // Reload table
+            [self.tableView reloadData];
+            
+            // If the channel where message sent is active for us
+            if (self.currentHouseUniqueName && [self.currentHouseUniqueName isEqualToString:channel.uniqueName]) {
+                [self.delegate houseEdited:house];
+            }
+        }];
+    }
+    
+    // If not a house edit, first check if we have active house
+    else if (self.currentHouseUniqueName && [self.currentHouseUniqueName isEqualToString:channel.uniqueName]) {
+        [self.delegate messageAdded:message];
+    }
 }
 
 @end

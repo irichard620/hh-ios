@@ -7,7 +7,6 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "SWRevealViewController+SWRevealViewController_Data.h"
 
 @interface SettingsViewController : UIViewController
 

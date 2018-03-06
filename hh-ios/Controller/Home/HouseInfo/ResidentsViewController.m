@@ -10,8 +10,6 @@
 #import "SWRevealViewController.h"
 #import "ViewHelpers.h"
 #import "UserTableViewCell.h"
-#import "SWRevealViewController+SWRevealViewController_Data.h"
-#import "HouseManager.h"
 #import "NSString+Security.h"
 
 #define TRIM(string) [string stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]]
@@ -119,7 +117,7 @@
     } else {
         if (indexPath.section == 0) {
             // Owner
-            UserReference *owner = self.revealViewController.house.owner;
+            UserReference *owner = self.house.owner;
             [cell setName:owner.name andAvatarLink:owner.avatarLink];
         } else if (indexPath.section == 1) {
             // Other residents
@@ -156,7 +154,7 @@
             [self presentViewController:[ViewHelpers createErrorAlertWithTitle:@"Invalid Email" andDescription:@"Please enter a valid email"] animated:YES completion:nil];
         } else {
             // Send network request
-            [HouseManager inviteUser:email toHouseName:self.revealViewController.house.uniqueName withCompletion:^(NSString *error) {
+            [HouseManager inviteUser:email toHouseName:self.house.uniqueName withCompletion:^(NSString *error) {
                 if (error) {
                     [self presentViewController:[ViewHelpers createErrorAlertWithTitle:@"Error" andDescription:error] animated:YES completion:nil];
                 } else {

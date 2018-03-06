@@ -9,7 +9,6 @@
 #import <UIKit/UIKit.h>
 #import "User.h"
 #import "ToDo.h"
-#import "SWRevealViewController+SWRevealViewController_Data.h"
 
 @interface TodoDetailsViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, UITextViewDelegate>
 

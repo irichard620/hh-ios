@@ -87,4 +87,16 @@
  */
 + (void)editHouseWithUniqueName:(NSString *)uniqueName withDisplayName:(NSString *)displayName andAvatarLink:(NSString *)avatarLink withCompletion:(void(^)(House *house, NSString *error))completion;
 
+/*
+ * Get House
+ *
+ * Arguments
+ * unique_name = required String
+ *
+ * Return
+ * Current house object
+ *
+ */
++ (void)getHouseWithUniqueName:(NSString *)uniqueName withCompletion:(void(^)(House *house, NSString *error))completion;
+
 @end

@@ -17,21 +17,21 @@
     user.avatarLink = userJson[@"avatar_link"];
     user.email = userJson[@"email"];
     user.fullName = userJson[@"full_name"];
-    
     if (isLogin) {
         NSDictionary *authDict = @{
                                    @"access_token": userJson[@"access_token"],
-                                   @"expires_in": userJson[@"expires_in"]
+                                   @"expires_in": userJson[@"expires_in"],
+                                   @"twilio_access_token": userJson[@"twilio_access_token"]
                                    };
         [User deserializeAuthInfo:authDict];
     }
-    
     return user;
 }
 
 + (void)deserializeAuthInfo:(NSDictionary *)authJson {
     NSString *accessToken = authJson[@"acess_token"];
     NSNumber *seconds = authJson[@"expires_in"];
+    NSString *twilioAccessToken = authJson[@"twilio_access_token"];
     
     // Save access token to keychain
     [[A0SimpleKeychain keychain]setString:accessToken forKey:@"auth0-token-jwt"];
@@ -40,6 +40,9 @@
     NSDate *currentDate = [NSDate date];
     NSDate *expirationDate = [currentDate dateByAddingTimeInterval:[seconds intValue]];
     [[NSUserDefaults standardUserDefaults] setObject:expirationDate forKey:@"auth0-token-expiration"];
+    
+    // Save twilio access token to keychain
+    [[A0SimpleKeychain keychain]setString:twilioAccessToken forKey:@"twilio-token-jwt"];
 }
 
 @end

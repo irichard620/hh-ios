@@ -11,7 +11,6 @@
 #import "IncompleteToDoTableViewCell.h"
 #import "CompletedToDoTableViewCell.h"
 #import "ViewHelpers.h"
-#import "SWRevealViewController+SWRevealViewController_Data.h"
 
 @interface ToDosViewController ()
 

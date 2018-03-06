@@ -55,6 +55,10 @@
     }
 }
 
++ (NSString *)getCurrentTwilioAccessToken {
+    return [[A0SimpleKeychain keychain] stringForKey:@"twilio-token-jwt"];
+}
+
 + (BOOL)tokenNeedsRefresh {
     NSDate *now = [NSDate date];
     NSDate *expirationDate = (NSDate *)[[NSUserDefaults standardUserDefaults] objectForKey:@"auth0-token-expiration"];

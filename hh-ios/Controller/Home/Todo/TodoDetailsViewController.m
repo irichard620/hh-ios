@@ -100,7 +100,7 @@
         }
         
         UserReference *user = [self.residentsArray objectAtIndex:indexPath.row - 1];
-        [cell setName:user.name andImage:nil];
+        [cell setName:user.name andAvatarLink:user.avatarLink];
         return cell;
     }
 }

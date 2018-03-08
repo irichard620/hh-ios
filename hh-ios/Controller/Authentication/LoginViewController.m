@@ -17,6 +17,8 @@
 @interface LoginViewController ()
 
 @property (nonatomic) BOOL keyboardShowing;
+@property (nonatomic) NSString *email;
+@property (nonatomic) NSString *password;
 
 @end
 
@@ -90,26 +92,58 @@
 
 - (void)loginButtonClicked:(id)sender {
     // Get fields and trim
-    NSString *email = TRIM(self.emailField.text);
-    NSString *password = TRIM(self.passwordField.text);
+    self.email = TRIM(self.emailField.text);
+    self.password = TRIM(self.passwordField.text);
     
-    if (![email isValidEmail]) {
+    if (![self.email isValidEmail]) {
         [self presentViewController:[ViewHelpers createErrorAlertWithTitle:@"Email Invalid" andDescription:@"Please enter a valid email."] animated:YES completion:nil];
-    } else if ([password isEqualToString:@""]) {
+    } else if ([self.password isEqualToString:@""]) {
         [self presentViewController:[ViewHelpers createErrorAlertWithTitle:@"Password Invalid" andDescription:@"Please enter a valid password."] animated:YES completion:nil];
     } else {
-        [AuthenticationManager loginUserWithEmail:email andPassword:password withCompletion:^(User *user, NSString *error) {
-            if (!error) {
+        // All fields present - let's ask for remote notifications first
+//        [[UIApplication sharedApplication] registerForRemoteNotifications];
+        [self application:[UIApplication sharedApplication] didFailToRegisterForRemoteNotificationsWithError:[NSError errorWithDomain:NSCocoaErrorDomain code:400 userInfo:nil]];
+        // Now, wait for response
+    }
+}
+
+#pragma mark Delegate
+
+- (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
+    [self loginUserWithDeviceToken:[self stringWithDeviceToken:deviceToken]];
+}
+
+- (void)application:(UIApplication *)application didFailToRegisterForRemoteNotificationsWithError:(NSError *)error {
+    [self loginUserWithDeviceToken:nil];
+}
+
+#pragma mark Helpers
+
+- (void)loginUserWithDeviceToken:(NSString *)deviceToken {
+    [AuthenticationManager loginUserWithEmail:self.email andPassword:self.password andDeviceToken:deviceToken withCompletion:^(User *user, NSString *error) {
+        if (!error) {
+            dispatch_async(dispatch_get_main_queue(), ^{
                 UserHomeViewController *userHomeVC = [[UserHomeViewController alloc]initWithNibName:@"UserHomeViewController" bundle:nil];
                 userHomeVC.user = user;
                 [self.navigationController pushViewController:userHomeVC animated:YES];
-            } else {
-                UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Error" message:error preferredStyle:UIAlertControllerStyleAlert];
-                [alert addAction:[UIAlertAction actionWithTitle:@"Ok" style:UIAlertActionStyleCancel handler:nil]];
-                [self presentViewController:alert animated:YES completion:nil];
-            }
-        }];
+            });
+        } else {
+            UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Error" message:error preferredStyle:UIAlertControllerStyleAlert];
+            [alert addAction:[UIAlertAction actionWithTitle:@"Ok" style:UIAlertActionStyleCancel handler:nil]];
+            [self presentViewController:alert animated:YES completion:nil];
+        }
+    }];
+}
+
+- (NSString *)stringWithDeviceToken:(NSData *)deviceToken {
+    const char *data = [deviceToken bytes];
+    NSMutableString *token = [NSMutableString string];
+    
+    for (NSUInteger i = 0; i < [deviceToken length]; i++) {
+        [token appendFormat:@"%02.2hhX", data[i]];
     }
+    
+    return [token copy];
 }
 
 @end

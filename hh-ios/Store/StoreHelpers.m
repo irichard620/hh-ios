@@ -10,6 +10,16 @@
 #import "AuthenticationManager.h"
 #import <UNIRest.h>
 
+NSString * const CREATE_TODO_MESSAGE = @"create_todo";
+NSString * const EDIT_TODO_MESSAGE = @"edit_todo";
+NSString * const DELETE_TODO_MESSAGE = @"delete_todo";
+NSString * const REASSIGN_TODO_MESSAGE = @"reassign_todo";
+NSString * const COMPLETE_TODO_MESSAGE = @"complete_todo";
+NSString * const EDIT_HOUSE_MESSAGE = @"edit_house";
+NSString * const MEMBER_ADDED = @"member_added";
+NSString * const MEMBER_REMOVED = @"member_removed";
+NSString * const CHAT_MESSAGE = @"chat";
+
 NSString * const UNKNOWN_ERROR = @"unknown";
 NSString * const NOT_FOUND_ERROR = @"not_found";
 NSString * const CONNECTION_ERROR = @"connection";
@@ -59,7 +69,8 @@ NSString * const DUPLICATE_ERROR = @"duplicate";
 
 + (NSDictionary *)createHeadersWithAuth:(BOOL)withAuth {
     if (withAuth) {
-        return  @{@"accept": @"application/json", @"Authorization": [NSString stringWithFormat:@"Bearer %@", [AuthenticationManager getCurrentAccessToken]]};
+        NSDictionary *headers = @{@"accept": @"application/json", @"Authorization": [NSString stringWithFormat:@"Bearer %@", [AuthenticationManager getCurrentAccessToken]]};
+        return headers;
     } else {
          return @{@"accept": @"application/json"};
     }

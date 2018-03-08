@@ -8,7 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
-@interface SignupViewController : UIViewController
+@interface SignupViewController : UIViewController <UIApplicationDelegate>
+
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *loginButtonBottom;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *scrollToContentHeight;
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;

@@ -14,7 +14,6 @@
 #import "PaymentsViewController.h"
 #import "AlexaViewController.h"
 #import "ToDosViewController.h"
-#import "ResidentsViewController.h"
 #import "HouseEditViewController.h"
 
 NSInteger const EDIT = 0;
@@ -148,6 +147,8 @@ NSInteger const SETTINGS = 6;
     } else if (indexPath.row == CHAT && !(self.currentIndex == CHAT)) {
         // Home - chat
         ChatViewController *chatVC = [[ChatViewController alloc]initWithNibName:@"ChatViewController" bundle:nil];
+        chatVC.user = self.user;
+        chatVC.house = self.house;
         UINavigationController *navVC = [[UINavigationController alloc]initWithRootViewController:chatVC];
         [self.revealViewController pushFrontViewController:navVC animated:YES];
         self.currentIndex = CHAT;
@@ -166,12 +167,13 @@ NSInteger const SETTINGS = 6;
         [self.revealViewController pushFrontViewController:navVC animated:YES];
         self.currentIndex = TODOS;
     } else if (indexPath.row == RESIDENTS && !(self.currentIndex == RESIDENTS)) {
-        // Alexa
+        // residents
         [[self.menuTableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:CHAT inSection:0]]setSelected:NO];
         ResidentsViewController *residentVC = [[ResidentsViewController alloc]initWithNibName:@"ResidentsViewController" bundle:nil];
         
         // Pass house
         residentVC.house = self.house;
+        residentVC.user = self.user;
         
         UINavigationController *navVC = [[UINavigationController alloc]initWithRootViewController:residentVC];
         [self.revealViewController pushFrontViewController:navVC animated:YES];
@@ -189,29 +191,8 @@ NSInteger const SETTINGS = 6;
     }
 }
 
-#pragma mark Helpers
+#pragma mark Delegate
 
-#pragma mark UserHomeDelegate
 
-- (void)messageAdded:(TCHMessage *)message {
-    // First, make sure message not from us
-    // Messages from us are handled on our side before sent to others
-    if ([message.author isEqualToString:self.user._id]) {
-        return;
-    }
-    
-    NSString *messageType = [message.attributes objectForKey:@"type"];
-    if ([messageType isEqualToString:@"add"]) {
-        // IF member added
-    } else if ([messageType isEqualToString:@"new_todo"]) {
-        // If member removed
-    } 
-}
-
-- (void)houseEdited:(House *)house {
-    // Update house and reload table
-    self.house = house;
-    [self.menuTableView reloadData];
-}
 
 @end

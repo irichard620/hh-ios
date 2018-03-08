@@ -11,9 +11,6 @@
 
 @interface House : NSObject
 
-// unique ID of the house
-@property (strong, nonatomic) NSString *_id;
-
 // Link to house picture
 @property (strong, nonatomic) NSString *avatarLink;
 
@@ -23,8 +20,11 @@
 // Name for house that must be entered to join
 @property (strong, nonatomic) NSString *uniqueName;
 
-// ID of house owner
+// ref of house owner
 @property (strong, nonatomic) UserReference *owner;
+
+// Invited
+@property (strong, nonatomic) NSArray *invited;
 
 + (House *) deserializeHouse: (NSDictionary *)houseJson;
 

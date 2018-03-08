@@ -9,6 +9,7 @@
 #import "UserManager.h"
 #import <UNIRest.h>
 #import "House.h"
+#import "ToDo.h"
 #import "AuthenticationManager.h"
 
 @implementation UserManager
@@ -78,11 +79,27 @@
 }
 
 + (void)getUserWithCompletion:(void (^)(User *, NSString *))completion {
-    completion(nil, nil);
     [StoreHelpers sendGetRequestWithEndpoint:@"/user/info" requiresAuth:YES withCallback:^(NSDictionary *jsonResponse, NSString *errorType) {
         if (!errorType) {
             User *user = [User deserializeUser:jsonResponse[@"response"] isLogin:NO];
             completion(user, nil);
+        } else {
+            completion(nil, errorType);
+        }
+    }];
+}
+
++ (void)getTodosAssignedToMeWithCompletion:(void (^)(NSArray *, NSString *))completion {
+    // Send request
+    [StoreHelpers sendGetRequestWithEndpoint:@"/user/todos" requiresAuth:YES withCallback:^(NSDictionary *jsonResponse, NSString *errorType) {
+        if (!errorType) {
+            // If no error, get json response and deserialize to todo object
+            NSArray *responseArray = jsonResponse[@"todos"];
+            NSMutableArray *todosArray = [[NSMutableArray alloc]init];
+            for (int i = 0; i < responseArray.count; i++) {
+                [todosArray addObject:[ToDo deserializeTodo:responseArray[i]]];
+            }
+            completion(todosArray, nil);
         } else {
             completion(nil, errorType);
         }

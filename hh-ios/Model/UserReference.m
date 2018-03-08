@@ -13,7 +13,11 @@
 + (UserReference *)deserializeUserRef:(NSDictionary *)userRefDict {
     UserReference *userRef = [[UserReference alloc]init];
     userRef._id = userRefDict[@"id"];
-    userRef.avatarLink = userRefDict[@"avatar_link"];
+    if (userRefDict[@"avatar_link"] == (id)[NSNull null]) {
+        userRef.avatarLink = nil;
+    } else {
+        userRef.avatarLink = userRefDict[@"avatar_link"];
+    }
     userRef.name = userRefDict[@"full_name"];
     return userRef;
 }

@@ -77,16 +77,6 @@
  */
 + (void)completeToDo:(NSString *)todoId andTimeTaken:(NSNumber *)timeTaken withCompletion:(void(^)(ToDo *todo, NSString *error))completion;
 
-/*
- * Get todos assigned to user
- *
- * Arguments:
- * user
- *
- * Return:
- * Array of todo objects
- */
-+ (void)getTodosAssignedToMeWithCompletion:(void(^)(NSArray *todos, NSString *error))completion;
 
 /*
  * Get todos for a house
@@ -98,5 +88,27 @@
  * Array of todo objects
  */
 + (void)getTodosForHouseWithName:(NSString *)uniqueName withCompletion:(void(^)(NSArray *todos, NSString *error))completion;
+
+/*
+ * Get past (completed) todos for a house
+ *
+ * Arguments:
+ * unique name of house
+ *
+ * Return:
+ * Array of todo objects
+ */
++ (void)getPastTodosForHouseWithName:(NSString *)uniqueName withCompletion:(void(^)(NSArray *todos, NSString *error))completion;
+
+/*
+ * Get list of potential assignees by time contribution
+ *
+ * Arguments:
+ * unique name of house
+ *
+ * Return:
+ * Array of user ref objects
+ */
++ (void)getTodoAssignees:(NSString *)uniqueName withCompletion:(void(^)(NSArray *users, NSString *error))completion;
 
 @end

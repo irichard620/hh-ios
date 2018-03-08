@@ -84,6 +84,8 @@
 		802F4071203CAD180006CA8B /* UserTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 802F406F203CAD170006CA8B /* UserTableViewCell.m */; };
 		802F4072203CAD180006CA8B /* UserTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 802F4070203CAD170006CA8B /* UserTableViewCell.xib */; };
 		802F407D2044F0380006CA8B /* StoreHelpers.m in Sources */ = {isa = PBXBuildFile; fileRef = 802F407C2044F0380006CA8B /* StoreHelpers.m */; };
+		802F40822051C1C70006CA8B /* TodoDetailsCompleteTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 802F40802051C1C60006CA8B /* TodoDetailsCompleteTableViewCell.m */; };
+		802F40832051C1C70006CA8B /* TodoDetailsCompleteTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 802F40812051C1C60006CA8B /* TodoDetailsCompleteTableViewCell.xib */; };
 		8073C8351FC946CC007223CD /* ChatTimeTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8073C8331FC946CC007223CD /* ChatTimeTableViewCell.m */; };
 		8073C8361FC946CC007223CD /* ChatTimeTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8073C8341FC946CC007223CD /* ChatTimeTableViewCell.xib */; };
 		8073C8381FC95291007223CD /* ian_profile.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 8073C8371FC95291007223CD /* ian_profile.jpg */; };
@@ -273,6 +275,9 @@
 		802F407B2044F0380006CA8B /* StoreHelpers.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = StoreHelpers.h; sourceTree = "<group>"; };
 		802F407C2044F0380006CA8B /* StoreHelpers.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = StoreHelpers.m; sourceTree = "<group>"; };
 		802F407E204636240006CA8B /* hh-ios.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "hh-ios.entitlements"; sourceTree = "<group>"; };
+		802F407F2051C1C60006CA8B /* TodoDetailsCompleteTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TodoDetailsCompleteTableViewCell.h; sourceTree = "<group>"; };
+		802F40802051C1C60006CA8B /* TodoDetailsCompleteTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TodoDetailsCompleteTableViewCell.m; sourceTree = "<group>"; };
+		802F40812051C1C60006CA8B /* TodoDetailsCompleteTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TodoDetailsCompleteTableViewCell.xib; sourceTree = "<group>"; };
 		8073C8321FC946CC007223CD /* ChatTimeTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatTimeTableViewCell.h; sourceTree = "<group>"; };
 		8073C8331FC946CC007223CD /* ChatTimeTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatTimeTableViewCell.m; sourceTree = "<group>"; };
 		8073C8341FC946CC007223CD /* ChatTimeTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ChatTimeTableViewCell.xib; sourceTree = "<group>"; };
@@ -470,6 +475,9 @@
 				802F4063203C9C570006CA8B /* TodoDetailsTableViewCell.h */,
 				802F4064203C9C570006CA8B /* TodoDetailsTableViewCell.m */,
 				802F4065203C9C570006CA8B /* TodoDetailsTableViewCell.xib */,
+				802F407F2051C1C60006CA8B /* TodoDetailsCompleteTableViewCell.h */,
+				802F40802051C1C60006CA8B /* TodoDetailsCompleteTableViewCell.m */,
+				802F40812051C1C60006CA8B /* TodoDetailsCompleteTableViewCell.xib */,
 			);
 			path = Todos;
 			sourceTree = "<group>";
@@ -1001,6 +1009,7 @@
 				80F558911FBACC12001601B3 /* share.png in Resources */,
 				80F558971FBAD142001601B3 /* MenuTableViewCell.xib in Resources */,
 				80F5587E1FBABACF001601B3 /* ChatViewController.xib in Resources */,
+				802F40832051C1C70006CA8B /* TodoDetailsCompleteTableViewCell.xib in Resources */,
 				80F558371FBAA541001601B3 /* LaunchScreen.storyboard in Resources */,
 				802F4024200C1BB70006CA8B /* group-icon-black-background.png in Resources */,
 				802F3FE01FFDA15A0006CA8B /* left-arrow.png in Resources */,
@@ -1195,6 +1204,7 @@
 				80F558C61FC91FBD001601B3 /* ChatMessageTableViewCell.m in Sources */,
 				802F3FB01FC9FE110006CA8B /* SLKTextInput+Implementation.m in Sources */,
 				80F558711FBAB280001601B3 /* AppDelegate.m in Sources */,
+				802F40822051C1C70006CA8B /* TodoDetailsCompleteTableViewCell.m in Sources */,
 				802F4052202E59390006CA8B /* EditPropertyTableViewCell.m in Sources */,
 				802F3FF32002A5E20006CA8B /* ToDosViewController.m in Sources */,
 				802F3FAB1FC9FE110006CA8B /* SLKTextView+SLKAdditions.m in Sources */,

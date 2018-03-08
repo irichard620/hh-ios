@@ -58,6 +58,7 @@
     [StoreHelpers sendGetRequestWithEndpoint:[NSString stringWithFormat:@"/house/%@/users",uniqueName] requiresAuth:YES withCallback:^(NSDictionary *jsonResponse, NSString *errorType) {
         if (!errorType) {
             // If no error, return nil for error
+            NSLog(@"json:%@",jsonResponse);
             NSArray *responseArray = jsonResponse[@"users"];
             NSMutableArray *usersArray = [[NSMutableArray alloc]init];
             for (int i = 0; i < responseArray.count; i++) {

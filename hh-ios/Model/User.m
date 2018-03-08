@@ -14,7 +14,11 @@
 + (User *)deserializeUser:(NSDictionary *)userJson isLogin:(BOOL)isLogin {
     User *user = [[User alloc]init];
     user._id = userJson[@"id"];
-    user.avatarLink = userJson[@"avatar_link"];
+    if (userJson[@"avatar_link"] == (id)[NSNull null]) {
+        user.avatarLink = nil;
+    } else {
+        user.avatarLink = userJson[@"avatar_link"];
+    }
     user.email = userJson[@"email"];
     user.fullName = userJson[@"full_name"];
     if (isLogin) {
@@ -29,7 +33,7 @@
 }
 
 + (void)deserializeAuthInfo:(NSDictionary *)authJson {
-    NSString *accessToken = authJson[@"acess_token"];
+    NSString *accessToken = authJson[@"access_token"];
     NSNumber *seconds = authJson[@"expires_in"];
     NSString *twilioAccessToken = authJson[@"twilio_access_token"];
     
@@ -43,6 +47,15 @@
     
     // Save twilio access token to keychain
     [[A0SimpleKeychain keychain]setString:twilioAccessToken forKey:@"twilio-token-jwt"];
+}
+
++ (NSString *)deserializeTwilio:(NSDictionary *)twilioJson {
+    NSString *token = twilioJson[@"twilio_access_token"];
+    
+    // Save twilio access token to keychain
+    [[A0SimpleKeychain keychain]setString:token forKey:@"twilio-token-jwt"];
+    
+    return token;
 }
 
 @end

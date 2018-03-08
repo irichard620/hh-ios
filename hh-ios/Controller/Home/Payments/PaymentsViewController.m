@@ -53,8 +53,8 @@
     [self.view addGestureRecognizer:self.revealViewController.tapGestureRecognizer];
     
     // Create menu button
-    self.navigationItem.leftBarButtonItem = [ViewHelpers createMenuButtonWithTarget:self.revealViewController];
-    self.navigationItem.rightBarButtonItem = [ViewHelpers createRightButtonWithTarget:self andSelectorName:@"addButtonClicked:"];
+    self.navigationItem.leftBarButtonItem = [ViewHelpers createNavButtonWithTarget:self.revealViewController andSelectorName:@"revealToggle:" andImage:[UIImage imageNamed:@"menu.png"] isBack:NO];
+    self.navigationItem.rightBarButtonItem = [ViewHelpers createNavButtonWithTarget:self andSelectorName:@"addButtonClicked:" andImage:[UIImage imageNamed:@"add_white.png"] isBack:NO];
     
     // Setup table
     self.paymentTableView.dataSource = self;

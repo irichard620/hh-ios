@@ -43,12 +43,8 @@
     self.navigationController.navigationBar.largeTitleTextAttributes = @{NSForegroundColorAttributeName:[UIColor whiteColor]};
     self.navigationController.navigationBar.prefersLargeTitles = YES;
     
-    // Add gesture recognizer for reveal controller
-    [self.view addGestureRecognizer:self.revealViewController.panGestureRecognizer];
-    [self.view addGestureRecognizer:self.revealViewController.tapGestureRecognizer];
-    
     // Create menu button
-    self.navigationItem.leftBarButtonItem = [ViewHelpers createMenuButtonWithTarget:self.revealViewController];
+    self.navigationItem.leftBarButtonItem = [ViewHelpers createNavButtonWithTarget:self andSelectorName:@"backButtonClicked:" andImage:[UIImage imageNamed:@"left-arrow.png"] isBack:YES];;
     
     // Setup table
     self.tableView.dataSource = self;
@@ -121,6 +117,10 @@
     }
 }
 
+#pragma mark Interaction
 
+- (void)backButtonClicked:(id)sender {
+    
+}
 
 @end

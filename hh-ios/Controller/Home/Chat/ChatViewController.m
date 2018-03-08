@@ -15,12 +15,17 @@
 
 @interface ChatViewController ()
 
+@property (nonatomic) BOOL isLoading;
+
 @end
 
 @implementation ChatViewController
 
 - (id)init {
     self = [super initWithTableViewStyle:UITableViewStylePlain];
+    if (self) {
+        _isLoading = YES;
+    }
     return self;
 }
 
@@ -49,10 +54,19 @@
     [self.view addGestureRecognizer:self.revealViewController.tapGestureRecognizer];
     
     // Create menu button
-    self.navigationItem.leftBarButtonItem = [ViewHelpers createMenuButtonWithTarget:self.revealViewController];
+    self.navigationItem.leftBarButtonItem = [ViewHelpers createNavButtonWithTarget:self.revealViewController andSelectorName:@"revealToggle:" andImage:[UIImage imageNamed:@"menu.png"] isBack:NO];
     
-    // Titlel abel
-//    [ViewHelpers createNavTitleLabelWithText:@"Home" andNavItem:self.navigationItem];
+    // Go to setup
+    [self setupTwilio];
+}
+
+#pragma mark Setup Twilio
+
+- (void)setupTwilio {
+    // First, get our channel object
+    [self.channels channelWithSidOrUniqueName:self.house.uniqueName completion:^(TCHResult * _Nonnull result, TCHChannel * _Nullable channel) {
+        
+    }];
 }
 
 #pragma mark Table View
@@ -128,6 +142,5 @@
         return cell;
     }
 }
-
 
 @end

@@ -17,7 +17,6 @@
 @interface ResidentsViewController ()
 
 @property(nonatomic) NSMutableArray *residentsArray;
-@property(nonatomic) NSMutableArray *invitedArray;
 
 @property(nonatomic) BOOL loading;
 
@@ -30,7 +29,6 @@
     if (self) {
         _loading = YES;
         _residentsArray = [[NSMutableArray alloc]init];
-        _invitedArray = [[NSMutableArray alloc]init];
     }
     return self;
 }
@@ -49,8 +47,8 @@
     [self.view addGestureRecognizer:self.revealViewController.tapGestureRecognizer];
     
     // Create menu button
-    self.navigationItem.leftBarButtonItem = [ViewHelpers createMenuButtonWithTarget:self.revealViewController];
-    self.navigationItem.rightBarButtonItem = [ViewHelpers createRightButtonWithTarget:self andSelectorName:@"addButtonClicked:"];
+    self.navigationItem.leftBarButtonItem = [ViewHelpers createNavButtonWithTarget:self.revealViewController andSelectorName:@"revealToggle:" andImage:[UIImage imageNamed:@"menu.png"] isBack:NO];
+    self.navigationItem.rightBarButtonItem = [ViewHelpers createNavButtonWithTarget:self andSelectorName:@"addButtonClicked:" andImage:[UIImage imageNamed:@"add_white.png"] isBack:NO];
         
     // Setup table
     self.residentTableView.dataSource = self;
@@ -58,7 +56,31 @@
     self.residentTableView.estimatedSectionHeaderHeight = 30;
     self.residentTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     
-    self.loading = NO;
+    // Get residents
+    [self getResidents];
+}
+
+#pragma mark Data
+
+- (void)getResidents {
+    [HouseManager getListOfResidentsWithUniqueName:self.house.uniqueName withCompletion:^(NSArray *residents, NSString *error) {
+        if (!error) {
+            // Add all non-owners
+            User *userToAdd;
+            for (int i = 0; i < residents.count; i++) {
+                userToAdd = (User *)[residents objectAtIndex:i];
+                if (![userToAdd._id isEqualToString:self.house.owner._id]) {
+                    [self.residentsArray addObject:[residents objectAtIndex:i]];
+                }
+            }
+        }
+        self.loading = NO;
+        
+        // Add invited
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self.residentTableView reloadData];
+        });
+    }];
 }
 
 #pragma mark Table View
@@ -74,7 +96,7 @@
     } else if (section == 1) {
         return self.residentsArray.count == 0 ? 1 : self.residentsArray.count;
     } else {
-        return self.invitedArray.count == 0 ? 1 : self.invitedArray.count;
+        return self.house.invited.count == 0 ? 1 : self.house.invited.count;
     }
 }
 
@@ -125,13 +147,17 @@
                 [cell setNoImageCellWithText:@"No Other Residents"];
             } else {
                 // Get each user
+                User *user = [self.residentsArray objectAtIndex:indexPath.row];
+                [cell setName:user.fullName andAvatarLink:user.avatarLink];
             }
         } else {
             // Invited
-            if (self.invitedArray.count == 0) {
+            if (self.house.invited.count == 0) {
                 [cell setNoImageCellWithText:@"No Invited Residents"];
             } else {
                 // Get each user
+                NSString *email = [self.house.invited objectAtIndex:indexPath.row];
+                [cell setNoImageCellWithText:email];
             }
         }
     }
@@ -156,9 +182,19 @@
             // Send network request
             [HouseManager inviteUser:email toHouseName:self.house.uniqueName withCompletion:^(NSString *error) {
                 if (error) {
-                    [self presentViewController:[ViewHelpers createErrorAlertWithTitle:@"Error" andDescription:error] animated:YES completion:nil];
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        [self presentViewController:[ViewHelpers createErrorAlertWithTitle:@"Error" andDescription:error] animated:YES completion:nil];
+                    });
                 } else {
-                    [self presentViewController:[ViewHelpers createErrorAlertWithTitle:@"Success" andDescription:[NSString stringWithFormat:@"An email has been sent to %@", email]] animated:YES completion:nil];
+                    // Update our house object locally
+                    NSMutableArray *newInvited = [[NSMutableArray alloc]initWithArray:self.house.invited];
+                    [newInvited addObject:email];
+                    self.house.invited = newInvited;
+                    
+                    // Show alert
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        [self presentViewController:[ViewHelpers createErrorAlertWithTitle:@"Success" andDescription:[NSString stringWithFormat:@"An email has been sent to %@", email]] animated:YES completion:nil];
+                    });
                 }
             }];
         }

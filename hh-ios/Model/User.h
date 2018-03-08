@@ -23,5 +23,6 @@
 @property (strong, nonatomic) NSString *fullName;
 
 + (User *) deserializeUser: (NSDictionary *)userJson isLogin:(BOOL)isLogin;
++ (NSString *) deserializeTwilio: (NSDictionary *)twilioJson;
 
 @end

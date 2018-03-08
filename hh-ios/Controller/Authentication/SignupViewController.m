@@ -20,6 +20,11 @@
 
 @property (nonatomic) BOOL keyboardShowing;
 
+@property (nonatomic) NSString *email;
+@property (nonatomic) NSString *name;
+@property (nonatomic) NSString *password;
+
+
 @end
 
 @implementation SignupViewController
@@ -99,29 +104,63 @@
 
 - (void)createAccountButtonClicked:(id)sender {
     // Get fields and trim
-    NSString *name = TRIM(self.nameField.text);
-    NSString *email = TRIM(self.emailField.text);
-    NSString *password = TRIM(self.passwordField.text);
+    self.name = TRIM(self.nameField.text);
+    self.email = TRIM(self.emailField.text);
+    self.password = TRIM(self.passwordField.text);
 
-    if ([name isEqualToString:@""]) {
+    if ([self.name isEqualToString:@""]) {
         [self presentViewController:[ViewHelpers createErrorAlertWithTitle:@"Missing Name" andDescription:@"Please enter a full name for your user."] animated:YES completion:nil];
-    } else if (![email isValidEmail]) {
+    } else if (![self.email isValidEmail]) {
         [self presentViewController:[ViewHelpers createErrorAlertWithTitle:@"Email Invalid" andDescription:@"Please enter a valid email."] animated:YES completion:nil];
-    } else if (password.length < 6) {
+    } else if (self.password.length < 6) {
         [self presentViewController:[ViewHelpers createErrorAlertWithTitle:@"Password Invalid" andDescription:@"The password must be 6 or more characters."] animated:YES completion:nil];
     } else {
-        [AuthenticationManager createNewUserWithEmail:email andPassword:password andFullName:name withCompletion:^(User *user, NSString *error) {
-            if (!error) {
+        
+        // All fields present - let's ask for remote notifications first
+        //        [[UIApplication sharedApplication] registerForRemoteNotifications];
+        [self application:[UIApplication sharedApplication] didFailToRegisterForRemoteNotificationsWithError:[NSError errorWithDomain:NSCocoaErrorDomain code:400 userInfo:nil]];
+
+        // Now, wait for response
+    }
+}
+
+#pragma mark Delegate
+
+- (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
+    [self signupUserWithDeviceToken:[self stringWithDeviceToken:deviceToken]];
+}
+
+- (void)application:(UIApplication *)application didFailToRegisterForRemoteNotificationsWithError:(NSError *)error {
+    [self signupUserWithDeviceToken:nil];
+}
+
+#pragma mark Helpers
+
+- (void)signupUserWithDeviceToken:(NSString *)deviceToken {
+    [AuthenticationManager createNewUserWithEmail:self.email andPassword:self.password andFullName:self.name andDeviceToken:deviceToken withCompletion:^(User *user, NSString *error) {
+        if (!error) {
+            dispatch_async(dispatch_get_main_queue(), ^{
                 UserHomeViewController *userHomeVC = [[UserHomeViewController alloc]initWithNibName:@"UserHomeViewController" bundle:nil];
                 userHomeVC.user = user;
                 [self.navigationController pushViewController:userHomeVC animated:YES];
-            } else {
-                UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Error" message:error preferredStyle:UIAlertControllerStyleAlert];
-                [alert addAction:[UIAlertAction actionWithTitle:@"Ok" style:UIAlertActionStyleCancel handler:nil]];
-                [self presentViewController:alert animated:YES completion:nil];
-            }
-        }];
+            });
+        } else {
+            UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Error" message:error preferredStyle:UIAlertControllerStyleAlert];
+            [alert addAction:[UIAlertAction actionWithTitle:@"Ok" style:UIAlertActionStyleCancel handler:nil]];
+            [self presentViewController:alert animated:YES completion:nil];
+        }
+    }];
+}
+
+- (NSString *)stringWithDeviceToken:(NSData *)deviceToken {
+    const char *data = [deviceToken bytes];
+    NSMutableString *token = [NSMutableString string];
+    
+    for (NSUInteger i = 0; i < [deviceToken length]; i++) {
+        [token appendFormat:@"%02.2hhX", data[i]];
     }
+    
+    return [token copy];
 }
 
 @end

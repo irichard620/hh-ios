@@ -14,6 +14,6 @@
 @property (weak, nonatomic) IBOutlet UITableView *residentTableView;
 
 @property (nonatomic) House *house;
-
+@property (nonatomic) User *user;
 
 @end

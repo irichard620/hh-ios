@@ -7,8 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "TodoManager.h"
+#import "UserManager.h"
 
 @interface ToDosViewController : UIViewController <UITableViewDelegate, UITableViewDataSource>
+
 @property (weak, nonatomic) IBOutlet UITableView *todosTableView;
+
+@property (nonatomic) House *house;
+@property (nonatomic) User *user;
 
 @end

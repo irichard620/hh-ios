@@ -31,9 +31,9 @@
     self.cellTitle.text = title;
     self.cellSubtitle.text = subTitle;
     if (avatarLink == nil) {
-        [self.cellImage setImage:[UIImage imageNamed:@"group-icon-black-background.png"]];
+        [self.cellImage setImage:[UIImage imageNamed:@"group-icon-white-background.png"]];
     } else {
-        [self.cellImage sd_setImageWithURL:[NSURL URLWithString:avatarLink] placeholderImage:[UIImage imageNamed:@"group-icon-black-background.png"]];
+        [self.cellImage sd_setImageWithURL:[NSURL URLWithString:avatarLink] placeholderImage:[UIImage imageNamed:@"group-icon-white-background.png"]];
     }
 }
 

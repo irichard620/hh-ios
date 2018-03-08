@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="98" id="KGk-i7-Jjw" customClass="TodoDetailsCompleteTableViewCell">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="98"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="97.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Title" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="q5T-Xy-3hi">
+                        <rect key="frame" x="16" y="33" width="288" height="35"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="35" id="HRK-B7-4wh"/>
+                        </constraints>
+                        <nil key="textColor"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                        <textInputTraits key="textInputTraits"/>
+                    </textField>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="AhP-wE-PUh">
+                        <rect key="frame" x="0.0" y="33" width="7" height="35"/>
+                        <color key="backgroundColor" red="0.0" green="0.58823529409999997" blue="0.53333333329999999" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="35" id="alY-9F-rlS"/>
+                            <constraint firstAttribute="width" constant="7" id="k7I-IL-nce"/>
+                        </constraints>
+                    </view>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="AhP-wE-PUh" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="8Ii-Fl-43i"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="q5T-Xy-3hi" secondAttribute="bottom" constant="19" id="LPs-7c-nbd"/>
+                    <constraint firstItem="AhP-wE-PUh" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="22" id="Qj3-wB-8Gu"/>
+                    <constraint firstItem="q5T-Xy-3hi" firstAttribute="centerY" secondItem="AhP-wE-PUh" secondAttribute="centerY" id="ROF-BG-b3C"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="q5T-Xy-3hi" secondAttribute="trailing" id="dDF-ks-2Dt"/>
+                    <constraint firstItem="q5T-Xy-3hi" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="22" id="g4k-iO-Ho3"/>
+                    <constraint firstItem="q5T-Xy-3hi" firstAttribute="leading" secondItem="AhP-wE-PUh" secondAttribute="trailing" constant="9" id="ylZ-23-heG"/>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="aW0-zy-SZf"/>
+            <point key="canvasLocation" x="119" y="153"/>
+        </tableViewCell>
+    </objects>
+</document>

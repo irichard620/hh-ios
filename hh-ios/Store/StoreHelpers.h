@@ -9,6 +9,24 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
+// Messages
+//---------------------------
+// Todos - pass id for all messages
+extern NSString * const CREATE_TODO_MESSAGE;
+extern NSString * const EDIT_TODO_MESSAGE;
+extern NSString * const DELETE_TODO_MESSAGE;
+extern NSString * const REASSIGN_TODO_MESSAGE;
+extern NSString * const COMPLETE_TODO_MESSAGE;
+// House messages
+// Create - do nothing - only sent when not loaded in yet
+extern NSString * const EDIT_HOUSE_MESSAGE; /* Pass ID */
+extern NSString * const MEMBER_ADDED; /* Pass ID */
+extern NSString * const MEMBER_REMOVED; /* Pass ID */
+// Chat messages
+extern NSString * const CHAT_MESSAGE; /* Pass avatar link */
+
+// Error codes
+//---------------------------
 extern NSString * const UNKNOWN_ERROR;
 extern NSString * const NOT_FOUND_ERROR;
 extern NSString * const CONNECTION_ERROR;

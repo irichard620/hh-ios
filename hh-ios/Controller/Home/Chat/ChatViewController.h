@@ -8,7 +8,13 @@
 
 #import <UIKit/UIKit.h>
 #import "SLKTextViewController.h"
+#import "MenuViewController.h"
+#import <TwilioChatClient/TwilioChatClient.h>
 
-@interface ChatViewController : SLKTextViewController
+@interface ChatViewController : SLKTextViewController 
+
+@property (nonatomic) House *house;
+@property (nonatomic) User *user;
+@property (nonatomic) TCHChannels *channels;
 
 @end

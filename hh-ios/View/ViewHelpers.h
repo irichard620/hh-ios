@@ -15,9 +15,7 @@
 + (void)createNavTitleLabelWithText:(NSString *)text andNavItem:(UINavigationItem *)navigationItem;
 + (UITapGestureRecognizer *)createTapGestureRecognizerWithTarget:(UIViewController *)target andSelectorName:(NSString *)selectorString;
 + (void)roundCorners:(UIView *)view;
-+ (UIBarButtonItem *)createBackButtonWithTarget:(UIViewController *)target andSelectorName:(NSString *)selectorString;
-+ (UIBarButtonItem *)createMenuButtonWithTarget:(SWRevealViewController *)target;
-+ (UIBarButtonItem *)createRightButtonWithTarget:(UIViewController *)target andSelectorName:(NSString *)selectorString;
++ (UIBarButtonItem *)createNavButtonWithTarget:(UIViewController *)target andSelectorName:(NSString *)selectorString andImage:(UIImage *)image isBack:(BOOL)isBack;
 + (UIAlertController *)createErrorAlertWithTitle:(NSString *)title andDescription:(NSString *)description;
 
 @end

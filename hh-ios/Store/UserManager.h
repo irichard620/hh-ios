@@ -63,4 +63,15 @@
  */
 + (void)getUserWithCompletion:(void(^)(User *user, NSString *error))completion;
 
+/*
+ * Get todos assigned to user
+ *
+ * Arguments:
+ * user
+ *
+ * Return:
+ * Array of todo objects
+ */
++ (void)getTodosAssignedToMeWithCompletion:(void(^)(NSArray *todos, NSString *error))completion;
+
 @end

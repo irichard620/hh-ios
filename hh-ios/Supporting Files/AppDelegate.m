@@ -25,14 +25,16 @@
     
     // Set window
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-    
+        
     // Check token
     NSString *jwt = [AuthenticationManager getCurrentAccessToken];
     if (jwt) {
         // Go to user home
+        NSLog(@"Access token found");
         return [self goToUserHome];
     } else {
         // No token in keychain - go to sign up
+        NSLog(@"No auth0 token");
         return [self goToSignup];
     }
 }
@@ -78,6 +80,10 @@
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
 }
 
+- (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
+    
+}
+
 #pragma mark Helpers
 
 - (BOOL)goToSignup {
@@ -92,11 +98,17 @@
 }
 
 - (BOOL)goToUserHome {
-    UserHomeViewController *userVC = [[UserHomeViewController alloc]initWithNibName:@"UserHomeViewController" bundle:nil];
-    UINavigationController *navVC = [[UINavigationController alloc]initWithRootViewController:userVC];
+    SignupViewController *signupVC = [[SignupViewController alloc]initWithNibName:@"SignupViewController" bundle:nil];
+    UINavigationController *navVC = [[UINavigationController alloc]initWithRootViewController:signupVC];
     
     // Set as root
     self.window.rootViewController = navVC;
+    
+    // Push
+    UserHomeViewController *userVC = [[UserHomeViewController alloc]initWithNibName:@"UserHomeViewController" bundle:nil];
+    [navVC pushViewController:userVC animated:NO];
+    
+    // Set as root
     [self.window makeKeyAndVisible];
     
     return YES;

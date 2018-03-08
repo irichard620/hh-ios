@@ -87,9 +87,9 @@
     }];
 }
 
-+ (void)getTodosAssignedToMeWithCompletion:(void (^)(NSArray *, NSString *))completion {
++ (void)getTodosForHouseWithName:(NSString *)uniqueName withCompletion:(void (^)(NSArray *, NSString *))completion {
     // Send request
-    [StoreHelpers sendGetRequestWithEndpoint:@"/todos/assigned" requiresAuth:YES withCallback:^(NSDictionary *jsonResponse, NSString *errorType) {
+    [StoreHelpers sendGetRequestWithEndpoint:[NSString stringWithFormat:@"/todos/%@",uniqueName] requiresAuth:YES withCallback:^(NSDictionary *jsonResponse, NSString *errorType) {
         if (!errorType) {
             // If no error, get json response and deserialize to todo object
             NSArray *responseArray = jsonResponse[@"todos"];
@@ -104,9 +104,8 @@
     }];
 }
 
-+ (void)getTodosForHouseWithName:(NSString *)uniqueName withCompletion:(void (^)(NSArray *, NSString *))completion {
-    // Send request
-    [StoreHelpers sendGetRequestWithEndpoint:[NSString stringWithFormat:@"/todos/%@",uniqueName] requiresAuth:YES withCallback:^(NSDictionary *jsonResponse, NSString *errorType) {
++ (void)getPastTodosForHouseWithName:(NSString *)uniqueName withCompletion:(void(^)(NSArray *todos, NSString *error))completion {
+    [StoreHelpers sendGetRequestWithEndpoint:[NSString stringWithFormat:@"/todos/%@/complete",uniqueName] requiresAuth:YES withCallback:^(NSDictionary *jsonResponse, NSString *errorType) {
         if (!errorType) {
             // If no error, get json response and deserialize to todo object
             NSArray *responseArray = jsonResponse[@"todos"];
@@ -115,6 +114,22 @@
                 [todosArray addObject:[ToDo deserializeTodo:responseArray[i]]];
             }
             completion(todosArray, nil);
+        } else {
+            completion(nil, errorType);
+        }
+    }];
+}
+
++ (void)getTodoAssignees:(NSString *)uniqueName withCompletion:(void(^)(NSArray *users, NSString *error))completion {
+    [StoreHelpers sendGetRequestWithEndpoint:[NSString stringWithFormat:@"/todos/%@/assignee", uniqueName] requiresAuth:YES withCallback:^(NSDictionary *jsonResponse, NSString *errorType) {
+        if (!errorType) {
+            // If no error, get json response and deserialize to user ref objects
+            NSArray *responseArray = jsonResponse[@"users"];
+            NSMutableArray *userArray = [[NSMutableArray alloc]init];
+            for (int i = 0; i < responseArray.count; i++) {
+                [userArray addObject:[UserReference deserializeUserRef:responseArray[i]]];
+            }
+            completion(userArray, nil);
         } else {
             completion(nil, errorType);
         }

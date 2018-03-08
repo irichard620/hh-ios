@@ -12,8 +12,9 @@
 
 @interface AuthenticationManager : NSObject
 
-+ (void)createNewUserWithEmail: (NSString *)email andPassword:(NSString *)password andFullName:(NSString *)fullName withCompletion:(void(^)(User *user, NSString *error))completion;
-+ (void)loginUserWithEmail:(NSString *)email andPassword:(NSString *)password withCompletion:(void (^)(User *user, NSString *error))completion;
++ (void)createNewUserWithEmail: (NSString *)email andPassword:(NSString *)password andFullName:(NSString *)fullName andDeviceToken:(NSString *)deviceToken withCompletion:(void(^)(User *user, NSString *error))completion;
++ (void)loginUserWithEmail:(NSString *)email andPassword:(NSString *)password andDeviceToken:(NSString *)deviceToken withCompletion:(void (^)(User *user, NSString *error))completion;
++ (void)getTwilioAccessTokenWithCompletion:(void (^)(NSString *newToken, NSString *error))completion;
 + (NSString *)getCurrentAccessToken;
 + (NSString *)getCurrentTwilioAccessToken;
 + (void)logout;

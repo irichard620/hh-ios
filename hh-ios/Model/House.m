@@ -12,11 +12,15 @@
 
 + (House *)deserializeHouse:(NSDictionary *)houseJson {
     House *house = [[House alloc]init];
-    house._id = houseJson[@"_id"];
-    house.avatarLink = houseJson[@"avatar_link"];
+    if (houseJson[@"avatar_link"] == (id)[NSNull null]) {
+        house.avatarLink = nil;
+    } else {
+        house.avatarLink = houseJson[@"avatar_link"];
+    }
     house.displayName = houseJson[@"display_name"];
     house.uniqueName = houseJson[@"unique_name"];
     house.owner = [UserReference deserializeUserRef:houseJson[@"owner"]];
+    house.invited = houseJson[@"invited"];
     
     return house;
 }

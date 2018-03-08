@@ -46,6 +46,11 @@
     return self;
 }
 
+- (void)deallocTwilio {
+    self.chatClient = nil;
+    self.twilioAccessManager = nil;
+}
+
 #pragma mark View methods
 
 - (void)viewDidLoad {
@@ -60,6 +65,9 @@
     self.navigationController.navigationBar.largeTitleTextAttributes = @{NSForegroundColorAttributeName:[UIColor whiteColor]};
     self.navigationController.navigationBar.prefersLargeTitles = YES;
     
+    // Settings button top right
+    self.navigationItem.rightBarButtonItem = [ViewHelpers createNavButtonWithTarget:self andSelectorName:@"settingsClicked:" andImage:[UIImage imageNamed:@"settings.png"] isBack:NO];
+    
     // Table view background - 207, 216, 220
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
@@ -69,6 +77,7 @@
     self.tableView.rowHeight = UITableViewAutomaticDimension;
     self.tableView.tableFooterView = [[UIView alloc]initWithFrame:CGRectZero];
     
+    NSLog(@"View did finish loading");
     [self setupTwilio];
 }
 
@@ -86,20 +95,10 @@
 
 #pragma mark Data
 
-- (void)getUser {
-    [UserManager getUserWithCompletion:^(User *user, NSString *error) {
-        if (!error) {
-            self.user = user;
-            [self getHouses];
-        } else {
-            self.isLoading = NO;
-            [self.tableView reloadData];
-        }
-    }];
-}
-
 - (void)setupTwilio {
+    NSLog(@"Setup Twilio in UserHome");
     self.twilioAccessManager = [TwilioAccessManager accessManagerWithToken:[AuthenticationManager getCurrentTwilioAccessToken] delegate:self];
+    NSLog(@"Twilio token %@", [self.twilioAccessManager currentToken]);
     [TwilioChatClient chatClientWithToken:self.twilioAccessManager.currentToken properties:nil delegate:self completion:^(TCHResult * _Nonnull result, TwilioChatClient * _Nullable chatClient) {
         if ([result isSuccessful]) {
             self.chatClient = chatClient;
@@ -108,6 +107,9 @@
                 [weakClient updateToken:updatedToken completion:^(TCHResult *result) {
                     if (![result isSuccessful]) {
                         // warn the user the update didn't succeed
+                        NSLog(@"Twilio Client couldn't update token");
+                    } else {
+                        NSLog(@"Twilio client updated token");
                     }
                 }];
             }];
@@ -116,21 +118,39 @@
     
     // Get user and house
     if (!self.user) {
+        NSLog(@"No user on UserHome yet");
         [self getUser];
     } else {
         [self getHouses];
     }
 }
 
+- (void)getUser {
+    NSLog(@"Get user");
+    [UserManager getUserWithCompletion:^(User *user, NSString *error) {
+        if (!error) {
+            self.user = user;
+            [self getHouses];
+        } else {
+            [self getHouses];
+        }
+    }];
+}
+
 - (void)getHouses {
+    NSLog(@"Get Houses");
     [UserManager getHouseListForUserWithCompletion:^(NSArray *houses, NSString *error) {
         if (!error) {
             [self.houseArray addObjectsFromArray:houses];
             self.isLoading = NO;
-            [self.tableView reloadData];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self.tableView reloadData];
+            });
         } else {
             self.isLoading = NO;
-            [self.tableView reloadData];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self.tableView reloadData];
+            });
         }
     }];
 }
@@ -213,7 +233,11 @@
     } else {
         header.frame = CGRectMake(0, 0, self.tableView.frame.size.width, 100);
         label.frame = CGRectMake(8, 70, self.tableView.frame.size.width, 30);
-        label.text = @"LOGGED IN AS IRICHARD@SCU.EDU";
+        if (self.isLoading) {
+            label.text = @"Loading...";
+        } else {
+            label.text = [NSString stringWithFormat:@"LOGGED IN AS %@", [self.user.email uppercaseString]];
+        }
         UILabel *label2 = [[UILabel alloc]init];
         label2.backgroundColor = [UIColor colorWithRed:0.812 green:0.847 blue:0.863 alpha:1.0];
         label2.textColor = [UIColor colorWithRed:0.46 green:0.46 blue:0.46 alpha:1.0];
@@ -231,6 +255,10 @@
 
 #pragma mark User interaction
 
+- (void)settingsClicked:(id)sender {
+    // Push settings controller onto nav stack
+}
+
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.section == 0) {
         if (self.isLoading || self.houseArray.count == 0) return;
@@ -238,13 +266,19 @@
         // Get house object
         House *house = [self.houseArray objectAtIndex:indexPath.row];
         
+        // Channel list
+        TCHChannels *channels = [self.chatClient channelsList];
+        
         // Create front controller
         ChatViewController *chatVC = [[ChatViewController alloc]initWithNibName:@"ChatViewController" bundle:nil];
+        chatVC.user = self.user;
+        chatVC.house = house;
+        chatVC.channels = channels;
+        
         UINavigationController *navVC = [[UINavigationController alloc]initWithRootViewController:chatVC];
         
         // Create rear controller
         MenuViewController *menuVC = [[MenuViewController alloc]initWithNibName:@"MenuViewController" bundle:nil];
-        self.delegate = menuVC;
         menuVC.user = self.user;
         menuVC.house = house;
         
@@ -271,7 +305,11 @@
             [self.navigationController pushViewController:joinHouseVC animated:YES];
         }
     } else if (indexPath.section == 2) {
+        // Dealloc
+        [self deallocTwilio];
+        
         // Logout
+        [AuthenticationManager logout];
         self.navBarShouldDissapear = YES;
         [self.navigationController popViewControllerAnimated:YES];
     }
@@ -281,30 +319,55 @@
 
 - (void)houseCreated:(House *)house {
     // Add it to table
+    NSLog(@"Created a house");
     [self.houseArray addObject:house];
-    [self.tableView reloadData];
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self.tableView reloadData];
+    });
 }
 
 #pragma mark Joined delegate
 
 - (void)joinedHouse:(House *)house {
     // Add it to table
+    NSLog(@"Joined a house");
     [self.houseArray addObject:house];
-    [self.tableView reloadData];
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self.tableView reloadData];
+    });
 }
 
 #pragma mark Access manager delegate
 
 - (void)accessManagerTokenWillExpire:(TwilioAccessManager *)accessManager {
     // Notification if access manager expires
-    
+    NSLog(@"Access token will expire");
+    // Send request
+    [AuthenticationManager getTwilioAccessTokenWithCompletion:^(NSString *newToken, NSString *error) {
+        if (!error) {
+            [accessManager updateToken:newToken];
+            NSLog(@"Twilio token %@", [self.twilioAccessManager currentToken]);
+        } else {
+            NSLog(@"Could not get token at this time");
+        }
+    }];
 }
 
 #pragma mark Chat Delegate
 
 - (void)chatClient:(TwilioChatClient *)client channel:(TCHChannel *)channel messageAdded:(TCHMessage *)message {
-    // If edit house message - adjust this screen
-    if ([message.attributes[@"type"] isEqualToString:@"edit"]) {
+    NSLog(@"%@",message.body);
+    
+    // First, make sure message not from us
+    // Messages from us are handled on our side before sent to others
+    if ([message.author isEqualToString:self.user._id]) {
+        return;
+    }
+
+    // Get type
+    NSString *messageType = [message.attributes objectForKey:@"type"];
+    if ([messageType isEqualToString:EDIT_HOUSE_MESSAGE]) {
+        // If edit house message - adjust this screen
         // Refresh house
         [HouseManager getHouseWithUniqueName:channel.uniqueName withCompletion:^(House *house, NSString *error) {
             // Find house in array and update
@@ -315,19 +378,14 @@
                 }
             }
             // Reload table
-            [self.tableView reloadData];
-            
-            // If the channel where message sent is active for us
-            if (self.currentHouseUniqueName && [self.currentHouseUniqueName isEqualToString:channel.uniqueName]) {
-                [self.delegate houseEdited:house];
-            }
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self.tableView reloadData];
+            });
         }];
     }
     
-    // If not a house edit, first check if we have active house
-    else if (self.currentHouseUniqueName && [self.currentHouseUniqueName isEqualToString:channel.uniqueName]) {
-        [self.delegate messageAdded:message];
-    }
+    // Send notification
+    [[NSNotificationCenter defaultCenter]postNotificationName:messageType object:nil userInfo:message.attributes];
 }
 
 @end

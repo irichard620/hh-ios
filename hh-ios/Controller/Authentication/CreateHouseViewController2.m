@@ -26,8 +26,7 @@
     self.navigationItem.hidesBackButton = YES;
     
     // Button
-    UIBarButtonItem *backBarButton = [ViewHelpers createBackButtonWithTarget:self andSelectorName:@"backButtonClicked:"];
-    self.navigationItem.leftBarButtonItem = backBarButton;
+    self.navigationItem.leftBarButtonItem = [ViewHelpers createNavButtonWithTarget:self andSelectorName:@"backButtonClicked:" andImage:[UIImage imageNamed:@"left-arrow.png"] isBack:YES];;
     
     [ViewHelpers roundCorners:self.messageContainer];
     [ViewHelpers roundCorners:self.createButton];
@@ -52,12 +51,18 @@
     } else {
         [HouseManager createHouseWithDisplay:self.displayName andUnique:uniqueId withCompletion:^(House *house, NSString *error) {
             if (error) {
-                [self presentViewController:[ViewHelpers createErrorAlertWithTitle:@"Error Occurred" andDescription:error] animated:YES completion:nil];
+                if ([error isEqualToString:DUPLICATE_ERROR]) {
+                    [self presentViewController:[ViewHelpers createErrorAlertWithTitle:@"Error" andDescription:@"There is already a house with the same unique name."] animated:YES completion:nil];
+                } else {
+                    [self presentViewController:[ViewHelpers createErrorAlertWithTitle:@"Error" andDescription:@"An unknown error occurred. Please try again later."] animated:YES completion:nil];
+                }
             } else {
                 // Go back to userHome screen
                 [self.delegate houseCreated:house];
                 UIViewController *View = [self.navigationController.viewControllers objectAtIndex:self.navigationController.viewControllers.count-3];
-                [self.navigationController popToViewController:View animated:YES];
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    [self.navigationController popToViewController:View animated:YES];
+                });
             }
         }];
     }

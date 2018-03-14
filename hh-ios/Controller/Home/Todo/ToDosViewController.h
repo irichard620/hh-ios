@@ -9,8 +9,9 @@
 #import <UIKit/UIKit.h>
 #import "TodoManager.h"
 #import "UserManager.h"
+#import "TodoDetailsViewController.h"
 
-@interface ToDosViewController : UIViewController <UITableViewDelegate, UITableViewDataSource>
+@interface ToDosViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, TodoDetailsDelegate>
 
 @property (weak, nonatomic) IBOutlet UITableView *todosTableView;
 

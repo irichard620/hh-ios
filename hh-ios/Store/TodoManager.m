@@ -136,4 +136,15 @@
     }];
 }
 
++ (void)getTodoById:(NSString *)todoId withCompletion:(void (^)(ToDo *, NSString *))completion {
+    [StoreHelpers sendGetRequestWithEndpoint:[NSString stringWithFormat:@"/todos/%@",todoId] requiresAuth:YES withCallback:^(NSDictionary *jsonResponse, NSString *errorType) {
+        if (!errorType) {
+            ToDo *todo = [ToDo deserializeTodo:jsonResponse[@"todo"]];
+            completion(todo, nil);
+        } else {
+            completion(nil, errorType);
+        }
+    }];
+}
+
 @end

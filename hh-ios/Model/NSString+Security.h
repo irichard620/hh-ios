@@ -12,5 +12,6 @@
 
 - (BOOL)isValidEmail;
 - (NSString *)createSHA512;
+- (NSDate *)getDateFromString;
 
 @end

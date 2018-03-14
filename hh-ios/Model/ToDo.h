@@ -30,6 +30,9 @@
 // Time taken - minutes
 @property(nonatomic) NSNumber *timeTaken;
 
+// Timestamp
+@property(nonatomic) NSDate *timestamp;
+
 // Is it complete
 @property(nonatomic) BOOL complete;
 

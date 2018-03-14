@@ -7,6 +7,7 @@
 //
 
 #import "ToDo.h"
+#import "NSString+Security.h"
 
 @implementation ToDo
 
@@ -19,6 +20,8 @@
     todo.todoDescription = todoDict[@"description"];
     todo.complete = [[NSNumber numberWithBool:todoDict[@"complete"]]boolValue];
     todo.timeTaken = [NSNumber numberWithInteger:[todoDict[@"time_taken"]integerValue]];
+    todo.timestamp = [todoDict[@"timestamp"] getDateFromString];
+    
     return todo;
 }
 

@@ -15,6 +15,6 @@
 @property (weak, nonatomic) IBOutlet UILabel *timeLabel;
 @property (weak, nonatomic) IBOutlet UILabel *timeToCompleteLabel;
 
-- (void)setName:(NSString *)name andMessage:(NSString *)message andProfileImage:(UIImage *)image andTime:(NSString *)time andTimeTaken:(int)minutes;
+- (void)setName:(NSString *)name andMessage:(NSString *)message andAvatarLink:(NSString *)avatarLink andTime:(NSString *)time andTimeTaken:(int)minutes;
 
 @end

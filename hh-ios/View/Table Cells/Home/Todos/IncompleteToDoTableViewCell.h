@@ -16,6 +16,6 @@
 @property (weak, nonatomic) IBOutlet UIButton *leftButton;
 @property (weak, nonatomic) IBOutlet UIButton *rightButton;
 
-- (void)setName:(NSString *)name andMessage:(NSString *)message andImage:(UIImage *)image andTime:(NSString *)time andIsCreatedByMe:(BOOL)createdByMe andIsAssignedToMe:(BOOL)isAssignedToMe;
+- (void)setName:(NSString *)name andTodoTitle:(NSString *)todoTitle andAvatarLink:(NSString *)avatarLink andTime:(NSString *)time andIsCreatedByMe:(BOOL)createdByMe andIsAssignedToMe:(BOOL)isAssignedToMe;
 
 @end

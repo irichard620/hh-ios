@@ -7,6 +7,7 @@
 //
 
 #import "IncompleteToDoTableViewCell.h"
+#import <SDWebImage/UIImageView+WebCache.h>
 
 @implementation IncompleteToDoTableViewCell
 
@@ -26,11 +27,15 @@
     self.leftButton.layer.borderColor = [[UIColor colorWithRed:0.239 green:0.310 blue:0.361 alpha:1]CGColor];
 }
 
-- (void)setName:(NSString *)name andMessage:(NSString *)message andImage:(UIImage *)image andTime:(NSString *)time andIsCreatedByMe:(BOOL)createdByMe andIsAssignedToMe:(BOOL)isAssignedToMe {
-    self.profileImage.image = image;
+- (void)setName:(NSString *)name andTodoTitle:(NSString *)todoTitle andAvatarLink:(NSString *)avatarLink andTime:(NSString *)time andIsCreatedByMe:(BOOL)createdByMe andIsAssignedToMe:(BOOL)isAssignedToMe {
     self.nameLabel.text = [NSString stringWithFormat:@"Assigned to %@", name];
-    self.messageLabel.text = message;
+    self.messageLabel.text = todoTitle;
     self.timeLabel.text = time;
+    if (avatarLink == nil) {
+        [self.profileImage setImage:[UIImage imageNamed:@"user-icon-grey.png"]];
+    } else {
+        [self.profileImage sd_setImageWithURL:[NSURL URLWithString:avatarLink] placeholderImage:[UIImage imageNamed:@"user-icon-grey.png"]];
+    }
     if (createdByMe) {
         [self.leftButton setTitle:@"Edit" forState:UIControlStateNormal];
     } else {
@@ -39,6 +44,11 @@
         } else {
             [self.leftButton setTitle:@"Assign to me" forState:UIControlStateNormal];
         }
+    }
+    if (isAssignedToMe) {
+        [self.rightButton setTitle:@"Complete" forState:UIControlStateNormal];
+    } else {
+        [self.rightButton setTitle:@"View" forState:UIControlStateNormal];
     }
 }
 

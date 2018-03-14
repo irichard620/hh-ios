@@ -7,6 +7,7 @@
 //
 
 #import "CompletedToDoTableViewCell.h"
+#import <SDWebImage/UIImageView+WebCache.h>
 
 @implementation CompletedToDoTableViewCell
 
@@ -18,10 +19,14 @@
     self.selectionStyle = UITableViewCellSelectionStyleNone;
 }
 
-- (void)setName:(NSString *)name andMessage:(NSString *)message andProfileImage:(UIImage *)image andTime:(NSString *)time andTimeTaken:(int)minutes {
+- (void)setName:(NSString *)name andMessage:(NSString *)message andAvatarLink:(NSString *)avatarLink andTime:(NSString *)time andTimeTaken:(int)minutes {
     self.nameLabel.text = [NSString stringWithFormat:@"%@ Completed To-Do", name];
     self.messageLabel.text = message;
-    self.profileImage.image = image;
+    if (avatarLink == nil) {
+        [self.profileImage setImage:[UIImage imageNamed:@"user-icon-grey.png"]];
+    } else {
+        [self.profileImage sd_setImageWithURL:[NSURL URLWithString:avatarLink] placeholderImage:[UIImage imageNamed:@"user-icon-grey.png"]];
+    }
     self.timeLabel.text = time;
     self.timeToCompleteLabel.text = [NSString stringWithFormat:@"Took %imin", minutes];
 }

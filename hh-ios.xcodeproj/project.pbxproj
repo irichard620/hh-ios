@@ -86,6 +86,7 @@
 		802F407D2044F0380006CA8B /* StoreHelpers.m in Sources */ = {isa = PBXBuildFile; fileRef = 802F407C2044F0380006CA8B /* StoreHelpers.m */; };
 		802F40822051C1C70006CA8B /* TodoDetailsCompleteTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 802F40802051C1C60006CA8B /* TodoDetailsCompleteTableViewCell.m */; };
 		802F40832051C1C70006CA8B /* TodoDetailsCompleteTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 802F40812051C1C60006CA8B /* TodoDetailsCompleteTableViewCell.xib */; };
+		802F40862051C7F50006CA8B /* ChatManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 802F40852051C7F50006CA8B /* ChatManager.m */; };
 		8073C8351FC946CC007223CD /* ChatTimeTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8073C8331FC946CC007223CD /* ChatTimeTableViewCell.m */; };
 		8073C8361FC946CC007223CD /* ChatTimeTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8073C8341FC946CC007223CD /* ChatTimeTableViewCell.xib */; };
 		8073C8381FC95291007223CD /* ian_profile.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 8073C8371FC95291007223CD /* ian_profile.jpg */; };
@@ -278,6 +279,8 @@
 		802F407F2051C1C60006CA8B /* TodoDetailsCompleteTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TodoDetailsCompleteTableViewCell.h; sourceTree = "<group>"; };
 		802F40802051C1C60006CA8B /* TodoDetailsCompleteTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TodoDetailsCompleteTableViewCell.m; sourceTree = "<group>"; };
 		802F40812051C1C60006CA8B /* TodoDetailsCompleteTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TodoDetailsCompleteTableViewCell.xib; sourceTree = "<group>"; };
+		802F40842051C7F50006CA8B /* ChatManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ChatManager.h; sourceTree = "<group>"; };
+		802F40852051C7F50006CA8B /* ChatManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ChatManager.m; sourceTree = "<group>"; };
 		8073C8321FC946CC007223CD /* ChatTimeTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatTimeTableViewCell.h; sourceTree = "<group>"; };
 		8073C8331FC946CC007223CD /* ChatTimeTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatTimeTableViewCell.m; sourceTree = "<group>"; };
 		8073C8341FC946CC007223CD /* ChatTimeTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ChatTimeTableViewCell.xib; sourceTree = "<group>"; };
@@ -710,6 +713,8 @@
 		80F558691FBAB1E7001601B3 /* Store */ = {
 			isa = PBXGroup;
 			children = (
+				802F407B2044F0380006CA8B /* StoreHelpers.h */,
+				802F407C2044F0380006CA8B /* StoreHelpers.m */,
 				802F3FCD1FF99E160006CA8B /* AuthenticationManager.h */,
 				802F3FCE1FF99E160006CA8B /* AuthenticationManager.m */,
 				802F40292020EF2B0006CA8B /* HouseManager.h */,
@@ -718,8 +723,8 @@
 				802F402D2020F4A30006CA8B /* UserManager.m */,
 				802F4057203BEFED0006CA8B /* TodoManager.h */,
 				802F4058203BEFED0006CA8B /* TodoManager.m */,
-				802F407B2044F0380006CA8B /* StoreHelpers.h */,
-				802F407C2044F0380006CA8B /* StoreHelpers.m */,
+				802F40842051C7F50006CA8B /* ChatManager.h */,
+				802F40852051C7F50006CA8B /* ChatManager.m */,
 			);
 			path = Store;
 			sourceTree = "<group>";
@@ -1251,6 +1256,7 @@
 				802F407D2044F0380006CA8B /* StoreHelpers.m in Sources */,
 				802F3FB51FCA3BA10006CA8B /* PaymentsViewController.m in Sources */,
 				80F558B91FC7F395001601B3 /* UserHomeTableViewCell.m in Sources */,
+				802F40862051C7F50006CA8B /* ChatManager.m in Sources */,
 				802F3FB11FC9FE110006CA8B /* SLKTextViewController.m in Sources */,
 				8073C83E1FC95491007223CD /* ChatActionTableViewCell.m in Sources */,
 				802F3FAD1FC9FE110006CA8B /* SLKInputAccessoryView.m in Sources */,

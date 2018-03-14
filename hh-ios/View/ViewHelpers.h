@@ -17,5 +17,7 @@
 + (void)roundCorners:(UIView *)view;
 + (UIBarButtonItem *)createNavButtonWithTarget:(UIViewController *)target andSelectorName:(NSString *)selectorString andImage:(UIImage *)image isBack:(BOOL)isBack;
 + (UIAlertController *)createErrorAlertWithTitle:(NSString *)title andDescription:(NSString *)description;
++ (UIBarButtonItem *)createTextNavButtonWithTarget:(UIViewController *)target andSelectorName:(NSString *)selectorString andTitle:(NSString *)title;
++ (NSString *)getUIFriendlyDateFrom:(NSDate *)date;
 
 @end

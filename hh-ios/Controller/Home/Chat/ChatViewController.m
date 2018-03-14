@@ -12,6 +12,7 @@
 #import "ChatMessageTableViewCell.h"
 #import "ChatTimeTableViewCell.h"
 #import "ChatActionTableViewCell.h"
+#import "ChatManager.h"
 
 @interface ChatViewController ()
 

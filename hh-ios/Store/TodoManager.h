@@ -111,4 +111,15 @@
  */
 + (void)getTodoAssignees:(NSString *)uniqueName withCompletion:(void(^)(NSArray *users, NSString *error))completion;
 
+/*
+ * Get todo by ID
+ *
+ * Arguments:
+ * id of todo
+ *
+ * Return:
+ * Todo object
+ */
++ (void)getTodoById:(NSString *)todoId withCompletion:(void(^)(ToDo *todo, NSString *error))completion;
+
 @end

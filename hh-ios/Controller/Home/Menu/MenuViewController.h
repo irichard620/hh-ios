@@ -18,6 +18,6 @@
 
 @property (nonatomic) House *house;
 @property (nonatomic) User *user;
-@property (nonatomic) TCHChannels *channels;
+@property (nonatomic) TCHChannel *channel;
 
 @end

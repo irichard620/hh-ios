@@ -74,7 +74,7 @@
 
 + (void)completeToDo:(NSString *)todoId andTimeTaken:(NSNumber *)timeTaken withCompletion:(void (^)(ToDo *, NSString *))completion {
     // Pass assignee, todo id
-    NSDictionary* parameters = @{@"todo_id": todoId, @"time": timeTaken};
+    NSDictionary* parameters = @{@"todo_id": todoId, @"time": [timeTaken stringValue]};
     
     [StoreHelpers sendPutRequestWithEndpoint:@"/todos/complete" requiresAuth:YES hasParameters:parameters withCallback:^(NSDictionary *jsonResponse, NSString *errorType) {
         if (!errorType) {
@@ -89,7 +89,7 @@
 
 + (void)getTodosForHouseWithName:(NSString *)uniqueName withCompletion:(void (^)(NSArray *, NSString *))completion {
     // Send request
-    [StoreHelpers sendGetRequestWithEndpoint:[NSString stringWithFormat:@"/todos/%@",uniqueName] requiresAuth:YES withCallback:^(NSDictionary *jsonResponse, NSString *errorType) {
+    [StoreHelpers sendGetRequestWithEndpoint:[NSString stringWithFormat:@"/todos/%@/incomplete",uniqueName] requiresAuth:YES withCallback:^(NSDictionary *jsonResponse, NSString *errorType) {
         if (!errorType) {
             // If no error, get json response and deserialize to todo object
             NSArray *responseArray = jsonResponse[@"todos"];

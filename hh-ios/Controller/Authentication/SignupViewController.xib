@@ -11,6 +11,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SignupViewController">
             <connections>
+                <outlet property="activityIndicator" destination="v2K-Pf-p3Y" id="eEy-qx-4Mu"/>
                 <outlet property="contentView" destination="dyc-Lf-8xk" id="qiS-7r-Cs1"/>
                 <outlet property="createAccountButton" destination="3lC-cq-hae" id="Udc-gR-V0t"/>
                 <outlet property="emailField" destination="vo5-Ge-qPY" id="64I-on-jHu"/>
@@ -143,6 +144,9 @@
                                     <color key="textColor" red="0.23921568630000001" green="0.30980392159999998" blue="0.36078431370000003" alpha="1" colorSpace="calibratedRGB"/>
                                     <nil key="highlightedColor"/>
                                 </label>
+                                <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="v2K-Pf-p3Y">
+                                    <rect key="frame" x="177" y="268" width="20" height="20"/>
+                                </activityIndicatorView>
                             </subviews>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <constraints>
@@ -162,6 +166,7 @@
                                 <constraint firstItem="vo5-Ge-qPY" firstAttribute="centerY" secondItem="k3G-0m-MpF" secondAttribute="centerY" id="Lzn-kv-D5n"/>
                                 <constraint firstItem="p7i-uE-ZyL" firstAttribute="leading" secondItem="dyc-Lf-8xk" secondAttribute="leading" id="M94-4r-lh1"/>
                                 <constraint firstAttribute="trailing" secondItem="vo5-Ge-qPY" secondAttribute="trailing" constant="16" id="MUM-Xx-XBr"/>
+                                <constraint firstItem="v2K-Pf-p3Y" firstAttribute="centerX" secondItem="dyc-Lf-8xk" secondAttribute="centerX" id="OIE-Th-XxN"/>
                                 <constraint firstItem="low-fF-S7M" firstAttribute="top" secondItem="pgf-ri-zbO" secondAttribute="bottom" constant="2" id="P2b-tJ-eoj"/>
                                 <constraint firstItem="gLB-ZF-1xS" firstAttribute="leading" secondItem="dyc-Lf-8xk" secondAttribute="leading" constant="16" id="RrA-Mg-sZj"/>
                                 <constraint firstAttribute="trailing" secondItem="iLO-3P-nRx" secondAttribute="trailing" constant="8" id="Xjs-h0-v6w"/>
@@ -175,6 +180,7 @@
                                 <constraint firstAttribute="trailing" secondItem="low-fF-S7M" secondAttribute="trailing" constant="50" id="jb2-V3-FlL"/>
                                 <constraint firstItem="3lC-cq-hae" firstAttribute="top" secondItem="gLB-ZF-1xS" secondAttribute="bottom" constant="30" id="pje-zX-s72"/>
                                 <constraint firstItem="A68-Yk-x64" firstAttribute="centerY" secondItem="nhy-Gc-rmm" secondAttribute="centerY" id="tmH-wQ-JlW"/>
+                                <constraint firstItem="v2K-Pf-p3Y" firstAttribute="centerY" secondItem="3lC-cq-hae" secondAttribute="centerY" id="wXM-FA-BFP"/>
                                 <constraint firstItem="gLB-ZF-1xS" firstAttribute="centerY" secondItem="p7i-uE-ZyL" secondAttribute="centerY" id="wn1-h1-QW5"/>
                             </constraints>
                         </view>

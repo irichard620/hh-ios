@@ -13,7 +13,6 @@
 NSString * const CREATE_TODO_MESSAGE = @"create_todo";
 NSString * const EDIT_TODO_MESSAGE = @"edit_todo";
 NSString * const DELETE_TODO_MESSAGE = @"delete_todo";
-NSString * const REASSIGN_TODO_MESSAGE = @"reassign_todo";
 NSString * const COMPLETE_TODO_MESSAGE = @"complete_todo";
 NSString * const EDIT_HOUSE_MESSAGE = @"edit_house";
 NSString * const MEMBER_ADDED = @"member_added";
@@ -82,6 +81,7 @@ NSString * const DUPLICATE_ERROR = @"duplicate";
         [request setHeaders:[StoreHelpers createHeadersWithAuth:requiresAuth]];
         [request setParameters:parameters];
     }] asJsonAsync:^(UNIHTTPJsonResponse *jsonResponse, NSError *error) {
+        NSLog(@"%@", jsonResponse.body.JSONObject);
         callback(jsonResponse.body.JSONObject, [StoreHelpers getErrorTypeToReturnFrom:error andCode:jsonResponse.code]);
     }];
 }
@@ -92,6 +92,7 @@ NSString * const DUPLICATE_ERROR = @"duplicate";
         [request setHeaders:[StoreHelpers createHeadersWithAuth:requiresAuth]];
         [request setParameters:parameters];
     }] asJsonAsync:^(UNIHTTPJsonResponse *jsonResponse, NSError *error) {
+        NSLog(@"%@ %ld", jsonResponse.body.JSONObject, (long)jsonResponse.code);
         callback(jsonResponse.body.JSONObject, [StoreHelpers getErrorTypeToReturnFrom:error andCode:jsonResponse.code]);
     }];
 }

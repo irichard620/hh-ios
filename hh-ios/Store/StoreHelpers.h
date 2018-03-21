@@ -15,7 +15,6 @@
 extern NSString * const CREATE_TODO_MESSAGE;
 extern NSString * const EDIT_TODO_MESSAGE;
 extern NSString * const DELETE_TODO_MESSAGE;
-extern NSString * const REASSIGN_TODO_MESSAGE;
 extern NSString * const COMPLETE_TODO_MESSAGE;
 // House messages
 // Create - do nothing - only sent when not loaded in yet

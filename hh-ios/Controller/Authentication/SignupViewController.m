@@ -54,6 +54,7 @@
 //    self.navigationController.navigationBar.titleTextAttributes = @{NSForegroundColorAttributeName:[UIColor whiteColor]};
 //    self.navigationController.navigationBar.largeTitleTextAttributes = @{NSForegroundColorAttributeName:[UIColor whiteColor]};
 //    self.navigationController.navigationBar.prefersLargeTitles = YES;
+    self.navigationController.delegate = self;
     
     // Round corners
     [ViewHelpers roundCorners:self.messageContainer];
@@ -117,9 +118,13 @@
     } else {
         
         // All fields present - let's ask for remote notifications first
-        //        [[UIApplication sharedApplication] registerForRemoteNotifications];
-        [self application:[UIApplication sharedApplication] didFailToRegisterForRemoteNotificationsWithError:[NSError errorWithDomain:NSCocoaErrorDomain code:400 userInfo:nil]];
-
+        #if TARGET_OS_SIMULATOR
+                // Simulator-specific code
+                [self application:[UIApplication sharedApplication] didFailToRegisterForRemoteNotificationsWithError:[NSError errorWithDomain:NSCocoaErrorDomain code:400 userInfo:nil]];
+        #else
+                // Device-specific code
+                [self application:[UIApplication sharedApplication] didFailToRegisterForRemoteNotificationsWithError:[NSError errorWithDomain:NSCocoaErrorDomain code:400 userInfo:nil]];
+        #endif
         // Now, wait for response
     }
 }
@@ -134,9 +139,31 @@
     [self signupUserWithDeviceToken:nil];
 }
 
+#pragma mark Nav Control
+
+- (void)navigationController:(UINavigationController *)navigationController didShowViewController:(UIViewController *)viewController animated:(BOOL)animated {
+    // Clear input fields, reset button
+    [self.nameField setText:@""];
+    [self.emailField setText:@""];
+    [self.passwordField setText:@""];
+    [self resetFromLoading];
+}
+
 #pragma mark Helpers
 
+- (void)setToLoading {
+    [self.view endEditing:YES];
+    [self.activityIndicator startAnimating];
+    [self.createAccountButton setTitle:@"" forState:UIControlStateNormal];
+}
+
+- (void)resetFromLoading {
+    [self.activityIndicator stopAnimating];
+    [self.createAccountButton setTitle:@"Create Account" forState:UIControlStateNormal];
+}
+
 - (void)signupUserWithDeviceToken:(NSString *)deviceToken {
+    [self setToLoading];
     [AuthenticationManager createNewUserWithEmail:self.email andPassword:self.password andFullName:self.name andDeviceToken:deviceToken withCompletion:^(User *user, NSString *error) {
         if (!error) {
             dispatch_async(dispatch_get_main_queue(), ^{
@@ -145,9 +172,10 @@
                 [self.navigationController pushViewController:userHomeVC animated:YES];
             });
         } else {
-            UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Error" message:error preferredStyle:UIAlertControllerStyleAlert];
-            [alert addAction:[UIAlertAction actionWithTitle:@"Ok" style:UIAlertActionStyleCancel handler:nil]];
-            [self presentViewController:alert animated:YES completion:nil];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self presentViewController:[ViewHelpers createErrorAlertWithTitle:@"Error" andDescription:error] animated:YES completion:nil];
+                [self resetFromLoading];
+            });
         }
     }];
 }

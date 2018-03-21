@@ -7,9 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "HouseManager.h"
 
-@interface HouseEditViewController : UIViewController <UITableViewDelegate, UITableViewDataSource>
+@interface HouseEditViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, UIGestureRecognizerDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate>
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
+
+@property (nonatomic) House *house;
+@property (nonatomic) User *user;
 
 @end

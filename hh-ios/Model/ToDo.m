@@ -13,6 +13,7 @@
 
 + (ToDo *)deserializeTodo:(NSDictionary *)todoDict {
     ToDo *todo = [[ToDo alloc]init];
+    todo._id = todoDict[@"_id"];
     todo.owner = [UserReference deserializeUserRef:todoDict[@"owner"]];
     todo.assignee = [UserReference deserializeUserRef:todoDict[@"assignee"]];
     todo.houseId = todoDict[@"house"];

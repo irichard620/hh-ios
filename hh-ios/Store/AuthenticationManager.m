@@ -15,12 +15,12 @@
 
 + (void)createNewUserWithEmail:(NSString *)email andPassword:(NSString *)password andFullName:(NSString *)fullName andDeviceToken:(NSString *)deviceToken withCompletion:(void (^)(User *, NSString *))completion {
     // First, send request to register user with email, name, and hashed password
-    NSString *hashedPassword = [password createSHA512];
+//    NSString *hashedPassword = [password createSHA512];
     NSDictionary* parameters;
     if (deviceToken) {
-        parameters = @{@"email": email, @"name": fullName, @"password": hashedPassword, @"device_token": deviceToken };
+        parameters = @{@"email": email, @"name": fullName, @"password": password, @"device_token": deviceToken };
     } else {
-        parameters = @{@"email": email, @"name": fullName, @"password": hashedPassword };
+        parameters = @{@"email": email, @"name": fullName, @"password": password };
     }
     
     [StoreHelpers sendPostRequestWithEndpoint:@"/auth/register" requiresAuth:NO hasParameters:parameters withCallback:^(NSDictionary *jsonResponse, NSString *errorType) {
@@ -35,12 +35,12 @@
 }
 
 + (void)loginUserWithEmail:(NSString *)email andPassword:(NSString *)password andDeviceToken:(NSString *)deviceToken withCompletion:(void (^)(User *, NSString *))completion {
-    NSString *hashedPassword = [password createSHA512];
+//    NSString *hashedPassword = [password createSHA512];
     NSDictionary* parameters;
     if (deviceToken) {
-        parameters = @{@"email": email, @"password": hashedPassword, @"device_token": deviceToken };
+        parameters = @{@"email": email, @"password": password, @"device_token": deviceToken };
     } else {
-        parameters = @{@"email": email, @"password": hashedPassword };
+        parameters = @{@"email": email, @"password": password };
     }
     [StoreHelpers sendPostRequestWithEndpoint:@"/auth/login" requiresAuth:NO hasParameters:parameters withCallback:^(NSDictionary *jsonResponse, NSString *errorType) {
         if (!errorType) {

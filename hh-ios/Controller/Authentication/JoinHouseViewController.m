@@ -46,23 +46,47 @@
 }
 
 - (void)joinButtonClicked:(id)sender {
+    [self setToLoading];
     NSString *uniqueId = TRIM(self.houseCodeField.text);
     [HouseManager joinHouseWithUnique:uniqueId withCompletion:^(House *house, NSString *error) {
         if (error) {
             if ([error isEqualToString:NOT_AUTHORIZED_ERROR]) {
-                [self presentViewController:[ViewHelpers createErrorAlertWithTitle:@"Error" andDescription:@"You are not invited to join the specified house."] animated:YES completion:nil];
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    [self presentViewController:[ViewHelpers createErrorAlertWithTitle:@"Error" andDescription:@"You are not invited to join the specified house."] animated:YES completion:nil];
+                    [self resetFromLoading];
+                });
             } else {
-                [self presentViewController:[ViewHelpers createErrorAlertWithTitle:@"Error" andDescription:@"An unknown error occurred. Please try again later."] animated:YES completion:nil];
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    [self presentViewController:[ViewHelpers createErrorAlertWithTitle:@"Error" andDescription:@"An unknown error occurred. Please try again later."] animated:YES completion:nil];
+                    [self resetFromLoading];
+                });
             }
         } else {
             [self.delegate joinedHouse:house];
-            [self.navigationController popViewControllerAnimated:YES];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self.navigationController popViewControllerAnimated:YES];
+            });
         }
     }];
 }
 
 -(void)singleTap:(UITapGestureRecognizer *)tapGestureRecognizer {
     [self.houseCodeField endEditing:YES];
+}
+
+#pragma mark Helpers
+
+- (void)setToLoading {
+    [self.view endEditing:YES];
+    [self.view setUserInteractionEnabled:NO];
+    [self.activityIndicator startAnimating];
+    [self.joinHouseButton setTitle:@"" forState:UIControlStateNormal];
+}
+
+- (void)resetFromLoading {
+    [self.view setUserInteractionEnabled:YES];
+    [self.activityIndicator stopAnimating];
+    [self.joinHouseButton setTitle:@"Join House" forState:UIControlStateNormal];
 }
 
 @end

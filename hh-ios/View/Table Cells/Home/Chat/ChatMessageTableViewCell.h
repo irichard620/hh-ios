@@ -14,5 +14,5 @@
 @property (weak, nonatomic) IBOutlet UILabel *senderMessage;
 @property (weak, nonatomic) IBOutlet UIView *markerView;
 
-- (void)setName:(NSString *)name andMessage:(NSString *)message andProfileImage:(UIImage *)image showMarker:(BOOL)showMarker;
+- (void)setName:(NSString *)name andMessage:(NSString *)message andAvatarLink:(NSString *)avatarLink showMarker:(BOOL)showMarker;
 @end

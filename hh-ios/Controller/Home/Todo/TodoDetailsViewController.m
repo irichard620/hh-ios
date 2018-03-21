@@ -16,15 +16,20 @@
 
 @interface TodoDetailsViewController ()
 
+// KEep track of data
 @property(nonatomic) NSMutableArray *dataArray;
 @property(nonatomic) BOOL dataLoading;
 @property(nonatomic) NSInteger selectedIndex;
 
+// Keep track of inputs
 @property(nonatomic) BOOL titleChanged;
 @property(nonatomic) NSString *currentTitle;
 @property(nonatomic) BOOL descrChanged;
 @property(nonatomic) NSString *currentDescr;
 @property(nonatomic) BOOL assigneeChanged;
+
+// Bar button
+@property(nonatomic) UIBarButtonItem *rightBarButton;
 
 @end
 
@@ -78,8 +83,14 @@
     self.navigationItem.leftBarButtonItem = [ViewHelpers createNavButtonWithTarget:self andSelectorName:@"backButtonClicked:" andImage:[UIImage imageNamed:@"left-arrow.png"] isBack:YES];
     
     // Right bar button
-    self.navigationItem.rightBarButtonItem = [ViewHelpers createTextNavButtonWithTarget:self andSelectorName:@"rightBarButtonClicked:" andTitle:rightButtonTitle];
-    if (self.type != VIEW_TYPE) self.navigationItem.rightBarButtonItem.enabled = NO;
+    self.rightBarButton = [ViewHelpers createTextNavButtonWithTarget:self andSelectorName:@"rightBarButtonClicked:" andTitle:rightButtonTitle];
+    if (self.type != VIEW_TYPE && self.type != COMPLETE_TYPE) self.rightBarButton.enabled = NO;
+    if ([self.todo.owner._id isEqualToString:self.user._id]) {
+        UIBarButtonItem *deleteButton = [ViewHelpers createTextNavButtonWithTarget:self andSelectorName:@"deleteButtonClicked:" andTitle:@"Delete"];
+        self.navigationItem.rightBarButtonItems = @[deleteButton, self.rightBarButton];
+    } else {
+        self.navigationItem.rightBarButtonItems = @[self.rightBarButton];
+    }
     
     // Setup table
     self.tableView.dataSource = self;
@@ -87,13 +98,16 @@
     self.tableView.estimatedSectionHeaderHeight = 0;
     self.tableView.estimatedRowHeight = 50;
     self.tableView.rowHeight = UITableViewAutomaticDimension;
-    self.tableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
+    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     self.tableView.tableFooterView = [[UIView alloc]initWithFrame:CGRectZero];
     
     if (self.type == CREATE_TYPE || self.type == EDIT_TYPE) {
         [self getPreferredListOfAssignees];
     } else if (self.type == COMPLETE_TYPE) {
         [self getListOfTimes];
+    } else  {
+        self.dataLoading = NO;
+        [self.tableView reloadData];
     }
 }
 
@@ -111,6 +125,9 @@
             }
         }
         self.dataLoading = NO;
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self.tableView reloadData];
+        });
     }];
 }
 
@@ -128,7 +145,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     if (self.type == VIEW_TYPE) {
-        return 1;
+        return 2;
     } else {
         if (self.dataLoading || self.dataArray.count == 0) {
             return 2;
@@ -149,27 +166,23 @@
             cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
         }
         if (self.type == CREATE_TYPE) {
-            if (self.dataLoading || self.dataArray.count == 0) {
-                [cell setDataLabel:@"None"];
-            } else {
-                [cell setupForCreateWithCreatedBy:self.todo.owner.name andAssignee:[(UserReference *)[self.dataArray objectAtIndex:self.selectedIndex + 1]name]];
-            }
+            [cell setupForCreateWithCreatedBy:self.user.fullName];
             [cell.titleField removeTarget:self action:@selector(textFieldDidChange:) forControlEvents:UIControlEventEditingChanged];
             [cell.titleField addTarget:self action:@selector(textFieldDidChange:) forControlEvents:UIControlEventEditingChanged];
             cell.descrTextView.delegate = self;
         } else if (self.type == EDIT_TYPE) {
             if (![self.user._id isEqualToString:self.todo.owner._id]) {
-                [cell setupForViewWithTitle:self.todo.title andDescr:self.todo.description andCreatedBy:self.todo.owner.name andAssignee:self.todo.assignee.name];
+                [cell setupForViewWithTitle:self.todo.title andDescr:self.todo.todoDescription andCreatedBy:self.todo.owner.name];
             } else {
-                [cell setupForEditWithTitle:self.todo.title andDescr:self.todo.description andCreatedBy:self.todo.owner.name andAssignee:self.todo.assignee.name];
+                [cell setupForEditWithTitle:self.todo.title andDescr:self.todo.todoDescription andCreatedBy:self.todo.owner.name];
                 [cell.titleField removeTarget:self action:@selector(textFieldDidChange:) forControlEvents:UIControlEventEditingChanged];
                 [cell.titleField addTarget:self action:@selector(textFieldDidChange:) forControlEvents:UIControlEventEditingChanged];
                 cell.descrTextView.delegate = self;
             }
         } else if (self.type == VIEW_TYPE) {
-            [cell setupForViewWithTitle:self.todo.title andDescr:self.todo.description andCreatedBy:self.todo.owner.name andAssignee:self.todo.assignee.name];
+            [cell setupForViewWithTitle:self.todo.title andDescr:self.todo.todoDescription andCreatedBy:self.todo.owner.name];
         } else {
-            [cell setupForCompleteWithTitle:self.todo.title andDescr:self.todo.description andCreatedBy:self.todo.owner.name];
+            [cell setupForCompleteWithTitle:self.todo.title andDescr:self.todo.todoDescription andCreatedBy:self.todo.owner.name];
         }
         return cell;
     } else {
@@ -182,6 +195,8 @@
         }
         if (self.dataLoading) {
             [cell setNoImageCellWithText:@"Loading"];
+        } else if (self.type == VIEW_TYPE) {
+            [cell setName:self.todo.assignee.name andAvatarLink:self.todo.assignee.avatarLink];
         } else if (self.dataArray.count == 0) {
             [cell setNoImageCellWithText:@"No assignees to show"];
         } else {
@@ -200,13 +215,19 @@
                 UserReference *ref = [self.dataArray objectAtIndex:indexPath.row - 1];
                 [cell setName:ref.name andAvatarLink:ref.avatarLink];
             }
-            // Set selected
-            if (self.selectedIndex == indexPath.row - 1) {
-                [cell setSelected:YES];
-            }
         }
         
         return cell;
+    }
+}
+
+- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (self.type == VIEW_TYPE || self.dataLoading || self.dataArray.count == 0) {
+        return;
+    }
+    if (self.selectedIndex + 1 == indexPath.row) {
+        [cell setSelectionStyle:UITableViewCellSelectionStyleDefault];
+        [cell setSelected:YES];
     }
 }
 
@@ -268,15 +289,15 @@
 - (void)updateButton {
     if (self.type == CREATE_TYPE) {
         if (self.titleChanged && self.descrChanged) {
-            [self.navigationItem.rightBarButtonItem setEnabled:YES];
+            [self.rightBarButton setEnabled:YES];
         } else {
-            [self.navigationItem.rightBarButtonItem setEnabled:NO];
+            [self.rightBarButton setEnabled:NO];
         }
     } else if (self.type == EDIT_TYPE) {
         if (self.titleChanged || self.descrChanged || self.assigneeChanged) {
-            [self.navigationItem.rightBarButtonItem setEnabled:YES];
+            [self.rightBarButton setEnabled:YES];
         } else {
-            [self.navigationItem.rightBarButtonItem setEnabled:NO];
+            [self.rightBarButton setEnabled:NO];
         }
     }
 }
@@ -294,14 +315,14 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    // only passed here if valid cell
-    self.selectedIndex = indexPath.row - 1;
-    TodoDetailsTableViewCell *cell = [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]];
-    if (self.type == COMPLETE_TYPE) {
-        [cell setDataLabel:[self.dataArray objectAtIndex:self.selectedIndex]];
-    } else {
+    if (self.selectedIndex != indexPath.row - 1) {
+        // Different index
+        // Deselect currently selected
+        [[self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:self.selectedIndex + 1 inSection:0]]setSelected:NO];
+        self.selectedIndex = indexPath.row - 1;
+    }
+    if (self.type != COMPLETE_TYPE) {
         UserReference *ref = (UserReference *)[self.dataArray objectAtIndex:self.selectedIndex];
-        [cell setDataLabel:ref.name];
         if (![ref._id isEqualToString:self.todo.assignee._id]) {
             self.assigneeChanged = YES;
         } else {
@@ -329,6 +350,20 @@
         // Complete
         [self completeTodo];
     }
+}
+
+- (void)deleteButtonClicked:(id)sender {
+    [TodoManager deleteToDoWithId:self.todo._id withCompletion:^(NSString *error) {
+        if (error) {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self presentViewController:[ViewHelpers createErrorAlertWithTitle:@"Error" andDescription:error] animated:YES completion:nil];
+            });
+        } else {
+            // Get ID
+            [self.delegate todoDeletedWithId:self.todo._id];
+            [self backButtonClicked:nil];
+        }
+    }];
 }
 
 #pragma DB interaction
@@ -361,6 +396,7 @@
     } else {
         descr = nil;
     }
+    NSLog(@"ID: %@", self.todo._id);
     [TodoManager editToDoWithId:self.todo._id withTitle:title andDescription:descr withCompletion:^(ToDo *todo, NSString *error) {
         if (error) {
             dispatch_async(dispatch_get_main_queue(), ^{
@@ -392,7 +428,14 @@
     self.navigationItem.title = @"Edit To-Do";
     
     // Right bar button
-    self.navigationItem.rightBarButtonItem = [ViewHelpers createTextNavButtonWithTarget:self andSelectorName:@"rightBarButtonClicked:" andTitle:@"Save"];
+    self.rightBarButton = [ViewHelpers createTextNavButtonWithTarget:self andSelectorName:@"rightBarButtonClicked:" andTitle:@"Save"];
+    self.rightBarButton.enabled = NO;
+    if ([self.todo.owner._id isEqualToString:self.user._id]) {
+        UIBarButtonItem *deleteButton = [ViewHelpers createTextNavButtonWithTarget:self andSelectorName:@"deleteButtonClicked:" andTitle:@"Delete"];
+        self.navigationItem.rightBarButtonItems = @[deleteButton, self.rightBarButton];
+    } else {
+        self.navigationItem.rightBarButtonItems = @[self.rightBarButton];
+    }
     
     // Need to get preferred assignees and reload table
     self.type = EDIT_TYPE;

@@ -96,9 +96,7 @@
 #pragma mark Data
 
 - (void)setupTwilio {
-    NSLog(@"Setup Twilio in UserHome");
     self.twilioAccessManager = [TwilioAccessManager accessManagerWithToken:[AuthenticationManager getCurrentTwilioAccessToken] delegate:self];
-    NSLog(@"Twilio token %@", [self.twilioAccessManager currentToken]);
     [TwilioChatClient chatClientWithToken:self.twilioAccessManager.currentToken properties:nil delegate:self completion:^(TCHResult * _Nonnull result, TwilioChatClient * _Nullable chatClient) {
         if ([result isSuccessful]) {
             self.chatClient = chatClient;
@@ -114,31 +112,25 @@
                 }];
             }];
         }
-    }];
-    
-    // Get user and house
-    if (!self.user) {
-        NSLog(@"No user on UserHome yet");
-        [self getUser];
-    } else {
-        [self getHouses];
-    }
-}
-
-- (void)getUser {
-    NSLog(@"Get user");
-    [UserManager getUserWithCompletion:^(User *user, NSString *error) {
-        if (!error) {
-            self.user = user;
-            [self getHouses];
+        // Get user and house
+        if (!self.user) {
+            [self getUser];
         } else {
             [self getHouses];
         }
     }];
 }
 
+- (void)getUser {
+    [UserManager getUserWithCompletion:^(User *user, NSString *error) {
+        if (!error) {
+            self.user = user;
+        }
+        [self getHouses];
+    }];
+}
+
 - (void)getHouses {
-    NSLog(@"Get Houses");
     [UserManager getHouseListForUserWithCompletion:^(NSArray *houses, NSString *error) {
         if (!error) {
             [self.houseArray addObjectsFromArray:houses];
@@ -267,13 +259,22 @@
         House *house = [self.houseArray objectAtIndex:indexPath.row];
         
         // Channel list
-        TCHChannels *channels = [self.chatClient channelsList];
+        TCHChannel *channel;
+        NSLog(@"Channels: %@",[self.chatClient.channelsList subscribedChannels]);
+        for (int i = 0; i < self.chatClient.channelsList.subscribedChannels.count; i++) {
+            TCHChannel *curChannel = [self.chatClient.channelsList.subscribedChannels objectAtIndex:i];
+            NSLog(@"Unique: %@", curChannel.uniqueName);
+            if ([curChannel.uniqueName isEqualToString:house.uniqueName]) {
+                channel = curChannel;
+                break;
+            }
+        }
         
         // Create front controller
-        ChatViewController *chatVC = [[ChatViewController alloc]initWithNibName:@"ChatViewController" bundle:nil];
+        ChatViewController *chatVC = [[ChatViewController alloc]init];
         chatVC.user = self.user;
         chatVC.house = house;
-        chatVC.channels = channels;
+        chatVC.channel = channel;
         
         UINavigationController *navVC = [[UINavigationController alloc]initWithRootViewController:chatVC];
         
@@ -281,6 +282,7 @@
         MenuViewController *menuVC = [[MenuViewController alloc]initWithNibName:@"MenuViewController" bundle:nil];
         menuVC.user = self.user;
         menuVC.house = house;
+        menuVC.channel = channel;
         
         // Create reveal controller
         SWRevealViewController *revealVC = [[SWRevealViewController alloc]initWithRearViewController:menuVC frontViewController:navVC];
@@ -360,12 +362,13 @@
     
     // First, make sure message not from us
     // Messages from us are handled on our side before sent to others
-    if ([message.author isEqualToString:self.user._id]) {
+    NSLog(@"Message from TWILIO Author: %@ and Body: %@", message.author, message.body);
+    NSString *messageType = [message.attributes objectForKey:@"type"];
+    if ([message.author isEqualToString:self.user._id] && ![messageType isEqualToString:CHAT_MESSAGE]) {
         return;
     }
 
     // Get type
-    NSString *messageType = [message.attributes objectForKey:@"type"];
     if ([messageType isEqualToString:EDIT_HOUSE_MESSAGE]) {
         // If edit house message - adjust this screen
         // Refresh house
@@ -385,7 +388,9 @@
     }
     
     // Send notification
-    [[NSNotificationCenter defaultCenter]postNotificationName:messageType object:nil userInfo:message.attributes];
+    NSMutableDictionary *dictionary = [[NSMutableDictionary alloc]initWithDictionary:message.attributes];
+    [dictionary setObject:[message body] forKey:@"body"];
+    [[NSNotificationCenter defaultCenter]postNotificationName:messageType object:nil userInfo:dictionary];
 }
 
 @end

@@ -61,6 +61,9 @@
     self.navigationController.navigationBar.largeTitleTextAttributes = @{NSForegroundColorAttributeName:[UIColor whiteColor]};
     self.navigationController.navigationBar.prefersLargeTitles = YES;
     
+    // Set nav controller delegate so we can see when pushing
+    self.navigationController.delegate = self;
+    
     // Add gesture recognizer for reveal controller
     [self.view addGestureRecognizer:self.revealViewController.panGestureRecognizer];
     [self.view addGestureRecognizer:self.revealViewController.tapGestureRecognizer];
@@ -74,7 +77,8 @@
     self.todosTableView.delegate = self;
     self.todosTableView.estimatedSectionHeaderHeight = 30;
     self.todosTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-    
+    self.todosTableView.tableFooterView = [[UIView alloc]initWithFrame:CGRectZero];
+
     // Get incomplete for a house
     [self getIncompleteTodos];
 }
@@ -130,7 +134,7 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    if ((self.segment.selectedSegmentIndex == 0 && (!self.isIncompleteLoaded || self.incompleteArray.count == 0)) && (self.segment.selectedSegmentIndex == 1 && (!self.isPastLoaded || self.pastArray.count == 0))) {
+    if ((self.segment.selectedSegmentIndex == 0 && (!self.isIncompleteLoaded || self.incompleteArray.count == 0)) || (self.segment.selectedSegmentIndex == 1 && (!self.isPastLoaded || self.pastArray.count == 0))) {
         // No image cell
         static NSString *CellIdentifier = @"userHomeCell";
         UserHomeTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
@@ -211,7 +215,38 @@
     }
 }
 
+#pragma mark Nav control
+
+- (void)navigationController:(UINavigationController *)navigationController didShowViewController:(UIViewController *)viewController animated:(BOOL)animated {
+    // Deselect table row when pushing controller
+    [[self.todosTableView cellForRowAtIndexPath:self.todosTableView.indexPathForSelectedRow]setSelected:NO];
+}
+
 #pragma mark Interaction
+
+- (NSIndexPath *)tableView:(UITableView *)tableView willSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    // Only allow row selection if it is a todo
+    if (self.segment.selectedSegmentIndex == 0 && (!self.isIncompleteLoaded || self.incompleteArray.count == 0)) {
+        return nil;
+    } else if (self.segment.selectedSegmentIndex == 1 && (!self.isPastLoaded && self.pastArray.count == 0)) {
+        return nil;
+    } else {
+        return indexPath;
+    }
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    // Selection - for viewing
+    ToDo *todo = [self.incompleteArray objectAtIndex:indexPath.row];
+    // Can be view
+    TodoDetailsViewController *vc = [[TodoDetailsViewController alloc]initWithNibName:@"TodoDetailsViewController" bundle:nil];
+    vc.user = self.user;
+    vc.house = self.house;
+    vc.todo = todo;
+    vc.delegate = self;
+    vc.type = VIEW_TYPE;
+    [self.navigationController pushViewController:vc animated:YES];
+}
 
 - (void)segmentOptionChanged:(id)sender {
     if (!self.isPastLoaded) {
@@ -258,7 +293,6 @@
         ToDo *todo = [self.incompleteArray objectAtIndex:indexPath.row];
         // Can be view or complete
         TodoDetailsViewController *vc = [[TodoDetailsViewController alloc]initWithNibName:@"TodoDetailsViewController" bundle:nil];
-        vc.type = EDIT_TYPE;
         vc.user = self.user;
         vc.house = self.house;
         vc.todo = todo;
@@ -374,11 +408,11 @@
 }
 
 - (void)reloadIfInIncomplete {
-    if (self.segment.selectedSegmentIndex == 0) {
-        dispatch_async(dispatch_get_main_queue(), ^{
+    dispatch_async(dispatch_get_main_queue(), ^{
+        if (self.segment.selectedSegmentIndex == 0) {
             [self.todosTableView reloadData];
-        });
-    }
+        }
+    });
 }
 
 @end

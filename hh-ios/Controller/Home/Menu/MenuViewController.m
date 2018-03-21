@@ -118,7 +118,6 @@ NSInteger const SETTINGS = 6;
 }
 
 - (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
-    NSLog(@"Will display");
     if (indexPath.row == CHAT) {
         [cell setSelected:YES];
     }
@@ -146,9 +145,10 @@ NSInteger const SETTINGS = 6;
         self.currentIndex = EDIT;
     } else if (indexPath.row == CHAT && !(self.currentIndex == CHAT)) {
         // Home - chat
-        ChatViewController *chatVC = [[ChatViewController alloc]initWithNibName:@"ChatViewController" bundle:nil];
+        ChatViewController *chatVC = [[ChatViewController alloc]init];
         chatVC.user = self.user;
         chatVC.house = self.house;
+        chatVC.channel = self.channel;
         UINavigationController *navVC = [[UINavigationController alloc]initWithRootViewController:chatVC];
         [self.revealViewController pushFrontViewController:navVC animated:YES];
         self.currentIndex = CHAT;
@@ -163,6 +163,8 @@ NSInteger const SETTINGS = 6;
         // To-dos
         [[self.menuTableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:CHAT inSection:0]]setSelected:NO];
         ToDosViewController *todoVC = [[ToDosViewController alloc]initWithNibName:@"ToDosViewController" bundle:nil];
+        todoVC.house = self.house;
+        todoVC.user = self.user;
         UINavigationController *navVC = [[UINavigationController alloc]initWithRootViewController:todoVC];
         [self.revealViewController pushFrontViewController:navVC animated:YES];
         self.currentIndex = TODOS;

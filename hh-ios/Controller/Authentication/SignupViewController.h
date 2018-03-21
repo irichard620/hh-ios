@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface SignupViewController : UIViewController <UIApplicationDelegate>
+@interface SignupViewController : UIViewController <UIApplicationDelegate, UINavigationControllerDelegate>
 
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *loginButtonBottom;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *scrollToContentHeight;
@@ -21,5 +21,6 @@
 @property (weak, nonatomic) IBOutlet UITextField *passwordField;
 
 @property (weak, nonatomic) IBOutlet UIButton *createAccountButton;
+@property (weak, nonatomic) IBOutlet UIActivityIndicatorView *activityIndicator;
 @property (weak, nonatomic) IBOutlet UIButton *loginButton;
 @end

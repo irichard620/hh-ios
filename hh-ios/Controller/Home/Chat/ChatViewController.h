@@ -10,11 +10,12 @@
 #import "SLKTextViewController.h"
 #import "MenuViewController.h"
 #import <TwilioChatClient/TwilioChatClient.h>
+#import "TodoDetailsViewController.h"
 
-@interface ChatViewController : SLKTextViewController 
+@interface ChatViewController : SLKTextViewController <UITableViewDataSource, UITableViewDelegate, UITextViewDelegate, TodoDetailsDelegate>
 
 @property (nonatomic) House *house;
 @property (nonatomic) User *user;
-@property (nonatomic) TCHChannels *channels;
+@property (nonatomic) TCHChannel *channel;
 
 @end

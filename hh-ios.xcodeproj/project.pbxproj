@@ -10,6 +10,7 @@
 		06898846A761F16B809959AD /* libPods-hh-iosTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 139AAEBD44054690B663E3CB /* libPods-hh-iosTests.a */; };
 		42DCD2447853CBCBDE14ACB4 /* libPods-hh-ios.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 24E467ECA15237464F192AE2 /* libPods-hh-ios.a */; };
 		75C17BFE24053648F9631729 /* libPods-hh-iosUITests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6EA14996A84657ADA6390E82 /* libPods-hh-iosUITests.a */; };
+		80035335205C3E3700DDEE84 /* ChatMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 80035334205C3E3700DDEE84 /* ChatMessage.m */; };
 		802F3FA81FC9FE110006CA8B /* SLKTextInputbar.m in Sources */ = {isa = PBXBuildFile; fileRef = 802F3F931FC9FE0D0006CA8B /* SLKTextInputbar.m */; };
 		802F3FA91FC9FE110006CA8B /* UIScrollView+SLKAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 802F3F951FC9FE0E0006CA8B /* UIScrollView+SLKAdditions.m */; };
 		802F3FAA1FC9FE110006CA8B /* UIView+SLKAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 802F3F971FC9FE0E0006CA8B /* UIView+SLKAdditions.m */; };
@@ -158,6 +159,8 @@
 		69C2C3083AE0391BE8FA734C /* Pods-hh-iosUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-hh-iosUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-hh-iosUITests/Pods-hh-iosUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		6EA14996A84657ADA6390E82 /* libPods-hh-iosUITests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-hh-iosUITests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		771F444D5E9D6D17DEF9C797 /* Pods-hh-iosUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-hh-iosUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-hh-iosUITests/Pods-hh-iosUITests.release.xcconfig"; sourceTree = "<group>"; };
+		80035333205C3E3700DDEE84 /* ChatMessage.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ChatMessage.h; sourceTree = "<group>"; };
+		80035334205C3E3700DDEE84 /* ChatMessage.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ChatMessage.m; sourceTree = "<group>"; };
 		802F3F921FC9FE0D0006CA8B /* SLKTextInputbar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SLKTextInputbar.h; sourceTree = "<group>"; };
 		802F3F931FC9FE0D0006CA8B /* SLKTextInputbar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SLKTextInputbar.m; sourceTree = "<group>"; };
 		802F3F941FC9FE0E0006CA8B /* SLKUIConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SLKUIConstants.h; sourceTree = "<group>"; };
@@ -697,6 +700,8 @@
 				802F40332020FB4A0006CA8B /* NSString+Security.m */,
 				802F405420338F5A0006CA8B /* ToDo.h */,
 				802F405520338F5A0006CA8B /* ToDo.m */,
+				80035333205C3E3700DDEE84 /* ChatMessage.h */,
+				80035334205C3E3700DDEE84 /* ChatMessage.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1214,6 +1219,7 @@
 				802F3FF32002A5E20006CA8B /* ToDosViewController.m in Sources */,
 				802F3FAB1FC9FE110006CA8B /* SLKTextView+SLKAdditions.m in Sources */,
 				802F4066203C9C570006CA8B /* TodoDetailsTableViewCell.m in Sources */,
+				80035335205C3E3700DDEE84 /* ChatMessage.m in Sources */,
 				80F558731FBAB280001601B3 /* main.m in Sources */,
 				802F3FD31FFAF0D50006CA8B /* SignupViewController.m in Sources */,
 				802F3FCF1FF99E160006CA8B /* AuthenticationManager.m in Sources */,

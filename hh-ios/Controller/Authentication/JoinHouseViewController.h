@@ -17,6 +17,7 @@
 
 @property (weak, nonatomic) IBOutlet UITextField *houseCodeField;
 @property (weak, nonatomic) IBOutlet UIButton *joinHouseButton;
+@property (weak, nonatomic) IBOutlet UIActivityIndicatorView *activityIndicator;
 
 @property(weak,nonatomic) id<JoinHouseDelegate> delegate;
 @end

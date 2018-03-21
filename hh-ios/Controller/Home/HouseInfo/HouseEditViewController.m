@@ -12,7 +12,15 @@
 #import "ViewHelpers.h"
 #import "EditPropertyTableViewCell.h"
 
+#define TRIM(string) [string stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]]
+
 @interface HouseEditViewController ()
+
+@property (nonatomic) UIImageView *imageView;
+
+@property (nonatomic) NSString *currentDisplayName;
+@property (nonatomic) BOOL displayNameChanged;
+@property (nonatomic) BOOL avatarChanged;
 
 @end
 
@@ -21,6 +29,8 @@
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
+        _displayNameChanged = NO;
+        _avatarChanged = NO;
     }
     return self;
 }
@@ -40,6 +50,8 @@
     
     // Create menu button
     self.navigationItem.leftBarButtonItem = [ViewHelpers createNavButtonWithTarget:self.revealViewController andSelectorName:@"revealToggle:" andImage:[UIImage imageNamed:@"menu.png"] isBack:NO];
+    self.navigationItem.rightBarButtonItem = [ViewHelpers createTextNavButtonWithTarget:self andSelectorName:@"saveButtonClicked:" andTitle:@"Save"];
+    [self.navigationItem.rightBarButtonItem setEnabled:NO];
     
     // Setup table
     self.tableView.dataSource = self;
@@ -73,6 +85,8 @@
             cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
         }
         cell.textField.text = @"SCU House";
+        [cell.textField removeTarget:self action:@selector(textFieldDidChange:) forControlEvents:UIControlEventEditingChanged];
+        [cell.textField addTarget:self action:@selector(textFieldDidChange:) forControlEvents:UIControlEventEditingChanged];
         return cell;
     } else {
         // Options cells
@@ -106,12 +120,16 @@
         UIView *header = [[UIView alloc]initWithFrame:CGRectMake(0, 0, self.tableView.frame.size.width, 110)];
         header.backgroundColor = [UIColor colorWithRed:0.812 green:0.847 blue:0.863 alpha:1.0];
         
-        UIImageView *imageView = [[UIImageView alloc]initWithFrame:CGRectMake((self.tableView.frame.size.width/2 - 35), 20, 70, 70)];
-        imageView.image = [UIImage imageNamed:@"group-icon-white-background.png"];
-        imageView.layer.cornerRadius = 16.0;
-        imageView.clipsToBounds = YES;
+        self.imageView = [[UIImageView alloc]initWithFrame:CGRectMake((self.tableView.frame.size.width/2 - 35), 20, 70, 70)];
+        self.imageView.image = [UIImage imageNamed:@"group-icon-white-background.png"];
+        self.imageView.layer.cornerRadius = 16.0;
+        self.imageView.clipsToBounds = YES;
+        self.imageView.userInteractionEnabled = YES;
+        UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(imageTapped:)];
+        tap.delegate = self;
+        [self.imageView addGestureRecognizer:tap];
         
-        [header addSubview:imageView];
+        [header addSubview:self.imageView];
         
         return header;
     } else {
@@ -126,6 +144,92 @@
         header.backgroundColor = [UIColor colorWithRed:0.812 green:0.847 blue:0.863 alpha:1.0];
         return header;
     }
+}
+
+#pragma mark Interaction
+
+- (void)saveButtonClicked:(id)sender {
+    // First - upload photo if needed
+    if (self.avatarChanged) {
+        [HouseManager uploadHousePic:self.imageView.image withUniqueName:self.house.uniqueName withCompletion:^(NSString *resourceURL, NSString *error) {
+            if (error) {
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    [self presentViewController:[ViewHelpers createErrorAlertWithTitle:@"Error" andDescription:error] animated:YES completion:nil];
+                });
+            } else {
+                [self editHouseWithResourceURL:resourceURL];
+            }
+        }];
+    } else {
+        [self editHouseWithResourceURL:nil];
+    }
+}
+
+- (void)editHouseWithResourceURL:(NSString *)resourceURL {
+    if (!self.displayNameChanged) {
+        self.currentDisplayName = nil;
+    }
+    [HouseManager editHouseWithUniqueName:self.house.uniqueName withDisplayName:self.currentDisplayName andAvatarLink:resourceURL withCompletion:^(House *house, NSString *error) {
+        if (error) {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self presentViewController:[ViewHelpers createErrorAlertWithTitle:@"Error" andDescription:error] animated:YES completion:nil];
+            });
+        } else {
+            
+        }
+    }];
+}
+
+- (void)imageTapped:(id)sender {
+    // Show action sheet
+    UIImagePickerController *picker = [[UIImagePickerController alloc]init];
+    picker.delegate = self;
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:nil message:nil preferredStyle:UIAlertControllerStyleActionSheet];
+    [alert addAction:[UIAlertAction actionWithTitle:@"Camera" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        picker.sourceType = UIImagePickerControllerSourceTypeCamera;
+        picker.allowsEditing = YES;
+        [self presentViewController:picker animated:YES completion:nil];
+    }]];
+    [alert addAction:[UIAlertAction actionWithTitle:@"Photo Library" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        picker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+        picker.allowsEditing = YES;
+        [self presentViewController:picker animated:YES completion:nil];
+    }]];
+    [alert addAction:[UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:nil]];
+    [self presentViewController:alert animated:YES completion:nil];
+}
+
+- (void)updateButtons {
+    if (self.displayNameChanged || self.avatarChanged) {
+        [self.navigationItem.rightBarButtonItem setEnabled:YES];
+    } else {
+        [self.navigationItem.rightBarButtonItem setEnabled:NO];
+    }
+}
+
+#pragma mark Text delegate
+
+- (void)textFieldDidChange:(UITextField *)textField {
+    self.currentDisplayName = TRIM(textField.text);
+    if ([self.currentDisplayName isEqualToString:self.house.displayName] || [self.currentDisplayName isEqualToString:@""]) {
+        self.displayNameChanged = NO;
+    } else {
+        self.displayNameChanged = YES;
+    }
+}
+
+#pragma mark Picker delegate
+
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<NSString *,id> *)info {
+    UIImage *chosenImage = info[UIImagePickerControllerEditedImage];
+    self.imageView.image = chosenImage;
+    self.avatarChanged = YES;
+    [picker dismissViewControllerAnimated:YES completion:NULL];
+    [self updateButtons];
+}
+
+- (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker {
+    [picker dismissViewControllerAnimated:YES completion:NULL];
 }
 
 @end

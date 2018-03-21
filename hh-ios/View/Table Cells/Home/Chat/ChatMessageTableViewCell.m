@@ -7,6 +7,7 @@
 //
 
 #import "ChatMessageTableViewCell.h"
+#import <SDWebImage/UIImageView+WebCache.h>
 
 @implementation ChatMessageTableViewCell
 
@@ -18,10 +19,14 @@
     self.selectionStyle = UITableViewCellSelectionStyleNone;
 }
 
-- (void)setName:(NSString *)name andMessage:(NSString *)message andProfileImage:(UIImage *)image showMarker:(BOOL)showMarker {
+- (void)setName:(NSString *)name andMessage:(NSString *)message andAvatarLink:(NSString *)avatarLink showMarker:(BOOL)showMarker {
     self.senderName.text = name;
     self.senderMessage.text = message;
-    self.profileImage.image = image;
+    if (avatarLink == nil) {
+        [self.profileImage setImage:[UIImage imageNamed:@"user-icon-grey.png"]];
+    } else {
+        [self.profileImage sd_setImageWithURL:[NSURL URLWithString:avatarLink] placeholderImage:[UIImage imageNamed:@"user-icon-grey.png"]];
+    }
     self.markerView.hidden = !showMarker;
 }
 

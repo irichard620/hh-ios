@@ -12,7 +12,7 @@
 
 + (void)sendChatMessageWithBody:(NSString *)messageBody andUniqueName:(NSString *)uniqueName withCompletion:(void (^)(NSString *error))completion {
     // Pass unique name
-    NSDictionary* parameters = @{@"unique_name": uniqueName, @"body": messageBody};
+    NSDictionary* parameters = @{@"unique_name": uniqueName, @"message_body": messageBody};
     
     // Send request
     [StoreHelpers sendPostRequestWithEndpoint:@"/chat/send" requiresAuth:YES hasParameters:parameters withCallback:^(NSDictionary *jsonResponse, NSString *errorType) {

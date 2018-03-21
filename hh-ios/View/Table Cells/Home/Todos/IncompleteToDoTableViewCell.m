@@ -16,7 +16,6 @@
     // Initialization code
     self.profileImage.layer.cornerRadius = 14.0;
     self.profileImage.clipsToBounds = YES;
-    self.selectionStyle = UITableViewCellSelectionStyleNone;
     
     // Borders
     self.rightButton.layer.cornerRadius = 6;

@@ -11,6 +11,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="JoinHouseViewController">
             <connections>
+                <outlet property="activityIndicator" destination="jDw-sb-04k" id="LVO-mb-hpY"/>
                 <outlet property="houseCodeField" destination="MoK-82-wlx" id="jwT-wy-N8X"/>
                 <outlet property="joinHouseButton" destination="dZo-YC-rWM" id="tc2-fG-KvV"/>
                 <outlet property="messageContainer" destination="z3V-mn-949" id="ZyX-gO-t6g"/>
@@ -84,14 +85,19 @@
                                         <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     </state>
                                 </button>
+                                <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="jDw-sb-04k">
+                                    <rect key="frame" x="177" y="158" width="20" height="20"/>
+                                </activityIndicatorView>
                             </subviews>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <constraints>
                                 <constraint firstItem="MoK-82-wlx" firstAttribute="leading" secondItem="kNc-I9-l1u" secondAttribute="leading" constant="16" id="3Lu-K2-e7g"/>
                                 <constraint firstItem="MoK-82-wlx" firstAttribute="top" secondItem="z3V-mn-949" secondAttribute="bottom" constant="30" id="4gk-vu-04C"/>
+                                <constraint firstItem="jDw-sb-04k" firstAttribute="centerY" secondItem="dZo-YC-rWM" secondAttribute="centerY" id="5eQ-cS-WZH"/>
                                 <constraint firstAttribute="trailing" secondItem="MoK-82-wlx" secondAttribute="trailing" constant="16" id="5pI-zZ-6SJ"/>
                                 <constraint firstItem="z3V-mn-949" firstAttribute="leading" secondItem="kNc-I9-l1u" secondAttribute="leading" constant="8" id="9xj-vo-iw0"/>
                                 <constraint firstItem="dZo-YC-rWM" firstAttribute="top" secondItem="MoK-82-wlx" secondAttribute="bottom" constant="30" id="Z9W-wn-gvP"/>
+                                <constraint firstItem="jDw-sb-04k" firstAttribute="centerX" secondItem="kNc-I9-l1u" secondAttribute="centerX" id="cZg-ea-rcr"/>
                                 <constraint firstAttribute="trailing" secondItem="dZo-YC-rWM" secondAttribute="trailing" constant="50" id="dko-cV-lQg"/>
                                 <constraint firstItem="DFN-aN-WXV" firstAttribute="leading" secondItem="kNc-I9-l1u" secondAttribute="leading" id="h0U-oq-qT3"/>
                                 <constraint firstItem="z3V-mn-949" firstAttribute="top" secondItem="kNc-I9-l1u" secondAttribute="top" constant="8" id="q0N-7n-qbQ"/>

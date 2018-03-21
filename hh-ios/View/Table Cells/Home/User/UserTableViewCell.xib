@@ -20,9 +20,6 @@
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jhd-SL-MpH">
                         <rect key="frame" x="61" y="16.5" width="243" height="21"/>
-                        <constraints>
-                            <constraint firstAttribute="height" constant="21" id="1q9-Zs-o26"/>
-                        </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
@@ -36,8 +33,9 @@
                     </imageView>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="xhW-no-VRh" firstAttribute="top" secondItem="fNb-Z1-19u" secondAttribute="topMargin" constant="4" id="1h9-UL-BOa"/>
                     <constraint firstAttribute="bottomMargin" secondItem="jhd-SL-MpH" secondAttribute="bottom" constant="5.5" id="NtT-nO-CsR"/>
+                    <constraint firstItem="jhd-SL-MpH" firstAttribute="centerY" secondItem="fNb-Z1-19u" secondAttribute="centerY" id="R5s-Te-eTz"/>
+                    <constraint firstItem="xhW-no-VRh" firstAttribute="centerY" secondItem="fNb-Z1-19u" secondAttribute="centerY" id="SLa-NB-jjO"/>
                     <constraint firstItem="jhd-SL-MpH" firstAttribute="leading" secondItem="xhW-no-VRh" secondAttribute="trailing" constant="13" id="h7j-Hc-pj2"/>
                     <constraint firstItem="jhd-SL-MpH" firstAttribute="top" secondItem="fNb-Z1-19u" secondAttribute="topMargin" constant="5.5" id="kCE-rF-VVl"/>
                     <constraint firstItem="xhW-no-VRh" firstAttribute="leading" secondItem="fNb-Z1-19u" secondAttribute="leadingMargin" constant="8" id="meA-E8-ixb"/>

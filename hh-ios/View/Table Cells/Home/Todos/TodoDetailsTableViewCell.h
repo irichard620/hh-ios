@@ -12,16 +12,14 @@
 
 @property (weak, nonatomic) IBOutlet UITextField *titleField;
 @property (weak, nonatomic) IBOutlet UITextView *descrTextView;
-@property (weak, nonatomic) IBOutlet UILabel *assigneeLabel;
 @property (weak, nonatomic) IBOutlet UILabel *assigneeSectionLabel;
 @property (weak, nonatomic) IBOutlet UILabel *createdByLabel;
 
 - (void)restrictEdit;
 - (void)allowEdit;
-- (void)setupForCreateWithCreatedBy:(NSString *)createdBy andAssignee:(NSString *)assignee;
-- (void)setupForEditWithTitle:(NSString *)title andDescr:(NSString *)description andCreatedBy:(NSString *)createdBy andAssignee:(NSString *)assignee;
-- (void)setupForViewWithTitle:(NSString *)title andDescr:(NSString *)description andCreatedBy:(NSString *)createdBy andAssignee:(NSString *)assignee;
+- (void)setupForCreateWithCreatedBy:(NSString *)createdBy;
+- (void)setupForEditWithTitle:(NSString *)title andDescr:(NSString *)description andCreatedBy:(NSString *)createdBy;
+- (void)setupForViewWithTitle:(NSString *)title andDescr:(NSString *)description andCreatedBy:(NSString *)createdBy;
 - (void)setupForCompleteWithTitle:(NSString *)title andDescr:(NSString *)description andCreatedBy:(NSString *)createdBy;
-- (void)setDataLabel:(NSString *)dataLabel;
 
 @end

@@ -20,9 +20,6 @@
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CdM-g0-bS1">
                         <rect key="frame" x="61" y="16.5" width="243" height="21"/>
-                        <constraints>
-                            <constraint firstAttribute="height" constant="21" id="aVG-hE-BaL"/>
-                        </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
@@ -41,7 +38,7 @@
                     <constraint firstAttribute="bottomMargin" secondItem="CdM-g0-bS1" secondAttribute="bottom" constant="5.5" id="78w-jR-Clr"/>
                     <constraint firstItem="CdM-g0-bS1" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="5.5" id="BLu-ft-Uc1"/>
                     <constraint firstItem="CdM-g0-bS1" firstAttribute="trailing" secondItem="H2p-sc-9uM" secondAttribute="trailingMargin" id="ILb-yZ-gNL"/>
-                    <constraint firstItem="Ri0-Po-ghQ" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="4" id="hQu-U5-Scp"/>
+                    <constraint firstItem="CdM-g0-bS1" firstAttribute="centerY" secondItem="Ri0-Po-ghQ" secondAttribute="centerY" id="nS2-bw-HJz"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>

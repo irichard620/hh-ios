@@ -194,6 +194,7 @@
                     // Show alert
                     dispatch_async(dispatch_get_main_queue(), ^{
                         [self presentViewController:[ViewHelpers createErrorAlertWithTitle:@"Success" andDescription:[NSString stringWithFormat:@"An email has been sent to %@", email]] animated:YES completion:nil];
+                        [self.residentTableView reloadData];
                     });
                 }
             }];

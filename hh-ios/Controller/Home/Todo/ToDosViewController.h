@@ -11,7 +11,7 @@
 #import "UserManager.h"
 #import "TodoDetailsViewController.h"
 
-@interface ToDosViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, TodoDetailsDelegate>
+@interface ToDosViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, TodoDetailsDelegate, UINavigationControllerDelegate>
 
 @property (weak, nonatomic) IBOutlet UITableView *todosTableView;
 

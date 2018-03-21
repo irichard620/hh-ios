@@ -11,6 +11,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="LoginViewController">
             <connections>
+                <outlet property="activityIndicator" destination="16S-my-X1b" id="GlR-fX-QO3"/>
                 <outlet property="contentView" destination="7yD-gm-ufz" id="sDb-2L-gTB"/>
                 <outlet property="emailField" destination="FDm-34-bsz" id="5Cr-yy-Otc"/>
                 <outlet property="forgotButton" destination="rzz-IG-wWx" id="gMw-5T-eo7"/>
@@ -102,13 +103,18 @@
                                         <color key="titleColor" red="0.23921568630000001" green="0.30980392159999998" blue="0.36078431370000003" alpha="1" colorSpace="calibratedRGB"/>
                                     </state>
                                 </button>
+                                <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="16S-my-X1b">
+                                    <rect key="frame" x="177" y="161" width="20" height="20"/>
+                                </activityIndicatorView>
                             </subviews>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <constraints>
+                                <constraint firstItem="16S-my-X1b" firstAttribute="centerY" secondItem="H2L-dR-Vgh" secondAttribute="centerY" id="2NN-0y-sah"/>
                                 <constraint firstAttribute="trailing" secondItem="FDm-34-bsz" secondAttribute="trailing" constant="16" id="3dC-tl-ERm"/>
                                 <constraint firstItem="FDm-34-bsz" firstAttribute="leading" secondItem="7yD-gm-ufz" secondAttribute="leading" constant="16" id="3ry-ap-NgN"/>
                                 <constraint firstItem="rPb-8P-tGo" firstAttribute="leading" secondItem="7yD-gm-ufz" secondAttribute="leading" id="5gz-VO-aHs"/>
                                 <constraint firstItem="D9L-eK-CqT" firstAttribute="top" secondItem="FDm-34-bsz" secondAttribute="bottom" constant="20" id="7CA-CL-GCk"/>
+                                <constraint firstItem="16S-my-X1b" firstAttribute="centerX" secondItem="7yD-gm-ufz" secondAttribute="centerX" id="BEJ-dH-DRv"/>
                                 <constraint firstItem="H2L-dR-Vgh" firstAttribute="leading" secondItem="7yD-gm-ufz" secondAttribute="leading" constant="50" id="BvE-W2-mNZ"/>
                                 <constraint firstItem="H2L-dR-Vgh" firstAttribute="top" secondItem="D9L-eK-CqT" secondAttribute="bottom" constant="30" id="ERR-uw-CJk"/>
                                 <constraint firstAttribute="bottom" secondItem="3fJ-ST-Kqy" secondAttribute="bottom" constant="20" id="HIY-tl-F8d"/>

@@ -41,6 +41,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    self.navigationController.delegate = self;
+    
     [ViewHelpers roundCorners:self.loginButton];
         
     UITapGestureRecognizer *singleTapGestureRecognizer = [ViewHelpers createTapGestureRecognizerWithTarget:self andSelectorName:@"singleTap:"];
@@ -100,9 +102,13 @@
     } else if ([self.password isEqualToString:@""]) {
         [self presentViewController:[ViewHelpers createErrorAlertWithTitle:@"Password Invalid" andDescription:@"Please enter a valid password."] animated:YES completion:nil];
     } else {
-        // All fields present - let's ask for remote notifications first
-//        [[UIApplication sharedApplication] registerForRemoteNotifications];
-        [self application:[UIApplication sharedApplication] didFailToRegisterForRemoteNotificationsWithError:[NSError errorWithDomain:NSCocoaErrorDomain code:400 userInfo:nil]];
+        #if TARGET_OS_SIMULATOR
+            // Simulator-specific code
+            [self application:[UIApplication sharedApplication] didFailToRegisterForRemoteNotificationsWithError:[NSError errorWithDomain:NSCocoaErrorDomain code:400 userInfo:nil]];
+        #else
+            // Device-specific code
+            [self application:[UIApplication sharedApplication] didFailToRegisterForRemoteNotificationsWithError:[NSError errorWithDomain:NSCocoaErrorDomain code:400 userInfo:nil]];
+        #endif
         // Now, wait for response
     }
 }
@@ -117,20 +123,44 @@
     [self loginUserWithDeviceToken:nil];
 }
 
+#pragma mark Nav Control
+
+- (void)navigationController:(UINavigationController *)navigationController didShowViewController:(UIViewController *)viewController animated:(BOOL)animated {
+    // Clear input fields, reset button
+    [self.emailField setText:@""];
+    [self.passwordField setText:@""];
+    [self resetFromLoading];
+}
+
 #pragma mark Helpers
 
+- (void)setToLoading {
+    [self.view endEditing:YES];
+    [self.view setUserInteractionEnabled:NO];
+    [self.activityIndicator startAnimating];
+    [self.loginButton setTitle:@"" forState:UIControlStateNormal];
+}
+
+- (void)resetFromLoading {
+    [self.view setUserInteractionEnabled:YES];
+    [self.activityIndicator stopAnimating];
+    [self.loginButton setTitle:@"Login" forState:UIControlStateNormal];
+}
+
 - (void)loginUserWithDeviceToken:(NSString *)deviceToken {
+    [self setToLoading];
     [AuthenticationManager loginUserWithEmail:self.email andPassword:self.password andDeviceToken:deviceToken withCompletion:^(User *user, NSString *error) {
         if (!error) {
+            UserHomeViewController *userHomeVC = [[UserHomeViewController alloc]initWithNibName:@"UserHomeViewController" bundle:nil];
+            userHomeVC.user = user;
             dispatch_async(dispatch_get_main_queue(), ^{
-                UserHomeViewController *userHomeVC = [[UserHomeViewController alloc]initWithNibName:@"UserHomeViewController" bundle:nil];
-                userHomeVC.user = user;
                 [self.navigationController pushViewController:userHomeVC animated:YES];
             });
         } else {
-            UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Error" message:error preferredStyle:UIAlertControllerStyleAlert];
-            [alert addAction:[UIAlertAction actionWithTitle:@"Ok" style:UIAlertActionStyleCancel handler:nil]];
-            [self presentViewController:alert animated:YES completion:nil];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self presentViewController:[ViewHelpers createErrorAlertWithTitle:@"Error" andDescription:error] animated:YES completion:nil];
+                [self resetFromLoading];
+            });
         }
     }];
 }

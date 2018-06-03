@@ -9,6 +9,7 @@
 #import "TodoDetailsViewController.h"
 #import "SWRevealViewController.h"
 #import "TodoDetailsTableViewCell.h"
+#import "TodoDetailsCompletedTableViewCell.h"
 #import "UserTableViewCell.h"
 #import "ViewHelpers.h"
 
@@ -71,9 +72,12 @@
     } else if (self.type == VIEW_TYPE) {
         self.navigationItem.title = @"To-Do Details";
         rightButtonTitle = @"Edit";
-    } else {
+    } else if (self.type == COMPLETE_TYPE) {
         self.navigationItem.title = @"Complete To-Do";
         rightButtonTitle = @"Complete";
+    } else {
+        self.navigationItem.title = @"To-Do Details";
+        rightButtonTitle = nil;
     }
     self.navigationController.navigationBar.titleTextAttributes = @{NSForegroundColorAttributeName:[UIColor whiteColor]};
     self.navigationController.navigationBar.largeTitleTextAttributes = @{NSForegroundColorAttributeName:[UIColor whiteColor]};
@@ -83,13 +87,15 @@
     self.navigationItem.leftBarButtonItem = [ViewHelpers createNavButtonWithTarget:self andSelectorName:@"backButtonClicked:" andImage:[UIImage imageNamed:@"left-arrow.png"] isBack:YES];
     
     // Right bar button
-    self.rightBarButton = [ViewHelpers createTextNavButtonWithTarget:self andSelectorName:@"rightBarButtonClicked:" andTitle:rightButtonTitle];
-    if (self.type != VIEW_TYPE && self.type != COMPLETE_TYPE) self.rightBarButton.enabled = NO;
-    if ([self.todo.owner._id isEqualToString:self.user._id]) {
-        UIBarButtonItem *deleteButton = [ViewHelpers createTextNavButtonWithTarget:self andSelectorName:@"deleteButtonClicked:" andTitle:@"Delete"];
-        self.navigationItem.rightBarButtonItems = @[deleteButton, self.rightBarButton];
-    } else {
-        self.navigationItem.rightBarButtonItems = @[self.rightBarButton];
+    if (rightButtonTitle != nil) {
+        self.rightBarButton = [ViewHelpers createTextNavButtonWithTarget:self andSelectorName:@"rightBarButtonClicked:" andTitle:rightButtonTitle];
+        if (self.type != VIEW_TYPE && self.type != COMPLETE_TYPE) self.rightBarButton.enabled = NO;
+        if ([self.todo.owner._id isEqualToString:self.user._id]) {
+            UIBarButtonItem *deleteButton = [ViewHelpers createTextNavButtonWithTarget:self andSelectorName:@"deleteButtonClicked:" andTitle:@"Delete"];
+            self.navigationItem.rightBarButtonItems = @[deleteButton, self.rightBarButton];
+        } else {
+            self.navigationItem.rightBarButtonItems = @[self.rightBarButton];
+        }
     }
     
     // Setup table
@@ -146,6 +152,8 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     if (self.type == VIEW_TYPE) {
         return 2;
+    } else if (self.type == VIEW_COMPLETED_TYPE) {
+        return 1;
     } else {
         if (self.dataLoading || self.dataArray.count == 0) {
             return 2;
@@ -157,7 +165,7 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     // If create
-    if (indexPath.row == 0) {
+    if (indexPath.row == 0 && self.type != VIEW_COMPLETED_TYPE) {
         static NSString *CellIdentifier = @"detailsCell";
         TodoDetailsTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
         
@@ -166,6 +174,7 @@
             cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
         }
         if (self.type == CREATE_TYPE) {
+            NSLog(@"Set up for create with name: %@", self.user.fullName);
             [cell setupForCreateWithCreatedBy:self.user.fullName];
             [cell.titleField removeTarget:self action:@selector(textFieldDidChange:) forControlEvents:UIControlEventEditingChanged];
             [cell.titleField addTarget:self action:@selector(textFieldDidChange:) forControlEvents:UIControlEventEditingChanged];
@@ -184,6 +193,18 @@
         } else {
             [cell setupForCompleteWithTitle:self.todo.title andDescr:self.todo.todoDescription andCreatedBy:self.todo.owner.name];
         }
+        return cell;
+    } else if (self.type == VIEW_COMPLETED_TYPE) {
+        static NSString *CellIdentifier = @"detailsCell";
+        TodoDetailsCompletedTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+        
+        if (cell == nil) {
+            [self.tableView registerNib:[UINib nibWithNibName:@"TodoDetailsCompletedTableViewCell" bundle:nil] forCellReuseIdentifier:CellIdentifier];
+            cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+        }
+        
+        [cell setUpForTitle:self.todo.title andDescription:self.todo.todoDescription andCreatedBy:self.todo.owner.name andCompletedBy:self.todo.assignee.name andTimeTaken:[NSString stringWithFormat:@"%@ mins",self.todo.timeTaken]];
+        
         return cell;
     } else {
         static NSString *CellIdentifier = @"userCell";
@@ -328,6 +349,7 @@
         } else {
             self.assigneeChanged = NO;
         }
+        [self updateButton];
     }
 }
 
@@ -397,30 +419,46 @@
         descr = nil;
     }
     NSLog(@"ID: %@", self.todo._id);
-    [TodoManager editToDoWithId:self.todo._id withTitle:title andDescription:descr withCompletion:^(ToDo *todo, NSString *error) {
-        if (error) {
-            dispatch_async(dispatch_get_main_queue(), ^{
-                [self presentViewController:[ViewHelpers createErrorAlertWithTitle:@"Error" andDescription:error] animated:YES completion:nil];
-            });
-        } else {
-            if (self.assigneeChanged) {
-                NSString *newId = [(UserReference *)[self.dataArray objectAtIndex:self.selectedIndex] _id];
-                [TodoManager reassignToDoWithAssignee:newId andToDo:self.todo._id withCompletion:^(ToDo *todo, NSString *error) {
-                    if (error) {
-                        dispatch_async(dispatch_get_main_queue(), ^{
-                            [self presentViewController:[ViewHelpers createErrorAlertWithTitle:@"Error" andDescription:error] animated:YES completion:nil];
-                        });
-                    } else {
-                        [self.delegate todoEdited:todo];
-                        [self backButtonClicked:nil];
-                    }
-                }];
+    if (!self.titleChanged && !self.descrChanged) {
+        UserReference *userRef = (UserReference *)[self.dataArray objectAtIndex:self.selectedIndex];
+        NSLog(@"New user: %@", userRef.name);
+        NSString *newId = [userRef _id];
+        [TodoManager reassignToDoWithAssignee:newId andToDo:self.todo._id withCompletion:^(ToDo *todo, NSString *error) {
+            if (error) {
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    [self presentViewController:[ViewHelpers createErrorAlertWithTitle:@"Error" andDescription:error] animated:YES completion:nil];
+                });
             } else {
                 [self.delegate todoEdited:todo];
                 [self backButtonClicked:nil];
             }
-        }
-    }];
+        }];
+    } else {
+        [TodoManager editToDoWithId:self.todo._id withTitle:title andDescription:descr withCompletion:^(ToDo *todo, NSString *error) {
+            if (error) {
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    [self presentViewController:[ViewHelpers createErrorAlertWithTitle:@"Error" andDescription:error] animated:YES completion:nil];
+                });
+            } else {
+                if (self.assigneeChanged) {
+                    NSString *newId = [(UserReference *)[self.dataArray objectAtIndex:self.selectedIndex] _id];
+                    [TodoManager reassignToDoWithAssignee:newId andToDo:self.todo._id withCompletion:^(ToDo *todo, NSString *error) {
+                        if (error) {
+                            dispatch_async(dispatch_get_main_queue(), ^{
+                                [self presentViewController:[ViewHelpers createErrorAlertWithTitle:@"Error" andDescription:error] animated:YES completion:nil];
+                            });
+                        } else {
+                            [self.delegate todoEdited:todo];
+                            [self backButtonClicked:nil];
+                        }
+                    }];
+                } else {
+                    [self.delegate todoEdited:todo];
+                    [self backButtonClicked:nil];
+                }
+            }
+        }];
+    }
 }
 
 - (void)startEditingTodo {

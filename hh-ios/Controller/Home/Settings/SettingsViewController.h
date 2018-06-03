@@ -7,7 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "User.h"
 
-@interface SettingsViewController : UIViewController
+@interface SettingsViewController : UIViewController <UITableViewDelegate, UITableViewDataSource>
+
+@property (weak, nonatomic) IBOutlet UITableView *tableView;
+
+@property(nonatomic) User *user;
 
 @end

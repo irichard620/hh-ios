@@ -86,7 +86,9 @@
             [request setValue:@"image/png" forHTTPHeaderField:@"Content-Type"];
             
             // Create upload
-            NSURLSessionUploadTask *uploadTask = [[[NSURLSession alloc]init]uploadTaskWithRequest:request fromFile:[StoreHelpers saveImageToFile:image] completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+            NSURLSessionUploadTask *uploadTask = [[NSURLSession sharedSession] uploadTaskWithRequest:request fromFile:[StoreHelpers saveImageToFile:image] completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+                NSLog(@"%@",[response debugDescription]);
+                NSLog(@"%@",[[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]);
                 if (error) {
                     completion(nil, UNKNOWN_ERROR);
                 } else {
@@ -100,16 +102,16 @@
     }];
 }
 
-+ (void)editHouseWithUniqueName:(NSString *)uniqueName withDisplayName:(NSString *)displayName andAvatarLink:(NSString *)avatarLink withCompletion:(void (^)(House *, NSString *))completion {
++ (void)editHouseWithUniqueName:(NSString *)uniqueName withDisplayName:(NSString *)displayName andAvatarLink:(NSString *)avatarLink andFullName:(NSString *)fullName withCompletion:(void (^)(House *, NSString *))completion {
     NSDictionary *parameters;
     if (!displayName && !avatarLink) {
         completion(nil, MISSING_INFO_ERROR);
     } else if (!displayName) {
-        parameters = @{@"avatar_link": avatarLink, @"unique_name": uniqueName};
+        parameters = @{@"avatar_link": avatarLink, @"unique_name": uniqueName, @"full_name": fullName};
     } else if (!avatarLink) {
-        parameters = @{@"display_name": displayName, @"unique_name": uniqueName};
+        parameters = @{@"display_name": displayName, @"unique_name": uniqueName, @"full_name": fullName};
     } else {
-        parameters = @{@"display_name": displayName, @"avatar_link": avatarLink, @"unique_name": uniqueName};
+        parameters = @{@"display_name": displayName, @"avatar_link": avatarLink, @"unique_name": uniqueName, @"full_name": fullName};
     }
     
     [StoreHelpers sendPutRequestWithEndpoint:@"/house/edit" requiresAuth:YES hasParameters:parameters withCallback:^(NSDictionary *jsonResponse, NSString *errorType) {

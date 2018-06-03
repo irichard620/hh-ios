@@ -11,6 +11,8 @@
 		42DCD2447853CBCBDE14ACB4 /* libPods-hh-ios.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 24E467ECA15237464F192AE2 /* libPods-hh-ios.a */; };
 		75C17BFE24053648F9631729 /* libPods-hh-iosUITests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6EA14996A84657ADA6390E82 /* libPods-hh-iosUITests.a */; };
 		80035335205C3E3700DDEE84 /* ChatMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 80035334205C3E3700DDEE84 /* ChatMessage.m */; };
+		801A33D22087BF110001567B /* UserEditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 801A33D02087BF110001567B /* UserEditViewController.m */; };
+		801A33D32087BF110001567B /* UserEditViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 801A33D12087BF110001567B /* UserEditViewController.xib */; };
 		802F3FA81FC9FE110006CA8B /* SLKTextInputbar.m in Sources */ = {isa = PBXBuildFile; fileRef = 802F3F931FC9FE0D0006CA8B /* SLKTextInputbar.m */; };
 		802F3FA91FC9FE110006CA8B /* UIScrollView+SLKAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 802F3F951FC9FE0E0006CA8B /* UIScrollView+SLKAdditions.m */; };
 		802F3FAA1FC9FE110006CA8B /* UIView+SLKAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 802F3F971FC9FE0E0006CA8B /* UIView+SLKAdditions.m */; };
@@ -88,6 +90,14 @@
 		802F40822051C1C70006CA8B /* TodoDetailsCompleteTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 802F40802051C1C60006CA8B /* TodoDetailsCompleteTableViewCell.m */; };
 		802F40832051C1C70006CA8B /* TodoDetailsCompleteTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 802F40812051C1C60006CA8B /* TodoDetailsCompleteTableViewCell.xib */; };
 		802F40862051C7F50006CA8B /* ChatManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 802F40852051C7F50006CA8B /* ChatManager.m */; };
+		8043693C2071602600FE44CB /* about-developer.png in Resources */ = {isa = PBXBuildFile; fileRef = 8043693B2071602600FE44CB /* about-developer.png */; };
+		8043693E207160BD00FE44CB /* report-problem.png in Resources */ = {isa = PBXBuildFile; fileRef = 8043693D207160BD00FE44CB /* report-problem.png */; };
+		80436940207160EA00FE44CB /* help-center.png in Resources */ = {isa = PBXBuildFile; fileRef = 8043693F207160EA00FE44CB /* help-center.png */; };
+		804369422071616800FE44CB /* licenses.png in Resources */ = {isa = PBXBuildFile; fileRef = 804369412071616800FE44CB /* licenses.png */; };
+		804369442071618800FE44CB /* privacy-policy.png in Resources */ = {isa = PBXBuildFile; fileRef = 804369432071618800FE44CB /* privacy-policy.png */; };
+		80436946207161B300FE44CB /* terms-of-use.png in Resources */ = {isa = PBXBuildFile; fileRef = 80436945207161B300FE44CB /* terms-of-use.png */; };
+		8043694A207BD0A000FE44CB /* TodoDetailsCompletedTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 80436948207BD0A000FE44CB /* TodoDetailsCompletedTableViewCell.m */; };
+		8043694B207BD0A000FE44CB /* TodoDetailsCompletedTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 80436949207BD0A000FE44CB /* TodoDetailsCompletedTableViewCell.xib */; };
 		8073C8351FC946CC007223CD /* ChatTimeTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8073C8331FC946CC007223CD /* ChatTimeTableViewCell.m */; };
 		8073C8361FC946CC007223CD /* ChatTimeTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8073C8341FC946CC007223CD /* ChatTimeTableViewCell.xib */; };
 		8073C8381FC95291007223CD /* ian_profile.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 8073C8371FC95291007223CD /* ian_profile.jpg */; };
@@ -161,6 +171,9 @@
 		771F444D5E9D6D17DEF9C797 /* Pods-hh-iosUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-hh-iosUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-hh-iosUITests/Pods-hh-iosUITests.release.xcconfig"; sourceTree = "<group>"; };
 		80035333205C3E3700DDEE84 /* ChatMessage.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ChatMessage.h; sourceTree = "<group>"; };
 		80035334205C3E3700DDEE84 /* ChatMessage.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ChatMessage.m; sourceTree = "<group>"; };
+		801A33CF2087BF110001567B /* UserEditViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UserEditViewController.h; sourceTree = "<group>"; };
+		801A33D02087BF110001567B /* UserEditViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UserEditViewController.m; sourceTree = "<group>"; };
+		801A33D12087BF110001567B /* UserEditViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UserEditViewController.xib; sourceTree = "<group>"; };
 		802F3F921FC9FE0D0006CA8B /* SLKTextInputbar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SLKTextInputbar.h; sourceTree = "<group>"; };
 		802F3F931FC9FE0D0006CA8B /* SLKTextInputbar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SLKTextInputbar.m; sourceTree = "<group>"; };
 		802F3F941FC9FE0E0006CA8B /* SLKUIConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SLKUIConstants.h; sourceTree = "<group>"; };
@@ -284,6 +297,15 @@
 		802F40812051C1C60006CA8B /* TodoDetailsCompleteTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TodoDetailsCompleteTableViewCell.xib; sourceTree = "<group>"; };
 		802F40842051C7F50006CA8B /* ChatManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ChatManager.h; sourceTree = "<group>"; };
 		802F40852051C7F50006CA8B /* ChatManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ChatManager.m; sourceTree = "<group>"; };
+		8043693B2071602600FE44CB /* about-developer.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "about-developer.png"; sourceTree = "<group>"; };
+		8043693D207160BD00FE44CB /* report-problem.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "report-problem.png"; sourceTree = "<group>"; };
+		8043693F207160EA00FE44CB /* help-center.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "help-center.png"; sourceTree = "<group>"; };
+		804369412071616800FE44CB /* licenses.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = licenses.png; sourceTree = "<group>"; };
+		804369432071618800FE44CB /* privacy-policy.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "privacy-policy.png"; sourceTree = "<group>"; };
+		80436945207161B300FE44CB /* terms-of-use.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "terms-of-use.png"; sourceTree = "<group>"; };
+		80436947207BD0A000FE44CB /* TodoDetailsCompletedTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TodoDetailsCompletedTableViewCell.h; sourceTree = "<group>"; };
+		80436948207BD0A000FE44CB /* TodoDetailsCompletedTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TodoDetailsCompletedTableViewCell.m; sourceTree = "<group>"; };
+		80436949207BD0A000FE44CB /* TodoDetailsCompletedTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TodoDetailsCompletedTableViewCell.xib; sourceTree = "<group>"; };
 		8073C8321FC946CC007223CD /* ChatTimeTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatTimeTableViewCell.h; sourceTree = "<group>"; };
 		8073C8331FC946CC007223CD /* ChatTimeTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatTimeTableViewCell.m; sourceTree = "<group>"; };
 		8073C8341FC946CC007223CD /* ChatTimeTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ChatTimeTableViewCell.xib; sourceTree = "<group>"; };
@@ -484,6 +506,9 @@
 				802F407F2051C1C60006CA8B /* TodoDetailsCompleteTableViewCell.h */,
 				802F40802051C1C60006CA8B /* TodoDetailsCompleteTableViewCell.m */,
 				802F40812051C1C60006CA8B /* TodoDetailsCompleteTableViewCell.xib */,
+				80436947207BD0A000FE44CB /* TodoDetailsCompletedTableViewCell.h */,
+				80436948207BD0A000FE44CB /* TodoDetailsCompletedTableViewCell.m */,
+				80436949207BD0A000FE44CB /* TodoDetailsCompletedTableViewCell.xib */,
 			);
 			path = Todos;
 			sourceTree = "<group>";
@@ -583,6 +608,9 @@
 				802F4044202E2A7A0006CA8B /* SettingsViewController.h */,
 				802F4045202E2A7A0006CA8B /* SettingsViewController.m */,
 				802F4046202E2A7A0006CA8B /* SettingsViewController.xib */,
+				801A33CF2087BF110001567B /* UserEditViewController.h */,
+				801A33D02087BF110001567B /* UserEditViewController.m */,
+				801A33D12087BF110001567B /* UserEditViewController.xib */,
 			);
 			path = Settings;
 			sourceTree = "<group>";
@@ -781,6 +809,12 @@
 		80F558831FBACADE001601B3 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				80436945207161B300FE44CB /* terms-of-use.png */,
+				804369432071618800FE44CB /* privacy-policy.png */,
+				804369412071616800FE44CB /* licenses.png */,
+				8043693F207160EA00FE44CB /* help-center.png */,
+				8043693D207160BD00FE44CB /* report-problem.png */,
+				8043693B2071602600FE44CB /* about-developer.png */,
 				802F4027201037880006CA8B /* add_white.png */,
 				802F402520101FF40006CA8B /* manage_residents.png */,
 				802F4023200C1BB70006CA8B /* group-icon-black-background.png */,
@@ -979,6 +1013,7 @@
 				802F3FD91FFD90730006CA8B /* LoginViewController.xib in Resources */,
 				8073C83F1FC95491007223CD /* ChatActionTableViewCell.xib in Resources */,
 				802F401A200BEBC70006CA8B /* user-icon.png in Resources */,
+				801A33D32087BF110001567B /* UserEditViewController.xib in Resources */,
 				80F558891FBACB41001601B3 /* tag.png in Resources */,
 				80F558861FBACADE001601B3 /* home.png in Resources */,
 				8073C8411FC9556D007223CD /* check_black.png in Resources */,
@@ -998,9 +1033,13 @@
 				802F3FDE1FFD9EF70006CA8B /* JoinHouseViewController.xib in Resources */,
 				802F4022200C16860006CA8B /* group-icon-white-background.png in Resources */,
 				802F406C203CA47C0006CA8B /* TodoDetailsViewController.xib in Resources */,
+				8043694B207BD0A000FE44CB /* TodoDetailsCompletedTableViewCell.xib in Resources */,
 				80F558871FBACADE001601B3 /* menu.png in Resources */,
+				804369422071616800FE44CB /* licenses.png in Resources */,
 				80F558B11FC544CB001601B3 /* UserHomeViewController.xib in Resources */,
+				8043693E207160BD00FE44CB /* report-problem.png in Resources */,
 				80F558B31FC631FD001601B3 /* add.png in Resources */,
+				8043693C2071602600FE44CB /* about-developer.png in Resources */,
 				80F558B51FC63258001601B3 /* close.png in Resources */,
 				802F402620101FF50006CA8B /* manage_residents.png in Resources */,
 				80F558C21FC7FA8F001601B3 /* HH_group_placeholder.png in Resources */,
@@ -1014,14 +1053,17 @@
 				802F4014200997D10006CA8B /* HHlogo120x120.png in Resources */,
 				802F3FF42002A5E20006CA8B /* ToDosViewController.xib in Resources */,
 				8073C8361FC946CC007223CD /* ChatTimeTableViewCell.xib in Resources */,
+				80436940207160EA00FE44CB /* help-center.png in Resources */,
 				80F5588F1FBACBDA001601B3 /* settings.png in Resources */,
 				802F3FBB1FF565CF0006CA8B /* RequestedPaymentTableViewCell.xib in Resources */,
 				80F558911FBACC12001601B3 /* share.png in Resources */,
 				80F558971FBAD142001601B3 /* MenuTableViewCell.xib in Resources */,
 				80F5587E1FBABACF001601B3 /* ChatViewController.xib in Resources */,
+				804369442071618800FE44CB /* privacy-policy.png in Resources */,
 				802F40832051C1C70006CA8B /* TodoDetailsCompleteTableViewCell.xib in Resources */,
 				80F558371FBAA541001601B3 /* LaunchScreen.storyboard in Resources */,
 				802F4024200C1BB70006CA8B /* group-icon-black-background.png in Resources */,
+				80436946207161B300FE44CB /* terms-of-use.png in Resources */,
 				802F3FE01FFDA15A0006CA8B /* left-arrow.png in Resources */,
 				802F4043202E2A6F0006CA8B /* HouseEditViewController.xib in Resources */,
 				802F3FB61FCA3BA10006CA8B /* PaymentsViewController.xib in Resources */,
@@ -1218,6 +1260,7 @@
 				802F4052202E59390006CA8B /* EditPropertyTableViewCell.m in Sources */,
 				802F3FF32002A5E20006CA8B /* ToDosViewController.m in Sources */,
 				802F3FAB1FC9FE110006CA8B /* SLKTextView+SLKAdditions.m in Sources */,
+				8043694A207BD0A000FE44CB /* TodoDetailsCompletedTableViewCell.m in Sources */,
 				802F4066203C9C570006CA8B /* TodoDetailsTableViewCell.m in Sources */,
 				80035335205C3E3700DDEE84 /* ChatMessage.m in Sources */,
 				80F558731FBAB280001601B3 /* main.m in Sources */,
@@ -1243,6 +1286,7 @@
 				802F4071203CAD180006CA8B /* UserTableViewCell.m in Sources */,
 				802F3FFA2002A78D0006CA8B /* AlexaViewController.m in Sources */,
 				802F40342020FB4A0006CA8B /* NSString+Security.m in Sources */,
+				801A33D22087BF110001567B /* UserEditViewController.m in Sources */,
 				802F405620338F5A0006CA8B /* ToDo.m in Sources */,
 				802F3FAF1FC9FE110006CA8B /* SLKTypingIndicatorView.m in Sources */,
 				802F400C2007E76B0006CA8B /* CompletedToDoTableViewCell.m in Sources */,

@@ -18,6 +18,7 @@
 #import "HouseManager.h"
 #import <TwilioAccessManager/TwilioAccessManager.h>
 #import <TwilioChatClient/TwilioChatClient.h>
+#import "SettingsViewController.h"
 
 @interface UserHomeViewController ()
 
@@ -249,6 +250,15 @@
 
 - (void)settingsClicked:(id)sender {
     // Push settings controller onto nav stack
+    if (self.isLoading) return;
+    
+    SettingsViewController *vc = [[SettingsViewController alloc]initWithNibName:@"SettingsViewController" bundle:nil];
+    vc.user = self.user;
+    UINavigationController *nav = [[UINavigationController alloc]initWithRootViewController:vc];
+    self.navBarShouldDissapear = YES;
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self presentViewController:nav animated:YES completion:nil];
+    });
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -291,7 +301,8 @@
         
         self.navBarShouldDissapear = YES;
         self.currentHouseUniqueName = house.uniqueName;
-        [self.navigationController pushViewController:revealVC animated:YES];
+        [self presentViewController:revealVC animated:YES completion:nil];
+//        [self.navigationController pushViewController:revealVC animated:YES];
     } else if (indexPath.section == 1) {
         if (indexPath.row == 0) {
             // Create

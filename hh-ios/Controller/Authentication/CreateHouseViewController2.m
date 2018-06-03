@@ -26,7 +26,7 @@
     self.navigationItem.hidesBackButton = YES;
     
     // Button
-    self.navigationItem.leftBarButtonItem = [ViewHelpers createNavButtonWithTarget:self andSelectorName:@"backButtonClicked:" andImage:[UIImage imageNamed:@"left-arrow.png"] isBack:YES];;
+    self.navigationItem.leftBarButtonItem = [ViewHelpers createNavButtonWithTarget:self andSelectorName:@"backButtonClicked:" andImage:[UIImage imageNamed:@"left-arrow.png"] isBack:YES];
     
     [ViewHelpers roundCorners:self.messageContainer];
     [ViewHelpers roundCorners:self.createButton];

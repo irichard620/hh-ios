@@ -15,5 +15,6 @@
 
 - (void)setName:(NSString *)name andAvatarLink:(NSString *)avatarLink;
 - (void)setNoImageCellWithText:(NSString *)title;
+- (void)setTitle:(NSString *)title andImage:(UIImage *)image shouldCurve:(BOOL)shouldCurve;
 
 @end

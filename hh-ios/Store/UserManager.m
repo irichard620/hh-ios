@@ -32,7 +32,7 @@
 }
 
 + (void)uploadProfilePic:(UIImage *)image withCompletion:(void (^)(NSString *, NSString *))completion {
-    [StoreHelpers sendPutRequestWithEndpoint:@"/user/upload_link" requiresAuth:YES hasParameters:nil withCallback:^(NSDictionary *jsonResponse, NSString *errorType) {
+    [StoreHelpers sendPostRequestWithEndpoint:@"/user/upload_link" requiresAuth:YES hasParameters:nil withCallback:^(NSDictionary *jsonResponse, NSString *errorType) {
         if (!errorType) {
             NSString *presignedURL = jsonResponse[@"signed_url"];
             NSString *resourcURL = jsonResponse[@"resource_url"];
@@ -42,7 +42,7 @@
             [request setValue:@"image/png" forHTTPHeaderField:@"Content-Type"];
             
             // Create upload
-            NSURLSessionUploadTask *uploadTask = [[[NSURLSession alloc]init]uploadTaskWithRequest:request fromFile:[StoreHelpers saveImageToFile:image] completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+            NSURLSessionUploadTask *uploadTask = [[NSURLSession sharedSession]uploadTaskWithRequest:request fromFile:[StoreHelpers saveImageToFile:image] completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
                 if (error) {
                     completion(nil, UNKNOWN_ERROR);
                 } else {

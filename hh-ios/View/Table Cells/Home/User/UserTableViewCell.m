@@ -13,9 +13,6 @@
 
 - (void)awakeFromNib {
     [super awakeFromNib];
-    // Initialization code
-    self.avatarImageView.layer.cornerRadius = 12.0;
-    self.avatarImageView.clipsToBounds = YES;
 }
 
 - (void)setNoImageCellWithText:(NSString *)title {
@@ -30,6 +27,18 @@
         [self.avatarImageView setImage:[UIImage imageNamed:@"user-icon-grey.png"]];
     } else {
         [self.avatarImageView sd_setImageWithURL:[NSURL URLWithString:avatarLink] placeholderImage:[UIImage imageNamed:@"user-icon-grey.png"]];
+    }
+    self.avatarImageView.layer.cornerRadius = 12.0;
+    self.avatarImageView.clipsToBounds = YES;
+}
+
+- (void)setTitle:(NSString *)title andImage:(UIImage *)image shouldCurve:(BOOL)shouldCurve {
+    self.avatarImageView.hidden = NO;
+    self.nameLabel.text = title;
+    self.avatarImageView.image = image;
+    if (shouldCurve) {
+        self.avatarImageView.layer.cornerRadius = 6.0;
+        self.avatarImageView.clipsToBounds = YES;
     }
 }
 

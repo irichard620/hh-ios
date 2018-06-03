@@ -11,8 +11,9 @@
 #import "User.h"
 #import "UserHomeViewController.h"
 #import "ResidentsViewController.h"
+#import "HouseEditViewController.h"
 
-@interface MenuViewController : UIViewController <UITableViewDelegate, UITableViewDataSource>
+@interface MenuViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, HouseEditDelegate>
 
 @property (weak, nonatomic) IBOutlet UITableView *menuTableView;
 

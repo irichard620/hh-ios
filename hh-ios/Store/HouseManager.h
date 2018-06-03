@@ -85,7 +85,7 @@
  * Updated house object
  *
  */
-+ (void)editHouseWithUniqueName:(NSString *)uniqueName withDisplayName:(NSString *)displayName andAvatarLink:(NSString *)avatarLink withCompletion:(void(^)(House *house, NSString *error))completion;
++ (void)editHouseWithUniqueName:(NSString *)uniqueName withDisplayName:(NSString *)displayName andAvatarLink:(NSString *)avatarLink andFullName:(NSString *)fullName withCompletion:(void(^)(House *house, NSString *error))completion;
 
 /*
  * Get House

@@ -16,6 +16,7 @@
 #define VIEW_TYPE 1 // Title and description and assignee - no list of options - edit in top right
 #define EDIT_TYPE 2 // Title and description as fields if owner, assignee list of options
 #define COMPLETE_TYPE 3 // Title only, list of time options
+#define VIEW_COMPLETED_TYPE 4 // Title, description, created by, completed by, time taken - no edit
 
 @interface TodoDetailsViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, UITextViewDelegate, UITextFieldDelegate>
 

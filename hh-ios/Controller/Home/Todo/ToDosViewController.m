@@ -244,7 +244,11 @@
     vc.house = self.house;
     vc.todo = todo;
     vc.delegate = self;
-    vc.type = VIEW_TYPE;
+    if (self.segment.selectedSegmentIndex == 0) {
+        vc.type = VIEW_TYPE;
+    } else {
+        vc.type = VIEW_COMPLETED_TYPE;
+    }
     [self.navigationController pushViewController:vc animated:YES];
 }
 
@@ -280,7 +284,11 @@
         } else {
             // Assign to me
             [TodoManager reassignToDoWithAssignee:self.user._id andToDo:todo._id withCompletion:^(ToDo *todo, NSString *error) {
-                
+                NSInteger index = [self getIndexOfTodoId:todo._id];
+                if (index != -1) {
+                    [self.incompleteArray replaceObjectAtIndex:index withObject:todo];
+                    [self reloadIfInIncomplete];
+                }
             }];
         }
     }

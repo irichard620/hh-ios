@@ -1,36 +1,35 @@
 //
-//  HouseEditViewController.m
+//  UserEditViewController.m
 //  hh-ios
 //
-//  Created by Ian Richard on 2/9/18.
+//  Created by Ian Richard on 4/18/18.
 //  Copyright © 2018 Ian Richard. All rights reserved.
 //
 
-#import "HouseEditViewController.h"
+#import "UserEditViewController.h"
 #import "UserHomeTableViewCell.h"
-#import "SWRevealViewController.h"
 #import "ViewHelpers.h"
 #import "EditPropertyTableViewCell.h"
 #import <SDWebImage/UIImageView+WebCache.h>
 
 #define TRIM(string) [string stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]]
 
-@interface HouseEditViewController ()
+@interface UserEditViewController ()
 
 @property (nonatomic) UIImageView *imageView;
 
-@property (nonatomic) NSString *currentDisplayName;
-@property (nonatomic) BOOL displayNameChanged;
+@property (nonatomic) NSString *currentName;
+@property (nonatomic) BOOL nameChanged;
 @property (nonatomic) BOOL avatarChanged;
 
 @end
 
-@implementation HouseEditViewController
+@implementation UserEditViewController
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        _displayNameChanged = NO;
+        _nameChanged = NO;
         _avatarChanged = NO;
     }
     return self;
@@ -38,19 +37,14 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Setup navigation bar
+    // Do any additional setup after loading the view from its nib.
     self.navigationController.navigationBar.barTintColor = [UIColor colorWithRed:0.00 green:0.59 blue:0.53 alpha:1.0];
-    self.navigationItem.title = @"Edit House";
+    self.navigationItem.title = @"Edit User";
     self.navigationController.navigationBar.titleTextAttributes = @{NSForegroundColorAttributeName:[UIColor whiteColor]};
     self.navigationController.navigationBar.largeTitleTextAttributes = @{NSForegroundColorAttributeName:[UIColor whiteColor]};
     self.navigationController.navigationBar.prefersLargeTitles = YES;
     
-    // Add gesture recognizer for reveal controller
-    [self.view addGestureRecognizer:self.revealViewController.panGestureRecognizer];
-    [self.view addGestureRecognizer:self.revealViewController.tapGestureRecognizer];
-    
-    // Create menu button
-    self.navigationItem.leftBarButtonItem = [ViewHelpers createNavButtonWithTarget:self.revealViewController andSelectorName:@"revealToggle:" andImage:[UIImage imageNamed:@"menu.png"] isBack:NO];
+    self.navigationItem.leftBarButtonItem = [ViewHelpers createNavButtonWithTarget:self andSelectorName:@"backButtonClicked:" andImage:[UIImage imageNamed:@"left-arrow.png"] isBack:YES];
     self.navigationItem.rightBarButtonItem = [ViewHelpers createTextNavButtonWithTarget:self andSelectorName:@"saveButtonClicked:" andTitle:@"Save"];
     [self.navigationItem.rightBarButtonItem setEnabled:NO];
     
@@ -72,7 +66,7 @@
     if (section == 0) {
         return 1;
     } else {
-        return 3;
+        return 2;
     }
 }
 
@@ -85,7 +79,7 @@
             [self.tableView registerNib:[UINib nibWithNibName:@"EditPropertyTableViewCell" bundle:nil] forCellReuseIdentifier:CellIdentifier];
             cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
         }
-        cell.textField.text = self.house.displayName;
+        cell.textField.text = self.user.fullName;
         [cell.textField removeTarget:self action:@selector(textFieldDidChange:) forControlEvents:UIControlEventEditingChanged];
         [cell.textField addTarget:self action:@selector(textFieldDidChange:) forControlEvents:UIControlEventEditingChanged];
         return cell;
@@ -98,15 +92,14 @@
             cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
         }
         if (indexPath.row == 0) {
-            [cell setNoImageCellWithText:@"Manage Residents"];
-        } else if (indexPath.row == 1) {
-            [cell setNoImageCellWithText:@"Leave House"];
+            [cell setNoImageCellWithText:@"Update Password"];
         } else {
-            [cell setNoImageCellWithText:@"Disband House"];
+            [cell setNoImageCellWithText:@"Delete Account"];
         }
         return cell;
     }
 }
+
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
     if (section == 0) {
@@ -122,10 +115,10 @@
         header.backgroundColor = [UIColor colorWithRed:0.812 green:0.847 blue:0.863 alpha:1.0];
         
         self.imageView = [[UIImageView alloc]initWithFrame:CGRectMake((self.tableView.frame.size.width/2 - 35), 20, 70, 70)];
-        if (self.house.avatarLink == nil) {
-            [self.imageView setImage:[UIImage imageNamed:@"group-icon-white-background.png"]];
+        if (self.user.avatarLink == nil) {
+            [self.imageView setImage:[UIImage imageNamed:@"user-icon-grey.png"]];
         } else {
-            [self.imageView sd_setImageWithURL:[NSURL URLWithString:self.house.avatarLink] placeholderImage:[UIImage imageNamed:@"group-icon-white-background.png"]];
+            [self.imageView sd_setImageWithURL:[NSURL URLWithString:self.user.avatarLink] placeholderImage:[UIImage imageNamed:@"user-icon-grey.png"]];
         }
         self.imageView.layer.cornerRadius = 16.0;
         self.imageView.clipsToBounds = YES;
@@ -153,11 +146,16 @@
 
 #pragma mark Interaction
 
+- (void)backButtonClicked:(id)sender {
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.section == 1) {
         if (indexPath.row == 0) {
-            [self.revealViewController revealToggle:self];
-            [self.delegate manageResidentsClicked];
+            
+        } else {
+            
         }
     }
 }
@@ -165,34 +163,34 @@
 - (void)saveButtonClicked:(id)sender {
     // First - upload photo if needed
     if (self.avatarChanged) {
-        [HouseManager uploadHousePic:self.imageView.image withUniqueName:self.house.uniqueName withCompletion:^(NSString *resourceURL, NSString *error) {
+        [UserManager uploadProfilePic:self.imageView.image withCompletion:^(NSString *resourceURL, NSString *error) {
             if (error) {
                 dispatch_async(dispatch_get_main_queue(), ^{
                     [self presentViewController:[ViewHelpers createErrorAlertWithTitle:@"Error" andDescription:error] animated:YES completion:nil];
                 });
             } else {
-                [self editHouseWithResourceURL:resourceURL];
+                [self editUserWithResourceURL:resourceURL];
             }
         }];
     } else {
-        [self editHouseWithResourceURL:nil];
+        [self editUserWithResourceURL:nil];
     }
 }
 
-- (void)editHouseWithResourceURL:(NSString *)resourceURL {
-    if (!self.displayNameChanged) {
-        self.currentDisplayName = nil;
+- (void)editUserWithResourceURL:(NSString *)resourceURL {
+    if (!self.nameChanged) {
+        self.currentName = nil;
     }
-    [HouseManager editHouseWithUniqueName:self.house.uniqueName withDisplayName:self.currentDisplayName andAvatarLink:resourceURL andFullName:self.user.fullName withCompletion:^(House *house, NSString *error) {
+    [UserManager editUserWithName:self.currentName andAvatarLink:resourceURL withCompletion:^(User *user, NSString *error) {
         if (error) {
             dispatch_async(dispatch_get_main_queue(), ^{
                 [self presentViewController:[ViewHelpers createErrorAlertWithTitle:@"Error" andDescription:error] animated:YES completion:nil];
             });
         } else {
-            self.house = house;
+            self.user = user;
             dispatch_async(dispatch_get_main_queue(), ^{
-                [self.delegate houseUpdated];
-                [self presentViewController:[ViewHelpers createErrorAlertWithTitle:@"Success" andDescription:@"The details for your house were updated"] animated:YES completion:nil];
+                [self.delegate userEdited];
+                [self presentViewController:[ViewHelpers createErrorAlertWithTitle:@"Success" andDescription:@"The details for your account were updated"] animated:YES completion:nil];
             });
         }
     }];
@@ -221,7 +219,7 @@
 }
 
 - (void)updateButtons {
-    if (self.displayNameChanged || self.avatarChanged) {
+    if (self.nameChanged || self.avatarChanged) {
         [self.navigationItem.rightBarButtonItem setEnabled:YES];
     } else {
         [self.navigationItem.rightBarButtonItem setEnabled:NO];
@@ -231,11 +229,11 @@
 #pragma mark Text delegate
 
 - (void)textFieldDidChange:(UITextField *)textField {
-    self.currentDisplayName = TRIM(textField.text);
-    if ([self.currentDisplayName isEqualToString:self.house.displayName] || [self.currentDisplayName isEqualToString:@""]) {
-        self.displayNameChanged = NO;
+    self.currentName = TRIM(textField.text);
+    if ([self.currentName isEqualToString:self.user.fullName] || [self.currentName isEqualToString:@""]) {
+        self.nameChanged = NO;
     } else {
-        self.displayNameChanged = YES;
+        self.nameChanged = YES;
     }
 }
 

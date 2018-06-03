@@ -14,7 +14,6 @@
 #import "PaymentsViewController.h"
 #import "AlexaViewController.h"
 #import "ToDosViewController.h"
-#import "HouseEditViewController.h"
 
 NSInteger const EDIT = 0;
 NSInteger const CHAT = 1;
@@ -22,7 +21,6 @@ NSInteger const PAYMENTS = 2;
 NSInteger const TODOS = 3;
 NSInteger const RESIDENTS = 4;
 NSInteger const ALEXA = 5;
-NSInteger const SETTINGS = 6;
 
 @interface MenuViewController ()
 
@@ -67,8 +65,8 @@ NSInteger const SETTINGS = 6;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    // 7 rows - house page, home (chat), payments, to-dos, stats, Alexa, settings
-    return 7;
+    // 6 rows - house page, home (chat), payments, to-dos, stats, Alexa
+    return 6;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -108,9 +106,10 @@ NSInteger const SETTINGS = 6;
             [cell setTitle:@"Residents" andImage:[UIImage imageNamed:@"manage_residents.png"] changeColor:NO];
         } else if (indexPath.row == ALEXA) {
             [cell setTitle:@"Connect to Alexa" andImage:[UIImage imageNamed:@"share.png"] changeColor:NO];
-        } else if (indexPath.row == SETTINGS) {
-            [cell setTitle:@"Settings" andImage:[UIImage imageNamed:@"settings.png"] changeColor:NO];
         }
+//        } else if (indexPath.row == SETTINGS) {
+//            [cell setTitle:@"Settings" andImage:[UIImage imageNamed:@"settings.png"] changeColor:NO];
+//        }
         return cell;
     }
     
@@ -132,19 +131,24 @@ NSInteger const SETTINGS = 6;
 #pragma mark User Interaction
 
 - (void)exitButtonAction {
-    [self.navigationController popViewControllerAnimated:YES];
+    [self dismissViewControllerAnimated:YES completion:nil];
+//    [self.navigationController popViewControllerAnimated:YES];
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.row == EDIT && !(self.currentIndex == EDIT)) {
         // House page
-        [[self.menuTableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:CHAT inSection:0]]setSelected:NO];
+        [self updateSelectedCells:EDIT];
         HouseEditViewController *editVC = [[HouseEditViewController alloc]initWithNibName:@"HouseEditViewController" bundle:nil];
         UINavigationController *navVC = [[UINavigationController alloc]initWithRootViewController:editVC];
+        editVC.delegate = self;
+        editVC.house = self.house;
+        editVC.user = self.user;
         [self.revealViewController pushFrontViewController:navVC animated:YES];
         self.currentIndex = EDIT;
     } else if (indexPath.row == CHAT && !(self.currentIndex == CHAT)) {
         // Home - chat
+        [self updateSelectedCells:CHAT];
         ChatViewController *chatVC = [[ChatViewController alloc]init];
         chatVC.user = self.user;
         chatVC.house = self.house;
@@ -154,14 +158,14 @@ NSInteger const SETTINGS = 6;
         self.currentIndex = CHAT;
     } else if (indexPath.row == PAYMENTS && !(self.currentIndex == PAYMENTS)) {
         // Payments
-        [[self.menuTableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:CHAT inSection:0]]setSelected:NO];
+        [self updateSelectedCells:PAYMENTS];
         PaymentsViewController *paymentsVC = [[PaymentsViewController alloc]initWithNibName:@"PaymentsViewController" bundle:nil];
         UINavigationController *navVC = [[UINavigationController alloc]initWithRootViewController:paymentsVC];
         [self.revealViewController pushFrontViewController:navVC animated:YES];
         self.currentIndex = PAYMENTS;
     } else if (indexPath.row == TODOS && !(self.currentIndex == TODOS)) {
         // To-dos
-        [[self.menuTableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:CHAT inSection:0]]setSelected:NO];
+        [self updateSelectedCells:TODOS];
         ToDosViewController *todoVC = [[ToDosViewController alloc]initWithNibName:@"ToDosViewController" bundle:nil];
         todoVC.house = self.house;
         todoVC.user = self.user;
@@ -170,7 +174,7 @@ NSInteger const SETTINGS = 6;
         self.currentIndex = TODOS;
     } else if (indexPath.row == RESIDENTS && !(self.currentIndex == RESIDENTS)) {
         // residents
-        [[self.menuTableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:CHAT inSection:0]]setSelected:NO];
+        [self updateSelectedCells:RESIDENTS];
         ResidentsViewController *residentVC = [[ResidentsViewController alloc]initWithNibName:@"ResidentsViewController" bundle:nil];
         
         // Pass house
@@ -180,21 +184,62 @@ NSInteger const SETTINGS = 6;
         UINavigationController *navVC = [[UINavigationController alloc]initWithRootViewController:residentVC];
         [self.revealViewController pushFrontViewController:navVC animated:YES];
         self.currentIndex = RESIDENTS;
-    }else if (indexPath.row == ALEXA && !(self.currentIndex == ALEXA)) {
+    } else if (indexPath.row == ALEXA && !(self.currentIndex == ALEXA)) {
         // Alexa
-        [[self.menuTableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:CHAT inSection:0]]setSelected:NO];
+        [self updateSelectedCells:ALEXA];
         AlexaViewController *alexaVC = [[AlexaViewController alloc]initWithNibName:@"AlexaViewController" bundle:nil];
         UINavigationController *navVC = [[UINavigationController alloc]initWithRootViewController:alexaVC];
         [self.revealViewController pushFrontViewController:navVC animated:YES];
         self.currentIndex = ALEXA;
-    } else if (indexPath.row == SETTINGS && !(self.currentIndex == SETTINGS)) {
-        // Settings
+    }
+//    } else if (indexPath.row == SETTINGS && !(self.currentIndex == SETTINGS)) {
+//        // Settings
+//        [[self.menuTableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:CHAT inSection:0]]setSelected:NO];
+//    }
+}
+
+- (void)updateSelectedCells:(NSInteger)select {
+    if (select != EDIT) {
+        [[self.menuTableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:EDIT inSection:0]]setSelected:NO];
+    }
+    if (select != CHAT) {
         [[self.menuTableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:CHAT inSection:0]]setSelected:NO];
+    }
+    if (select != PAYMENTS) {
+        [[self.menuTableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:PAYMENTS inSection:0]]setSelected:NO];
+    }
+    if (select != TODOS) {
+        [[self.menuTableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:TODOS inSection:0]]setSelected:NO];
+    }
+    if (select != RESIDENTS) {
+        [[self.menuTableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:RESIDENTS inSection:0]]setSelected:NO];
+    }
+    if (select != ALEXA) {
+        [[self.menuTableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:ALEXA inSection:0]]setSelected:NO];
     }
 }
 
 #pragma mark Delegate
 
+- (void)manageResidentsClicked {
+    // residents
+    [self updateSelectedCells:RESIDENTS];
+    [[self.menuTableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:RESIDENTS inSection:0]]setSelected:YES];
+    ResidentsViewController *residentVC = [[ResidentsViewController alloc]initWithNibName:@"ResidentsViewController" bundle:nil];
+    
+    // Pass house
+    residentVC.house = self.house;
+    residentVC.user = self.user;
+    
+    UINavigationController *navVC = [[UINavigationController alloc]initWithRootViewController:residentVC];
+    [self.revealViewController pushFrontViewController:navVC animated:NO];
+    self.currentIndex = RESIDENTS;
+}
 
+- (void)houseUpdated {
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self.menuTableView reloadData];
+    });
+}
 
 @end

@@ -173,9 +173,10 @@
        textField.placeholder = @"Email";
     }];
     [alert addAction:[UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:nil]];
+    __weak UIAlertController *weakAlert = alert;
     [alert addAction:[UIAlertAction actionWithTitle:@"Invite" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
         // Get email
-        NSString *email = TRIM([[alert.textFields objectAtIndex:0]text]);
+        NSString *email = TRIM([[weakAlert.textFields objectAtIndex:0]text]);
         if ([email isEqualToString:@""] || email == nil || ![email isValidEmail]) {
             [self presentViewController:[ViewHelpers createErrorAlertWithTitle:@"Invalid Email" andDescription:@"Please enter a valid email"] animated:YES completion:nil];
         } else {
@@ -183,6 +184,7 @@
             [HouseManager inviteUser:email toHouseName:self.house.uniqueName withCompletion:^(NSString *error) {
                 if (error) {
                     dispatch_async(dispatch_get_main_queue(), ^{
+                        [weakAlert dismissViewControllerAnimated:YES completion:nil];
                         [self presentViewController:[ViewHelpers createErrorAlertWithTitle:@"Error" andDescription:error] animated:YES completion:nil];
                     });
                 } else {
@@ -193,6 +195,7 @@
                     
                     // Show alert
                     dispatch_async(dispatch_get_main_queue(), ^{
+                        [weakAlert dismissViewControllerAnimated:YES completion:nil];
                         [self presentViewController:[ViewHelpers createErrorAlertWithTitle:@"Success" andDescription:[NSString stringWithFormat:@"An email has been sent to %@", email]] animated:YES completion:nil];
                         [self.residentTableView reloadData];
                     });

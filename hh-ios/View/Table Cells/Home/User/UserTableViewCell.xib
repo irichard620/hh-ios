@@ -18,7 +18,7 @@
                 <rect key="frame" x="0.0" y="0.0" width="320" height="53.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jhd-SL-MpH">
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jhd-SL-MpH">
                         <rect key="frame" x="61" y="16.5" width="243" height="21"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <nil key="textColor"/>
@@ -33,11 +33,11 @@
                     </imageView>
                 </subviews>
                 <constraints>
-                    <constraint firstAttribute="bottomMargin" secondItem="jhd-SL-MpH" secondAttribute="bottom" constant="5.5" id="NtT-nO-CsR"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="jhd-SL-MpH" secondAttribute="bottom" constant="5.5" id="6ax-5f-tER"/>
                     <constraint firstItem="jhd-SL-MpH" firstAttribute="centerY" secondItem="fNb-Z1-19u" secondAttribute="centerY" id="R5s-Te-eTz"/>
-                    <constraint firstItem="xhW-no-VRh" firstAttribute="centerY" secondItem="fNb-Z1-19u" secondAttribute="centerY" id="SLa-NB-jjO"/>
+                    <constraint firstItem="jhd-SL-MpH" firstAttribute="top" secondItem="fNb-Z1-19u" secondAttribute="topMargin" constant="5.5" id="Wab-uM-NWe"/>
+                    <constraint firstItem="xhW-no-VRh" firstAttribute="top" secondItem="fNb-Z1-19u" secondAttribute="topMargin" constant="4" id="X3L-1U-8hu"/>
                     <constraint firstItem="jhd-SL-MpH" firstAttribute="leading" secondItem="xhW-no-VRh" secondAttribute="trailing" constant="13" id="h7j-Hc-pj2"/>
-                    <constraint firstItem="jhd-SL-MpH" firstAttribute="top" secondItem="fNb-Z1-19u" secondAttribute="topMargin" constant="5.5" id="kCE-rF-VVl"/>
                     <constraint firstItem="xhW-no-VRh" firstAttribute="leading" secondItem="fNb-Z1-19u" secondAttribute="leadingMargin" constant="8" id="meA-E8-ixb"/>
                     <constraint firstItem="jhd-SL-MpH" firstAttribute="trailing" secondItem="fNb-Z1-19u" secondAttribute="trailingMargin" id="zbj-aE-LhS"/>
                 </constraints>

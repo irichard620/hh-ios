@@ -93,7 +93,7 @@
 
 - (void)getMessages {
     NSLog(@"GEt messages: %@", self.channel);
-    [[self.channel messages] getLastMessagesWithCount:20 completion:^(TCHResult * _Nonnull result, NSArray<TCHMessage *> * _Nullable messages) {
+    [[self.channel messages] getLastMessagesWithCount:30 completion:^(TCHResult * _Nonnull result, NSArray<TCHMessage *> * _Nullable messages) {
         // Messages are listed in order
         NSLog(@"Messages: %@", messages);
         for (int i = 0; i < messages.count; i++) {
